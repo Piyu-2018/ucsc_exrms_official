@@ -1,8 +1,7 @@
 import './App.css';
 
-import Navbar from './Component/Navbar';
 import Home from './pages/Home';
-
+import DirectorDash from './pages/Director/DirectorDash';
 
 import {
   BrowserRouter as Router,
@@ -16,10 +15,10 @@ function App() {
     <Router>
 
     <div className="App">
-      <Navbar/>
       <Routes>
         <Route path='/' exact element={<Home />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
+        <Route path='/directorDash' element={<DirectorDash/>}/>
     
       </Routes>
 
