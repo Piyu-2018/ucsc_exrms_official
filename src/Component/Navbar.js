@@ -14,7 +14,10 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
 
-const pages = [<Button><Link to='/Contacts'>Contact us</Link></Button>,<Button><Link to='/About'>About</Link></Button>, <Link to='/Login'>Login</Link>];
+
+const pages = [<Button><Link to='/Contacts' style={{ textDecoration: 'none' , fontSize: "18px",lineHeight: "22px",fontfamily: 'Montserrat',fontWeight: "600"}}>Contact us</Link></Button>,
+               <Button sx={{ marginLeft: "10px"  }}><Link to='/About' style={{ textDecoration: 'none', fontSize: "18px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >About</Link></Button>,
+               <Button sx={{ marginLeft: "10px"  }}><Link to='/Login' style={{ textDecoration: 'none', fontSize: "18px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >Login</Link> </Button>];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -27,7 +30,7 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
   return (
-    <AppBar position="static" style={{backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px",}}>
+    <AppBar position="relative" style={{backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography className='typo'
@@ -87,23 +90,24 @@ const Navbar = () => {
             </Menu>
           </Box>
           <Typography
-            variant="h5"
             noWrap
             component="a"
             href=""
+            textColor="blue"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
+              fontfamily: 'Montserrat',
+              fontWeight: 600,
               letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
+              
+              
+              
             }}
           >
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } ,paddingLeft: "58%" }}>
             {pages.map((page) => (
               <Button
                 key={page}
