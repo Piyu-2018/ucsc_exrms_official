@@ -9,6 +9,7 @@ import {
   Routes,
   Navigate
 } from "react-router-dom";
+import Login from './pages/Login';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' exact element={<Home />}/>
+        <Route path='/login' exact element={<Login />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
         <Route path='/directorDash' element={<DirectorDash/>}/>
     
