@@ -31,6 +31,7 @@ function Login() {
                     autoComplete="username"
                     autoFocus
                     
+                    
                 />
 
                 <TextField
@@ -42,9 +43,10 @@ function Login() {
                     type="password"
                     id="password"
                     autoComplete="current-password"
+                    
                 />
 
-                <Button size="large" variant="contained" color="primary" sx={{width:"50%", mt:"5%",borderRadius: "17px"}} >
+                <Button size="large" variant="contained" color="primary" sx={{width:"50%", mt:"5%",borderRadius: "10em"}} >
                     Login
                 </Button>
 
