@@ -2,6 +2,7 @@ import './App.css';
 
 import Navbar from './Component/Navbar';
 import Home from './pages/Home';
+import SARdash from './pages/SAR/SARdash';
 
 
 import {
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path='/' exact element={<Home />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
+        <Route path='/sar-dash' element={<SARdash/>}/>
     
       </Routes>
 
