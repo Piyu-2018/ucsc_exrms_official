@@ -4,12 +4,15 @@ import {Helmet} from 'react-helmet';
 // import 'ui-neumorphism/dist/index.css';
 // import { Button } from 'ui-neumorphism';
 
+import Navbar from '../Component/Navbar';
+
 function Home() {
   return (
     <div className='body'>
         <Helmet>
                 <style>{'body { background-image: url("./pubImgs/background.png") !important; }'}</style>
         </Helmet>
+        <Navbar/>
         <div className='homeSection'>
         <div className='leftSection'>
           <h3>WE WILL HELP YOU SELECT THE BEST EDUCATION COURSE FOR YOU.</h3>

@@ -1,8 +1,7 @@
 import './App.css';
 
-import Navbar from './Component/Navbar';
 import Home from './pages/Home';
-
+import DirectorDash from './pages/Director/DirectorDash';
 
 import {
   BrowserRouter as Router,
@@ -10,16 +9,18 @@ import {
   Routes,
   Navigate
 } from "react-router-dom";
+import Login from './pages/Login';
 
 function App() {
   return (
     <Router>
 
     <div className="App">
-      <Navbar/>
       <Routes>
         <Route path='/' exact element={<Home />}/>
+        <Route path='/login' exact element={<Login />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
+        <Route path='/directorDash' element={<DirectorDash/>}/>
     
       </Routes>
 
