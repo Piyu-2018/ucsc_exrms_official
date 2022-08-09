@@ -101,13 +101,12 @@ const Navbar = () => {
               fontfamily: 'Montserrat',
               fontWeight: 600,
               letterSpacing: '.3rem',
-              
-              
+ 
               
             }}
           >
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } ,paddingLeft: "58%" }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } ,paddingLeft: "55%" }}>
             {pages.map((page) => (
               <Button
                 key={page}
