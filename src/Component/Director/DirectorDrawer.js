@@ -16,11 +16,16 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import WebAssetIcon from "@mui/icons-material/WebAsset";
-import Navbar from './Navbar';
+import Navbar from '../Navbar';
+import DirectorContent from './DirectorContent';
 
+import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
+import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import ShowChartRoundedIcon from '@mui/icons-material/ShowChartRounded';
+import SummarizeRoundedIcon from '@mui/icons-material/SummarizeRounded';
+import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
+import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsActiveRounded';
 
 
 const drawerWidth = 240;
@@ -81,6 +86,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     flexShrink: 0,
     whiteSpace: 'nowrap',
     overflowX: "hidden",
+    backgroundColor: "#E4EBF5",
     
     
     ...(open && {
@@ -111,10 +117,11 @@ export default function DirectorDash() {
   };
 
   return (
-    
-    <Box sx={{ display: 'flex' }}>
+    <div>
+
+    <Box sx={{ display: 'flex'}}>
       <CssBaseline />
-      <AppBar position="fixed" style={{backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px",}} open={open}>
+      <AppBar position="fixed" style={{backgroundColor:"transparent" , color: "blue", boxShadow:"0px 0px 0px 0px",}} open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -125,53 +132,60 @@ export default function DirectorDash() {
               marginRight: 5,
               ...(open && { display: 'none' }),
             }}
-          >
+            >
             <MenuIcon />
           </IconButton>
           <Navbar />
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
           </Typography>
         </Toolbar>
       </AppBar>
       
-      <Drawer variant="permanent" position="relative" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {['Dashboard', 'Undergraduates', 'Examination', 'Progress', 'Reports', 'Chats', 'Notification'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <WebAssetIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+      <Drawer variant="permanent" position="relative" open={open} backgroundColor= "#E4EBF5" >
+          <DrawerHeader sx={{backgroundColor: "#E4EBF5" }}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <Box sx={{backgroundColor: "#E4EBF5" }}>
+            <List sx={{backgroundColor: "#E4EBF5" }}>
+              {['Dashboard', 'Undergraduates', 'Examination', 'Progress', 'Reports', 'Chats', 'Notification'].map((text, index) => (
+                <ListItem key={text}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {index === 0 ? <DashboardRoundedIcon/> : index === 1 ? <PeopleAltRoundedIcon/> : index === 2 ? <ArticleRoundedIcon/>  : index === 3 ? <ShowChartRoundedIcon/> : index === 4 ? <SummarizeRoundedIcon /> : index === 5 ? <ChatRoundedIcon/> : index === 6 ? <NotificationsActiveRoundedIcon/> : <NotificationsActiveRoundedIcon/>}
+                    </ListItemIcon>
+                    <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+
+          </Box>
+
+        
       </Drawer>
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        
+        <DirectorContent/> 
       </Box>
+
     </Box>
+    </div>
   );
 }
 
