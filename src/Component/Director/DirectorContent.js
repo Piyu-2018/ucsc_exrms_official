@@ -46,11 +46,6 @@ export default function AutoGrid() {
 
 </Grid>
 
-
-
-
-
-      
     </Box>
   );
 }
