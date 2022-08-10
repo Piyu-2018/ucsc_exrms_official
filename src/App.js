@@ -3,6 +3,7 @@ import './App.css';
 import Home from './pages/Home';
 import DirectorDash from './pages/Director/DirectorDash';
 import DirectorUnder from './pages/Director/DirectorUnder';
+import DirectorEnProgress from './pages/Director/DirectorEnProgress';
 
 import {
   BrowserRouter as Router,
@@ -23,6 +24,7 @@ function App() {
         <Route path='*' element={<Navigate to="/"/>}/>
         <Route path='/directorDash' element={<DirectorDash/>}/>
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
+        <Route path='/directorEnProgress' element={<DirectorEnProgress/>}/>
       </Routes>
 
     </div>

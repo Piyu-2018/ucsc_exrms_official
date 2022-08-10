@@ -1,6 +1,6 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import DirectorUnderDrawer from '../../Component/Director/DirectorUnderDrawer';
+import DirectorUnderDrawer from '../../Component/Director/Undergraduate/DirectorUnderDrawer';
 
 function DirectorUnder() {
   return (
