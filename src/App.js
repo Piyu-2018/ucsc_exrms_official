@@ -18,8 +18,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' exact element={<Home />}/>
-        <Route path='/login' exact element={<Login />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
+
+        <Route path='/login' exact element={<Login />}/>
+
         <Route path='/directorDash' element={<DirectorDash/>}/>
     
       </Routes>
@@ -30,4 +32,3 @@ function App() {
 }
 
 export default App;
-
