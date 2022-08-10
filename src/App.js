@@ -11,6 +11,7 @@ import {
   Navigate
 } from "react-router-dom";
 import Login from './pages/Login';
+import LecturerAssignments from './pages/Lecturer/LecturerAssignments';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path='*' element={<Navigate to="/"/>}/>
         <Route path='/directorDash' element={<DirectorDash/>}/>
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
+        <Route path='/lecturer_assignments' element={<LecturerAssignments/>}/>
       </Routes>
 
     </div>
