@@ -5,7 +5,9 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import {useState} from 'react'
 import { styled, useTheme } from '@mui/material/styles';
-
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import GradingIcon from '@mui/icons-material/Grading';
+import { Attachment, CalendarMonth, Chat, Grade, Notifications } from '@mui/icons-material';
 const drawerWidth = 240;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -30,7 +32,8 @@ const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
 
 function LecSidebar(toggle) {
     
-const [open, setOpen] = useState(false);
+const [open, setOpen] = useState(true);
+// const [open, setOpen] = useState(false);
 
   const handleDrawerOpen = () => {
     if(open===true){
@@ -43,6 +46,25 @@ const [open, setOpen] = useState(false);
 
 // sx={{display:{xs:"none",sm:"none",md:"block"}}}
 
+  function renderSwitch(param){
+    switch(param){
+      case 0:
+        return <AssignmentIcon/>;
+      case 1:
+        return <GradingIcon/>
+      case 2:
+        return <CalendarMonth/>
+      case 3:
+        return <Grade/>
+      case 4:
+        return <Attachment/>
+      case 5:
+        return <Chat/>
+      case 6:
+        return <Notifications/>          
+
+    }
+  }
 
   return (
     <>
@@ -67,19 +89,25 @@ const [open, setOpen] = useState(false);
       <Toolbar/>
       <Box sx={{ overflow: 'auto' }}>     
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
+        {['Assignments', 'Exam Marks', 'Exam Timetable', 'Grades','Exam Paper','Chat','Notifications'].map((text, index) => (
+          <>
+          <ListItem key={text} sx={{height:"80px"}} disablePadding>
             <ListItemButton>
               <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                {renderSwitch(index)}
+                {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
               </ListItemIcon>
               <ListItemText primary={text} />
             </ListItemButton>
+            
           </ListItem>
+          <Divider />
+          </>
+          
         ))}
       </List>
-      <Divider />
-      <List>
+      {/* <Divider /> */}
+      {/* <List>
         {['All mail', 'Trash', 'Spam'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton>
@@ -90,11 +118,11 @@ const [open, setOpen] = useState(false);
             </ListItemButton>
           </ListItem>
         ))}
-      </List>
+      </List> */}
       </Box> 
     </Drawer>  
     </Box>
-    <Button variant="contained" onClick={handleDrawerOpen}>Contained</Button>
+    {/* <Button variant="contained" onClick={handleDrawerOpen}>Contained</Button> */}
         
     </>
 

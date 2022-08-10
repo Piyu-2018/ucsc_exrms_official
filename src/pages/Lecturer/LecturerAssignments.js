@@ -21,10 +21,13 @@ function LecturerAssignments() {
         {/* <Helmet>
             <style>{'body { background: #E4EBF5 !important; }'}</style>
         </Helmet> */}
-        <Box>
-            <LecNavBar props ={toggleSideBar}/>
+        <Box >
+            <LecNavBar />
+            
+            
+            
             <Stack direction="row" spacing={2} justifyContent="space-between">
-                <LecSidebar/>
+                <LecSidebar/>    
                 <LecAssignmentCourses/>
                 <LecRightBar/>
             </Stack>
