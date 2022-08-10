@@ -15,6 +15,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { Avatar, Badge } from '@mui/material';
 import styled from 'styled-components';
 import { Mail, Message, Notifications, Pets } from "@mui/icons-material";
+import { useState } from 'react';
 
 
 const Icons = styled(Box)(({ theme }) => ({
@@ -31,8 +32,23 @@ const pages = [<Button><Link to='/Contacts' style={{ textDecoration: 'none' , fo
                <Button sx={{ marginLeft: "10px"  }}><Link to='/About' style={{ textDecoration: 'none', fontSize: "18px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >About</Link></Button>];
 
 const LecNavBar = (props) => {
+  
+  const [toggle,setToggle] = useState(true);
 
+  function clickHandler(){
+    if(toggle===true){
+      setToggle(false);
+      props.data = toggle;
+      
+    }else{
+      setToggle(true);
+      props.data = toggle;
+      
+    }
+  }
 
+  
+  
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
