@@ -30,8 +30,9 @@ const Icons = styled(Box)(({ theme }) => ({
 const pages = [<Button><Link to='/Contacts' style={{ textDecoration: 'none' , fontSize: "18px",lineHeight: "22px",fontfamily: 'Montserrat',fontWeight: "600"}}>Contact us</Link></Button>,
                <Button sx={{ marginLeft: "10px"  }}><Link to='/About' style={{ textDecoration: 'none', fontSize: "18px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >About</Link></Button>];
 
-const LecNavBar = () => {
-const [open, setOpen] = React.useState(false);  
+const LecNavBar = (props) => {
+
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -42,9 +43,17 @@ const [open, setOpen] = React.useState(false);
     setAnchorElNav(null);
   };
   return (
-    <AppBar position="relative" style={{backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px"}}>
-      <Container maxWidth="xl">
+    <AppBar position="sticky" style={{backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px"}} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <Container maxWidth="xl" sx={{bgcolor:"#E4EBF5"}}>
         <Toolbar disableGutters>
+            <IconButton
+                onClick={props.data}
+                aria-label="open drawer"
+                edge="start"
+                
+            >
+                <MenuIcon color="primary" sx={{height:"40px", width:"40px"}}/>
+            </IconButton>  
           <Typography className='typo'
             variant="h6"
             noWrap
@@ -131,13 +140,19 @@ const [open, setOpen] = React.useState(false);
           </Box>
           <Box sx={{display:"flex", gap:"20px",alignItems: "center"}} >
             <Badge badgeContent={4} color="error">
-                <Message color="primary"/>
-            </Badge>
+                <IconButton>
+                    <Message color="primary"/>
+                </IconButton>
+                </Badge>
             <Badge badgeContent={2} color="error">
-                <Notifications color="primary"/>
-            </Badge>
-            <Avatar sx={{width:30,height:30}} src="./pubImgs/lecturer.png" onClick={(e) => setOpen(true)}/>
-          </Box>
+                <IconButton>
+                    <Notifications color="primary"/>
+                </IconButton>
+                </Badge>
+                <IconButton>
+                    <Avatar sx={{width:30,height:30}} src="./pubImgs/lecturer.png" />
+                </IconButton>
+            </Box>
         </Toolbar>
       </Container>
       
