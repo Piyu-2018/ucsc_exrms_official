@@ -14,10 +14,9 @@ function Home() {
         </Helmet>
         <Navbar/>
         <div className='homeSection'>
-        <div className='leftSection'>
-          <h3>WE WILL HELP YOU SELECT THE BEST EDUCATION COURSE FOR YOU.</h3>
-          <p>After leaving school it is hard to find the correct path and career to pursue. We will help you find the most suitable higher educational options with our system.</p>
-          {/* <Button color='#ccc' bgColor='#06283D' rounded width='50px' className='registerBtn'>Register Now</Button> */}
+        <div className='textSection'>
+            <h3>Welcome to the official student portal of UCSC</h3>
+            <p>Official platform for providing the pathway to communicate with the examination division of University Of Colombo School Of Computing.</p>
         </div>
         <img src={require('./../assets/imgs/homeVector.png')} />
         </div>
