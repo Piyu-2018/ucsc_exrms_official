@@ -2,6 +2,8 @@ import './App.css';
 
 import Home from './pages/Home';
 import DirectorDash from './pages/Director/DirectorDash';
+import MaDash from './pages/Ma/MaDash';
+
 
 import {
   BrowserRouter as Router,
@@ -21,6 +23,7 @@ function App() {
         <Route path='/login' exact element={<Login />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
         <Route path='/directorDash' element={<DirectorDash/>}/>
+        <Route path='/maDash' element={<MaDash/>}/>
     
       </Routes>
 
