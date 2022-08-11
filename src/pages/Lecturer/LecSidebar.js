@@ -8,7 +8,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import GradingIcon from '@mui/icons-material/Grading';
 import { Attachment, CalendarMonth, Chat, Grade, Notifications } from '@mui/icons-material';
-const drawerWidth = 240;
+const drawerWidth = 220;
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
     ({ theme, open }) => ({
@@ -68,7 +68,7 @@ const [open, setOpen] = useState(true);
 
   return (
     <>
-    <Box sx={{display:"flex", flexDirection:"column", width:"100px" }}>
+    <Box sx={{display:"flex", flexDirection:"column", width:"250px"}}>
     
 
             

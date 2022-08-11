@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import Login from './pages/Login';
 import LecturerAssignments from './pages/Lecturer/LecturerAssignments';
+import LecAssignList from './pages/Lecturer/LecAssignList';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/directorDash' element={<DirectorDash/>}/>
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
         <Route path='/lecturer_assignments' element={<LecturerAssignments/>}/>
+        <Route path='/lec_assign_list' element={<LecAssignList/>}/>
       </Routes>
 
     </div>

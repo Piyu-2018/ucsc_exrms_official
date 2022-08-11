@@ -3,6 +3,29 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {createStore} from 'redux';
+
+// let store = createStore(reducer)
+
+// STORE->GLOBALIZED STATE
+
+
+// ACTION INCREMENT
+// const increment = () => {
+//   return {
+//     type: 'INCREMENT'
+//   }
+// }
+
+
+
+// REDUCER
+
+
+//DISPATCH
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
