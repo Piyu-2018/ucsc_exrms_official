@@ -23,8 +23,10 @@ function App() {
     <div className="App">
       <Routes>
         <Route path='/' exact element={<Home />}/>
-        <Route path='/login' exact element={<Login />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
+
+        <Route path='/login' exact element={<Login />}/>
+
         <Route path='/directorDash' element={<DirectorDash/>}/>
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
         <Route path='/directorEnProgress' element={<DirectorEnProgress/>}/>
@@ -39,4 +41,3 @@ function App() {
 }
 
 export default App;
-
