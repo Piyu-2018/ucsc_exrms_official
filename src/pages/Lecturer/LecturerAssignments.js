@@ -1,4 +1,4 @@
-import { Box, Stack } from '@mui/material';
+import { Box, Grid, Stack } from '@mui/material';
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import LecAssignmentCourses from '../../Component/Lecturer/LecAssignmentCourses';
@@ -26,11 +26,18 @@ function LecturerAssignments() {
             
             
             
-            <Stack direction="row" spacing={2} justifyContent="space-between">
-                <LecSidebar/>    
-                <LecAssignmentCourses/>
-                <LecRightBar/>
-            </Stack>
+            <Grid container spacing={1} justifyContent="space-between">
+                <Grid item sm={4} md={2}>
+                  <LecSidebar/>
+                </Grid>
+                <Grid item sm={8} md={7}>
+                  <LecAssignmentCourses/>
+                </Grid>    
+                <Grid item sm={0} md={3}>
+                  <LecRightBar/>
+                </Grid>
+                
+            </Grid>
         </Box>
 
 
