@@ -16,8 +16,12 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Navbar from '../Navbar';
-import DirectorContent from './DirectorContent';
+import Navbar from '../../Navbar';
+import DirectorProgConfirmContent from './DirectorProgConfirmContent';
+import DirectorProgConfirmChart from './DirectorProgConfirmChart';
+import DirectorProgConfirmTable from './DirectorProgConfirmTable';
+
+
 
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
@@ -181,11 +185,15 @@ export default function DirectorDash() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <DirectorContent/> 
+        <DirectorProgConfirmContent/>
+        <DirectorProgConfirmChart/><br></br>
+        <DirectorProgConfirmTable/>
       </Box>
 
     </Box>
     </div>
   );
 }
+
+
 
