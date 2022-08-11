@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@devexpress/dx-react-chart": "^3.0.4",
+    "@devexpress/dx-react-chart-material-ui": "^3.0.4",
+    "@devexpress/dx-react-core": "^3.0.4",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@fontsource/roboto": "^4.5.7",
@@ -13,6 +16,7 @@
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
     "joy-ui": "^0.0.3",
+    "material-ui-search-bar": "^1.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
