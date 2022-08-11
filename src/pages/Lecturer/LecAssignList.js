@@ -3,6 +3,7 @@ import React from 'react'
 import LecAssignmentCourses from '../../Component/Lecturer/LecAssignmentCourses'
 import LecAssignTable from '../../Component/Lecturer/LecAssignTable'
 import LecNavBar from '../../Component/Lecturer/LecNavBar'
+import LecAddAssign from './LecAddAssign'
 import LecSidebar from './LecSidebar'
 
 function LecAssignList() {
@@ -19,6 +20,7 @@ function LecAssignList() {
                     Assignments (SCS3201)
                   </Typography>
                   <LecAssignTable/>
+                  <LecAddAssign/>
 
                 </Grid>    
                 
