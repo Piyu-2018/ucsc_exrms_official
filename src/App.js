@@ -18,6 +18,16 @@ import Login from "./pages/Login";
 import LecturerAssignments from "./pages/Lecturer/LecturerAssignments";
 import LecAssignList from "./pages/Lecturer/LecAssignList";
 import LecExamTimetable from "./pages/Lecturer/LecExamTimetable";
+import LecAssignMarking from "./pages/Lecturer/LecAssignMarking";
+import { createTheme } from "@mui/material";
+
+const theme = createTheme({
+  typography: {
+    h3: {
+      color: "#06283D",
+    },
+  },
+});
 
 function App() {
   return (
@@ -46,6 +56,7 @@ function App() {
           />
           <Route path="/lec_assign_list" element={<LecAssignList />} />
           <Route path="/lec_exam_timetable" element={<LecExamTimetable />} />
+          <Route path="/lec_assign_marking" element={<LecAssignMarking />} />
         </Routes>
       </div>
     </Router>
