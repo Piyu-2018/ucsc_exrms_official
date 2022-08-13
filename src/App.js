@@ -1,6 +1,8 @@
 import './App.css';
 
 import Home from './pages/Home';
+import SARdash from './pages/SAR/SARdash';
+
 import DirectorDash from './pages/Director/DirectorDash';
 import DirectorUnder from './pages/Director/DirectorUnder';
 import DirectorEnProgress from './pages/Director/DirectorEnProgress';
@@ -26,8 +28,6 @@ function App() {
       <Routes>
         <Route path='/' exact element={<Home />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
-
-        <Route path='/login' exact element={<Login />}/>
 
         <Route path='/directorDash' element={<DirectorDash/>}/>
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
