@@ -1,6 +1,6 @@
 import * as React from 'react';
-import './../style/navbar.css';
-import { ReactComponent as Logo } from './../assets/svgs/Logo.svg';
+import './../../style/navbar.css'
+import { ReactComponent as Logo } from './../../assets/svgs/Logo.svg';
 import {Link}  from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -12,14 +12,43 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { Avatar, Badge } from '@mui/material';
+import styled from 'styled-components';
+import { Mail, Message, Notifications, Pets } from "@mui/icons-material";
+import { useState } from 'react';
 
 
+const Icons = styled(Box)(({ theme }) => ({
+    display: "none",
+    alignItems: "center",
+    gap: "20px",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex",
+    },
+  }));
 
-const pages = [<Button><Link to='/Contacts' style={{ color:'#06283D',textDecoration: 'none' , fontSize: "15px",lineHeight: "22px",fontfamily: 'Montserrat',fontWeight: "600"}}>Contact us</Link></Button>,
-               <Button sx={{ marginLeft: "10px"  }}><Link to='/About' style={{ color:'#06283D',textDecoration: 'none', fontSize: "15px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >About</Link></Button>,
-               <Button variant="contained" sx={{ backgroundColor:'#06283D', marginLeft: "10px", borderRadius:'15px', padding: '5px 30px'  }}><Link to='/Login' style={{ color:'#DFF6FF', textDecoration: 'none', fontSize: "15px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >Login</Link> </Button>];
 
-const Navbar = () => {
+const pages = [<Button><Link to='/Contacts' style={{ textDecoration: 'none' , fontSize: "18px",lineHeight: "22px",fontfamily: 'Montserrat',fontWeight: "600"}}>Contact us</Link></Button>,
+               <Button sx={{ marginLeft: "10px"  }}><Link to='/About' style={{ textDecoration: 'none', fontSize: "18px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >About</Link></Button>];
+
+const LecNavBar = (props) => {
+  
+  const [toggle,setToggle] = useState(true);
+
+  function clickHandler(){
+    if(toggle===true){
+      setToggle(false);
+      props.data = toggle;
+      
+    }else{
+      setToggle(true);
+      props.data = toggle;
+      
+    }
+  }
+
+  
+  
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -30,9 +59,17 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
   return (
-    <AppBar position="relative" style={{width:"100%",backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px"}}>
-      <Container maxWidth="xl">
+    <AppBar position="sticky" style={{backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px"}} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+      <Container maxWidth="xl" sx={{bgcolor:"#E4EBF5"}}>
         <Toolbar disableGutters>
+            <IconButton
+                onClick={props.data}
+                aria-label="open drawer"
+                edge="start"
+                
+            >
+                <MenuIcon color="primary" sx={{height:"40px", width:"40px"}}/>
+            </IconButton>  
           <Typography className='typo'
             variant="h6"
             noWrap
@@ -117,10 +154,25 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
+          <Box sx={{display:"flex", gap:"20px",alignItems: "center"}} >
+            <Badge badgeContent={4} color="error">
+                <IconButton>
+                    <Message color="primary"/>
+                </IconButton>
+                </Badge>
+            <Badge badgeContent={2} color="error">
+                <IconButton>
+                    <Notifications color="primary"/>
+                </IconButton>
+                </Badge>
+                <IconButton>
+                    <Avatar sx={{width:30,height:30}} src="./pubImgs/lecturer.png" />
+                </IconButton>
+            </Box>
         </Toolbar>
       </Container>
       
     </AppBar>
   );
 };
-export default Navbar;
+export default LecNavBar;
