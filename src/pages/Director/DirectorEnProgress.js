@@ -1,16 +1,17 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import DirectorDrawer from '../../Component/Director/Dashboard/DirectorDrawer';
+import DirectorProgEnDrawer from '../../Component/Director/Progress/DirectorProgEnDrawer';
 
-function DirectorDash() {
+function DirectorUnder() {
   return (
     <div>
       <Helmet>
         <style>{'body { background: #E4EBF5 !important; }'}</style>
       </Helmet>
-      <DirectorDrawer/>
+      <DirectorProgEnDrawer/>
+      
     </div>
   )
 }
 
-export default DirectorDash
+export default DirectorUnder
