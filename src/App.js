@@ -1,5 +1,4 @@
-import './App.css';
-
+import "./App.css";
 import Home from './pages/Home';
 import SARdash from './pages/SAR/SARdash';
 
@@ -14,22 +13,34 @@ import {
   BrowserRouter as Router,
   Route,
   Routes,
-  Navigate
+  Navigate,
 } from "react-router-dom";
-import Login from './pages/Login';
-import LecturerAssignments from './pages/Lecturer/LecturerAssignments';
-import LecAssignList from './pages/Lecturer/LecAssignList';
+import Login from "./pages/Login";
+import LecturerAssignments from "./pages/Lecturer/LecturerAssignments";
+import LecAssignList from "./pages/Lecturer/LecAssignList";
+import LecExamTimetable from "./pages/Lecturer/LecExamTimetable";
+import LecAssignMarking from "./pages/Lecturer/LecAssignMarking";
+import { createTheme } from "@mui/material";
+
+const theme = createTheme({
+  typography: {
+    h3: {
+      color: "#06283D",
+    },
+  },
+});
 
 function App() {
   return (
     <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="*" element={<Navigate to="/" />} />
 
-    <div className="App">
-      <Routes>
-        <Route path='/' exact element={<Home />}/>
-        <Route path='*' element={<Navigate to="/"/>}/>
 
-        <Route path='/directorDash' element={<DirectorDash/>}/>
+          <Route path="/login" exact element={<Login />} />
+          <Route path='/directorDash' element={<DirectorDash/>}/>
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
 
         <Route path='/directorEnProgress' element={<DirectorEnProgress/>}/>
@@ -37,12 +48,15 @@ function App() {
         <Route path='/directorConfirmProg' element={<DirectorConfirmProg/>}/>
         <Route path='/directorTransProg' element={<DirectorTransProg/>}/>
 
-        <Route path='/lecturer_assignments' element={<LecturerAssignments/>}/>
-        <Route path='/lec_assign_list' element={<LecAssignList/>}/>
-
-      </Routes>
-
-    </div>
+          <Route
+            path="/lecturer_assignments"
+            element={<LecturerAssignments />}
+          />
+          <Route path="/lec_assign_list" element={<LecAssignList />} />
+          <Route path="/lec_exam_timetable" element={<LecExamTimetable />} />
+          <Route path="/lec_assign_marking" element={<LecAssignMarking />} />
+        </Routes>
+      </div>
     </Router>
   );
 }
