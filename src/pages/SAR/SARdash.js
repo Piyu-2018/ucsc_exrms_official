@@ -1,23 +1,30 @@
-import React from 'react';
+import * as React from 'react';
+import DirectorDrawer from '../../Component/DirectorDrawer';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Footer from '../../Component/Footer';
+
 
 const bull = (
-    <Box
-      component="span"
-      sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-    >
-      •
-    </Box>
-  );
+  <Box
+    component="span"
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
+    •
+  </Box>
+);
+
 
 function SARdash() {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    
+
+  <div> <DirectorDrawer/>
+  <Card sx={{ maxWidth: 275 }}>
       <CardContent>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           Word of the Day
@@ -38,10 +45,8 @@ function SARdash() {
         <Button size="small">Learn More</Button>
       </CardActions>
     </Card>
-  
-
-
-  
+    <Footer/>
+    </div>
   )
 }
 

@@ -1,8 +1,8 @@
 import './App.css';
 
 import Home from './pages/Home';
-import SARdash from './pages/SAR/SARdash';
 
+import SARdash from './pages/SAR/SARdash';
 import DirectorDash from './pages/Director/DirectorDash';
 
 import {
@@ -26,6 +26,7 @@ function App() {
         <Route path='/directorDash' element={<DirectorDash/>}/>
     
       </Routes>
+    
 
     </div>
     </Router>
