@@ -16,11 +16,18 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import WebAssetIcon from "@mui/icons-material/WebAsset";
 import Navbar from './Navbar';
 
+
+import PeopleIcon from '@mui/icons-material/People';
+import DescriptionIcon from '@mui/icons-material/Description';
+import AttachEmailIcon from '@mui/icons-material/AttachEmail';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import ForumIcon from '@mui/icons-material/Forum';
+import SourceIcon from '@mui/icons-material/Source';
 
 
 const drawerWidth = 240;
@@ -81,6 +88,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     flexShrink: 0,
     whiteSpace: 'nowrap',
     overflowX: "hidden",
+    backgroundColor: "#E4EBF5",
     
     
     ...(open && {
@@ -111,10 +119,11 @@ export default function MaDash() {
   };
 
   return (
-    
-    <Box sx={{ display: 'flex' }}>
+    <div>
+
+    <Box sx={{ display: 'flex'}}>
       <CssBaseline />
-      <AppBar position="fixed" style={{backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px",}} open={open}>
+      <AppBar position="fixed" style={{backgroundColor:"transparent" , color: "blue", boxShadow:"0px 0px 0px 0px",}} open={open}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -125,53 +134,60 @@ export default function MaDash() {
               marginRight: 5,
               ...(open && { display: 'none' }),
             }}
-          >
+            >
             <MenuIcon />
           </IconButton>
           <Navbar />
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
           </Typography>
         </Toolbar>
       </AppBar>
       
-      <Drawer variant="permanent" position="relative" open={open}>
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <List>
-          {['Undergraduates', 'Examinations', 'Letters', 'Registration', 'Payments','Attendance','Reports', 'Chats', 'Courses'].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <WebAssetIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+      <Drawer variant="permanent" position="relative" open={open} backgroundColor= "#E4EBF5" >
+          <DrawerHeader sx={{backgroundColor: "#E4EBF5" }}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+            </IconButton>
+          </DrawerHeader>
+          <Divider />
+          <Box sx={{backgroundColor: "#E4EBF5" }}>
+            <List sx={{backgroundColor: "#E4EBF5" }}>
+              {['Undergraduates', 'Examinations', 'Letters', 'Registration', 'Payments','Attendance','Reports', 'Chats', 'Courses'].map((text, index) => (
+                <ListItem key={text}>
+                  <ListItemButton
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
+                    }}
+                  >
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {index === 0 ? <PeopleIcon/> : index === 1 ? <DescriptionIcon/> : index === 2 ? <AttachEmailIcon/>  : index === 3 ? <AssignmentIndIcon/> : index === 4 ? <PaymentsIcon /> : index === 5 ? <HowToRegIcon/> : index === 6 ? <AssessmentIcon/> : index === 7 ? <ForumIcon/> : index === 8 ? <SourceIcon/> : <ForumIcon/>}
+                    </ListItemIcon>
+                    <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+
+          </Box>
+
+        
       </Drawer>
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
         
       </Box>
+
     </Box>
+    </div>
   );
 }
 
