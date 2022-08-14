@@ -1,6 +1,6 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import DirectorProgConfirmDrawer from '../../Component/Director/Progress/DirectorProgConfirmDrawer';
+import DirectorProgConfirmDrawer from '../../Component/Director/Progress/Confirm_letter/DirectorProgConfirmDrawer';
 
 function DirectorConfirmProg() {
   return (

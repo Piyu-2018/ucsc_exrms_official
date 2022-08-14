@@ -16,7 +16,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Navbar from '../../Navbar';
+import Navbar from '../../../Navbar';
 import DirectorProgRegContent from './DirectorProgRegContent';
 import DirectorProgRegChart from './DirectorProgRegChart';
 import DirectorProgRegTable from './DirectorProgRegTable';
