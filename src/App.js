@@ -7,6 +7,9 @@ import DirectorEnProgress from './pages/Director/DirectorEnProgress';
 import DirectorRegProg from './pages/Director/DirectorRegProg';
 import DirectorConfirmProg from './pages/Director/DirectorConfirmProg';
 import DirectorTransProg from './pages/Director/DirectorTransProg';
+import DirectorSubProg from './pages/Director/DirectorSubProg';
+import DirectorRescruProg from './pages/Director/DirectorRescruProg';
+import DirectorFourthProg from './pages/Director/DirectorFourthProg';
 
 import {
   BrowserRouter as Router,
@@ -33,6 +36,9 @@ function App() {
         <Route path='/directorRegProg' element={<DirectorRegProg/>}/>
         <Route path='/directorConfirmProg' element={<DirectorConfirmProg/>}/>
         <Route path='/directorTransProg' element={<DirectorTransProg/>}/>
+        <Route path='/directorSubProg' element={<DirectorSubProg/>}/>
+        <Route path='/directorRescruProg' element={<DirectorRescruProg/>}/>
+        <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
       </Routes>
 
     </div>

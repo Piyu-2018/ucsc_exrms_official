@@ -16,10 +16,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Navbar from '../../Navbar';
-import DirectorProgTransContent from './DirectorProgTransContent';
-import DirectorProgTransChart from './DirectorProgTransChart';
-import DirectorProgTransTable from './DirectorProgTransTable';
+import Navbar from '../../../Navbar';
+import DirectorProgConfirmContent from './DirectorProgConfirmContent';
+import DirectorProgConfirmChart from './DirectorProgConfirmChart';
+import DirectorProgConfirmTable from './DirectorProgConfirmTable';
 
 
 
@@ -185,9 +185,9 @@ export default function DirectorDash() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <DirectorProgTransContent/>
-        <DirectorProgTransChart/><br></br>
-        <DirectorProgTransTable/>
+        <DirectorProgConfirmContent/>
+        <DirectorProgConfirmChart/><br></br>
+        <DirectorProgConfirmTable/>
       </Box>
 
     </Box>

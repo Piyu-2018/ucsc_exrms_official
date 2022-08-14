@@ -1,6 +1,6 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import DirectorProgEnDrawer from '../../Component/Director/Progress/DirectorProgEnDrawer';
+import DirectorProgEnDrawer from '../../Component/Director/Progress/Enrollment/DirectorProgEnDrawer';
 
 function DirectorUnder() {
   return (
