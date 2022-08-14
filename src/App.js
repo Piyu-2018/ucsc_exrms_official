@@ -8,6 +8,8 @@ import DirectorEnProgress from './pages/Director/DirectorEnProgress';
 import DirectorRegProg from './pages/Director/DirectorRegProg';
 import DirectorConfirmProg from './pages/Director/DirectorConfirmProg';
 import DirectorTransProg from './pages/Director/DirectorTransProg';
+import MaDash from './pages/Ma/MaDash';
+
 
 import {
   BrowserRouter as Router,
@@ -39,8 +41,12 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
 
 
+
           <Route path="/login" exact element={<Login />} />
           <Route path='/directorDash' element={<DirectorDash/>}/>
+
+        <Route path='/maDash' element={<MaDash/>}/>
+
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
 
         <Route path='/directorEnProgress' element={<DirectorEnProgress/>}/>
