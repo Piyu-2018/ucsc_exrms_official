@@ -1,16 +1,16 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import DirectorProgTransDrawer from '../../Component/Director/Progress/Transcript/DirectorProgTransDrawer';
+import DirectorProgSubDrawer from '../../Component/Director/Progress/SubSl/DirectorProgSubDrawer';
 
-function DirectorTransProg() {
+function DirectorSubProg() {
   return (
     <div>
         <Helmet>
             <style>{'body { background: #E4EBF5 !important; }'}</style>
         </Helmet>
-        <DirectorProgTransDrawer/>
+        <DirectorProgSubDrawer/>  
     </div>
   )
 }
 
-export default DirectorTransProg
+export default DirectorSubProg

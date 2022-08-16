@@ -16,10 +16,13 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Navbar from '../../Navbar';
-import DirectorProgEnContent from './DirectorProgEnContent';
-import DirectorProgEnBar from './DirectorProgEnBar';
-import DirectorProgEnTable from './DirectorProgEnTable';
+import Navbar from '../../../Navbar';
+import DirectorProgFourthContent from './DirectorProgFourthContent';
+import DirectorProgFourthSe from './DirectorProgFourthSe';
+import DirectorProgFourthChart from './DirectorProgFourthChart';
+import DirectorProgFourthTable from './DirectorProgFourthTable';
+
+
 
 import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
 import DashboardRoundedIcon from '@mui/icons-material/DashboardRounded';
@@ -183,13 +186,16 @@ export default function DirectorDash() {
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <DrawerHeader />
-        <DirectorProgEnContent/>
-        <DirectorProgEnBar/> <br></br>
-        <DirectorProgEnTable/>
+        <DirectorProgFourthContent/>
+        <DirectorProgFourthSe/>
+        <DirectorProgFourthChart/>
+        <DirectorProgFourthTable/>
       </Box>
 
     </Box>
     </div>
   );
 }
+
+
 
