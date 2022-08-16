@@ -7,7 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,15 +28,14 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(IndexNumber,  Name, Registration) {
-  return { IndexNumber,  Name , Registration };
+function createData(IndexNumber,  Name) {
+  return { IndexNumber,  Name };
 }
 
 const rows = [
-    createData(19001411,'Dinil Seniru Ratnayake','Registered'),
-    createData(19001428,'Janitha Ratnayake','Not-Registered'),
-    createData(19001381,'Piyumi Rathnayaka','Registered'),
-    createData(19001411,'Dinil Seniru Ratnayake','Registered'),
+    createData(19001428,'Janitha Ratnayake'),
+    createData(19001411,'Dinil Seniru Ratnayake' ),
+    createData(19020945,'Sasani Samanga'),
 ];
 
 export default function CustomizedTables() {
@@ -48,7 +46,6 @@ export default function CustomizedTables() {
           <TableRow>
             <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
-            <StyledTableCell align="left">Registered / Not</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -56,7 +53,6 @@ export default function CustomizedTables() {
             <StyledTableRow key={row.name}>
               <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
               <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.Registration}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
