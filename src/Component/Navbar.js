@@ -30,7 +30,8 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
   return (
-    <AppBar position="relative" style={{width:"100%",backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px"}}>
+    
+    <AppBar position="relative" style={{width:"100%",backgroundColor:"#E4EBF5" , color: "green", boxShadow:"0px 0px 0px 0px"}} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography className='typo'
