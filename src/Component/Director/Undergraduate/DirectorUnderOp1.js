@@ -40,14 +40,15 @@ export default function SplitButton() {
   return (
     <React.Fragment>
       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-        <Button onClick={handleClick}>{options[selectedIndex]}</Button>
-        <Button
+        <Button onClick={handleClick} >{options[selectedIndex]} </Button>
+        <Button 
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
+          
         >
           <ArrowDropDownIcon />
         </Button>

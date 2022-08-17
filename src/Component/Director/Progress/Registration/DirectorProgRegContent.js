@@ -1,10 +1,19 @@
 import React from 'react';
+import { createTheme, Typography } from "@mui/material";
+
+const theme = createTheme({
+  typography: {
+    h3: {
+      color: "#06283D",
+    },
+  },
+});
 
 function DirectorProgRegContent() {
   return (
     <div>
         <div>
-            <p>Progress of Academic Registration</p>
+            <Typography variant="h4" theme={theme} align='left'>Progress of Academic Registration</Typography>
         </div>
       
     </div>
