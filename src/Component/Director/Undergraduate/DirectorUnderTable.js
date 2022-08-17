@@ -44,8 +44,8 @@ export default function CustomizedTables() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
+        <TableHead >
+          <TableRow >
             <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Registration Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
