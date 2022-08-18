@@ -25,6 +25,7 @@ import {
   import SummarizeRoundedIcon from '@mui/icons-material/SummarizeRounded';
   import ChatRoundedIcon from '@mui/icons-material/ChatRounded';
   import NotificationsActiveRoundedIcon from '@mui/icons-material/NotificationsActiveRounded';
+  import Link from '@mui/material/Link';
   const drawerWidth = 220;
   
   const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -103,14 +104,14 @@ import {
             <Box sx={{ overflow: "auto" }}>
               <List>
                 {[
-                  'Dashboard', 'Undergraduates', 'Examination', 'Progress', 'Reports', 'Chats', 'Notification'
+                  <Link href="/">Link</Link>, 'Undergraduates', 'Examination', 'Progress', 'Reports', 'Chats', 'Notification'
                 ].map((text, index) => (
                   <>
                     <ListItem key={text} sx={{ height: "80px" }} disablePadding>
                       <ListItemButton>
                         <ListItemIcon>
                           {renderSwitch(index)}
-                          {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
+
                         </ListItemIcon>
                         <ListItemText primary={text} />
                       </ListItemButton>
