@@ -26,8 +26,10 @@ function App() {
 
     <div className="App">
       <Routes>
-        <Route path='/' exact element={<Home />}/>
+      <Route path='/' exact element={<Home />}/>
         <Route path='*' element={<Navigate to="/"/>}/>
+
+        <Route path='/login' exact element={<Login />}/>
 
         <Route path='/directorDash' element={<DirectorDash/>}/>
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
@@ -36,7 +38,7 @@ function App() {
         <Route path='/directorRegProg' element={<DirectorRegProg/>}/>
         <Route path='/directorConfirmProg' element={<DirectorConfirmProg/>}/>
         <Route path='/directorTransProg' element={<DirectorTransProg/>}/>
-
+        <Route path='/sar-dash' element={<SARdash/>}/>
         <Route path='/lecturer_assignments' element={<LecturerAssignments/>}/>
         <Route path='/lec_assign_list' element={<LecAssignList/>}/>
 
