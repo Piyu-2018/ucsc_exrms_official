@@ -28,7 +28,7 @@ export default function AutoGrid() {
 <Grid container spacing={5}>
     
 
-    <Grid item xs={6} md={7} container spacing={4} rowSpacing={4} >
+    <Grid item xs={6} md={8} container spacing={4} rowSpacing={4} >
         <Grid item xs={6} md={12}>
             <UCSCEXRMS/>
         </Grid>
@@ -38,7 +38,7 @@ export default function AutoGrid() {
         </Grid>
     </Grid>
 
-    <Grid item xs={6} md={5} container spacing={4} rowSpacing={4} >
+    <Grid item xs={6} md={4} container spacing={4} rowSpacing={4} >
         <Grid item xs={9} md={12} >
             <Card>
                 <CardContent paddingLeft="100">
@@ -46,7 +46,7 @@ export default function AutoGrid() {
                         
                     </Grid>
                     <Grid item xs={9} md={12}></Grid>
-                    <Avatar alt="Remy Sharp" src="../../directorImage/director.jpg" sx={{ width: 140, height: 140 }}/>
+                    <Avatar alt="Remy Sharp" src="./pubImgs/directorImage/director.jpg" sx={{ width: 140, height: 140, ml:"35%" }}/>
                     <Button variant="contained">Edit Profile</Button>
                 </CardContent>
             </Card>
