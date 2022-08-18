@@ -39,8 +39,7 @@ function App() {
         <Route path='/directorConfirmProg' element={<DirectorConfirmProg/>}/>
         <Route path='/directorTransProg' element={<DirectorTransProg/>}/>
         <Route path='/sar-dash' element={<SARdash/>}/>
-        <Route path='/lecturer_assignments' element={<LecturerAssignments/>}/>
-        <Route path='/lec_assign_list' element={<LecAssignList/>}/>
+        
 
       </Routes>
     
