@@ -1,5 +1,6 @@
 import { Box, createTheme, Grid, Typography } from "@mui/material";
 import React from "react";
+import LecAssignAdd from "../../Component/Lecturer/LecAssignAdd";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import LecassignMarkTable from "./LecassignMarkTable";
 import LecSidebar from "./LecSidebar";
@@ -27,6 +28,7 @@ function LecAssignMarking() {
             <Typography variant="h3" theme={theme}>
               Assignment 1
             </Typography>
+            <LecAssignAdd />
             <LecassignMarkTable />
           </Grid>
         </Grid>
