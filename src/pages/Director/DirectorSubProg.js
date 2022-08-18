@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import DirectorProgSubDrawer from '../../Component/Director/Progress/SubSl/DirectorProgSubDrawer';
-import Navbar from '../../Component/Navbar'; 
+import DirectorNavbar from '../../Component/DirectorNavbar'; 
 
 function DirectorSubProg() {
   return (
@@ -9,7 +9,7 @@ function DirectorSubProg() {
         <Helmet>
             <style>{'body { background: #E4EBF5 !important; }'}</style>
         </Helmet>
-        <Navbar />
+        <DirectorNavbar />
         <DirectorProgSubDrawer/>  
     </div>
   )

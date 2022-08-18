@@ -15,7 +15,7 @@ function DirectorDash() {
         </Helmet> */}
       
 
-        <Grid container spacing={1} justifyContent="space-between">
+        <Grid container spacing={1} justifyContent="space-between" paddingTop="10px" paddingRight = "40px">
           <Grid item sm={4} md={2}>
             <DirectorSidebar open={open} />
           </Grid>

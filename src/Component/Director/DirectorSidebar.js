@@ -66,7 +66,7 @@ import {
     function renderSwitch(param) {
       switch (param) {
         case 0:
-          return <PeopleAltRoundedIcon/>;
+          return <PeopleAltRoundedIcon/> ;
         case 1:
           return <DashboardRoundedIcon />;
         case 2:
