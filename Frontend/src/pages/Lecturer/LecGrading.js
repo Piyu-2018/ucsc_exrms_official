@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import LecDegree from "../../Component/Lecturer/Gradings/LecDegree";
+import LecGpaGraph from "../../Component/Lecturer/Gradings/LecGpaGraph";
 import LecYears from "../../Component/Lecturer/Gradings/LecYears";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import LecSidebar from "./LecSidebar";
@@ -61,6 +62,10 @@ function LecGrading() {
                 </Stack>
               </Box>
             </Stack>
+
+            <Box>
+              <LecGpaGraph />
+            </Box>
           </Grid>
         </Grid>
       </Box>

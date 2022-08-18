@@ -13,30 +13,26 @@ const login = asyncHandler(async (req, res) => {
 
   const existUser = await user.findFirst({
     where: {
-      OR: [
-        {
-          user_name: username,
-        },
-      ],
+      user_name,
     },
   });
 
   if (existUser) {
-    bycrypt.compare(passowrd, existUser.password).then((match) => {
+    bycrypt.compare(password, existUser.password).then((match) => {
       if (match) {
         const accessToken = sign(
           {
             email: existUser.email,
-            user_id: existUser.userId,
+            user_id: existUser.user_id,
           },
           process.env.JWT_SECRET
         );
 
         let returnData = {
-          user_id: existUser.userId,
+          user_id: existUser.user_id,
           name: existUser.name,
           email: existUser.email,
-          user_name: existUser.username,
+          user_name: existUser.user_name,
           accessToken: accessToken,
         };
 
@@ -62,6 +58,8 @@ const login = asyncHandler(async (req, res) => {
 
 const register = asyncHandler(async (req, res) => {
   const { user_name, user_type, name, password, email } = req.body;
+
+  // console.log(req.body);
 
   const emailStatus = await user.findUnique({
     where: {
