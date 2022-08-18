@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 import DirectorProgConfirmDrawer from '../../Component/Director/Progress/Confirm_letter/DirectorProgConfirmDrawer';
-import Navbar from '../../Component/Navbar';
+import DirectorNavbar from '../../Component/DirectorNavbar';
 
 function DirectorConfirmProg() {
   return (
@@ -9,7 +9,7 @@ function DirectorConfirmProg() {
         <Helmet>
             <style>{'body { background: #E4EBF5 !important; }'}</style>
         </Helmet>
-        <Navbar />
+        <DirectorNavbar />
         <DirectorProgConfirmDrawer/>
     </div>
   )
