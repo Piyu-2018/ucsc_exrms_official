@@ -52,10 +52,7 @@ const rows = [
     </Typography>,
     <Typography variant="h6" theme={theme}>
       90
-    </Typography>,
-    <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-      Enter Marks
-    </Button>
+    </Typography>
   ),
   createData(
     <Typography variant="h6" theme={theme}>
@@ -66,10 +63,7 @@ const rows = [
     </Typography>,
     <Typography variant="h6" theme={theme}>
       80
-    </Typography>,
-    <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-      Enter Marks
-    </Button>
+    </Typography>
   ),
   createData(
     <Typography variant="h6" theme={theme}>
@@ -79,11 +73,8 @@ const rows = [
       B.G.D.S.B. Ratnayake
     </Typography>,
     <Typography variant="h6" theme={theme}>
-      -
-    </Typography>,
-    <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-      Enter Marks
-    </Button>
+      Not Added
+    </Typography>
   ),
 ];
 
@@ -96,7 +87,6 @@ function LecassignMarkTable() {
             <StyledTableCell>Index Number</StyledTableCell>
             <StyledTableCell>Name</StyledTableCell>
             <StyledTableCell>Marks</StyledTableCell>
-            <StyledTableCell>More Options</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -107,7 +97,6 @@ function LecassignMarkTable() {
               </StyledTableCell>
               <StyledTableCell>{row.name}</StyledTableCell>
               <StyledTableCell>{row.marks}</StyledTableCell>
-              <StyledTableCell>{row.more}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

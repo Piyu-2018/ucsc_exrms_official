@@ -27,6 +27,7 @@ import {
   Grade,
   Notifications,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 const drawerWidth = 220;
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -64,6 +65,19 @@ function LecSidebar(props) {
   // };
 
   // sx={{display:{xs:"none",sm:"none",md:"block"}}}
+
+  function renderLink(param) {
+    switch (param) {
+      case 0:
+        return "/lec_assign_list";
+      case 1:
+        return "/lec_grading";
+      case 2:
+        return "/lec_assign_timetable";
+    }
+  }
+
+  const link = ["/lec_assign_list", "/lec_grading", "/lec_exam_timetable"];
 
   function renderSwitch(param) {
     switch (param) {
@@ -115,7 +129,7 @@ function LecSidebar(props) {
               ].map((text, index) => (
                 <>
                   <ListItem key={text} sx={{ height: "80px" }} disablePadding>
-                    <ListItemButton>
+                    <ListItemButton to={link[index]}>
                       <ListItemIcon>
                         {renderSwitch(index)}
                         {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
@@ -123,6 +137,7 @@ function LecSidebar(props) {
                       <ListItemText primary={text} />
                     </ListItemButton>
                   </ListItem>
+
                   <Divider />
                 </>
               ))}
