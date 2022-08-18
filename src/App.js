@@ -9,7 +9,10 @@ import DirectorRegProg from './pages/Director/DirectorRegProg';
 import DirectorConfirmProg from './pages/Director/DirectorConfirmProg';
 import DirectorTransProg from './pages/Director/DirectorTransProg';
 import MaDash from './pages/Ma/MaDash';
-
+import MaAttendance from "./pages/Ma/MaAttendance";
+import MaMarkAttendance from "./pages/Ma/MaMarkAttendance";
+import MaAdmissionCard from "./pages/Ma/MaAdmissionCard";
+import MaTest from "./pages/Ma/MaTest";
 
 import {
   BrowserRouter as Router,
@@ -45,7 +48,7 @@ function App() {
           <Route path="/login" exact element={<Login />} />
           <Route path='/directorDash' element={<DirectorDash/>}/>
 
-        <Route path='/maDash' element={<MaDash/>}/>
+        
 
         <Route path='/directorUnder' element={<DirectorUnder/>}/>
 
@@ -61,6 +64,14 @@ function App() {
           <Route path="/lec_assign_list" element={<LecAssignList />} />
           <Route path="/lec_exam_timetable" element={<LecExamTimetable />} />
           <Route path="/lec_assign_marking" element={<LecAssignMarking />} />
+
+
+          <Route path='/maDash' element={<MaDash/>}/>
+          <Route path='/ma_attendance' element={<MaAttendance/>}/>
+          <Route path='/ma_mark_attendance' element={<MaMarkAttendance/>}/>
+          <Route path='/ma_admission_card' element={<MaAdmissionCard/>}/>
+          <Route path='/ma_test' element={<MaTest/>}/>
+
         </Routes>
       </div>
     </Router>
