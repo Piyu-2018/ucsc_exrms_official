@@ -1,0 +1,297 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model academic_year {
+  ac_year_ID    Int @id @default(autoincrement())
+  no_of_student Int
+  year          Int
+}
+
+model admission {
+  admission_id      Int      @id @default(autoincrement())
+  exam_hall         String   @db.VarChar(255)
+  course_name       String   @db.VarChar(255)
+  course_code       String   @db.VarChar(255)
+  exan_date         DateTime @db.Date
+  exam_time         DateTime @db.DateTime(0)
+  attendence_verify String   @db.VarChar(255)
+}
+
+model announcement {
+  annou_id Int    @id @default(autoincrement())
+  content  String @db.VarChar(255)
+  admin_id Int
+}
+
+model assign_marks {
+  assigment_id      Int @id @default(autoincrement())
+  sub_marks         Int
+  total_marks       Int
+  assign_precentage Int
+  mark_id           Int
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model chat {
+  index_no     Int
+  staff_id     Int
+  lecture_id   Int
+  text         String   @db.VarChar(255)
+  date         DateTime @db.Date
+  message_from String   @db.VarChar(255)
+  message_to   String   @db.VarChar(255)
+  time         DateTime @db.DateTime(0)
+
+  @@ignore
+}
+
+model confirm {
+  confirm_id Int @id @default(autoincrement())
+  letter_id  Int
+}
+
+model course {
+  course_id    Int    @id @default(autoincrement())
+  year         Int
+  semester     String @db.VarChar(255)
+  course_name  String @db.VarChar(255)
+  course_code  String @db.VarChar(255)
+  lecture_name String @db.VarChar(255)
+  ac_year_ID   Int
+}
+
+model director {
+  director_id Int @id @default(autoincrement())
+  user_id     Int
+}
+
+model exam {
+  exam_sem_id Int @id @default(autoincrement())
+  semester    Int
+  year        Int
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model exam_admission_stu {
+  index_no     Int
+  admission_id Int
+  exam_sem_id  Int
+
+  @@ignore
+}
+
+model exam_mark {
+  mark_id             Int    @id @default(autoincrement())
+  course_code         String @db.VarChar(255)
+  course_name         String @db.VarChar(255)
+  grade               String @db.VarChar(255)
+  total_mark          Int
+  director_status     String @db.VarChar(255)
+  head_of_exam_status String @db.VarChar(255)
+  exam_sem_id         Int
+  director_id         Int
+  head_of_exam_id     Int
+  index_no            Int
+}
+
+model exam_timetable {
+  timetable_id Int      @id @default(autoincrement())
+  exam_date    DateTime @db.Date
+  exam_time    DateTime @db.DateTime(0)
+  course_code  String   @db.VarChar(255)
+  course_name  String   @db.VarChar(255)
+  exam_sem_id  Int
+}
+
+model head_of_exam_board {
+  head_of_exam_ID Int @id @default(autoincrement())
+  user_id         Int
+  staff_id        Int
+}
+
+model lecture_question {
+  exam_paper_id Int @id
+  lecture_id    Int
+}
+
+model lecturer {
+  lecturer_id Int    @id @default(autoincrement())
+  degree      String @db.VarChar(255)
+  user_id     Int
+}
+
+model letter {
+  letter_id       Int    @id @default(autoincrement())
+  email           String @db.VarChar(255)
+  another_email   String @db.VarChar(255)
+  final_quali     String @db.VarChar(255)
+  id_no           String @db.VarChar(255)
+  duration        Int
+  degree_status   String @db.VarChar(255)
+  study_year      Int
+  index_no        Int
+  reg_no          String @db.VarChar(100)
+  degree_prog     String @db.VarChar(255)
+  address         String @db.VarChar(255)
+  contact_no      String @db.VarChar(255)
+  another_cont_no String @db.VarChar(255)
+  payment_voucher String @db.VarChar(255)
+}
+
+model ma {
+  MA_id     Int    @id @default(autoincrement())
+  user_id   Int
+  staff_id  Int
+  office_id String @db.VarChar(255)
+  letter_id Int
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model mark {
+  course_id        Int
+  lecture_id       Int
+  paper_id         Int
+  first_ex_status  String @db.VarChar(100)
+  second_ex_status String @db.VarChar(100)
+
+  @@ignore
+}
+
+model mis_report {
+  mis_id    Int @id @default(autoincrement())
+  report_id Int
+}
+
+model paper_marks {
+  paper_id         Int @id @default(autoincrement())
+  sub_marks        Int
+  total_marks      Int
+  paper_precentage Int
+  mark_id          Int
+}
+
+model paper_question {
+  exam_paper_id Int    @id @default(autoincrement())
+  course_code   String @db.VarChar(255)
+  course_name   String @db.VarChar(255)
+  question_no   Int
+  exam_sem_id   Int
+}
+
+model payment {
+  payment_id   Int      @id @default(autoincrement())
+  payment_date DateTime @db.DateTime(0)
+  amount       Int
+  status       String   @db.VarChar(100)
+  index_no     Int
+  ac_year_ID   Int
+}
+
+model repeat_course {
+  rc_id       Int    @id @default(autoincrement())
+  course_code String @db.VarChar(255)
+  course_name String @db.VarChar(255)
+  year        Int
+  semester    String @db.VarChar(255)
+}
+
+model report {
+  report_id   Int    @id @default(autoincrement())
+  course_name String @db.VarChar(255)
+  course_code String @db.VarChar(255)
+  year        Int
+  semester    String @db.VarChar(255)
+  exam_sem_id Int
+}
+
+model sar {
+  SAR_id    Int @id @default(autoincrement())
+  user_id   Int
+  staff_id  Int
+  office_id Int
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model semester_report {
+  year_id      Int
+  years        Int
+  result_prece Int
+  report_id    Int
+
+  @@ignore
+}
+
+model staff {
+  staff_id Int @id @default(autoincrement())
+  user_id  Int
+}
+
+model student {
+  index_no        Int    @id @default(autoincrement())
+  user_id         Int
+  nic             String @db.VarChar(255)
+  gender          String @db.VarChar(25)
+  initials        String @db.VarChar(255)
+  title           String @db.VarChar(255)
+  general_eng     String @db.VarChar(255)
+  district_no     String @db.VarChar(255)
+  intake          String @db.VarChar(255)
+  reg_no          String @db.VarChar(255)
+  telep_1         String @db.VarChar(255)
+  telep_2         String @db.VarChar(255)
+  address_no      String @db.VarChar(255)
+  address_city    String @db.VarChar(255)
+  address_street  String @db.VarChar(255)
+  address_4       String @db.VarChar(255)
+  student_temp_no Int
+  district_name   String @db.VarChar(25)
+  name_initial    String @db.VarChar(255)
+  full_name       String @db.VarChar(255)
+  syllabus        String @db.VarChar(255)
+  AL_index_no     Int
+  rank            Int
+  GPA             Int
+  ac_year_ID      Int
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model student_course {
+  index_no  Int
+  course_id Int
+
+  @@ignore
+}
+
+model subject_report {
+  subject_id    Int @id @default(autoincrement())
+  no_of_student Int
+  report_id     Int
+}
+
+model system_pages {
+  page_id  Int    @id @default(autoincrement())
+  content  String @db.VarChar(255)
+  admin_id Int
+}
+
+model transcript {
+  transcript_id Int @id @default(autoincrement())
+  letter_id     Int
+}
+
+model user {
+  user_id     Int     @id @default(autoincrement())
+  user_name   String  @unique(map: "user_name") @db.VarChar(255)
+  password    String  @db.VarChar(255)
+  email       String  @unique(map: "email_unique") @db.VarChar(255)
+  user_type   String  @db.VarChar(100)
+  f_name      String  @db.VarChar(255)
+  l_name      String  @db.VarChar(255)
+  profile_pic String? @db.VarChar(255)
+}
