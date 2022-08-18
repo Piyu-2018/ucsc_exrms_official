@@ -17,7 +17,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 const pages = [<Button><Link to='/Contacts' style={{ color:'#06283D',textDecoration: 'none' , fontSize: "15px",lineHeight: "22px",fontfamily: 'Montserrat',fontWeight: "600"}}>Contact us</Link></Button>,
                <Button sx={{ marginLeft: "10px"  }}><Link to='/About' style={{ color:'#06283D',textDecoration: 'none', fontSize: "15px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >About</Link></Button>,
-               <Button variant="contained" sx={{ backgroundColor:'#06283D', marginLeft: "10px", borderRadius:'15px', padding: '5px 30px'  }}><Link to='/Login' style={{ color:'#DFF6FF', textDecoration: 'none', fontSize: "15px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >Login</Link> </Button>];
+               <Button variant="contained" sx={{ backgroundColor:'#06283D', marginLeft: "10px", borderRadius:'15px', padding: '5px 30px'  }}><Link to='/Logout' style={{ color:'#DFF6FF', textDecoration: 'none', fontSize: "15px",lineHeight: "22px" ,fontfamily: 'Montserrat',fontWeight: "600"}} >Logout</Link> </Button>];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -31,7 +31,7 @@ const Navbar = () => {
   };
   return (
     
-    <AppBar position="relative" style={{width:"100%",backgroundColor:"transparent" , color: "green", boxShadow:"0px 0px 0px 0px"}} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+    <AppBar position="relative" style={{width:"100%",backgroundColor:"#E4EBF5" , color: "green", boxShadow:"0px 0px 0px 0px"}} sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography className='typo'
