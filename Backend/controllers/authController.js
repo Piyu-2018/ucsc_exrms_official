@@ -57,17 +57,26 @@ const login = asyncHandler(async (req, res) => {
 });
 
 const register = asyncHandler(async (req, res) => {
-  const { user_name, user_type, name, password, email } = req.body;
+  const { user_name, user_type, f_name, l_name, password, email } = req.body;
 
   // console.log(req.body);
 
-  const emailStatus = await user.findUnique({
+  const emailStatus = await user.findFirst({
     where: {
-      email,
+      OR: [
+        {
+          email,
+        },
+        {
+          user_name,
+        },
+      ],
     },
   });
 
-  console.log(emailStatus);
+  // console.log(emailStatus);
+
+  // return 0;
 
   // const emailStatus = false;
 
@@ -81,7 +90,8 @@ const register = asyncHandler(async (req, res) => {
         data: {
           user_name,
           user_type,
-          name,
+          f_name,
+          l_name,
           password: hash,
           email,
         },
@@ -94,9 +104,10 @@ const register = asyncHandler(async (req, res) => {
 
       const returnData = {
         user_type: newUser.user_type,
-        name: newUser.name,
+        f_name: newUser.f_name,
+        l_name: newUser.l_name,
         email: newUser.email,
-        // emailStatus: newUser.emailStatus,
+        emailStatus: newUser.emailStatus,
         user_name: newUser.user_name,
         accessToken: accessToken,
       };
