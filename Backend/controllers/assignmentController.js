@@ -39,4 +39,24 @@ const getCourses = asyncHandler(async (req, res) => {
   // })
 });
 
-module.exports = getCourses;
+const getAssign = asyncHandler(async (req, res) => {
+  const course_id = parseInt(req.params.id1);
+  const user_id = parseInt(req.params.id2);
+
+  // console.log(user_id);
+
+
+  connection.query(
+    "SELECT * FROM assignments WHERE lecturer_id=" +
+      user_id +
+      " AND course_id=" +
+      course_id,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
+module.exports = {getCourses,getAssign};
