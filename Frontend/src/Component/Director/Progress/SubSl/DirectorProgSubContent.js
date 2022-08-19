@@ -7,17 +7,16 @@ const theme = createTheme({
       color: "#06283D",
     },
   },
-});
+}); 
 
-function DirectorUnderContent() {
+function DirectorProgSubContent() {
   return (
     <div>
         <div>
-          <Typography variant="h4" theme={theme} align='left'>Undergraduate</Typography>
-        </div>
-      
+            <Typography variant="h4" theme={theme} align='left'>Details of Subject Selection</Typography>
+        </div>  
     </div>
   )
 }
 
-export default DirectorUnderContent
+export default DirectorProgSubContent

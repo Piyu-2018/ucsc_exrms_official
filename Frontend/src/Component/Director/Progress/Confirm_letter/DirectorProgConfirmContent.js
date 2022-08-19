@@ -7,17 +7,16 @@ const theme = createTheme({
       color: "#06283D",
     },
   },
-});
+}); 
 
-function DirectorUnderContent() {
+function DirectorProgConfirmContent() {
   return (
     <div>
         <div>
-          <Typography variant="h4" theme={theme} align='left'>Undergraduate</Typography>
+            <Typography variant="h4" theme={theme} align='left'>Progress of Confirmation Letter Issue Process</Typography>
         </div>
-      
     </div>
   )
 }
 
-export default DirectorUnderContent
+export default DirectorProgConfirmContent

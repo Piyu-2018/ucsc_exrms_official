@@ -1,10 +1,12 @@
 import React from 'react';
-import DirectorUnderYear from './DirectorUnderyear';
-import DirectorUnderSeach from './DirectorUnderSeach';
-import DirectorUnderTable from './DirectorUnderTable';
-import DirectorSidebar from '../DirectorSidebar';
+import { styled, useTheme } from '@mui/material/styles';
 import { Grid} from "@mui/material";
-function DirectorUnderDrawer() {
+
+import DirectorProgRegChart from './DirectorProgRegChart';
+import DirectorProgRegTable from './DirectorProgRegTable';
+import DirectorSidebar from '../../DirectorSidebar';
+
+function DirectorRegDrawer() {
   const open = true;
   console.log(open);
 
@@ -19,16 +21,16 @@ function DirectorUnderDrawer() {
           <Grid item sm={4} md={2}>
             <DirectorSidebar open={open} />
           </Grid>
-          <Grid item sm={8} md={10} >
-            <DirectorUnderYear/> <br></br>
-            <DirectorUnderSeach/><br></br>
-            <DirectorUnderTable/>
-          </Grid>  
+          <Grid item sm={8} md={10}>
+            <DirectorProgRegChart/><br></br>
+            <DirectorProgRegTable/>
+          </Grid>
+          
         </Grid>
     </>
   );
 }
 
-export default DirectorUnderDrawer;
+export default DirectorRegDrawer;
 
 
