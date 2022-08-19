@@ -15,6 +15,8 @@ import {
 import React from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
+const UsFormatter = new Intl.DateTimeFormat('en-US')
+
 const theme = createTheme({
   typography: {
     h6: {
@@ -53,44 +55,67 @@ function createData(
   return { AssignmentName, Description, Contribution, Deadline, Action };
 }
 
-const rows = [
-  createData(
-    <Typography variant="h6" theme={theme}>
-      Assignment 1
-    </Typography>,
-    <Typography variant="h6" theme={theme}>
-      Coding Assignment group
-    </Typography>,
-    <Typography variant="h6" theme={theme}>
-      20%
-    </Typography>,
-    <Typography variant="h6" theme={theme}>
-      August 15 2022
-    </Typography>,
-    <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-      Mark Assignment
-    </Button>
-  ),
-  createData(
-    <Typography variant="h6" theme={theme}>
-      Assignment 2
-    </Typography>,
-    <Typography variant="h6" theme={theme}>
-      Individual Review paper
-    </Typography>,
-    <Typography variant="h6" theme={theme}>
-      20%
-    </Typography>,
-    <Typography variant="h6" theme={theme}>
-      August 17 2022
-    </Typography>,
-    <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-      Mark Assignment
-    </Button>
-  ),
-];
+function LecAssignTable(props) {
+  // console.log(props.AssignData);
+  const assign = props.AssignData;
+  console.log(props.AssignData);
+  // console.log(assign[0].name);
 
-function LecAssignTable() {
+  const rows = [
+    assign.map((data) =>
+      createData(
+        <Typography variant="h6" theme={theme}>
+          Assignment 1
+        </Typography>,
+        <Typography variant="h6" theme={theme}>
+          Coding Assignment group
+        </Typography>,
+        <Typography variant="h6" theme={theme}>
+          20%
+        </Typography>,
+        <Typography variant="h6" theme={theme}>
+          August 15 2022
+        </Typography>,
+        <Button variant="contained" endIcon={<DoubleArrowIcon />}>
+          Mark Assignment
+        </Button>
+      )
+    ),
+    // createData(
+    //   <Typography variant="h6" theme={theme}>
+    //     Assignment 1
+    //   </Typography>,
+    //   <Typography variant="h6" theme={theme}>
+    //     Coding Assignment group
+    //   </Typography>,
+    //   <Typography variant="h6" theme={theme}>
+    //     20%
+    //   </Typography>,
+    //   <Typography variant="h6" theme={theme}>
+    //     August 15 2022
+    //   </Typography>,
+    //   <Button variant="contained" endIcon={<DoubleArrowIcon />}>
+    //     Mark Assignment
+    //   </Button>
+    // ),
+    // createData(
+    //   <Typography variant="h6" theme={theme}>
+    //     Assignment 2
+    //   </Typography>,
+    //   <Typography variant="h6" theme={theme}>
+    //     Individual Review paper
+    //   </Typography>,
+    //   <Typography variant="h6" theme={theme}>
+    //     20%
+    //   </Typography>,
+    //   <Typography variant="h6" theme={theme}>
+    //     August 17 2022
+    //   </Typography>,
+    //   <Button variant="contained" endIcon={<DoubleArrowIcon />}>
+    //     Mark Assignment
+    //   </Button>
+    // ),
+  ];
   return (
     <>
       <TableContainer component={Paper} sx={{ mt: "20px" }}>
@@ -115,19 +140,34 @@ function LecAssignTable() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
+            {assign.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell align="left">
-                  {row.AssignmentName}
+                  <Typography variant="h6" theme={theme}>
+                    {row.name}
+                  </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
-                  {row.Description}
+                  <Typography variant="h6" theme={theme}>
+                    {row.description}
+                  </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
-                  {row.Contribution}
+                  <Typography variant="h6" theme={theme}>
+                    {row.contribution}
+                  </Typography>
                 </StyledTableCell>
-                <StyledTableCell align="left">{row.Deadline}</StyledTableCell>
-                <StyledTableCell align="left">{row.Action}</StyledTableCell>
+                <StyledTableCell align="left">
+                  <Typography variant="h6" theme={theme}>
+                    
+                    {UsFormatter.format(row.dedline)}
+                  </Typography>
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <Button variant="contained" endIcon={<DoubleArrowIcon />}>
+                    Mark Assignment
+                  </Button>
+                </StyledTableCell>
               </StyledTableRow>
             ))}
           </TableBody>

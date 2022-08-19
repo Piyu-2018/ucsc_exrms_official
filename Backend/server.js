@@ -3,12 +3,22 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
+var mysql = require("mysql");
+var connection = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "u117929562_ucscexrms",
+});
+
+connection.connect();
+
 //middleware
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 // routes
 const authRouter = require("./routes/authRoutes");
-// const settingsRouter = require("./routes/settingsRoutes")
+const settingsRouter = require("./routes/settingsRoutes");
 
 const app = express();
 
@@ -19,7 +29,7 @@ app.use(express.json());
 
 // routes
 app.use("/api/v1/auth", authRouter);
-// app.use("/api/v1/settings", settingsRouter);
+app.use("/api/v1/settings", settingsRouter);
 
 app.use(notFound);
 app.use(errorHandler);

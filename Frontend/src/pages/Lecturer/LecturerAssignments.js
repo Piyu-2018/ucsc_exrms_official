@@ -19,16 +19,16 @@ function LecturerAssignments() {
       <Box>
         <LecNavBar open={open} />
 
-        <Grid container spacing={1} justifyContent="space-between">
+        <Grid container spacing={0} justifyContent="space-between">
           <Grid item sm={4} md={2}>
             <LecSidebar open={open} />
           </Grid>
-          <Grid item sm={8} md={7}>
+          <Grid item sm={8} md={10}>
             <LecAssignmentCourses />
           </Grid>
-          <Grid item sm={0} md={3}>
+          {/* <Grid item sm={0} md={3}>
             <LecRightBar />
-          </Grid>
+          </Grid> */}
         </Grid>
       </Box>
     </>
