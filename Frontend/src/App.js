@@ -1,6 +1,7 @@
 import "./App.css";
 import Home from "./pages/Home";
 import SARdash from "./pages/SAR/SARdash";
+import React, { Component } from "react";
 
 import DirectorDash from "./pages/Director/DirectorDash";
 import DirectorUnder from "./pages/Director/DirectorUnder";
@@ -8,7 +9,12 @@ import DirectorEnProgress from "./pages/Director/DirectorEnProgress";
 import DirectorRegProg from "./pages/Director/DirectorRegProg";
 import DirectorConfirmProg from "./pages/Director/DirectorConfirmProg";
 import DirectorTransProg from "./pages/Director/DirectorTransProg";
+import DirectorSubProg from './pages/Director/DirectorSubProg';
+import DirectorRescruProg from './pages/Director/DirectorRescruProg';
+import DirectorFourthProg from './pages/Director/DirectorFourthProg';
 import MaDash from "./pages/Ma/MaDash";
+
+import HoEDash from "./pages/HeadofExam/HoEDash";
 
 import {
   BrowserRouter as Router,
@@ -46,14 +52,15 @@ function App() {
           <Route path="/maDash" element={<MaDash />} />
 
           <Route path="/directorUnder" element={<DirectorUnder />} />
-
           <Route path="/directorEnProgress" element={<DirectorEnProgress />} />
           <Route path="/directorRegProg" element={<DirectorRegProg />} />
-          <Route
-            path="/directorConfirmProg"
-            element={<DirectorConfirmProg />}
-          />
+          <Route path="/directorConfirmProg"element={<DirectorConfirmProg />}/>
           <Route path="/directorTransProg" element={<DirectorTransProg />} />
+          <Route path='/directorSubProg' element={<DirectorSubProg/>}/>
+          <Route path='/directorRescruProg' element={<DirectorRescruProg/>}/>
+          <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
+
+          <Route path="/HoEDash" element={<HoEDash />} />
 
           <Route
             path="/lecturer_assignments"

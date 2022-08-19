@@ -15,7 +15,11 @@ import MenuItem from "@mui/material/MenuItem";
 import { Avatar, Badge } from "@mui/material";
 import styled from "styled-components";
 import { Mail, Message, Notifications, Pets } from "@mui/icons-material";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {logout} from "../../actions/userActions";
 
 const Icons = styled(Box)(({ theme }) => ({
   display: "none",
@@ -38,7 +42,7 @@ const pages = [
         fontWeight: "600",
       }}
     >
-      Contact us
+      Contact
     </Link>
   </Button>,
   <Button sx={{ marginLeft: "10px" }}>
@@ -57,7 +61,25 @@ const pages = [
   </Button>,
 ];
 
-const LecNavBar = (props) => {
+function LecNavBar(props) {
+  const userInfo = useSelector((state) => state.userInfo);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const signout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    if (!userInfo.user) {
+      navigate("/login");
+    } else {
+      const { user_id, accessToken } = userInfo.user;
+    }
+  }, []);
+
   const [open, setOpen] = useState(true);
 
   function clickHandler() {
@@ -89,13 +111,13 @@ const LecNavBar = (props) => {
     >
       <Container maxWidth="xl" sx={{ bgcolor: "#E4EBF5" }}>
         <Toolbar disableGutters>
-          <IconButton
+          {/* <IconButton
             onClick={clickHandler}
             aria-label="open drawer"
             edge="start"
           >
             <MenuIcon color="primary" sx={{ height: "40px", width: "40px" }} />
-          </IconButton>
+          </IconButton> */}
           <Typography
             className="typo"
             variant="h6"
@@ -183,7 +205,7 @@ const LecNavBar = (props) => {
               </Button>
             ))}
           </Box>
-          <Box sx={{ display: "flex", gap: "20px", alignItems: "center" }}>
+          <Box sx={{ display: "flex", gap: "5px", alignItems: "center" }}>
             <Badge badgeContent={4} color="error">
               <IconButton>
                 <Message color="primary" />
@@ -200,10 +222,34 @@ const LecNavBar = (props) => {
                 src="./pubImgs/lecturer.png"
               />
             </IconButton>
+            <Button
+              variant="contained"
+              sx={{
+                backgroundColor: "#06283D",
+                marginLeft: "10px",
+                borderRadius: "15px",
+                padding: "5px 30px",
+              }}
+              onClick={signout}
+            >
+              <Link
+                to=""
+                style={{
+                  color: "#DFF6FF",
+                  textDecoration: "none",
+                  fontSize: "15px",
+                  lineHeight: "22px",
+                  fontfamily: "Montserrat",
+                  fontWeight: "600",
+                }}
+              >
+                Logout
+              </Link>{" "}
+            </Button>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
-};
+}
 export default LecNavBar;
