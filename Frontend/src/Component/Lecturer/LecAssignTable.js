@@ -132,9 +132,6 @@ function LecAssignTable(props) {
                 <Typography variant="h6">Contribution(%)</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Typography variant="h6">Deadline</Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
                 <Typography variant="h6">More Actions</Typography>
               </StyledTableCell>
             </TableRow>
@@ -155,12 +152,6 @@ function LecAssignTable(props) {
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
                     {row.contribution}
-                  </Typography>
-                </StyledTableCell>
-                <StyledTableCell align="left">
-                  <Typography variant="h6" theme={theme}>
-                    
-                    {UsFormatter.format(row.dedline)}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
