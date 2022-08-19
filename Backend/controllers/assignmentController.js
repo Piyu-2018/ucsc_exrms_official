@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const asyncHandler = require("express-async-handler");
+const { StatusCodes } = require("http-status-codes");
 
 // const { user, course, lecturer_courses, assignments } = new prismaClient();
 
@@ -59,4 +60,38 @@ const getAssign = asyncHandler(async (req, res) => {
   );
 });
 
-module.exports = {getCourses,getAssign};
+const assignAdd = asyncHandler(async (req,res) => {
+  const {name,description,contribution,lecturer_id,course_id} = req.body;
+
+  const contribution1 = parseInt(contribution);
+  const lecturer_id1 = parseInt(lecturer_id);
+  const course_id1 = parseInt(course_id);
+
+  console.log(req.body);
+    const newUser = await assignments.create({
+      data: {
+        name,
+        description,
+        contribution:contribution1,
+        lecturer_id:lecturer_id1,
+        course_id:course_id1,
+      },
+  });
+
+  const returnData = {
+    name:newUser.name,
+    description:newUser.description,
+    contribution:newUser.contribution,
+    lecturer_id:newUser.lecturer_id,
+    course_id:newUser.course_id,
+  };
+
+  res.status(StatusCodes.CREATED).json(returnData);
+
+  
+
+  
+
+
+});
+module.exports = {getCourses,getAssign,assignAdd};
