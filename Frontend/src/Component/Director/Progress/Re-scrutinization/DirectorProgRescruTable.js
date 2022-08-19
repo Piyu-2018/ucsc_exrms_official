@@ -7,7 +7,6 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,36 +28,33 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(IndexNumber, RegistrationNumber, Name, MoreActions) {
-  return { IndexNumber, RegistrationNumber, Name , MoreActions};
+function createData(IndexNumber,  Name, SARAction) {
+  return { IndexNumber,  Name , SARAction };
 }
 
 const rows = [
-    createData(19001411,'2019/CS/141','Dinil Seniru Ratnayake'),
-    createData(19001428,'2019/CS/142','Janitha Ratnayake'),
-    createData(19001381,'2019/CS/138','Piyumi Rathnayaka'),
-    createData(19001411,'2019/CS/141','Dinil Seniru Ratnayake'),
+    createData(19001428,'Janitha Ratnayake','Accepted'),
+    createData(19001411,'Dinil Seniru Ratnayake','Pending' ),
+    createData(19020945,'Sasani Samanga','Pending'),
 ];
 
 export default function CustomizedTables() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead >
-          <TableRow >
+        <TableHead>
+          <TableRow>
             <StyledTableCell align="left">Index Number</StyledTableCell>
-            <StyledTableCell align="left">Registration Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
-            <StyledTableCell align="left">More Action</StyledTableCell>
+            <StyledTableCell align="left">SAR Action</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.RegistrationNumber}</StyledTableCell>
               <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.MoreAction}<Button variant="contained">View Profile</Button></StyledTableCell>
+              <StyledTableCell align="left">{row.SARAction}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

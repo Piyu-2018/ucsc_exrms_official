@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['1st Year Computer Science (Bsc)', '1st Year Information System (Bsc)'];
+const options = ['3rd Year', '4th Year'];
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
@@ -40,15 +40,14 @@ export default function SplitButton() {
   return (
     <React.Fragment>
       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-        <Button onClick={handleClick} >{options[selectedIndex]} </Button>
-        <Button 
+        <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+        <Button
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
-          
         >
           <ArrowDropDownIcon />
         </Button>
@@ -91,5 +90,6 @@ export default function SplitButton() {
         )}
       </Popper>
     </React.Fragment>
+
   );
 }
