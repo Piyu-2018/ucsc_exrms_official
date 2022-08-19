@@ -30,8 +30,10 @@ const login = asyncHandler(async (req, res) => {
 
         let returnData = {
           user_id: existUser.user_id,
-          name: existUser.name,
+          f_name: existUser.f_name,
+          l_name: existUser.l_name,
           email: existUser.email,
+          user_type: existUser.user_type,
           user_name: existUser.user_name,
           accessToken: accessToken,
         };
