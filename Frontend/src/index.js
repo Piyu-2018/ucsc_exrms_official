@@ -1,36 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import {createStore} from 'redux';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
 
-// let store = createStore(reducer)
+import store from "./store";
 
-// STORE->GLOBALIZED STATE
-
-
-// ACTION INCREMENT
-// const increment = () => {
-//   return {
-//     type: 'INCREMENT'
-//   }
-// }
-
-
-
-// REDUCER
-
-
-//DISPATCH
-
-
-
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 
