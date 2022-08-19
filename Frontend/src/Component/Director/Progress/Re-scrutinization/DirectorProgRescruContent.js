@@ -9,15 +9,12 @@ const theme = createTheme({
   },
 });
 
-function DirectorUnderContent() {
+function DirectorProgRescruContent() {
   return (
     <div>
-        <div>
-          <Typography variant="h4" theme={theme} align='left'>Undergraduate</Typography>
-        </div>
-      
+        <Typography variant="h4" theme={theme} align='left'>Details of Re-scruthinization</Typography>
     </div>
   )
 }
 
-export default DirectorUnderContent
+export default DirectorProgRescruContent
