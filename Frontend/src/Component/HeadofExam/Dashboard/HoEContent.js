@@ -7,10 +7,9 @@ import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import UCSCEXRMS from '../../UCSCEXRMS';
 import App from '../../Calendar';
-import DirectorAnn from './DirectorAnn';
+import HoEAnn from './HoEAnn';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -34,7 +33,7 @@ export default function AutoGrid() {
         </Grid>
 
         <Grid item xs={6} md={12}>
-            <DirectorAnn/>
+            <HoEAnn/>
         </Grid>
     </Grid>
 
@@ -46,13 +45,13 @@ export default function AutoGrid() {
                         
                     </Grid>
                     <Grid item xs={9} md={12}></Grid>
-                    <Avatar alt="Remy Sharp" src="./pubImgs/directorImage/director.jpg" sx={{ width: 140, height: 140, ml:"35%" }}/>
-                    <Button variant="contained">Edit Profile</Button>
+                    <Avatar alt="Remy Sharp" src="./pubImgs/HoEImage/HoE.jpg" sx={{ width: 140, height: 140, ml:"32%", mb:"5%", mt:"3%" }}/>
+                    <Button variant="contained" sx={{  ml:"8%", mb:"5%" }}>Edit Profile</Button>
                 </CardContent>
             </Card>
         </Grid>
         <Grid item xs={9} md={12}>
-            <Item marginLeft="50px"><App/></Item>
+            <Item sx={{  paddingLeft:"7%" , paddingTop:"5%"}}><App/></Item>
         </Grid>
     </Grid>
 
