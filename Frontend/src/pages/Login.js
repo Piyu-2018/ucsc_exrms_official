@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { initialLoginValues, loginValidation } from "./Validation";
 import { login } from "../actions/userActions";
 import { TextField } from "formik-material-ui";
+import Navbar from "../Component/Navbar";
 
 function Login() {
   const [usernameError, setUsernameError] = useState("");
@@ -56,6 +57,7 @@ function Login() {
           }
         </style>
       </Helmet>
+      <Navbar/>
       <Container maxWidth="lg">
         <Box sx={{ height: "100vh", ml: "60%" }}>
           <Typography

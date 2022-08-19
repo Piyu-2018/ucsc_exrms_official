@@ -15,7 +15,11 @@ import MenuItem from "@mui/material/MenuItem";
 import { Avatar, Badge } from "@mui/material";
 import styled from "styled-components";
 import { Mail, Message, Notifications, Pets } from "@mui/icons-material";
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import {logout} from "../../actions/userActions";
 
 const Icons = styled(Box)(({ theme }) => ({
   display: "none",
@@ -57,7 +61,25 @@ const pages = [
   </Button>,
 ];
 
-const LecNavBar = (props) => {
+function LecNavBar(props) {
+  const userInfo = useSelector((state) => state.userInfo);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const signout = (e) => {
+    e.preventDefault();
+    dispatch(logout());
+    navigate("/login");
+  };
+
+  useEffect(() => {
+    if (!userInfo.user) {
+      navigate("/login");
+    } else {
+      const { user_id, accessToken } = userInfo.user;
+    }
+  }, []);
+
   const [open, setOpen] = useState(true);
 
   function clickHandler() {
@@ -208,6 +230,7 @@ const LecNavBar = (props) => {
                 borderRadius: "15px",
                 padding: "5px 30px",
               }}
+              onClick={signout}
             >
               <Link
                 to=""
@@ -228,5 +251,5 @@ const LecNavBar = (props) => {
       </Container>
     </AppBar>
   );
-};
+}
 export default LecNavBar;
