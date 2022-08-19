@@ -53,6 +53,7 @@ function LecAssignmentCourses() {
             <LecCourseCard
               CourseCode={data.course_code}
               CourseName={data.course_name}
+              CourseId = {data.course_id}
             />
           </Grid>
         ))}
