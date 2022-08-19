@@ -37,7 +37,7 @@ function Login() {
         if (user.user_type === "lecturer") {
           navigate("/lecturer_assignments");
         } else {
-          navigate("/directorDash");
+          navigate("/directorUnder");
         }
       }
     }
