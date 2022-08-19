@@ -9,15 +9,14 @@ const theme = createTheme({
   },
 });
 
-function DirectorUnderContent() {
+function DirectorProgTransContent() {
   return (
     <div>
         <div>
-          <Typography variant="h4" theme={theme} align='left'>Undergraduate</Typography>
-        </div>
-      
+            <Typography variant="h4" theme={theme} align='left'>Progress of Transcript Issue Process</Typography>
+        </div> 
     </div>
   )
 }
 
-export default DirectorUnderContent
+export default DirectorProgTransContent

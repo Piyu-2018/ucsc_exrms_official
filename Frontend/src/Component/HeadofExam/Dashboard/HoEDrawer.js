@@ -1,10 +1,10 @@
 import React from 'react';
 import { Grid} from "@mui/material";
-import DirectorContent from './DirectorContent';
-import DirectorSidebar from '../DirectorSidebar';
+import HoEContent from './HoEContent';
+import HoESidebar from '../HoESidebar';
 
 
-function DirectorDash() {
+function HoEDrawer() {
   const open = true;
   console.log(open);
 
@@ -17,10 +17,10 @@ function DirectorDash() {
 
         <Grid container spacing={1} justifyContent="space-between" paddingTop="10px" paddingRight = "40px">
           <Grid item sm={4} md={2} >
-            <DirectorSidebar open={open} />
+            <HoESidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
-            <DirectorContent/>
+            <HoEContent/>
           </Grid>
           
         </Grid>
@@ -28,4 +28,4 @@ function DirectorDash() {
   );
 }
 
-export default DirectorDash;
+export default HoEDrawer;
