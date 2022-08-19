@@ -8,18 +8,24 @@ const nodemailer = require("nodemailer");
 const { user } = new PrismaClient();
 
 const login = asyncHandler(async (req, res) => {
-  console.log("Ice kata 2");
+  console.log("Login");
   const { user_name, password } = req.body;
+  console.log(req.body);
 
-  const existUser = await user.findFirst({
+  const existUser = await user.findUnique({
     where: {
-      user_name,
+      user_name: user_name,
     },
   });
 
+  console.log("existuser");
+
   if (existUser) {
     bycrypt.compare(password, existUser.password).then((match) => {
+      console.log(password);
+      console.log(existUser.password);
       if (match) {
+        console.log("Hi");
         const accessToken = sign(
           {
             email: existUser.email,
@@ -30,8 +36,10 @@ const login = asyncHandler(async (req, res) => {
 
         let returnData = {
           user_id: existUser.user_id,
-          name: existUser.name,
+          f_name: existUser.f_name,
+          l_name: existUser.l_name,
           email: existUser.email,
+          user_type: existUser.user_type,
           user_name: existUser.user_name,
           accessToken: accessToken,
         };

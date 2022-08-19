@@ -1,6 +1,7 @@
 import "./App.css";
 import Home from "./pages/Home";
 import SARdash from "./pages/SAR/SARdash";
+import React, { Component } from "react";
 
 import DirectorDash from "./pages/Director/DirectorDash";
 import DirectorUnder from "./pages/Director/DirectorUnder";
