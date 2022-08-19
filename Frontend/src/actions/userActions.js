@@ -9,9 +9,10 @@ import {
 } from "../constants/userConstants";
 import { API_URL } from "../constants/globalConstants";
 
-export const login = (username, password) => async (dispatch) => {
+export const login = (user_name, password) => async (dispatch) => {
   try {
-    const inputData = { username, password };
+    const inputData = { user_name, password };
+    console.log(inputData.password);
 
     await axios.post(API_URL + "/auth/login", inputData).then((response) => {
       if (!response.data.error) {
