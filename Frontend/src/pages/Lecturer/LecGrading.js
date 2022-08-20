@@ -2,7 +2,6 @@ import {
   Box,
   createTheme,
   Grid,
-  Paper,
   Stack,
   Typography,
 } from "@mui/material";

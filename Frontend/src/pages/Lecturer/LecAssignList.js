@@ -1,6 +1,6 @@
 import { Box, createTheme, Grid, Typography } from "@mui/material";
 import React from "react";
-import LecAssignmentCourses from "../../Component/Lecturer/LecAssignmentCourses";
+// import LecAssignmentCourses from "../../Component/Lecturer/LecAssignmentCourses";
 import LecAssignTable from "../../Component/Lecturer/LecAssignTable";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import LecAddAssign from "./LecAddAssign";
@@ -61,7 +61,7 @@ function LecAssignList() {
               Assignments (SCS3201)
             </Typography>
             <LecAssignTable AssignData={AssignData} />
-            <LecAddAssign />
+            <LecAddAssign CourseId={CourseId} />
           </Grid>
         </Grid>
       </Box>
