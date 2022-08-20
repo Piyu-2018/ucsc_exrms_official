@@ -6,9 +6,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
-import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Divider from '@mui/material/Divider';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
@@ -16,36 +14,14 @@ import Grid from '@mui/material/Grid';
 import SearchIcon from '@mui/icons-material/Search';
 import InputBase from '@mui/material/InputBase';
 import { styled, alpha } from '@mui/material/styles';
-/* import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb'; */
+import Stack from '@mui/material/Stack';
+import SnackbarContent from '@mui/material/SnackbarContent';
+import SendIcon from '@mui/icons-material/Send';
+import { borderRadius, borderRight } from '@mui/system';
 
-/* const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  }; */
 
   const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -59,6 +35,8 @@ import AdbIcon from '@mui/icons-material/Adb'; */
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(1),
       width: 'auto',
+      height: 50,
+      margintop:55
     },
   }));
   
@@ -97,6 +75,12 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+const action = (
+  <Button variant="contained" endIcon={<SendIcon />}>
+        Send
+      </Button>
+);
+
 
 function Chat() {
   return (
@@ -105,127 +89,7 @@ function Chat() {
     <Box sx={{ flexGrow: 100}}>
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          {/* <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
-          </Box>
-
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar> */}
+          
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -246,7 +110,7 @@ function Chat() {
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
-                  <ImageIcon />
+                  <AccountCircleIcon />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Hiruni Guruge" secondary="Watch the full video here" />
@@ -255,7 +119,7 @@ function Chat() {
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
-                  <WorkIcon />
+                  <AccountCircleIcon />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Piyumi Rathnayaka" secondary="Hey guys!!! we got two opening in the..." />
@@ -264,7 +128,7 @@ function Chat() {
             <ListItem>
               <ListItemAvatar>
                 <Avatar>
-                  <BeachAccessIcon />
+                  <AccountCircleIcon />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary="Pivithuru Batuwangala" secondary="Check it out right here👇" />
@@ -276,12 +140,19 @@ function Chat() {
           <Item>
             <Box sx={{
               width: '100%',
-              maxWidth: 350,
+              minWidth: 990,
               height:410,
-              bgcolor: 'background.paper',
+              bgcolor: '#EDEDED',
             }}
             >
-
+              <Stack spacing={2} sx={{ minWidth: 990 }}>
+                <SnackbarContent sx= {{bgcolor: '#CECECE', color:'black'}} message="Hiruni Guruge" />
+                <Stack spacing={2} sx={{ maxWidth: 300, bgcolor: '#1363DF', borderRadius: 50 }}>
+                <SnackbarContent message="Watch the full video here"/></Stack>
+                <br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+                <SnackbarContent message="Type a messsage " action={action} />
+                
+                </Stack>
             </Box>
           </Item>
         </Grid>
