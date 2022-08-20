@@ -14,6 +14,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import { Link } from "react-router-dom";
 
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
@@ -156,7 +157,15 @@ function LecAssignTable(props) {
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-                    Mark Assignment
+                    <Link to={"/lec_assign_marking/"} sx={{ color: "white" }}>
+                      <Typography
+                        variant="h6"
+                        theme={theme}
+                        sx={{ color: "white" }}
+                      >
+                        Mark Assigment
+                      </Typography>
+                    </Link>
                   </Button>
                 </StyledTableCell>
               </StyledTableRow>
