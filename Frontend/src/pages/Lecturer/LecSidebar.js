@@ -74,7 +74,12 @@ function LecSidebar(props) {
   //   }
   // }
 
-  const link = ["/lec_assign_list", "/lec_grading", "/lec_exam_timetable"];
+  const link = [
+    "/lec_assign_list",
+    "/lec_grading",
+    "/lec_exam_timetable",
+    "/lec_grading",
+  ];
 
   function renderSwitch(param) {
     switch (param) {
