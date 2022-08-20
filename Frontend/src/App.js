@@ -30,6 +30,8 @@ import LecAssignMarking from "./pages/Lecturer/LecAssignMarking";
 // import { createTheme } from "@mui/material";
 import LecGrading from "./pages/Lecturer/LecGrading";
 import LecExamPaper from "./pages/Lecturer/LecExamPaper";
+import LecExaminations from "./pages/Lecturer/LecExaminations";
+import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
 
 // const theme = createTheme({
 //   typography: {
@@ -78,6 +80,8 @@ function App() {
           <Route path="/lec_assign_marking" element={<LecAssignMarking />} />
           <Route path="/lec_grading" element={<LecGrading />} />
           <Route path="/lec_exampaper" element={<LecExamPaper />} />
+          <Route path="/lec_examinations" element={<LecExaminations />} />
+          <Route path="/lec_course_marking" element={<LecCourseMarking />} />
         </Routes>
       </div>
     </Router>
