@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { Typography } from '@mui/material';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
