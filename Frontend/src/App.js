@@ -9,9 +9,9 @@ import DirectorEnProgress from "./pages/Director/DirectorEnProgress";
 import DirectorRegProg from "./pages/Director/DirectorRegProg";
 import DirectorConfirmProg from "./pages/Director/DirectorConfirmProg";
 import DirectorTransProg from "./pages/Director/DirectorTransProg";
-import DirectorSubProg from './pages/Director/DirectorSubProg';
-import DirectorRescruProg from './pages/Director/DirectorRescruProg';
-import DirectorFourthProg from './pages/Director/DirectorFourthProg';
+import DirectorSubProg from "./pages/Director/DirectorSubProg";
+import DirectorRescruProg from "./pages/Director/DirectorRescruProg";
+import DirectorFourthProg from "./pages/Director/DirectorFourthProg";
 import MaDash from "./pages/Ma/MaDash";
 
 import HoEDash from "./pages/HeadofExam/HoEDash";
@@ -29,6 +29,7 @@ import LecExamTimetable from "./pages/Lecturer/LecExamTimetable";
 import LecAssignMarking from "./pages/Lecturer/LecAssignMarking";
 // import { createTheme } from "@mui/material";
 import LecGrading from "./pages/Lecturer/LecGrading";
+import LecExamPaper from "./pages/Lecturer/LecExamPaper";
 
 // const theme = createTheme({
 //   typography: {
@@ -54,11 +55,14 @@ function App() {
           <Route path="/directorUnder" element={<DirectorUnder />} />
           <Route path="/directorEnProgress" element={<DirectorEnProgress />} />
           <Route path="/directorRegProg" element={<DirectorRegProg />} />
-          <Route path="/directorConfirmProg"element={<DirectorConfirmProg />}/>
+          <Route
+            path="/directorConfirmProg"
+            element={<DirectorConfirmProg />}
+          />
           <Route path="/directorTransProg" element={<DirectorTransProg />} />
-          <Route path='/directorSubProg' element={<DirectorSubProg/>}/>
-          <Route path='/directorRescruProg' element={<DirectorRescruProg/>}/>
-          <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
+          <Route path="/directorSubProg" element={<DirectorSubProg />} />
+          <Route path="/directorRescruProg" element={<DirectorRescruProg />} />
+          <Route path="/directorFourthProg" element={<DirectorFourthProg />} />
 
           <Route path="/HoEDash" element={<HoEDash />} />
 
@@ -66,10 +70,14 @@ function App() {
             path="/lecturer_assignments"
             element={<LecturerAssignments />}
           />
-          <Route path="/lec_assign_list/:CourseId" element={<LecAssignList />} />
+          <Route
+            path="/lec_assign_list/:CourseId"
+            element={<LecAssignList />}
+          />
           <Route path="/lec_exam_timetable" element={<LecExamTimetable />} />
           <Route path="/lec_assign_marking" element={<LecAssignMarking />} />
           <Route path="/lec_grading" element={<LecGrading />} />
+          <Route path="/lec_exampaper" element={<LecExamPaper />} />
         </Routes>
       </div>
     </Router>
