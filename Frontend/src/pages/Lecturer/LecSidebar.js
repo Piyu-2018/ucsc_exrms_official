@@ -76,7 +76,7 @@ function LecSidebar(props) {
 
   const link = [
     "/lecturer_assignments",
-    "/lec_grading",
+    "/lec_examinations",
     "/lec_exam_timetable",
     "/lec_grading",
     "/lec_exampaper",
