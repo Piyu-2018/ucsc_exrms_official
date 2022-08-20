@@ -75,10 +75,11 @@ function LecSidebar(props) {
   // }
 
   const link = [
-    "/lec_assign_list",
+    "/lecturer_assignments",
     "/lec_grading",
     "/lec_exam_timetable",
     "/lec_grading",
+    "/lec_exampaper",
   ];
 
   function renderSwitch(param) {
