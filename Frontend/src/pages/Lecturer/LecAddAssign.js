@@ -74,6 +74,7 @@ function LecAddAssign(params) {
       await axios
         .post(API_URL + "/settings/assignAdd", inputData)
         .then((response) => {
+          params.assignDataFunc((list) => [...list, response.data]);
           // if (!response.data.error) {
           // }
         });
