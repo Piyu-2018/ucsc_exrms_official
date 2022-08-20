@@ -66,7 +66,7 @@ function App() {
             path="/lecturer_assignments"
             element={<LecturerAssignments />}
           />
-          <Route path="/lec_assign_list" element={<LecAssignList />} />
+          <Route path="/lec_assign_list/:CourseId" element={<LecAssignList />} />
           <Route path="/lec_exam_timetable" element={<LecExamTimetable />} />
           <Route path="/lec_assign_marking" element={<LecAssignMarking />} />
           <Route path="/lec_grading" element={<LecGrading />} />
