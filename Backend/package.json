@@ -18,6 +18,7 @@
     "express-async-handler": "^1.2.0",
     "http-status-codes": "^2.2.0",
     "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.7.8",
     "nodemon": "^2.0.19"
