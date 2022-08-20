@@ -61,7 +61,7 @@ function LecAssignList() {
               Assignments (SCS3201)
             </Typography>
             <LecAssignTable AssignData={AssignData} />
-            <LecAddAssign CourseId={CourseId} />
+            <LecAddAssign CourseId={CourseId} assignDataFunc={setAssignData} />
           </Grid>
         </Grid>
       </Box>
