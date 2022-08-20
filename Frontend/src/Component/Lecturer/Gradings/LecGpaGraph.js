@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent } from "@mui/material";
 import CardActions from "@mui/material/CardActions";
 import React from "react";
 import {
@@ -6,7 +6,7 @@ import {
   PieSeries,
   Title,
 } from "@devexpress/dx-react-chart-material-ui";
-import { Animation, Legend } from "@devexpress/dx-react-chart";
+// import { Animation, Legend } from "@devexpress/dx-react-chart";
 
 const chartData = [
   { region: "First Class", val: 41 },

@@ -4,8 +4,9 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGOUT,
   USER_LOGIN_FAIL,
-  USER_REGISTER_SUCCESS,
   USER_REGISTER_FAIL,
+  ASSIGN_ADD_FAIL,
+  ASSIGN_ADD_SUCCESS,
 } from "../constants/userConstants";
 import { API_URL } from "../constants/globalConstants";
 
@@ -39,4 +40,33 @@ export const login = (user_name, password) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   localStorage.removeItem("user");
   dispatch({ type: USER_LOGOUT });
+};
+
+export const addAssignment = (
+  name,
+  description,
+  contribution,
+  user_id,
+  course_id
+) => async (dispatch) => {
+  try {
+    console.log("form working");
+    const inputData = { name, description, contribution, user_id, course_id };
+
+    await axios
+      .post(API_URL + "/settings/assignAdd", inputData)
+      .then((response) => {
+        if (!response.data.error) {
+          dispatch({ type: ASSIGN_ADD_SUCCESS, payload: response.data });
+        }
+      });
+  } catch (error) {
+    dispatch({
+      type: ASSIGN_ADD_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
 };
