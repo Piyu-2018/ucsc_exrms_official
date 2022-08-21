@@ -74,6 +74,7 @@ import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
 import MaUndergraduates from "./pages/Ma/MaUndergraduates";
 import MaExamTimetable from "./pages/Ma/MaExamTimetable";
 import MaPayment from "./pages/Ma/MaPayment";
+import SAR_SummaryReport from "./pages/SAR/SAR_SummaryReport";
 
 // const theme = createTheme({
 //   typography: {
@@ -137,9 +138,10 @@ function App() {
           <Route path='/sarFourthProg' element={<SAR_FourthProg/>}/>
           <Route path='/requestletter' element={<RequestLetter/>}/>
           <Route path='/requestletter1' element={<RequestLetter1/>}/>
+          <Route path='/sar-summary-report' element={<SAR_SummaryReport/>}/>
          
 
-
+          
 
           <Route path="/hoEDash" element={<HoEDash />} />
           <Route path="/hoEExamRe" element={<HoEExamRe/>} />
