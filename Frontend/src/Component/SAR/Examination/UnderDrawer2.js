@@ -2,7 +2,7 @@ import React from 'react';
 import Category from './Category';
 import UnderSeach from './UnderSeach';
 import SAR_Sidebar from '../SAR_Sidebar';
-import DayTimeTable from './DayTimeTable'
+import UnderTable2 from '../../SAR/Examination/UnderTable2'
 import { Grid} from "@mui/material";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
@@ -21,8 +21,8 @@ function UnderDrawer() {
           <Grid item sm={8} md={10} >
           <h2><AssignmentIcon sx={{ fontSize: 20 }}/> Examination</h2>
             <Category/> <br></br>
-
             <UnderSeach/><br></br>
+            <UnderTable2/><br></br>
            
           </Grid>  
         </Grid>
