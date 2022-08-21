@@ -1,14 +1,27 @@
-import React from 'react'
+import React from 'react';
+import {Helmet} from 'react-helmet';
+import UnderDrawer1 from '../../../Component/SAR/Examination/UnderDrawer1';
+import DirectorNavbar from '../../../Component/DirectorNavbar'
 import Footer from '../../../Component/Footer';
-import Navbar from '../../../Component/Navbar';
 
 function ToBeReleased() {
   return (
     <div>
-    <Navbar/>
+    
+    <div>
+      <Helmet>
+        <style>{'body { background: #E4EBF5 !important; }'}</style>
+      </Helmet>
+      
+      <DirectorNavbar />
+      
+      <UnderDrawer1/>
+      
+    </div>
     <Footer/>
     </div>
   )
 }
 
 export default ToBeReleased
+

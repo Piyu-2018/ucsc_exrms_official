@@ -45,7 +45,7 @@ export default function AutoGrid() {
                         
                     </Grid>
                     <Grid item xs={9} md={12}></Grid>
-                    <Avatar alt="Remy Sharp" src="./pubImgs/directorImage/SAR.jpg" sx={{ width: 140, height: 140, ml:"32%", mb:"5%", mt:"3%" }}/>
+                    <Avatar alt="Remy Sharp" src="./pubImgs/directorImage/Director.jpg" sx={{ width: 140, height: 140, ml:"32%", mb:"5%", mt:"3%" }}/>
                     <Button variant="contained" sx={{  ml:"8%", mb:"5%" }}>Edit Profile</Button>
                 </CardContent>
             </Card>

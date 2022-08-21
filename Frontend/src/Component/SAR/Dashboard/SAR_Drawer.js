@@ -4,13 +4,15 @@ import SAR_Content from './SAR_Content';
 import SAR_Sidebar from '../SAR_Sidebar';
 
 
-function SARdash() {
+function SARDash() {
   const open = true;
   console.log(open);
 
   return (
     <>
-      
+      {/* <Helmet>
+            <style>{'body { background: #E4EBF5 !important; }'}</style>
+        </Helmet> */}
       
 
         <Grid container spacing={1} justifyContent="space-between" paddingTop="10px" paddingRight = "40px">
@@ -26,4 +28,4 @@ function SARdash() {
   );
 }
 
-export default SARdash;
+export default SARDash;

@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "material-ui-day-time-table": "^1.0.2",
     "mysql": "^2.18.1",
     "react-modern-calendar-datepicker": "^3.1.6"
   }

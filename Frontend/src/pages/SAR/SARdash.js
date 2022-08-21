@@ -1,6 +1,6 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import DirectorDrawer from '../../Component/Director/Dashboard/DirectorDrawer';
+import SAR_Drawer from '../../Component/SAR/Dashboard/SAR_Drawer';
 import DirectorNavbar from '../../Component/DirectorNavbar';
 
 
@@ -11,7 +11,7 @@ function SARdash() {
         <style>{'body { background: #E4EBF5 !important; }'}</style>
       </Helmet>
       <DirectorNavbar />
-      <DirectorDrawer/>
+      <SAR_Drawer/>
     </>
   )
 }
