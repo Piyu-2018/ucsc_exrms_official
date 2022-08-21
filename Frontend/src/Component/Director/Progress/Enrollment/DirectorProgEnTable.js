@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -34,15 +35,16 @@ function createData(tindexNumber,  name, moreActions) {
 }
 
 const rows = [
-    createData(201144,'Dinil Seniru Ratnayake'),
-    createData(201145,'Janitha Ratnayake'),
-    createData(201141,'Piyumi Rathnayaka'),
-    createData(201128,'Hiruni Abeywickrama'),
+    createData(220001,'Dinil Seniru Ratnayake'),
+    createData(220002,'Janitha Ratnayake'),
+    createData(220003,'Piyumi Rathnayaka'),
+    createData(220004,'Hiruni Abeywickrama'),
 ];
 
 export default function CustomizedTables() {
   return (
     <TableContainer component={Paper}>
+      <Typography sx={{ fontSize: 24  , fontFamily: "Montserrat",fontWeight: 400 , textAlign: 'center' }} color="text.secondary">New Intake Student List in 2022/2023</Typography><br></br>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>

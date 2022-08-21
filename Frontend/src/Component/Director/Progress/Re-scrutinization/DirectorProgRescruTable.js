@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,9 +34,9 @@ function createData(IndexNumber,  Name, SARAction) {
 }
 
 const rows = [
-    createData(19001428,'Janitha Ratnayake','Accepted'),
-    createData(19001411,'Dinil Seniru Ratnayake','Pending' ),
-    createData(19020945,'Sasani Samanga','Pending'),
+    createData(19001428,'Janitha Ratnayake',<Button sx={{backgroundColor:'white',color:'green'}}>Accepted</Button>),
+    createData(19001411,'Dinil Seniru Ratnayake',<Button sx={{backgroundColor:'white'}}>Pending</Button>),
+    createData(19020945,'Sasani Samanga',<Button sx={{backgroundColor:'white'}}>Pending</Button>),
 ];
 
 export default function CustomizedTables() {
