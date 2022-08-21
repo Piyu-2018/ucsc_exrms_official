@@ -88,12 +88,14 @@ export default function DirectorSidebar() {
             </ListItemIcon>
             <ListItemText primary="Intake Details" />
           </ListItemButton>
+
           <ListItemButton sx={{ pl: 4 }} to='/directorRegProg'>
             <ListItemIcon>
               <HowToRegRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Registration" />
           </ListItemButton>
+          
           <ListItemButton sx={{ pl: 4 }} to='/directorConfirmProg'>
             <ListItemIcon>
               <LocalPostOfficeRoundedIcon/>
