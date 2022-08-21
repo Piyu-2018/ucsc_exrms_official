@@ -11,6 +11,7 @@ const App = () => {
       shouldHighlightWeekends
     />
   );
+  
 };
 
 export default App;

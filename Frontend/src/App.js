@@ -29,6 +29,7 @@ import LecExamTimetable from "./pages/Lecturer/LecExamTimetable";
 import LecAssignMarking from "./pages/Lecturer/LecAssignMarking";
 import { createTheme } from "@mui/material";
 import LecGrading from "./pages/Lecturer/LecGrading";
+import Chat from "./pages/Chat";
 
 const theme = createTheme({
   typography: {
@@ -60,6 +61,8 @@ function App() {
           <Route path='/directorRescruProg' element={<DirectorRescruProg/>}/>
           <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
           <Route path="/directorDashboard" element={<DirectorDashboard />} />
+
+          <Route path='/chat' element={<Chat />} />
 
           <Route path="/HoEDash" element={<HoEDash />} />
 
