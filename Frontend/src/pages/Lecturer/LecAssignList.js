@@ -64,7 +64,6 @@ function LecAssignList() {
             </Typography>
             <LecAssignTable AssignData={AssignData} />
             <LecAddAssign CourseId={CourseId} assignDataFunc={setAssignData} />
-            <LecAddFile />
           </Grid>
         </Grid>
       </Box>
