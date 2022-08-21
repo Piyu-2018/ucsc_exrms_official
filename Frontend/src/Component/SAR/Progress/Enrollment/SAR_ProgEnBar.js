@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { Typography } from '@mui/material';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -23,17 +24,24 @@ export default function CustomizedProgressBars() {
     <Box sx={{ flexGrow: 1 }}>
         <Card>
             <CardContent>
+              <Typography sx={{ fontSize: 24 ,fontFamily: "Montserrat",fontWeight: 400 , textAlign: 'center' }} color="text.secondary">Precentage of Student Intake Process Per Year</Typography><br></br>
             <div>
-                <BorderLinearProgress variant="determinate" value={50} />
+            <Typography sx={{ fontSize: 16  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Academic Year 2022/2023</Typography><br></br>
+            <Typography sx={{ fontSize: 12  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Computer Science - 95%</Typography>
+                <BorderLinearProgress variant="determinate" value={95}/>
                 <br />
-                <BorderLinearProgress variant="determinate" value={60} />
+                <Typography sx={{ fontSize: 12  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Information System - 97%</Typography>
+                <BorderLinearProgress variant="determinate" value={97} />
                 <br /><br />
             </div>   
 
             <div>
-                <BorderLinearProgress variant="determinate" value={65} />
+                <Typography sx={{ fontSize: 16  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Academic Year 2022/2023</Typography><br></br>
+                <Typography sx={{ fontSize: 12  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Computer Science - 92%</Typography>
+                <BorderLinearProgress variant="determinate"  value={92} />
                 <br />
-                <BorderLinearProgress variant="determinate" value={78} />
+                <Typography sx={{ fontSize: 12  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Information System - 95%</Typography>
+                <BorderLinearProgress variant="determinate" value={95} />
                 <br />
             </div>  
             </CardContent>

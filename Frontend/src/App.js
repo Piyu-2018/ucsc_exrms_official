@@ -48,7 +48,7 @@ import LecAssignMarking from "./pages/Lecturer/LecAssignMarking";
 // import { createTheme } from "@mui/material";
 import LecGrading from "./pages/Lecturer/LecGrading";
 
-import Chat from "./pages/Chat";
+import Chat from "./pages/SAR/Chat";
 import ToBeReleased from "./pages/SAR/Examination/ToBeReleased";
 import Released from "./pages/SAR/Examination/Released";
 import TimeTable from "./pages/SAR/Examination/TimeTable";
@@ -67,6 +67,10 @@ import SAR_FourthProg from "./pages/SAR/SAR_FourthProg";
 import LecExamPaper from "./pages/Lecturer/LecExamPaper";
 import LecExaminations from "./pages/Lecturer/LecExaminations";
 import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
+
+import MaUndergraduates from "./pages/Ma/MaUndergraduates";
+import MaExamTimetable from "./pages/Ma/MaExamTimetable";
+import MaPayment from "./pages/Ma/MaPayment";
 
 // const theme = createTheme({
 //   typography: {
@@ -88,6 +92,9 @@ function App() {
           <Route path="/directorDash" element={<DirectorDash />} />
 
           <Route path="/maDash" element={<MaDash />} />
+          <Route path="/ma_undergraduates" element={<MaUndergraduates />} />
+          <Route path="/ma_examtimetable" element={<MaExamTimetable />} />
+          <Route path="/ma_payment" element={<MaPayment />} />
 
           <Route path="/directorUnder" element={<DirectorUnder />} />
           <Route path="/directorEnProgress" element={<DirectorEnProgress />} />

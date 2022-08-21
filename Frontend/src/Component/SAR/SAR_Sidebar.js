@@ -123,12 +123,31 @@ export default function SAR_Sidebar() {
         </List>
           </Collapse>
           <Divider />
-      <ListItemButton>
+      <ListItemButton onClick={handleClick}>
         <ListItemIcon>
-          <SummarizeRoundedIcon/>
+          <ShowChartRoundedIcon />
         </ListItemIcon>
         <ListItemText primary="Report" />
+        {open ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
+      <Divider />
+      <Collapse in={open} timeout="auto" unmountOnExit>
+        <List component="div" disablePadding>
+          <ListItemButton sx={{ pl: 4 }} to=''>
+            <ListItemIcon>
+              <ContactMailRoundedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Summary Report" />
+          </ListItemButton>
+
+          <ListItemButton sx={{ pl: 4 }} to=''>
+            <ListItemIcon>
+              <HowToRegRoundedIcon />
+            </ListItemIcon>
+            <ListItemText primary="Generate Report" />
+          </ListItemButton>
+          </List>
+          </Collapse>
       <Divider />
 
       <ListItemButton to ='/chat'>

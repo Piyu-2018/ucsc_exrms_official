@@ -4,12 +4,13 @@ import {
   Chart,
   PieSeries,
   Title,
+  Legend,
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
-  { region: 'Issued', val: 65 },
-  { region: 'Not-issued', val: 35 },
+  { region: 'Issued - 65%', val: 65 },
+  { region: 'Not-issued - 35%', val: 35 },
 ];
 
 export default class Demo extends React.PureComponent {
@@ -35,9 +36,10 @@ export default class Demo extends React.PureComponent {
             innerRadius={0.6}
           />
           <Title
-            text="The Progress of Confirmation letters Issue Process"
+            text="The Progress of Transcripts Issue Process"
           />
           <Animation />
+          <Legend />
         </Chart>
       </Paper>
     );

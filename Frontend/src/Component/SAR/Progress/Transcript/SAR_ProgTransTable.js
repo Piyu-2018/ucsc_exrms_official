@@ -51,6 +51,7 @@ export default function CustomizedTables() {
             <StyledTableCell align="left">Course Type</StyledTableCell>
             <StyledTableCell align="left">Status</StyledTableCell>
             <StyledTableCell align="left">More Action</StyledTableCell>
+            <StyledTableCell align="left"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -62,6 +63,7 @@ export default function CustomizedTables() {
               <StyledTableCell align="left">{row.CourseN}</StyledTableCell>
               <StyledTableCell align="left">{row.Status}</StyledTableCell>
               <StyledTableCell align="left">{row.moreAction}<Button variant="contained">View Letter</Button></StyledTableCell>
+              <StyledTableCell align="left">{row.moreAction}<Button variant="contained" color='error'>Edit Letter</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
