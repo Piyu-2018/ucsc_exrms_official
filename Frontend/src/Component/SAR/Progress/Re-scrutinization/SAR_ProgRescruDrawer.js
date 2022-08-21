@@ -1,5 +1,4 @@
 import React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
 import SAR_ProgRescruSl from './SAR_ProgRescruSl';
 import { Grid} from "@mui/material";
 import SAR_ProgRescruTable from './SAR_ProgRescruTable';
@@ -11,9 +10,6 @@ function SAR_ProgRescruDrawer() {
 
   return (
     <>
-      {/* <Helmet>
-            <style>{'body { background: #E4EBF5 !important; }'}</style>
-        </Helmet> */}
       
 
         <Grid container spacing={1} justifyContent="space-between" paddingTop="10px" paddingRight = "40px">

@@ -3,10 +3,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import SAR_ProgSubOp1 from './SAR_ProgSubOp1';
-import SAR_ProgSubOp0 from './SAR_ProgSubOp0';
-import SAR_ProgSubOp3 from './SAR_ProgSubOp3';
-import SAR_ProgSubOp4 from './SAR_ProgSubOp4';
+import SAR_ProgRegOp1 from './SAR_ProgConfirmOp1';
+import SAR_ProgRegOp2 from './SAR_ProgConfirmOp2';
+
 
 export default function AutoGrid() {
   return (
@@ -15,16 +14,11 @@ export default function AutoGrid() {
 
             <Grid item xs={3} md={12} container spacing={4} columnpacing={10} >
                 <Grid item xs={12} md={3}>
-                    <SAR_ProgSubOp0/>
+                    <SAR_ProgRegOp1/>
                 </Grid>
+            
                 <Grid item xs={12} md={3}>
-                    <SAR_ProgSubOp1/>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <SAR_ProgSubOp3/>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <SAR_ProgSubOp4/>
+                    <SAR_ProgRegOp2/>
                 </Grid>
             </Grid>
 
