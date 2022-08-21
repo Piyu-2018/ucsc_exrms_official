@@ -10,9 +10,12 @@ import DirectorEnProgress from "./pages/Director/DirectorEnProgress";
 import DirectorRegProg from "./pages/Director/DirectorRegProg";
 import DirectorConfirmProg from "./pages/Director/DirectorConfirmProg";
 import DirectorTransProg from "./pages/Director/DirectorTransProg";
-import DirectorSubProg from "./pages/Director/DirectorSubProg";
-import DirectorRescruProg from "./pages/Director/DirectorRescruProg";
-import DirectorFourthProg from "./pages/Director/DirectorFourthProg";
+import DirectorSubProg from './pages/Director/DirectorSubProg';
+import DirectorRescruProg from './pages/Director/DirectorRescruProg';
+import DirectorFourthProg from './pages/Director/DirectorFourthProg';
+import DirectorDashboard from "./pages/Director/DirectorDashboard";
+import DirectorChat from "./pages/Director/DirectorChat";
+
 import MaDash from "./pages/Ma/MaDash";
 
 import HoEDash from "./pages/HeadofExam/HoEDash";
@@ -66,10 +69,12 @@ function App() {
             element={<DirectorConfirmProg />}
           />
           <Route path="/directorTransProg" element={<DirectorTransProg />} />
-          <Route path="/directorSubProg" element={<DirectorSubProg />} />
-          <Route path="/directorRescruProg" element={<DirectorRescruProg />} />
-          <Route path="/directorFourthProg" element={<DirectorFourthProg />} />
-          {/* <Route path="/directorDashboard" element={<DirectorDashboard />} /> */}
+          <Route path='/directorSubProg' element={<DirectorSubProg/>}/>
+          <Route path='/directorRescruProg' element={<DirectorRescruProg/>}/>
+          <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
+          <Route path="/directorDashboard" element={<DirectorDashboard />} />
+          <Route path="/directorChat" element={<DirectorChat />} />
+
 
           <Route path="/chat" element={<Chat />} />
 

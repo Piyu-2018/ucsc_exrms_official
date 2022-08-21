@@ -51,13 +51,6 @@ export default function DirectorSidebar() {
         <ListItemText primary="Home" />
       </ListItemButton>
       <Divider />
-      <ListItemButton to='/directorDashboard'>
-        <ListItemIcon>
-          <DashboardRoundedIcon />
-        </ListItemIcon>
-        <ListItemText primary="Dashboard" />
-      </ListItemButton>
-      <Divider />
       <ListItemButton to='/directorUnder'>
         <ListItemIcon>
           <PeopleAltRoundedIcon/>
@@ -151,6 +144,6 @@ export default function DirectorSidebar() {
         </List>
 
     </Box>
-
+    
   );
 }
