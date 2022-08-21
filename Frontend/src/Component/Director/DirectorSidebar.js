@@ -27,6 +27,7 @@ import NoteAltRoundedIcon from '@mui/icons-material/NoteAltRounded';
 import SubjectRoundedIcon from '@mui/icons-material/SubjectRounded';
 import ContactPageRoundedIcon from '@mui/icons-material/ContactPageRounded';
 import ContactMailRoundedIcon from '@mui/icons-material/ContactMailRounded';
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 
 export default function DirectorSidebar() {
   const [open, setOpen] = React.useState(true);
@@ -44,6 +45,13 @@ export default function DirectorSidebar() {
       }
     >
       <ListItemButton to='/directorDash'>
+        <ListItemIcon>
+          <HomeRoundedIcon />
+        </ListItemIcon>
+        <ListItemText primary="Home" />
+      </ListItemButton>
+      <Divider />
+      <ListItemButton to='/directorDashboard'>
         <ListItemIcon>
           <DashboardRoundedIcon />
         </ListItemIcon>
@@ -78,7 +86,7 @@ export default function DirectorSidebar() {
             <ListItemIcon>
               <ContactMailRoundedIcon />
             </ListItemIcon>
-            <ListItemText primary="Enrollment" />
+            <ListItemText primary="Intake Details" />
           </ListItemButton>
           <ListItemButton sx={{ pl: 4 }} to='/directorRegProg'>
             <ListItemIcon>
@@ -123,10 +131,10 @@ export default function DirectorSidebar() {
         <ListItemIcon>
           <SummarizeRoundedIcon/>
         </ListItemIcon>
-        <ListItemText primary="Report" />
+        <ListItemText primary="Summary Report" />
       </ListItemButton>
       <Divider />
-      <ListItemButton>
+      <ListItemButton to='/directorChat'>
         <ListItemIcon>
           <ChatRoundedIcon/>
         </ListItemIcon>
@@ -143,6 +151,6 @@ export default function DirectorSidebar() {
         </List>
 
     </Box>
-    
+
   );
 }

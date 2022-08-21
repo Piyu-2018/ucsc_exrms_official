@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Computer Science (BSC)', 'Information System (BSC)','Computer Science (BSC Hons)', 'Software Engineer (BSC Hons)', 'Information System (BSC Hons)'];
+const options = ['Subjects','SCS2201-Data Structures & Alogorithms III','SCSC2202-Group Project','SCSC2203-Software Engineering III','SCSC2204-Functional Programming','SCSC2205-Computer Networking','SCSC2206-Mathemical Methods II','SCSC2207-Programming Concept','SCSC2208-Rapid apllication Development'];
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
@@ -76,7 +76,7 @@ export default function SplitButton() {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index ===6}
+                      disabled={index ===10}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >
