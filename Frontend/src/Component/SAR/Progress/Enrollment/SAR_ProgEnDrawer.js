@@ -1,10 +1,5 @@
 import React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
 import { Grid} from "@mui/material";
-import Box from '@mui/material/Box';
-import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar from '@mui/material/AppBar';
-
 import SAR_ProgEnBar from './SAR_ProgEnBar';
 import SAR_ProgEnTable from './SAR_ProgEnTable';
 import SAR_Sidebar from '../../SAR_Sidebar';
@@ -15,9 +10,6 @@ function SAR_EnDrawer() {
 
   return (
     <>
-      {/* <Helmet>
-            <style>{'body { background: #E4EBF5 !important; }'}</style>
-        </Helmet> */}
       
 
         <Grid container spacing={1} justifyContent="space-between" paddingTop="10px" paddingRight = "40px">

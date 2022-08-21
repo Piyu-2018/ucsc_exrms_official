@@ -39,7 +39,7 @@ import LecAssignMarking from "./pages/Lecturer/LecAssignMarking";
 // import { createTheme } from "@mui/material";
 import LecGrading from "./pages/Lecturer/LecGrading";
 
-import Chat from "./pages/Chat";
+import Chat from "./pages/SAR/Chat";
 import ToBeReleased from "./pages/SAR/Examination/ToBeReleased";
 import Released from "./pages/SAR/Examination/Released";
 import TimeTable from "./pages/SAR/Examination/TimeTable";
