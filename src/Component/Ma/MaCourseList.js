@@ -13,16 +13,19 @@ import { Link } from '@mui/material';
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: '#06283D',
+    fontSize: 16,
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
+    fontSize: 16,
+    color: "black",
+    fontWeight: 500,
   },
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   
-    backgroundColor: '#E4EBF5',
+    backgroundColor: '#d3eaf2',
   
   // hide last border
   '&:last-child td, &:last-child th': {
@@ -30,20 +33,21 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(subCode, subName, action) {
-  return { subCode, subName, action };
+function createData(subCode, subName, credits,lecturers) {
+  return { subCode, subName, credits,lecturers };
 }
 
 const reportLink = <Link href="#" underline="always" sx={{fontWeight:"600"}}>view report</Link>;
 
+
 const rowscs1 = [
-  createData('SCS 2201', 'Data Structures & Algorithm III', reportLink),
-  createData('SCS 2203', 'Software Engineering III', reportLink),
-  createData('SCS 2204', 'Functional Programming', reportLink),
-  createData('SCS 2205', 'Computer Network I', reportLink),
-  createData('SCS 2206', 'Mathematical Methods II', reportLink),
-  createData('SCS 2207', 'Programming Language', reportLink),
-  createData('SCS 2208', 'RAD', reportLink),
+  createData('SCS 2201', 'Data Structures & Algorithm III', '3','Mr. A. K. Saman'),
+  createData('SCS 2203', 'Software Engineering III', '2','Mrs. P. Sanduni'),
+  createData('SCS 2204', 'Functional Programming', '3','Mrs. G. Nimali'),
+  createData('SCS 2205', 'Computer Network I', '2','Mr. A. K. Saman'),
+  createData('SCS 2206', 'Mathematical Methods II', '2','Mr. S. Shanaka'),
+  createData('SCS 2207', 'Programming Language', '3','Mr. Namal Perera'),
+  createData('SCS 2208', 'RAD', '3','Mr. Kasun Gamage'),
 ];
 const rowscs2 = [
   createData('SCS 2201', 'Data Structures & Algorithm III', reportLink),
@@ -76,15 +80,25 @@ const rowsis2 = [
 function CsFirstSemSubjects() {
   return (
     <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 400 }} aria-label="customized table">
-        
+      <Table sx={{ minWidth: 400 }} aria-label="a dense table">
+        <TableHead >
+          <TableRow sx={{backgroundColor:"#51abcd"}}>
+            <TableCell sx={{fontWeight:"600"}}>Subject Code</TableCell>
+            <TableCell align="left" sx={{fontWeight:"600"}}>Subject Name</TableCell>
+            <TableCell align="left" sx={{fontWeight:"600"}}>Credits</TableCell>
+            <TableCell align="left" sx={{fontWeight:"600"}}>Lecturers</TableCell>
+          </TableRow>
+        </TableHead>
+
         <TableBody>
           {rowscs1.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
-                {row.subCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{row.subName}
+                {row.subCode}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.action}</StyledTableCell>
+              <StyledTableCell align="left">{row.subName}</StyledTableCell>
+              <StyledTableCell align="left">{row.credits}</StyledTableCell>
+              <StyledTableCell align="left">{row.lecturers}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
