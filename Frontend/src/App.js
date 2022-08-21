@@ -12,6 +12,8 @@ import DirectorTransProg from "./pages/Director/DirectorTransProg";
 import DirectorSubProg from './pages/Director/DirectorSubProg';
 import DirectorRescruProg from './pages/Director/DirectorRescruProg';
 import DirectorFourthProg from './pages/Director/DirectorFourthProg';
+import DirectorDashboard from "./pages/Director/DirectorDashboard";
+import DirectorChat from "./pages/Director/DirectorChat";
 import MaDash from "./pages/Ma/MaDash";
 
 import HoEDash from "./pages/HeadofExam/HoEDash";
@@ -61,6 +63,7 @@ function App() {
           <Route path='/directorRescruProg' element={<DirectorRescruProg/>}/>
           <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
           <Route path="/directorDashboard" element={<DirectorDashboard />} />
+          <Route path="/directorChat" element={<DirectorChat />} />
 
           <Route path='/chat' element={<Chat />} />
 
