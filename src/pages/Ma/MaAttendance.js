@@ -33,7 +33,7 @@ function MaAttendance() {
   return (
     <>
         
-        <Box >
+        <Box sx={{backgroundColor:"#E4EBF5"}}>
         <MaNavBar />
             <Grid container spacing={1} justifyContent="space-between">
                 <Grid item sm={4} md={2}>
