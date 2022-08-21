@@ -30,10 +30,10 @@ function LecExamUploads(props) {
           <Typography gutterBottom variant="h5" component="div">
             {props.courseName}
           </Typography>
-          <Box sx={{ ml: "35%" }}>
+          <Box sx={{ ml: "25%" }}>
             <Stack direction="row" alignItems="center" spacing={2}>
               <Button variant="contained" component="label">
-                Upload
+                Upload Exam Questions
                 <input hidden accept="image/*" multiple type="file" />
               </Button>
               <IconButton
