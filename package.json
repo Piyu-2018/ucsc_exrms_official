@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "chart.js": "^3.9.1",
-    "mysql": "^2.18.1",
-    "react-bar-chart": "^0.1.2",
-    "react-chartjs-2": "^4.3.1",
-    "react-modern-calendar-datepicker": "^3.1.6"
-  }
-}
