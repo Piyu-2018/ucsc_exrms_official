@@ -65,7 +65,7 @@ export default function DirectorSidebar() {
         <ListItemText primary="Undergraduates" />
       </ListItemButton>
       <Divider />
-      <ListItemButton>
+      <ListItemButton to='/directorExamRe'>
         <ListItemIcon>
           <ArticleRoundedIcon/>
         </ListItemIcon>

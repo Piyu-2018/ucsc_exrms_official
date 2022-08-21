@@ -22,10 +22,17 @@ import DirectorDashboard from "./pages/Director/DirectorDashboard";
 import DirectorChat from "./pages/Director/DirectorChat";
 import DirectorSummaryReport from "./pages/Director/DirectorSummaryReport";
 import DirectorExamRe from "./pages/Director/DirectorExamRe";
+import DirectorExamReToBe from "./pages/Director/DirectorExamReToBe";
+import DirectorExamTimetable from "./pages/Director/DirectorExamTimetable";
 
 import MaDash from "./pages/Ma/MaDash";
 
 import HoEDash from "./pages/HeadofExam/HoEDash";
+import HoEExamRe from "./pages/HeadofExam/HoEExamRe";
+import HoEExamReToBe from "./pages/HeadofExam/HoEExamReToBe";
+import HoEExamTimetable from "./pages/HeadofExam/HoEExamTimetable";
+import HoEExamUpdateResults from "./pages/HeadofExam/HoEExamUpdateResults";
+import HoEChat from "./pages/HeadofExam/HoEChat";
 
 import {
   BrowserRouter as Router,
@@ -95,8 +102,10 @@ function App() {
           <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
           <Route path="/directorDashboard" element={<DirectorDashboard />} />
           <Route path="/directorChat" element={<DirectorChat />} />
-          <Route path="/DirectorSummaryReport" element={<DirectorSummaryReport/>} />
-          <Route path="/DirectorExamRe" element={<DirectorExamRe/>} />
+          <Route path="/directorSummaryReport" element={<DirectorSummaryReport/>} />
+          <Route path="/directorExamRe" element={<DirectorExamRe/>} />
+          <Route path="/directorExamReToBe" element={<DirectorExamReToBe/>} />
+          <Route path="/directorExamTimetable" element={<DirectorExamTimetable/>} />
 
 
 
@@ -118,7 +127,12 @@ function App() {
           <Route path='/sarFourthProg' element={<SAR_FourthProg/>}/>
 
 
-          <Route path="/HoEDash" element={<HoEDash />} />
+          <Route path="/hoEDash" element={<HoEDash />} />
+          <Route path="/hoEExamRe" element={<HoEExamRe/>} />
+          <Route path="/hoEExamReToBe" element={<HoEExamReToBe/>} />
+          <Route path="/hoEExamTimetable" element={<HoEExamTimetable/>} />
+          <Route path="/hoEExamUpdateResults" element={<HoEExamUpdateResults/>} />
+          <Route path="/hoEChat" element={<HoEChat/>} />
 
           <Route
             path="/lecturer_assignments"
