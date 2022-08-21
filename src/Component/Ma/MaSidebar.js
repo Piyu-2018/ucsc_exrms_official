@@ -56,28 +56,30 @@ const [open, setOpen] = useState(true);
       case 0:
         return <PeopleIcon/>;
       case 1:
-        return <DescriptionIcon/>
+        return <SourceIcon/> 
       case 2:
-        return <AttachEmailIcon/>
+        return <DescriptionIcon/>
       case 3:
-        return <AssignmentIndIcon/>
+        return <AttachEmailIcon/>
       case 4:
-        return <PaymentsIcon />
+        return <AssignmentIndIcon/>
       case 5:
-        return <HowToRegIcon/>
+        return <PaymentsIcon />
       case 6:
-        return <AssessmentIcon/>     
+        return <HowToRegIcon/>
       case 7:
-        return <ForumIcon/> 
+        return <AssessmentIcon/>     
       case 8:
-        return <SourceIcon/>       
+        return <SourceIcon/>  
 
     }
   }
 
+  const link = ["/ma_undergraduates","/ma_admission","/MaLetters","/ma_letters","/MaRegistration","/MaPayment","/ma_attendance","/ma_exam_report","/MaCourses"];
+
   return (
     <>
-    <Box sx={{display:"flex", flexDirection:"column", width:"250px"}}>
+    <Box sx={{display:"flex", flexDirection:"column", width:"250px",backgroundColor:"#E4EBF5"}}>
     
 
             
@@ -85,6 +87,7 @@ const [open, setOpen] = useState(true);
     
     <Drawer sx={{
           width: drawerWidth,
+          backgroundColor:"#E4EBF5",
           overflow:"auto",  
           flexShrink: 0,
           '& .MuiDrawer-paper': {
@@ -96,12 +99,12 @@ const [open, setOpen] = useState(true);
         anchor="left"
         open={open}>
       <Toolbar/>
-      <Box sx={{ overflow: 'auto' }}>     
+      <Box sx={{ overflow: 'auto',backgroundColor:"#E4EBF5" }}>     
       <List>
-        {['Undergraduates', 'Examinations', 'Letters', 'Registration', 'Payments','Attendance','Reports', 'Chats', 'Courses'].map((text, index) => (
+        {['Undergraduates','Admissions', 'Examinations', 'Letters', 'Registration', 'Payments','Attendance','Reports', 'Courses','',''].map((text, index) => (
           <>
           <ListItem key={text} sx={{height:"60px"}} disablePadding>
-            <ListItemButton>
+            <ListItemButton to={link[index]}>
               <ListItemIcon>
                 {renderSwitch(index)}
                 {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
