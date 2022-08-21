@@ -1,38 +1,55 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-import Avatar from '@mui/material/Avatar';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import DirectorProgRespSl from './DirectorProgRespSl';
+import {
+  Chart,
+  PieSeries,
+  Title,
+  Legend,
+} from '@devexpress/dx-react-chart-material-ui';
+import { Animation } from '@devexpress/dx-react-chart';
 
+const data = [
+  { region: 'A+ - 5%', val: 65 },
+  { region: 'A - 15%', val: 35 },
+  { region: 'A- - 25%', val: 35 },
+  { region: 'B+ - 15%', val: 35 },
+  { region: 'B - 12%', val: 35 },
+  { region: 'B- - 8%', val: 35 },
+  { region: 'C+ - 3%', val: 35 },
+  { region: 'C - 3%', val: 35 },
+  { region: 'C- - 2%', val: 35 },
+  { region: 'D+ - 2%', val: 35 },
+  { region: 'D -5%', val: 35 },
+  { region: 'E - 5%', val: 35 },
+];
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: theme.palette.text.secondary,
-}));
+export default class Demo extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
-export default function AutoGrid() {
-  return (
-    <Box sx={{ flexGrow: 1 }}>
+    this.state = {
+      data,
+    };
+  }
 
-<Grid container spacing={5}>
-    
+  render() {
+    const { data: chartData } = this.state;
 
-    <Grid item xs={6} md={8} container spacing={4} rowSpacing={4} >
-        <Grid item xs={12} md={3}>
-            <DirectorProgRespSl/>
-        </Grid>
-    </Grid>
-
-</Grid>
-
-    </Box>
-  );
+    return (
+        <Chart
+          data={chartData}
+        >
+          <PieSeries
+            valueField="val"
+            argumentField="region"
+            innerRadius={0.6}
+          />
+          <Title
+            text="Results"
+          />
+          <Animation />
+          <Legend />
+        </Chart>
+    );
+  }
 }

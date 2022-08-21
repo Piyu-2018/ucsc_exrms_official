@@ -7,7 +7,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
+import CreateIcon from '@mui/icons-material/Create';
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,14 +30,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(IndexNumber,  Name, Year, CourseN, Status, MoreAction) {
-  return { IndexNumber,  Name , Year, CourseN, Status, MoreAction };
+function createData(IndexNumber, SubMarks, AssignMarks,TotalMarks, Grade, Edit) {
+  return { IndexNumber, SubMarks, AssignMarks,TotalMarks , Grade, Edit};
 }
 
 const rows = [
-    createData(19001428,'Janitha Ratnayake','3rd Year','Computer Science','Pending'),
-    createData(19001411,'Dinil Seniru Ratnayake','3rd Year','Computer Science','Pending' ),
-    createData(19020945,'Sasani Samanga','3rd Year','Infomation System', 'Issued'),
+    createData(19001411,'2019|CS|141','80','70','B ',''),
+    createData(19001428,'2019/CS/142','90','80 ','A',''),
+    createData(19001381,'2019/CS/138','85',' 76','A',''),
+    createData(19001411,'2019/CS/141','70',' 57','C',''),
 ];
 
 export default function CustomizedTables() {
@@ -46,22 +48,22 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell align="left">Index Number</StyledTableCell>
-            <StyledTableCell align="left">Name</StyledTableCell>
-            <StyledTableCell align="left">Year</StyledTableCell>
-            <StyledTableCell align="left">Course Type</StyledTableCell>
-            <StyledTableCell align="left">Status</StyledTableCell>
-            <StyledTableCell align="left">More Action</StyledTableCell>
+            <StyledTableCell align="left"> Subject Marks</StyledTableCell>
+            <StyledTableCell align="left">Assigent nMarks </StyledTableCell>
+            <StyledTableCell align="left">Total Marks</StyledTableCell>
+            <StyledTableCell align="left">Grade </StyledTableCell>
+            <StyledTableCell align="left"> </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.Year}</StyledTableCell>
-              <StyledTableCell align="left">{row.CourseN}</StyledTableCell>
-              <StyledTableCell align="left">{row.Status}</StyledTableCell>
-              <StyledTableCell align="left">{row.moreAction}<Button variant="contained">View Transcript</Button></StyledTableCell>
+              <StyledTableCell align="left">{row.SubMarks}</StyledTableCell>
+              <StyledTableCell align="left">{row.AssignMarks}</StyledTableCell>
+              <StyledTableCell align="left">{row.TotalMarks}</StyledTableCell>
+              <StyledTableCell align="left">{row.Grade}  </StyledTableCell>
+              <StyledTableCell align="left">{row.Edit}<CreateIcon fontSize="small" sx={{Floatleft: 50}} /></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
