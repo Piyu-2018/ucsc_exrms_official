@@ -6,9 +6,10 @@ import MaUndergTable from "../../Component/Ma/MaUndergTable";
 import { useState } from "react";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import MaCalendar from "../../Component/Ma/MaCalendar";
+import MaPaymentTable from "../../Component/Ma/MaPaymentTable";
 // import MaSidebar from "../../Component/Ma/MaSidebar";
 
-function MaExamTimetable() {
+function MaPayment() {
   return (
     <>
       <Box sx={{ backgroundColor: "#E4EBF5" }}>
@@ -19,12 +20,12 @@ function MaExamTimetable() {
           </Grid>
           <Grid item sm={8} md={10}>
             <Typography variant="h4" align="left">
-              Exam Timetable
+              Payment (Via Bank)
             </Typography>
             <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
               <Card sx={{ backgroundColor: "#E4EBF5", width: "95%" }}>
                 <CardContent>
-                  <MaCalendar />
+                  <MaPaymentTable />
                 </CardContent>
               </Card>
             </Grid>
@@ -35,4 +36,4 @@ function MaExamTimetable() {
   );
 }
 
-export default MaExamTimetable;
+export default MaPayment;
