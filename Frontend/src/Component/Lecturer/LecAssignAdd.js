@@ -35,14 +35,26 @@ function LecAssignAdd() {
 
   return (
     <Box sx={{ mb: "10px" }}>
-      <Button
-        onClick={handleOpen}
-        sx={{ mt: "50px" }}
-        variant="contained"
-        startIcon={<AddBoxIcon />}
-      >
-        Add Assignment Marks
-      </Button>
+      <Box>
+        <Button
+          onClick={handleOpen}
+          sx={{ mt: "50px" }}
+          variant="contained"
+          startIcon={<AddBoxIcon />}
+        >
+          Add Assignment Marks Individually
+        </Button>
+
+        <Button
+          variant="contained"
+          component="label"
+          sx={{ mt: "50px", ml: "5%" }}
+        >
+          Upload (.xlsx format)
+          <input hidden accept="image/*" multiple type="file" />
+        </Button>
+      </Box>
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

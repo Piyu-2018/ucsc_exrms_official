@@ -50,7 +50,7 @@ function LecExamMarksAdd() {
         variant="contained"
         startIcon={<AddBoxIcon />}
       >
-        1st Marking
+        1st Marking Add Individually
       </Button>
       <Button
         onClick={handleOpen}
@@ -59,7 +59,15 @@ function LecExamMarksAdd() {
         startIcon={<AddBoxIcon />}
         disabled
       >
-        2nd Marking
+        2nd Marking Add Individually
+      </Button>
+      <Button
+        variant="contained"
+        component="label"
+        sx={{ mt: "50px", ml: "5%" }}
+      >
+        Upload (.xlsx format)
+        <input hidden accept="image/*" multiple type="file" />
       </Button>
       <Modal
         aria-labelledby="transition-modal-title"

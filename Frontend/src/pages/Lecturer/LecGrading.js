@@ -37,7 +37,7 @@ function LecGrading() {
                 <Stack direction="column" spacing={2}>
                   <Box alignItems="left">
                     <Typography variant="h6" theme={theme}>
-                      Year
+                      Year 2022/2023
                     </Typography>
                   </Box>
                   <Box>
