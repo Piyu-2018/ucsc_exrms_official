@@ -19,6 +19,7 @@ import SnackbarContent from '@mui/material/SnackbarContent';
 import SendIcon from '@mui/icons-material/Send';
 import { borderRadius, borderRight } from '@mui/system';
 import HoESidebar from './HoESidebar';
+import Footer from '../../Component/Footer';
 
 
 
@@ -168,7 +169,8 @@ function Chat() {
           </Grid>
           
         </Grid>
-    </Box>
+    </Box><br></br>
+    <Footer/>
     </div>
   )
 }

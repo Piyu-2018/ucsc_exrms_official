@@ -2,7 +2,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import UnderDrawer from '../../Component/HeadofExam/Examination/UnderDrawer';
 import HoENavbar from '../../Component/HoENavbar'
-// import Footer from '../../../Component/Footer';
+import Footer from '../../Component/Footer';
 
 function Released() {
   return (
@@ -15,10 +15,10 @@ function Released() {
       
       <HoENavbar />
       
-      <UnderDrawer/>
+      <UnderDrawer/><br></br>
       
     </div>
-    {/* <Footer/> */}
+    <Footer/>
     </div>
   )
 }
