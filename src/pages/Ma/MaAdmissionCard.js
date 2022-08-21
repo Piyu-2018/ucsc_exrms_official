@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography,Item, IconButton,Avatar, Button, FormControl, InputLabel, Select, MenuItem, CardContent,  } from '@mui/material';
+import { Box, Grid, Stack, Typography,Divider, IconButton,Avatar, Button, FormControl, InputLabel, Select, MenuItem, CardContent,  } from '@mui/material';
 import React from 'react';
 import MaSidebar from '../../Component/Ma/MaSidebar';
 import MaNavBar from '../../Component/Ma/MaNavBar';
@@ -12,7 +12,7 @@ function MaAdmissionCard() {
   return (
     <>
         
-        <Box >
+        <Box sx={{backgroundColor:"#E4EBF5"}}>
         <MaNavBar />
             <Grid container spacing={1} justifyContent="space-between">
                 <Grid item sm={4} md={2}>
@@ -37,7 +37,7 @@ function MaAdmissionCard() {
                                 COMPUTER SCIENCE
                             </Typography>
                             <Grid container spacing={1} justifyContent="space-between" sx={{padding:"35px"}}>
-                                <Grid item sm={3} md={3} sx={{backgroundColor:"#ccd4e4"}}>
+                                <Grid item sm={3} md={3} >
                                     
                                     <Grid align="center" sx={{padding:"20px"}}>
                                         <Avatar
@@ -46,27 +46,27 @@ function MaAdmissionCard() {
                                             sx={{ width: 180, height: 180 }}
                                         />
                                     </Grid>
-                                    <Grid align="left" sx={{paddingLeft:"20px"}}>
+                                    <Grid align="left" sx={{paddingLeft:"20px",paddingBottom:"15px"}}>
                                         <Typography variant='h6'>Name : </Typography>
                                         <Typography variant='h6' sx={{paddingLeft:"20px"}}>P. D. P. P. Rathnayaka</Typography>
                                     </Grid>
-                                    <Grid align="left" sx={{paddingLeft:"20px"}}>
+                                    <Grid align="left" sx={{paddingLeft:"20px",paddingBottom:"15px"}}>
                                         <Typography variant='h6'>Index : </Typography>
                                         <Typography variant='h6' sx={{paddingLeft:"20px"}}>19001381</Typography>
                                     </Grid>
-                                    <Grid align="left" sx={{paddingLeft:"20px"}}>
+                                    <Grid align="left" sx={{paddingLeft:"20px",paddingBottom:"15px"}}>
                                         <Typography variant='h6'>Reg. No. : </Typography>
                                         <Typography variant='h6' sx={{paddingLeft:"20px"}}>2019/CS/138</Typography>
                                     </Grid>
-                                    <Grid align="left" sx={{paddingLeft:"20px"}}>
+                                    <Grid align="left" sx={{paddingLeft:"20px",paddingBottom:"15px"}}>
                                         <Typography variant='h6'>NIC : </Typography>
                                         <Typography variant='h6' sx={{paddingLeft:"20px"}}>987942886V</Typography>
                                     </Grid>
                                 </Grid>
-                                <Grid item sm={0.2} md={0.2} sx={{backgroundColor:"#ccd4e4"}}>
-                                    <Typography></Typography>
+                                <Grid item sm={0.2} md={0.2}>
+                                    <Divider orientation="vertical" flexItem sx={{color:"red",height:"100%"}}></Divider>
                                 </Grid>
-                                <Grid item sm={8.8} md={8.8} sx={{backgroundColor:"#ccd4e4"}}>
+                                <Grid item sm={8.8} md={8.8}>
                                     <Grid container spacing={0.5}  p={2} justifyContent="space-evenly">
                                         <Typography variant='h6'>Exam Year : 2022 </Typography>
                                         <Typography variant='h6'>Study Year : 2 </Typography>
