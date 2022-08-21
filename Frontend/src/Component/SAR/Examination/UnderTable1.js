@@ -30,15 +30,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(IndexNumber, SubMarks, AssignMarks,TotalMarks, Grade) {
-  return { IndexNumber, SubMarks, AssignMarks,TotalMarks , Grade};
+function createData(IndexNumber, SubMarks, AssignMarks,TotalMarks, Grade, Edit) {
+  return { IndexNumber, SubMarks, AssignMarks,TotalMarks , Grade, Edit};
 }
 
 const rows = [
-    createData(19001411,'2019|CS|141','80','70','B  '),
-    createData(19001428,'2019/CS/142','90','80 ','A  '),
-    createData(19001381,'2019/CS/138','85',' 76','A  '),
-    createData(19001411,'2019/CS/141','70',' 57','C  '),
+    createData(19001411,'2019|CS|141','80','70','B ',''),
+    createData(19001428,'2019/CS/142','90','80 ','A',''),
+    createData(19001381,'2019/CS/138','85',' 76','A',''),
+    createData(19001411,'2019/CS/141','70',' 57','C',''),
 ];
 
 export default function CustomizedTables() {
@@ -52,6 +52,7 @@ export default function CustomizedTables() {
             <StyledTableCell align="left">Assigent nMarks </StyledTableCell>
             <StyledTableCell align="left">Total Marks</StyledTableCell>
             <StyledTableCell align="left">Grade </StyledTableCell>
+            <StyledTableCell align="left"> </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -61,7 +62,8 @@ export default function CustomizedTables() {
               <StyledTableCell align="left">{row.SubMarks}</StyledTableCell>
               <StyledTableCell align="left">{row.AssignMarks}</StyledTableCell>
               <StyledTableCell align="left">{row.TotalMarks}</StyledTableCell>
-              <StyledTableCell align="left">{row.Grade}  <CreateIcon fontSize="small" sx={{Floatleft: 50}} /></StyledTableCell>
+              <StyledTableCell align="left">{row.Grade}  </StyledTableCell>
+              <StyledTableCell align="left">{row.Edit}<CreateIcon fontSize="small" sx={{Floatleft: 50}} /></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
