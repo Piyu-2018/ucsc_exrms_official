@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['SCS 3201 - Machine Learning and Neural Computing ', 'SCS 3202 - Advanced Computer Architecture','CS 3203 - Middleware Architecture', 'SCS 3204 - Management ', 'SCS 3205 - Computer Graphics I','SCS 3206 - Graph Theory','SCS 3207 - Software Quality Assurance','SCS 3208 - Software Project Management ','SCS 3209 - Human-Computer Interaction','SCS 3210 - Systems and Network Administration','SCS 3211 - Compiler Theory','SCS 3212 - Mobile Application Development','SCS 3213 - Game Development','SCS 3214 - Group project II','SCS 3215 - Professional Practice ','SCS 3216 - Research Methods','ENH 3201 - Industry Placement/Industry Project '
+const options = ['Subject','SCS 3201 - Machine Learning and Neural Computing ', 'SCS 3202 - Advanced Computer Architecture','CS 3203 - Middleware Architecture', 'SCS 3204 - Management ', 'SCS 3205 - Computer Graphics I','SCS 3206 - Graph Theory','SCS 3207 - Software Quality Assurance','SCS 3208 - Software Project Management ','SCS 3209 - Human-Computer Interaction','SCS 3210 - Systems and Network Administration','SCS 3211 - Compiler Theory','SCS 3212 - Mobile Application Development','SCS 3213 - Game Development','SCS 3214 - Group project II','SCS 3215 - Professional Practice ','SCS 3216 - Research Methods','ENH 3201 - Industry Placement/Industry Project '
 ];
 
 export default function SplitButton() {

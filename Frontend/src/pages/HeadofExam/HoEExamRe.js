@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import UnderDrawer from '../../Component/Director/Examination/UnderDrawer';
-import DirectorNavbar from '../../Component/DirectorNavbar'
+import UnderDrawer from '../../Component/HeadofExam/Examination/UnderDrawer';
+import HoENavbar from '../../Component/HoENavbar'
 // import Footer from '../../../Component/Footer';
 
 function Released() {
@@ -13,7 +13,7 @@ function Released() {
         <style>{'body { background: #E4EBF5 !important; }'}</style>
       </Helmet>
       
-      <DirectorNavbar />
+      <HoENavbar />
       
       <UnderDrawer/>
       
