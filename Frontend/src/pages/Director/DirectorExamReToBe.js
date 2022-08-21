@@ -1,10 +1,10 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import UnderDrawer from '../../Component/Director/Examination/UnderDrawer';
+import UnderDrawer1 from '../../Component/Director/Examination/UnderDrawer1';
 import DirectorNavbar from '../../Component/DirectorNavbar'
-// import Footer from '../../../Component/Footer';
+import Footer from '../../Component/Footer';
 
-function Released() {
+function ToBeReleased() {
   return (
     <div>
     
@@ -15,15 +15,13 @@ function Released() {
       
       <DirectorNavbar />
       
-      <UnderDrawer/>
+      <UnderDrawer1/>
       
     </div>
-    {/* <Footer/> */}
+    <Footer/>
     </div>
   )
 }
 
-export default Released
-
-
+export default ToBeReleased
 

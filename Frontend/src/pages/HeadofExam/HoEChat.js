@@ -18,7 +18,7 @@ import Stack from '@mui/material/Stack';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import SendIcon from '@mui/icons-material/Send';
 import { borderRadius, borderRight } from '@mui/system';
-import DirectorSidebar from './DirectorSidebar';
+import HoESidebar from './HoESidebar';
 
 
 
@@ -91,7 +91,7 @@ function Chat() {
     <Box sx={{ flexGrow: 100}}>
     <Grid container spacing={1} justifyContent="space-between" paddingTop="10px" paddingRight = "40px">
           <Grid item sm={4} md={2} >
-            <DirectorSidebar open={open} />
+            <HoESidebar open={open} />
           </Grid>
 
           <Grid item sm={8} md={10}>
