@@ -1,6 +1,6 @@
 import React from 'react';
 import MaDrawer from '../../Component/MaDrawer';
-import Navbar from '../../Component/Navbar';
+// import Navbar from '../../Component/Navbar';
 
 function MaDash() {
   return (

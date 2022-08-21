@@ -1,8 +1,8 @@
 import { Box, createTheme, Grid, Typography } from "@mui/material";
 import React from "react";
-import LecAssignAdd from "../../Component/Lecturer/LecAssignAdd";
+import LecExamMarksAdd from "../../Component/Lecturer/Examinations/LecExamMarksAdd";
+import LecExamMarkTable from "../../Component/Lecturer/Examinations/LecExamMarkTable";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
-import LecassignMarkTable from "./LecassignMarkTable";
 import LecSidebar from "./LecSidebar";
 
 const theme = createTheme({
@@ -13,9 +13,8 @@ const theme = createTheme({
   },
 });
 
-function LecAssignMarking() {
+function LecCourseMarking() {
   const open = true;
-  console.log(open);
   return (
     <>
       <Box>
@@ -29,8 +28,8 @@ function LecAssignMarking() {
               Assignment 1
             </Typography>
 
-            <LecassignMarkTable />
-            <LecAssignAdd />
+            <LecExamMarkTable />
+            <LecExamMarksAdd />
           </Grid>
         </Grid>
       </Box>
@@ -38,4 +37,4 @@ function LecAssignMarking() {
   );
 }
 
-export default LecAssignMarking;
+export default LecCourseMarking;

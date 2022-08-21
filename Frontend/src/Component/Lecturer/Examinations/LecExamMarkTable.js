@@ -7,7 +7,9 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { createTheme, Typography } from "@mui/material";
+import { Button, createTheme, Typography } from "@mui/material";
+import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+
 // import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 const theme = createTheme({
@@ -38,8 +40,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(index, name, marks, more) {
-  return { index, name, marks, more };
+function createData(index, marks1, marks2, more) {
+  return { index, marks1, marks2, more };
 }
 
 const rows = [
@@ -48,45 +50,55 @@ const rows = [
       19001411
     </Typography>,
     <Typography variant="h6" theme={theme}>
-      B.G.D.S.B. Ratnayake
+      90
     </Typography>,
     <Typography variant="h6" theme={theme}>
-      90
-    </Typography>
+      -
+    </Typography>,
+    <Button variant="contained" endIcon={<DoubleArrowIcon />}>
+      View More Details
+    </Button>
   ),
   createData(
     <Typography variant="h6" theme={theme}>
       19001428
     </Typography>,
     <Typography variant="h6" theme={theme}>
-      J.D. Ratnayake
+      80
     </Typography>,
     <Typography variant="h6" theme={theme}>
-      80
-    </Typography>
+      -
+    </Typography>,
+    <Button variant="contained" endIcon={<DoubleArrowIcon />}>
+      View More Details
+    </Button>
   ),
   createData(
     <Typography variant="h6" theme={theme}>
       19001411
     </Typography>,
     <Typography variant="h6" theme={theme}>
-      B.G.D.S.B. Ratnayake
+      67
     </Typography>,
     <Typography variant="h6" theme={theme}>
-      Not Added
-    </Typography>
+      67
+    </Typography>,
+    <Button variant="contained" endIcon={<DoubleArrowIcon />}>
+      View More Details
+    </Button>
   ),
 ];
 
-function LecassignMarkTable() {
+function LecExamMarkTable() {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell>Index Number</StyledTableCell>
-            <StyledTableCell>Name</StyledTableCell>
-            <StyledTableCell>Marks</StyledTableCell>
+            <StyledTableCell>Marks (1st Marking)</StyledTableCell>
+            <StyledTableCell>Marks (2nd Marking)</StyledTableCell>
+            <StyledTableCell>More Actions</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -95,8 +107,9 @@ function LecassignMarkTable() {
               <StyledTableCell component="th" scope="row">
                 {row.index}
               </StyledTableCell>
-              <StyledTableCell>{row.name}</StyledTableCell>
-              <StyledTableCell>{row.marks}</StyledTableCell>
+              <StyledTableCell>{row.marks1}</StyledTableCell>
+              <StyledTableCell>{row.marks2}</StyledTableCell>
+              <StyledTableCell>{row.more}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -105,4 +118,4 @@ function LecassignMarkTable() {
   );
 }
 
-export default LecassignMarkTable;
+export default LecExamMarkTable;

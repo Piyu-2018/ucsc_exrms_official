@@ -1,7 +1,5 @@
 import {
-  AppBar,
   Box,
-  Button,
   Divider,
   Drawer,
   List,
@@ -10,14 +8,13 @@ import {
   ListItemIcon,
   ListItemText,
   Toolbar,
-  Typography,
 } from "@mui/material";
 import React from "react";
-import MenuIcon from "@mui/icons-material/Menu";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { useState } from "react";
-import { styled, useTheme } from "@mui/material/styles";
+// import MenuIcon from "@mui/icons-material/Menu";
+// import InboxIcon from "@mui/icons-material/MoveToInbox";
+// import MailIcon from "@mui/icons-material/Mail";
+// import { useState } from "react";
+// import { styled} from "@mui/material/styles";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import GradingIcon from "@mui/icons-material/Grading";
 import {
@@ -27,27 +24,27 @@ import {
   Grade,
   Notifications,
 } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 const drawerWidth = 220;
 
-const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
-  ({ theme, open }) => ({
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create("margin", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: `-${drawerWidth}px`,
-    ...(open && {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    }),
-  })
-);
+// const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
+//   ({ theme, open }) => ({
+//     flexGrow: 1,
+//     padding: theme.spacing(3),
+//     transition: theme.transitions.create("margin", {
+//       easing: theme.transitions.easing.sharp,
+//       duration: theme.transitions.duration.leavingScreen,
+//     }),
+//     marginLeft: `-${drawerWidth}px`,
+//     ...(open && {
+//       transition: theme.transitions.create("margin", {
+//         easing: theme.transitions.easing.easeOut,
+//         duration: theme.transitions.duration.enteringScreen,
+//       }),
+//       marginLeft: 0,
+//     }),
+//   })
+// );
 
 function LecSidebar(props) {
   // const [open, setOpen] = useState(true);
@@ -66,18 +63,24 @@ function LecSidebar(props) {
 
   // sx={{display:{xs:"none",sm:"none",md:"block"}}}
 
-  function renderLink(param) {
-    switch (param) {
-      case 0:
-        return "/lec_assign_list";
-      case 1:
-        return "/lec_grading";
-      case 2:
-        return "/lec_assign_timetable";
-    }
-  }
+  // function renderLink(param) {
+  //   switch (param) {
+  //     case 0:
+  //       return "/lec_assign_list";
+  //     case 1:
+  //       return "/lec_grading";
+  //     case 2:
+  //       return "/lec_assign_timetable";
+  //   }
+  // }
 
-  const link = ["/lec_assign_list", "/lec_grading", "/lec_exam_timetable"];
+  const link = [
+    "/lecturer_assignments",
+    "/lec_examinations",
+    "/lec_exam_timetable",
+    "/lec_grading",
+    "/lec_exampaper",
+  ];
 
   function renderSwitch(param) {
     switch (param) {

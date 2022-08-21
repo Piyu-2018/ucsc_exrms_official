@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { initialLoginValues, loginValidation } from "./Validation";
 import { login } from "../actions/userActions";
@@ -44,7 +44,7 @@ function Login() {
   }, [user]);
 
   const loginUser = (data) => {
-    console.log(data.password);
+    // console.log(data.password);
     dispatch(login(data.username, data.password));
   };
 
@@ -57,7 +57,7 @@ function Login() {
           }
         </style>
       </Helmet>
-      <Navbar/>
+      <Navbar />
       <Container maxWidth="lg">
         <Box sx={{ height: "100vh", ml: "60%" }}>
           <Typography
