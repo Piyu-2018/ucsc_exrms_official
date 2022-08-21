@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Backdrop,
   Box,
@@ -8,12 +9,21 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import { useState } from "react";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+// import { useState } from "react";
+// import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+// import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useDispatch, useSelector } from "react-redux";
+// import { useParams } from "react-router-dom";
+
+import axios from "axios";
+import { API_URL } from "../../../src/constants/globalConstants";
+import {
+  ASSIGN_ADD_FAIL,
+  ASSIGN_ADD_SUCCESS,
+} from "../../../src/constants/userConstants";
+import { useForm } from "react-hook-form";
 
 const style = {
   position: "absolute",
@@ -27,11 +37,49 @@ const style = {
   p: 4,
 };
 
-function LecAddAssign() {
-  const [open, setOpen] = React.useState(false);
+function LecAddAssign(params) {
+  const { register, handleSubmit } = useForm();
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [value, setValue] = React.useState(null);
+  // const [value, setValue] = React.useState(null);
+
+  const dispatch = useDispatch();
+  const course_id = params.CourseId;
+
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id } = userInfo.user;
+  const lecturer_id = user_id;
+
+  const addAssign = async (data) => {
+    console.log("Hi");
+    if (data.name && data.description && data.contribution) {
+      setOpen(false);
+
+      const name = data.name;
+      const description = data.description;
+      const contribution = data.contribution;
+
+      console.log(user_id);
+      // const lecturer_id = user_id.toString();
+
+      const inputData = {
+        name,
+        description,
+        contribution,
+        lecturer_id,
+        course_id,
+      };
+
+      await axios
+        .post(API_URL + "/settings/assignAdd", inputData)
+        .then((response) => {
+          params.assignDataFunc((list) => [...list, response.data]);
+          // if (!response.data.error) {
+          // }
+        });
+    }
+  };
 
   return (
     <div>
@@ -60,61 +108,52 @@ function LecAddAssign() {
               New Assignment
             </Typography>
             <Box sx={{ mt: "20px" }}>
-              <TextField
-                id="outlined-textarea"
-                label="Assignment Name"
-                placeholder="Enter Assignment Name"
-                multiline
-                fullWidth
-              />
+              <form onSubmit={handleSubmit(addAssign)}>
+                <TextField
+                  id="outlined-textarea"
+                  label="Assignment Name"
+                  placeholder="Enter Assignment Name"
+                  multiline
+                  fullWidth
+                  inputProps={register("name")}
+                />
 
-              <TextField
-                id="outlined-textarea"
-                label="Description"
-                placeholder="Enter Description"
-                multiline
-                rows={3}
-                fullWidth
-                sx={{ mt: "20px" }}
-              />
-
-              <TextField
-                id="outlined-textarea"
-                label="Contribution"
-                placeholder="Enter Contribution in %"
-                multiline
-                fullWidth
-                sx={{ mt: "20px" }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">%</InputAdornment>
-                  ),
-                }}
-              />
-              <Box sx={{ mt: "20px" }}>
-                <LocalizationProvider
-                  dateAdapter={AdapterDateFns}
+                <TextField
+                  id="outlined-textarea"
+                  label="Description"
+                  placeholder="Enter Description"
+                  multiline
+                  rows={3}
+                  fullWidth
                   sx={{ mt: "20px" }}
-                >
-                  <DatePicker
-                    label="Deadline"
-                    value={value}
-                    onChange={(newValue) => {
-                      setValue(newValue);
-                    }}
-                    renderInput={(params) => <TextField {...params} />}
-                  />
-                </LocalizationProvider>
-              </Box>
+                  inputProps={register("description")}
+                />
 
-              <Button
-                variant="contained"
-                color="success"
-                sx={{ mt: "20px", ml: "40%" }}
-                size="large"
-              >
-                Submit
-              </Button>
+                <TextField
+                  id="outlined-textarea"
+                  label="Contribution"
+                  placeholder="Enter Contribution in %"
+                  multiline
+                  fullWidth
+                  sx={{ mt: "20px" }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">%</InputAdornment>
+                    ),
+                  }}
+                  inputProps={register("contribution")}
+                />
+
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="success"
+                  sx={{ mt: "20px", ml: "40%" }}
+                  size="large"
+                >
+                  Submit
+                </Button>
+              </form>
             </Box>
           </Box>
         </Fade>

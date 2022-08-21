@@ -1,6 +1,6 @@
 import { Box, createTheme, Grid, Typography } from "@mui/material";
 import React from "react";
-import LecAssignmentCourses from "../../Component/Lecturer/LecAssignmentCourses";
+// import LecAssignmentCourses from "../../Component/Lecturer/LecAssignmentCourses";
 import LecAssignTable from "../../Component/Lecturer/LecAssignTable";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import LecAddAssign from "./LecAddAssign";
@@ -11,6 +11,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../constants/globalConstants";
+import LecAddFile from "../../Component/Lecturer/LecAddFile";
 
 const theme = createTheme({
   typography: {
@@ -36,8 +37,8 @@ function LecAssignList() {
     await axios
       .get(API_URL + "/settings/getAssign/" + CourseId + "/" + user_id, config)
       .then((response) => {
-        setAssignData(response.data); 
-      
+        setAssignData(response.data);
+
         // console.log(response.data);
       });
   };
@@ -62,7 +63,8 @@ function LecAssignList() {
               Assignments (SCS3201)
             </Typography>
             <LecAssignTable AssignData={AssignData} />
-            <LecAddAssign />
+            <LecAddAssign CourseId={CourseId} assignDataFunc={setAssignData} />
+            <LecAddFile />
           </Grid>
         </Grid>
       </Box>
