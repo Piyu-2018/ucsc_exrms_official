@@ -37,6 +37,9 @@ import LecExamPaper from "./pages/Lecturer/LecExamPaper";
 import LecExaminations from "./pages/Lecturer/LecExaminations";
 import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
 
+import MaUndergraduates from "./pages/Ma/MaUndergraduates";
+import MaExamTimetable from "./pages/Ma/MaExamTimetable";
+
 // const theme = createTheme({
 //   typography: {
 //     h3: {
@@ -57,6 +60,9 @@ function App() {
           <Route path="/directorDash" element={<DirectorDash />} />
 
           <Route path="/maDash" element={<MaDash />} />
+          <Route path="/ma_undergraduates" element={<MaUndergraduates />} />
+          <Route path="/ma_examtimetable" element={<MaExamTimetable />} />
+          <Route path="/ma_payment" element={<MaPayment />} />
 
           <Route path="/directorUnder" element={<DirectorUnder />} />
           <Route path="/directorEnProgress" element={<DirectorEnProgress />} />

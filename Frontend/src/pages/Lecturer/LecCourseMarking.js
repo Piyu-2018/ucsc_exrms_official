@@ -2,6 +2,7 @@ import { Box, createTheme, Grid, Typography } from "@mui/material";
 import React from "react";
 import LecExamMarksAdd from "../../Component/Lecturer/Examinations/LecExamMarksAdd";
 import LecExamMarkTable from "../../Component/Lecturer/Examinations/LecExamMarkTable";
+import LecAddExamFile from "../../Component/Lecturer/LecAddExamFile";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import LecSidebar from "./LecSidebar";
 
@@ -30,6 +31,7 @@ function LecCourseMarking() {
 
             <LecExamMarkTable />
             <LecExamMarksAdd />
+            <LecAddExamFile />
           </Grid>
         </Grid>
       </Box>
