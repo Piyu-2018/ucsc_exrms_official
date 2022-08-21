@@ -65,7 +65,8 @@ import SAR_SubProg from "./pages/SAR/SAR_SubProg";
 import SAR_RescruProg from "./pages/SAR/SAR_RescruProg";
 import SAR_FourthProg from "./pages/SAR/SAR_FourthProg";
 import RequestLetter from "./pages/SAR/RequestLetter";
-import RequestLetter1 from "./pages/SAR/RequestLetter1"
+import RequestLetter1 from "./pages/SAR/RequestLetter1";
+import SAR_SummaryReport from "./pages/SAR/SAR_SummaryReport";
 
 import LecExamPaper from "./pages/Lecturer/LecExamPaper";
 import LecExaminations from "./pages/Lecturer/LecExaminations";
@@ -74,7 +75,7 @@ import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
 import MaUndergraduates from "./pages/Ma/MaUndergraduates";
 import MaExamTimetable from "./pages/Ma/MaExamTimetable";
 import MaPayment from "./pages/Ma/MaPayment";
-import SAR_SummaryReport from "./pages/SAR/SAR_SummaryReport";
+
 
 // const theme = createTheme({
 //   typography: {

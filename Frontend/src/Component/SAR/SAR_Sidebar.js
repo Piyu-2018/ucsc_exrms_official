@@ -133,14 +133,14 @@ export default function SAR_Sidebar() {
       <Divider />
       <Collapse in={open} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }} to=''>
+          <ListItemButton sx={{ pl: 4 }} to='/sar-summary-report'>
             <ListItemIcon>
               <ContactMailRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Summary Report" />
           </ListItemButton>
 
-          <ListItemButton sx={{ pl: 4 }} to='/sar-summary-report'>
+          <ListItemButton sx={{ pl: 4 }} to=''>
             <ListItemIcon>
               <HowToRegRoundedIcon />
             </ListItemIcon>
