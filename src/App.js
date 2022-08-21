@@ -1,0 +1,65 @@
+import './App.css';
+
+import Home from './pages/Home';
+
+import SARdash from './pages/SAR/SARdash';
+import DirectorDash from './pages/Director/DirectorDash';
+import DirectorUnder from './pages/Director/DirectorUnder';
+import DirectorEnProgress from './pages/Director/DirectorEnProgress';
+import DirectorRegProg from './pages/Director/DirectorRegProg';
+import DirectorConfirmProg from './pages/Director/DirectorConfirmProg';
+import DirectorTransProg from './pages/Director/DirectorTransProg';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate
+} from "react-router-dom";
+import Login from './pages/Login';
+import LecturerAssignments from './pages/Lecturer/LecturerAssignments';
+import LecAssignList from './pages/Lecturer/LecAssignList';
+import Released from './pages/SAR/Examination/Released';
+import ToBeReleased from './pages/SAR/Examination/ToBeReleased';
+import TimeTable from './pages/SAR/Examination/TimeTable';
+import SAR_Report from './pages/SAR/SAR_Report';
+import Chat from './pages/Chat';
+
+function App() {
+  return (
+    
+    <Router>
+
+    <div className="App">
+   
+      <Routes>
+      <Route path='/' exact element={<Home />}/>
+        <Route path='*' element={<Navigate to="/"/>}/>
+
+        <Route path='/login' exact element={<Login />}/>
+
+        <Route path='/directorDash' element={<DirectorDash/>}/>
+        <Route path='/directorUnder' element={<DirectorUnder/>}/>
+
+        <Route path='/directorEnProgress' element={<DirectorEnProgress/>}/>
+        <Route path='/directorRegProg' element={<DirectorRegProg/>}/>
+        <Route path='/directorConfirmProg' element={<DirectorConfirmProg/>}/>
+        <Route path='/directorTransProg' element={<DirectorTransProg/>}/>
+        <Route path='/sar-dash' element={<SARdash/>}/>
+        <Route path='/sar-report' element={<SAR_Report/>}/>
+        <Route path='/released' element={<Released/>}/>
+        <Route path='/to-be-released' element={<ToBeReleased/>}/>
+        <Route path='/timetable' element={<TimeTable/>}/>
+        <Route path='/chat' element={<Chat/>}/>
+        <Route path='/lecturer_assignments' element={<LecturerAssignments/>}/>
+        <Route path='/lec_assign_list' element={<LecAssignList/>}/>
+
+      </Routes>
+    
+
+    </div>
+    </Router>
+  );
+}
+
+export default App;
