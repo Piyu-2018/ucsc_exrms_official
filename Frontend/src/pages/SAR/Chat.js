@@ -1,6 +1,5 @@
 import React from 'react'
-import Footer from '../Component/Footer'
-import Navbar from '../Component/Navbar'
+import Footer from '../../Component/Footer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -18,8 +17,8 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import SendIcon from '@mui/icons-material/Send';
-import { borderRadius, borderRight } from '@mui/system';
-
+import DirectorNavbar from '../../Component/DirectorNavbar';
+import SAR_Sidebar from '../../Component/SAR/SAR_Sidebar';
 
 
 
@@ -85,10 +84,14 @@ const action = (
 function Chat() {
   return (
     <div>
-      <Navbar/>
+      
+      
     <Box sx={{ flexGrow: 100}}>
+    
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+      <DirectorNavbar/>
+      <SAR_Sidebar/>
+        <Grid item xs={2}>
           
           <Search>
             <SearchIconWrapper>
@@ -136,7 +139,7 @@ function Chat() {
           </List>
         </Grid>
         
-        <Grid item xs={8}>
+        <Grid item xs={4}>
           <Item>
             <Box sx={{
               width: '100%',

@@ -4,12 +4,13 @@ import {
   Chart,
   PieSeries,
   Title,
+  Legend,
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
-  { region: 'Registered', val: 78 },
-  { region: 'Not-registered', val: 22},
+  { region: 'Registered - 78%', val: 78 },
+  { region: 'Not-registered - 22%', val: 22},
 ];
 
 export default class Demo extends React.PureComponent {
@@ -38,6 +39,7 @@ export default class Demo extends React.PureComponent {
             text="The Progress of Academic Year Registration Process"
           />
           <Animation />
+          <Legend />
         </Chart>
       </Paper>
     );
