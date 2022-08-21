@@ -1,4 +1,4 @@
-import React from 'react'
+/* import React from 'react'
 import Footer from '../Component/Footer'
 import Navbar from '../Component/Navbar'
 import List from '@mui/material/List';
@@ -163,4 +163,4 @@ function Chat() {
   )
 }
 
-export default Chat
+export default Chat */

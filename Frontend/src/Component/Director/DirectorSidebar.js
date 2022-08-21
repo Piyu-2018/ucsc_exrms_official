@@ -51,6 +51,13 @@ export default function DirectorSidebar() {
         <ListItemText primary="Home" />
       </ListItemButton>
       <Divider />
+      <ListItemButton to='/directorDashboard'>
+        <ListItemIcon>
+          <DashboardRoundedIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+      </ListItemButton>
+      <Divider />
       <ListItemButton to='/directorUnder'>
         <ListItemIcon>
           <PeopleAltRoundedIcon/>
@@ -81,12 +88,14 @@ export default function DirectorSidebar() {
             </ListItemIcon>
             <ListItemText primary="Intake Details" />
           </ListItemButton>
+
           <ListItemButton sx={{ pl: 4 }} to='/directorRegProg'>
             <ListItemIcon>
               <HowToRegRoundedIcon />
             </ListItemIcon>
             <ListItemText primary="Registration" />
           </ListItemButton>
+          
           <ListItemButton sx={{ pl: 4 }} to='/directorConfirmProg'>
             <ListItemIcon>
               <LocalPostOfficeRoundedIcon/>
@@ -120,14 +129,14 @@ export default function DirectorSidebar() {
         </List>
           </Collapse>
           <Divider />
-      <ListItemButton>
+      <ListItemButton to='/DirectorSummaryReport'>
         <ListItemIcon>
           <SummarizeRoundedIcon/>
         </ListItemIcon>
         <ListItemText primary="Summary Report" />
       </ListItemButton>
       <Divider />
-      <ListItemButton>
+      <ListItemButton to='/directorChat'>
         <ListItemIcon>
           <ChatRoundedIcon/>
         </ListItemIcon>
