@@ -35,7 +35,7 @@ export default class Demo extends React.PureComponent {
             innerRadius={0.6}
           />
           <Title
-            text="The Progress of Confirmation letters Issue Process"
+            text="The Progress of Transcripts Issue Process"
           />
           <Animation />
         </Chart>
