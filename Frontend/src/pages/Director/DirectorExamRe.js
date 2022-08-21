@@ -1,4 +1,4 @@
-import React from 'react';
+/* import React from 'react';
 import {Helmet} from 'react-helmet';
 import UnderDrawer from '../../../Component/Director/Examination/UnderDrawer';
 import DirectorNavbar from '../../../Component/DirectorNavbar'
@@ -27,3 +27,4 @@ export default Released
 
 
 
+ */
