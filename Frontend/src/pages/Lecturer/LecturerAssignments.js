@@ -1,11 +1,11 @@
-import { Box, Grid, Stack } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import React from "react";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 import LecAssignmentCourses from "../../Component/Lecturer/LecAssignmentCourses";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
-import LecRightBar from "../../Component/Lecturer/LecRightBar";
+// import LecRightBar from "../../Component/Lecturer/LecRightBar";
 import LecSidebar from "./LecSidebar";
-import { useState } from "react";
+// import { useState } from "react";
 
 function LecturerAssignments() {
   const open = true;
