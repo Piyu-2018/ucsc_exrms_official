@@ -9,7 +9,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import UCSCEXRMS from '../../UCSCEXRMS';
 import App from '../../Calendar';
-import DirectorAnn from './DirectorAnn';
+import SAR_Ann from './SAR_Ann';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -33,7 +33,7 @@ export default function AutoGrid() {
         </Grid>
 
         <Grid item xs={6} md={12}>
-            <DirectorAnn/>
+            <SAR_Ann/>
         </Grid>
     </Grid>
 
