@@ -39,6 +39,10 @@ function MaUndergraduates() {
                                     <FormControlLabel className='yearBtn' value="3" control={<Radio />} label="ALL" />
                                 </RadioGroup>
                             </FormControl>
+                            <Button variant="contained" component="label" sx={{backgroundColor:"green", color:"black", padding:"10px 30px 10px 30px", fontSize:"18px",fontWeight:"600"}}>
+                                    Upload Undergraduates (XLSX file)
+                                <input hidden accept="image/*" multiple type="file" />
+                            </Button>
                         </Grid>
                         <Grid container spacing={1} justifyContent="space-evenly">
                             <Card sx={{backgroundColor:"#E4EBF5", width:"95%"}}><CardContent>

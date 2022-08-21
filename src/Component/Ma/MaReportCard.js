@@ -11,6 +11,7 @@ function MaReportCard() {
       <Card sx={{backgroundColor:"#06283D", width:"70%", margin:"5px"}}><CardContent>
             <Grid container spacing={1} justifyContent="space-between">
                 <Grid item sm={12} md={12} container spacing={0.5}  p={2} justifyContent="space-evenly" sx={{color:"white"}}>
+                    <Typography variant='h6'>Academic Year: 2021/2022 </Typography>
                     <Typography variant='h6'>Course : CS </Typography>
                     <Typography variant='h6'>Semester : 1 </Typography>
                 </Grid>
@@ -27,6 +28,7 @@ function MaReportCard() {
     <Card sx={{backgroundColor:"#06283D", width:"70%", margin:"5px"}}><CardContent>
             <Grid container spacing={1} justifyContent="space-between">
                 <Grid item sm={12} md={12} container spacing={0.5}  p={2} justifyContent="space-evenly" sx={{color:"white"}}>
+                    <Typography variant='h6'>Academic Year: 2021/2022 </Typography>
                     <Typography variant='h6'>Course : IS </Typography>
                     <Typography variant='h6'>Semester : 1 </Typography>
                 </Grid>
@@ -43,6 +45,7 @@ function MaReportCard() {
     <Card sx={{backgroundColor:"#06283D", width:"70%", margin:"5px"}}><CardContent>
             <Grid container spacing={1} justifyContent="space-between">
                 <Grid item sm={12} md={12} container spacing={0.5}  p={2} justifyContent="space-evenly" sx={{color:"white"}}>
+                    <Typography variant='h6'>Academic Year: 2021/2022 </Typography>
                     <Typography variant='h6'>Course : CS </Typography>
                     <Typography variant='h6'>Semester : 2 </Typography>
                 </Grid>
@@ -59,6 +62,7 @@ function MaReportCard() {
     <Card sx={{backgroundColor:"#06283D", width:"70%", margin:"5px"}}><CardContent>
             <Grid container spacing={1} justifyContent="space-between">
                 <Grid item sm={12} md={12} container spacing={0.5}  p={2} justifyContent="space-evenly" sx={{color:"white"}}>
+                    <Typography variant='h6'>Academic Year: 2021/2022 </Typography>
                     <Typography variant='h6'>Course : IS </Typography>
                     <Typography variant='h6'>Semester : 2 </Typography>
                 </Grid>

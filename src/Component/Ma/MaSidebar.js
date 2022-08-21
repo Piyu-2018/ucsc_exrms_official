@@ -75,7 +75,7 @@ const [open, setOpen] = useState(true);
     }
   }
 
-  const link = ["/ma_undergraduates","/ma_admission","/MaLetters","/ma_letters","/MaRegistration","/MaPayment","/ma_attendance","/ma_exam_report","/MaCourses"];
+  const link = ["/ma_undergraduates","/ma_admission","/MaLetters","/ma_letters","/#","/#","/ma_attendance","/ma_exam_report","/ma_courses"];
 
   return (
     <>

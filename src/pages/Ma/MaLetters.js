@@ -22,7 +22,7 @@ function MaLetters() {
                     </Typography>
                     <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
                         <Grid container spacing={1} justifyContent="space-evenly" sx={{padding:"20px"}}>
-                            <Card sx={{backgroundColor:"#E4EBF5", width:"90%"}}><CardContent>
+                            <Card sx={{backgroundColor:"#E4EBF5", width:"95%"}}><CardContent>
                                 <MaLetterReqTable/>
                             </CardContent></Card>
                         </Grid>
