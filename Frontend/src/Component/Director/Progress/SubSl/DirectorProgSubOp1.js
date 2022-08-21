@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['3rd Year', '4th Year'];
+const options = ['3rd Year First Semester', '4th Year First Semester', '4th Year Second Semester'];
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
@@ -76,7 +76,7 @@ export default function SplitButton() {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 2}
+                      disabled={index === 4}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >

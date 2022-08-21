@@ -36,7 +36,8 @@ function LecAssignList() {
     await axios
       .get(API_URL + "/settings/getAssign/" + CourseId + "/" + user_id, config)
       .then((response) => {
-        setAssignData(response.data);
+        setAssignData(response.data); 
+      
         // console.log(response.data);
       });
   };

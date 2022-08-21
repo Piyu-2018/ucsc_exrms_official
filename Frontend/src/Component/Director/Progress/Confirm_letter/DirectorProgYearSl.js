@@ -3,10 +3,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 // import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import DirectorProgRescruOp1 from './DirectorProgRescruOp1';
-import DirectorProgRescruOp0 from './DirectorProgRescruOp0';
-import DirectorProgRescruOp3 from './DirectorProgRescruOp3';
-import DirectorProgRescruOp4 from './DirectorProgRescruOp4';
+import DirectorProgRegOp1 from './DirectorProgConfirmOp1';
+import DirectorProgRegOp2 from './DirectorProgConfirmOp2';
+
 
 export default function AutoGrid() {
   return (
@@ -15,19 +14,13 @@ export default function AutoGrid() {
 
             <Grid item xs={3} md={12} container spacing={4} columnpacing={10} >
                 <Grid item xs={12} md={3}>
-                    <DirectorProgRescruOp0/>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <DirectorProgRescruOp1/>
+                    <DirectorProgRegOp1/>
                 </Grid>
                 {/* <Grid item xs={12} md={3}>
                     <DirectorProgRescruOp2/>
                 </Grid> */}
                 <Grid item xs={12} md={3}>
-                    <DirectorProgRescruOp3/>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <DirectorProgRescruOp4/>
+                    <DirectorProgRegOp2/>
                 </Grid>
             </Grid>
 

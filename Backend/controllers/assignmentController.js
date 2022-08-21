@@ -13,7 +13,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-const { user, course, lecturer_courses, assignments } = new PrismaClient();
+const { user, course, lecturer_courses, assignments,student } = new PrismaClient();
 
 const getCourses = asyncHandler(async (req, res) => {
   const user_id = parseInt(req.params.id);
@@ -28,9 +28,6 @@ const getCourses = asyncHandler(async (req, res) => {
     res.json(results);
     
   });
-
-  
-  
 
   // const courses = await findMany({
   //     where: {
@@ -59,4 +56,23 @@ const getAssign = asyncHandler(async (req, res) => {
   );
 });
 
-module.exports = {getCourses,getAssign};
+const getUndergraduates = asyncHandler (async (req, res) => {
+  const ac_year_ID = parseInt(req.params.id1);
+  const degree_type = parseInt(req.params.id2);
+
+  // console.log(degree_type);
+
+  
+
+  const student = [];
+
+  connection.query("SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID = 1 AND student.ac_year_ID ="+ac_year_ID + " AND student.degree_type =" +degree_type, function (error, results, fields) {
+    if (error) throw error;
+
+    res.json(results);
+    
+  });
+
+});
+
+module.exports = {getCourses,getAssign,getUndergraduates};

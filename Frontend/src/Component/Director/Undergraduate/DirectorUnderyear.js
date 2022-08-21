@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import DirectorUnderOp0 from './DirectorUnderOp0';
 import DirectorUnderOp1 from './DirectorUnderOp1';
 import DirectorUnderOp2 from './DirectorUnderOp2';
 import DirectorUnderOp3 from './DirectorUnderOp3';
@@ -23,17 +24,14 @@ export default function AutoGrid() {
 
 
             <Grid item xs={3} md={12} container spacing={4} columnpacing={10} >
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
+                    <DirectorUnderOp0/>
+                </Grid>
+                <Grid item xs={12} md={4}>
                     <DirectorUnderOp1/>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={4}>
                     <DirectorUnderOp2/>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <DirectorUnderOp3/>
-                </Grid>
-                <Grid item xs={12} md={3}>
-                    <DirectorUnderOp4/>
                 </Grid>
             </Grid>
 

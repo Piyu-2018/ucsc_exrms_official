@@ -47,7 +47,7 @@ export default function HoESidebar() {
         <ListItemIcon>
           <DashboardRoundedIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="Home" />
       </ListItemButton>
       <Divider />
       <ListItemButton>
@@ -61,7 +61,7 @@ export default function HoESidebar() {
         <ListItemIcon>
           <SummarizeRoundedIcon/>
         </ListItemIcon>
-        <ListItemText primary="Report" />
+        <ListItemText primary="Summary Report" />
       </ListItemButton>
       <Divider />
       <ListItemButton>
