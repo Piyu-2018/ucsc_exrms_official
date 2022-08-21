@@ -151,6 +151,6 @@ export default function DirectorSidebar() {
         </List>
 
     </Box>
-    
+
   );
 }

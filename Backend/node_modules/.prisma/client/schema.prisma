@@ -38,11 +38,10 @@ model assign_marks {
 }
 
 model assignments {
-  assignment_id Int      @id @default(autoincrement())
-  name          String   @db.VarChar(255)
-  description   String   @db.VarChar(1000)
+  assignment_id Int    @id @default(autoincrement())
+  name          String @db.VarChar(255)
+  description   String @db.VarChar(1000)
   contribution  Int
-  deadline      DateTime @db.Date
   lecturer_id   Int
   course_id     Int
 }

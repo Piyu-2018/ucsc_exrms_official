@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 import LecCourseCard from "./LecCourseCard";
 
@@ -7,14 +7,14 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../constants/globalConstants";
 
-const courseCodes = ["SCS3201", "SCS3202", "SCS3203", "SCS3204", "SCS3205"];
-const courseNames = [
-  "Machine Learning and Neural Computing",
-  "Human Computer Interaction",
-  "Software Project management",
-  "Professional Practice",
-  "Graph Theory",
-];
+// const courseCodes = ["SCS3201", "SCS3202", "SCS3203", "SCS3204", "SCS3205"];
+// const courseNames = [
+//   "Machine Learning and Neural Computing",
+//   "Human Computer Interaction",
+//   "Software Project management",
+//   "Professional Practice",
+//   "Graph Theory",
+// ];
 
 function LecAssignmentCourses() {
   const [courseData, setCourseData] = useState([]);
@@ -53,7 +53,7 @@ function LecAssignmentCourses() {
             <LecCourseCard
               CourseCode={data.course_code}
               CourseName={data.course_name}
-              CourseId = {data.course_id}
+              CourseId={data.course_id}
             />
           </Grid>
         ))}

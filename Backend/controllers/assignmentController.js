@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const asyncHandler = require("express-async-handler");
+const { StatusCodes } = require("http-status-codes");
 
 // const { user, course, lecturer_courses, assignments } = new prismaClient();
 
@@ -13,21 +14,25 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-const { user, course, lecturer_courses, assignments,student } = new PrismaClient();
+const { user, course, lecturer_courses, assignments, student } =
+  new PrismaClient();
 
 const getCourses = asyncHandler(async (req, res) => {
   const user_id = parseInt(req.params.id);
 
-  console.log("courses")
+  console.log("courses");
 
   const courses = [];
 
-  connection.query("SELECT lecturer_courses.*,course.* FROM user,lecturer_courses,course WHERE user.user_id = lecturer_courses.user_id AND course.course_id = lecturer_courses.course_id AND user.user_id ="+user_id, function (error, results, fields) {
-    if (error) throw error;
+  connection.query(
+    "SELECT lecturer_courses.*,course.* FROM user,lecturer_courses,course WHERE user.user_id = lecturer_courses.user_id AND course.course_id = lecturer_courses.course_id AND user.user_id =" +
+      user_id,
+    function (error, results, fields) {
+      if (error) throw error;
 
-    res.json(results);
-    
-  });
+      res.json(results);
+    }
+  );
 
   // const courses = await findMany({
   //     where: {
@@ -42,7 +47,6 @@ const getAssign = asyncHandler(async (req, res) => {
 
   // console.log(user_id);
 
-
   connection.query(
     "SELECT * FROM assignments WHERE lecturer_id=" +
       user_id +
@@ -56,23 +60,73 @@ const getAssign = asyncHandler(async (req, res) => {
   );
 });
 
-const getUndergraduates = asyncHandler (async (req, res) => {
+const getUndergraduates = asyncHandler(async (req, res) => {
   const ac_year_ID = parseInt(req.params.id1);
   const degree_type = parseInt(req.params.id2);
 
   // console.log(degree_type);
 
-  
-
   const student = [];
 
-  connection.query("SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID = 1 AND student.ac_year_ID ="+ac_year_ID + " AND student.degree_type =" +degree_type, function (error, results, fields) {
-    if (error) throw error;
+  connection.query(
+    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID = 1 AND student.ac_year_ID =" +
+      ac_year_ID +
+      " AND student.degree_type =" +
+      degree_type,
+    function (error, results, fields) {
+      if (error) throw error;
 
-    res.json(results);
-    
-  });
-
+      res.json(results);
+    }
+  );
 });
 
-module.exports = {getCourses,getAssign,getUndergraduates};
+const assignAdd = asyncHandler(async (req, res) => {
+  const { name, description, contribution, lecturer_id, course_id } = req.body;
+
+  const contribution1 = parseInt(contribution);
+  const lecturer_id1 = parseInt(lecturer_id);
+  const course_id1 = parseInt(course_id);
+
+  console.log("AddAssign");
+
+  console.log(course_id);
+  console.log(typeof course_id);
+  console.log(course_id1);
+  console.log(typeof course_id1);
+
+  // console.log(req.body);
+  // const newUser = await assignments.create({
+  //   data: {
+  //     name,
+  //     description,
+  //     contribution: contribution1,
+  //     lecturer_id: lecturer_id1,
+  //     course_id: course_id1,
+  //   },
+  // });
+
+  const newUser = await assignments.create({
+    data: {
+      name: name,
+      description: description,
+      contribution: contribution1,
+      lecturer_id: lecturer_id1,
+      course_id: course_id1,
+    },
+  });
+
+  console.log("Hi");
+
+  const returnData = {
+    name: newUser.name,
+    description: newUser.description,
+    contribution: newUser.contribution,
+    lecturer_id: newUser.lecturer_id,
+    course_id: newUser.course_id,
+  };
+
+  res.status(StatusCodes.CREATED).json(returnData);
+});
+
+module.exports = { getCourses, getAssign, getUndergraduates, assignAdd };
