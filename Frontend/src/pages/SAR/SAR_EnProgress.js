@@ -1,20 +1,19 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import DirectorDrawer from '../../Component/Director/Dashboard/DirectorDrawer';
+import SAR_ProgEnDrawer from '../../Component/SAR/Progress/Enrollment/SAR_ProgEnDrawer';
 import DirectorNavbar from '../../Component/DirectorNavbar';
 
-
-function SARdash() {
+function SAR_EnProgress() {
   return (
-    <>
+    <div>
       <Helmet>
         <style>{'body { background: #E4EBF5 !important; }'}</style>
       </Helmet>
       <DirectorNavbar />
-      <DirectorDrawer/>
-    </>
+      <SAR_ProgEnDrawer/>
+      
+    </div>
   )
 }
 
-export default SARdash
-
+export default SAR_EnProgress
