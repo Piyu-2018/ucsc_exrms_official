@@ -69,6 +69,13 @@ import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
 import MaUndergraduates from "./pages/Ma/MaUndergraduates";
 import MaExamTimetable from "./pages/Ma/MaExamTimetable";
 import MaPayment from "./pages/Ma/MaPayment";
+<<<<<<< Updated upstream
+=======
+import LecCourseResults from "./pages/Lecturer/LecCourseResults";
+import ToBeReleased from "./pages/Director/DirectorExamReToBe";
+import Released from "./pages/Director/DirectorExamRe";
+import TimeTable from "./pages/Director/DirectorExamTimetable";
+>>>>>>> Stashed changes
 
 // const theme = createTheme({
 //   typography: {
@@ -133,6 +140,11 @@ function App() {
           <Route path="/sarSubProg" element={<SAR_SubProg />} />
           <Route path="/sarRescruProg" element={<SAR_RescruProg />} />
           <Route path="/sarFourthProg" element={<SAR_FourthProg />} />
+<<<<<<< Updated upstream
+=======
+
+          <Route path="/chat" element={<Chat />} />
+>>>>>>> Stashed changes
 
           <Route path="/hoEDash" element={<HoEDash />} />
           <Route path="/hoEExamRe" element={<HoEExamRe />} />
@@ -143,7 +155,10 @@ function App() {
             element={<HoEExamUpdateResults />}
           />
           <Route path="/hoEChat" element={<HoEChat />} />
+<<<<<<< Updated upstream
           <Route path="/hoESummaryReport" element={<HoESummaryReport />} />
+=======
+>>>>>>> Stashed changes
 
           <Route
             path="/lecturer_assignments"
