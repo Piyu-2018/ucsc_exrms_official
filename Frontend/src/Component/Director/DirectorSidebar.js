@@ -127,7 +127,7 @@ export default function DirectorSidebar() {
         </List>
           </Collapse>
           <Divider />
-      <ListItemButton>
+      <ListItemButton to='/DirectorSummaryReport'>
         <ListItemIcon>
           <SummarizeRoundedIcon/>
         </ListItemIcon>
