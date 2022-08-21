@@ -16,6 +16,7 @@ import DirectorFourthProg from './pages/Director/DirectorFourthProg';
 import DirectorDashboard from "./pages/Director/DirectorDashboard";
 import DirectorChat from "./pages/Director/DirectorChat";
 import DirectorSummaryReport from "./pages/Director/DirectorSummaryReport";
+import DirectorExamRe from "./pages/Director/DirectorExamRe";
 
 import MaDash from "./pages/Ma/MaDash";
 
@@ -76,6 +77,8 @@ function App() {
           <Route path="/directorDashboard" element={<DirectorDashboard />} />
           <Route path="/directorChat" element={<DirectorChat />} />
           <Route path="/DirectorSummaryReport" element={<DirectorSummaryReport/>} />
+          <Route path="/DirectorExamRe" element={<DirectorExamRe/>} />
+
 
 
           <Route path="/chat" element={<Chat />} />
