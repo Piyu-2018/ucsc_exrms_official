@@ -4,12 +4,13 @@ import {
   Chart,
   PieSeries,
   Title,
+  Legend,
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
-  { region: 'Selected', val: 48},
-  { region: 'Not-selected', val: 52},
+  { region: 'Selected - 48%', val: 48},
+  { region: 'Not-selected - 52%', val: 52},
 ];
 
 export default class Demo extends React.PureComponent {
@@ -38,6 +39,7 @@ export default class Demo extends React.PureComponent {
             text="The Progress of Subject Selection"
           />
           <Animation />
+          <Legend />
         </Chart>
       </Paper>
     );
