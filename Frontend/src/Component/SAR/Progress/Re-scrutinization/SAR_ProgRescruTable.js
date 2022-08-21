@@ -7,6 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Button from '@mui/material/Button';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,9 +34,9 @@ function createData(IndexNumber,  Name, SARAction) {
 }
 
 const rows = [
-    createData(19001428,'Janitha Ratnayake','Accepted'),
-    createData(19001411,'Dinil Ratnayake','Pending' ),
-    createData(19020945,'Sasani Samanga','Pending'),
+    createData(19001428,'Janitha Ratnayake'),
+    createData(19001411,'Dinil Seniru Ratnayake'),
+    createData(19020945,'Sasani Samanga'),
 ];
 
 export default function CustomizedTables() {
@@ -47,6 +48,7 @@ export default function CustomizedTables() {
             <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
             <StyledTableCell align="left">SAR Action</StyledTableCell>
+            <StyledTableCell align="left"></StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -54,7 +56,8 @@ export default function CustomizedTables() {
             <StyledTableRow key={row.name}>
               <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
               <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.SARAction}</StyledTableCell>
+              <StyledTableCell align="left">{row.SARAction}<Button variant="contained">View Letter</Button></StyledTableCell>
+              <StyledTableCell align="left">{row.SARAction}<Button variant="contained" color='error'>Edit Letter</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

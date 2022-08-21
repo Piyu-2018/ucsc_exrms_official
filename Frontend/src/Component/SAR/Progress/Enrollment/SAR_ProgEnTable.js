@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -43,6 +44,7 @@ const rows = [
 export default function CustomizedTables() {
   return (
     <TableContainer component={Paper}>
+      <Typography sx={{ fontSize: 24  , fontFamily: "Montserrat",fontWeight: 400 , textAlign: 'center' }} color="text.secondary">New Intake Student List in 2022/2023</Typography><br></br>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
