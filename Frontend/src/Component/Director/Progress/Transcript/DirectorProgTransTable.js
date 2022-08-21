@@ -61,7 +61,7 @@ export default function CustomizedTables() {
               <StyledTableCell align="left">{row.Year}</StyledTableCell>
               <StyledTableCell align="left">{row.CourseN}</StyledTableCell>
               <StyledTableCell align="left">{row.Status}</StyledTableCell>
-              <StyledTableCell align="left">{row.moreAction}<Button variant="contained">View Letter</Button></StyledTableCell>
+              <StyledTableCell align="left">{row.moreAction}<Button variant="contained">View Transcript</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

@@ -19,6 +19,7 @@ import SnackbarContent from '@mui/material/SnackbarContent';
 import SendIcon from '@mui/icons-material/Send';
 import { borderRadius, borderRight } from '@mui/system';
 import DirectorSidebar from './DirectorSidebar';
+import Footer from '../../Component/Footer';
 
 
 
@@ -93,60 +94,62 @@ function Chat() {
           <Grid item sm={4} md={2} >
             <DirectorSidebar open={open} />
           </Grid>
+
           <Grid item sm={8} md={10}>
-          <Grid item xs={4} md={4}>
+              <Grid item sm={6} md={4}>
+              
+              <Search>
+                <SearchIconWrapper>
+                  <SearchIcon />
+                </SearchIconWrapper>
+                <StyledInputBase
+                  placeholder="Search…"
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </Search>
+              <List
+                sx={{
+                  width: '100%',
+                  maxWidth: 360,
+                  height:410,
+                  bgcolor: 'background.paper',
+                }}
+              >
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AccountCircleIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary="Hiruni Guruge" secondary="Watch the full video here" />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AccountCircleIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary="Piyumi Rathnayaka" secondary="Hey guys!!! we got two opening in the..." />
+                </ListItem>
+                <Divider variant="inset" component="li" />
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      <AccountCircleIcon />
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary="Pivithuru Batuwangala" secondary="Check it out right here👇" />
+                </ListItem>
+              </List>
+            </Grid>
           
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search>
-          <List
-            sx={{
-              width: '100%',
-              maxWidth: 360,
-              height:410,
-              bgcolor: 'background.paper',
-            }}
-          >
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <AccountCircleIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Hiruni Guruge" secondary="Watch the full video here" />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <AccountCircleIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Piyumi Rathnayaka" secondary="Hey guys!!! we got two opening in the..." />
-            </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar>
-                  <AccountCircleIcon />
-                </Avatar>
-              </ListItemAvatar>
-              <ListItemText primary="Pivithuru Batuwangala" secondary="Check it out right here👇" />
-            </ListItem>
-          </List>
-        </Grid>
         
-        <Grid item xs={4} md={8}>
+        <Grid item sm={6} md={6}>
           <Item>
             <Box sx={{
               width: '100%',
-              minWidth: 990,
+              
               height:410,
               bgcolor: '#EDEDED',
             }}
@@ -166,7 +169,8 @@ function Chat() {
           </Grid>
           
         </Grid>
-    </Box>
+    </Box><br></br>
+    <Footer/>
     </div>
   )
 }
