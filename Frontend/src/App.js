@@ -33,6 +33,7 @@ import Chat from "./pages/Chat";
 import ToBeReleased from "./pages/SAR/Examination/ToBeReleased";
 import Released from "./pages/SAR/Examination/Released";
 import TimeTable from "./pages/SAR/Examination/TimeTable";
+import UpdateResults from "./pages/SAR/Examination/UpdateResults";
 import SARdash from "./pages/SAR/SARdash";
 import SAR_Report from "./pages/SAR/SAR_Report";
 import SAR_Under from "./pages/SAR/SAR_Under";
@@ -77,6 +78,7 @@ function App() {
           <Route path='/tobereleased' element={<ToBeReleased />} />
           <Route path='/released' element={<Released />} />
           <Route path='/timetable' element={<TimeTable />} />
+          <Route path='/update-results' element={<UpdateResults/>}/>
           <Route path='/chat' element={<Chat />} />
           <Route path='/sar-dash' element={<SARdash />} />
           <Route path='/sar_report' element={<SAR_Report />} />
