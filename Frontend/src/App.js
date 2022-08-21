@@ -28,6 +28,7 @@ import HoEExamReToBe from "./pages/HeadofExam/HoEExamReToBe";
 import HoEExamTimetable from "./pages/HeadofExam/HoEExamTimetable";
 import HoEExamUpdateResults from "./pages/HeadofExam/HoEExamUpdateResults";
 import HoEChat from "./pages/HeadofExam/HoEChat";
+import HoESummaryReport from "./pages/HeadofExam/HoESummaryReport";
 
 import {
   BrowserRouter as Router,
@@ -124,6 +125,7 @@ function App() {
           <Route path="/hoEExamTimetable" element={<HoEExamTimetable/>} />
           <Route path="/hoEExamUpdateResults" element={<HoEExamUpdateResults/>} />
           <Route path="/hoEChat" element={<HoEChat/>} />
+          <Route path="/hoESummaryReport" element={<HoESummaryReport/>} />
 
           <Route
             path="/lecturer_assignments"
