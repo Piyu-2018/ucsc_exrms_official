@@ -1,8 +1,12 @@
 import React from 'react';
-import { styled, useTheme } from '@mui/material/styles';
-import Box from '@mui/material/Box';
+// import { styled, useTheme } from '@mui/material/styles';
+// import Box from '@mui/material/Box';
 import { Grid} from "@mui/material";
+<<<<<<< HEAD
 import DirectorProgYearSl from './DirectorProgYearSl';
+=======
+// import DirectorProgTransContent from './DirectorProgTransContent';
+>>>>>>> dinil
 import DirectorProgTransChart from './DirectorProgTransChart';
 import DirectorProgTransTable from './DirectorProgTransTable';
 import DirectorSidebar from '../../DirectorSidebar';

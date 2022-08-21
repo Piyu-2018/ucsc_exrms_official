@@ -1,5 +1,6 @@
 const { PrismaClient } = require("@prisma/client");
 const asyncHandler = require("express-async-handler");
+const { StatusCodes } = require("http-status-codes");
 
 // const { user, course, lecturer_courses, assignments } = new prismaClient();
 
@@ -18,16 +19,19 @@ const { user, course, lecturer_courses, assignments,student } = new PrismaClient
 const getCourses = asyncHandler(async (req, res) => {
   const user_id = parseInt(req.params.id);
 
-  console.log("courses")
+  console.log("courses");
 
   const courses = [];
 
-  connection.query("SELECT lecturer_courses.*,course.* FROM user,lecturer_courses,course WHERE user.user_id = lecturer_courses.user_id AND course.course_id = lecturer_courses.course_id AND user.user_id ="+user_id, function (error, results, fields) {
-    if (error) throw error;
+  connection.query(
+    "SELECT lecturer_courses.*,course.* FROM user,lecturer_courses,course WHERE user.user_id = lecturer_courses.user_id AND course.course_id = lecturer_courses.course_id AND user.user_id =" +
+      user_id,
+    function (error, results, fields) {
+      if (error) throw error;
 
-    res.json(results);
-    
-  });
+      res.json(results);
+    }
+  );
 
   // const courses = await findMany({
   //     where: {
@@ -41,7 +45,6 @@ const getAssign = asyncHandler(async (req, res) => {
   const user_id = parseInt(req.params.id2);
 
   // console.log(user_id);
-
 
   connection.query(
     "SELECT * FROM assignments WHERE lecturer_id=" +
@@ -62,7 +65,7 @@ const getUndergraduates = asyncHandler (async (req, res) => {
 
   // console.log(degree_type);
 
-  
+
 
   const student = [];
 
@@ -70,7 +73,7 @@ const getUndergraduates = asyncHandler (async (req, res) => {
     if (error) throw error;
 
     res.json(results);
-    
+
   });
 
 });

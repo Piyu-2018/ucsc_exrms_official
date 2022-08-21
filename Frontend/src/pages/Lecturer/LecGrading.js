@@ -1,17 +1,13 @@
-import {
-  Box,
-  createTheme,
-  Grid,
-  Paper,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Box, createTheme, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import LecDegree from "../../Component/Lecturer/Gradings/LecDegree";
 import LecGpaGraph from "../../Component/Lecturer/Gradings/LecGpaGraph";
+import LecGradingTable from "../../Component/Lecturer/Gradings/LecGradingTable";
 import LecYears from "../../Component/Lecturer/Gradings/LecYears";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import LecSidebar from "./LecSidebar";
+// import SearchBar from "material-ui-search-bar";
+import LecSearchGPAList from "../../Component/Lecturer/Gradings/LecSearchGPAList";
 
 const theme = createTheme({
   typography: {
@@ -28,7 +24,7 @@ function LecGrading() {
     <>
       <Box>
         <LecNavBar open={open} />
-        <Grid container spacing={1} justifyContent="space-between">
+        <Grid container spacing={2} justifyContent="space-between">
           <Grid item xs={4} sm={2}>
             <LecSidebar open={open} />
           </Grid>
@@ -41,7 +37,7 @@ function LecGrading() {
                 <Stack direction="column" spacing={2}>
                   <Box alignItems="left">
                     <Typography variant="h6" theme={theme}>
-                      Year
+                      Year 2022/2023
                     </Typography>
                   </Box>
                   <Box>
@@ -64,9 +60,18 @@ function LecGrading() {
             </Stack>
 
             <Box>
-              <LecGpaGraph />
+              <Grid container spacing={1} justifyContent="center">
+                <Grid item xs={12} sm={6}>
+                  <LecGpaGraph />
+                </Grid>
+                {/* <Grid item xs={12} sm={6}>
+                  <LecGpaGraph />
+                </Grid> */}
+              </Grid>
             </Box>
           </Grid>
+          <LecSearchGPAList />
+          <LecGradingTable />
         </Grid>
       </Box>
     </>
