@@ -66,7 +66,7 @@ export default function HoESidebar() {
           <ListItemText primary="Examination" />
         </ListItemButton>
         <Divider />
-        <ListItemButton>
+        <ListItemButton to="hoESummaryReport">
           <ListItemIcon>
             <SummarizeRoundedIcon />
           </ListItemIcon>
