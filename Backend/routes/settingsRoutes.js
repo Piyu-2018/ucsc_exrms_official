@@ -1,11 +1,14 @@
 const express = require("express");
 const { validateToken } = require("../middleware/AuthMiddleware");
 
+// const {getCourses,getAssign,getUndergraduates,assignAdd} = require("../controllers/assignmentController");
 
-const {getCourses,getAssign,getUndergraduates,assignAdd} = require("../controllers/assignmentController");
-
-// const {getCourses,getAssign,assignAdd} = require("../controllers/assignmentController");
-
+const {
+  getCourses,
+  getAssign,
+  assignAdd,
+  getUndergraduates,
+} = require("../controllers/assignmentController");
 
 const router = express.Router();
 
@@ -14,7 +17,6 @@ router.get("/getAssign/:id1/:id2", getAssign);
 
 router.get("/getUndergraduates/:id1/:id2", getUndergraduates);
 
-router.post("/assignAdd",assignAdd);
-
+router.post("/assignAdd", assignAdd);
 
 module.exports = router;

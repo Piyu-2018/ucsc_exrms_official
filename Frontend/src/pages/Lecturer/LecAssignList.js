@@ -11,6 +11,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../constants/globalConstants";
+import LecAddFile from "../../Component/Lecturer/LecAddFile";
 
 const theme = createTheme({
   typography: {
@@ -36,8 +37,8 @@ function LecAssignList() {
     await axios
       .get(API_URL + "/settings/getAssign/" + CourseId + "/" + user_id, config)
       .then((response) => {
-        setAssignData(response.data); 
-      
+        setAssignData(response.data);
+
         // console.log(response.data);
       });
   };
@@ -63,6 +64,7 @@ function LecAssignList() {
             </Typography>
             <LecAssignTable AssignData={AssignData} />
             <LecAddAssign CourseId={CourseId} assignDataFunc={setAssignData} />
+            <LecAddFile />
           </Grid>
         </Grid>
       </Box>
