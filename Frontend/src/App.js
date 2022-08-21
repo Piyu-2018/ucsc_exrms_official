@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import React from "react";
 
 import DirectorDash from "./pages/Director/DirectorDash";
+
 import DirectorUnder from "./pages/Director/DirectorUnder";
 import DirectorEnProgress from "./pages/Director/DirectorEnProgress";
 import DirectorRegProg from "./pages/Director/DirectorRegProg";
@@ -36,7 +37,6 @@ import LecExamPaper from "./pages/Lecturer/LecExamPaper";
 import LecExaminations from "./pages/Lecturer/LecExaminations";
 import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
 
-
 // const theme = createTheme({
 //   typography: {
 //     h3: {
@@ -66,12 +66,12 @@ function App() {
             element={<DirectorConfirmProg />}
           />
           <Route path="/directorTransProg" element={<DirectorTransProg />} />
-          <Route path='/directorSubProg' element={<DirectorSubProg/>}/>
-          <Route path='/directorRescruProg' element={<DirectorRescruProg/>}/>
-          <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
-          <Route path="/directorDashboard" element={<DirectorDashboard />} />
+          <Route path="/directorSubProg" element={<DirectorSubProg />} />
+          <Route path="/directorRescruProg" element={<DirectorRescruProg />} />
+          <Route path="/directorFourthProg" element={<DirectorFourthProg />} />
+          {/* <Route path="/directorDashboard" element={<DirectorDashboard />} /> */}
 
-          <Route path='/chat' element={<Chat />} />
+          <Route path="/chat" element={<Chat />} />
 
           <Route path="/HoEDash" element={<HoEDash />} />
 
