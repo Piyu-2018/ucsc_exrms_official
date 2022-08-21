@@ -60,6 +60,7 @@ function App() {
           <Route path='/directorSubProg' element={<DirectorSubProg/>}/>
           <Route path='/directorRescruProg' element={<DirectorRescruProg/>}/>
           <Route path='/directorFourthProg' element={<DirectorFourthProg/>}/>
+          <Route path="/directorDashboard" element={<DirectorDashboard />} />
 
           <Route path='/chat' element={<Chat />} />
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import { Grid} from "@mui/material";
-import DirectorProgTransContent from './DirectorProgTransContent';
+import DirectorProgYearSl from './DirectorProgYearSl';
 import DirectorProgTransChart from './DirectorProgTransChart';
 import DirectorProgTransTable from './DirectorProgTransTable';
 import DirectorSidebar from '../../DirectorSidebar';
@@ -23,6 +23,7 @@ function DirectorProgTransDrawer() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
+            <DirectorProgYearSl/><br></br>
             <DirectorProgTransChart/><br></br>
             <DirectorProgTransTable/>
           </Grid>
