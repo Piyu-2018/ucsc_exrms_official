@@ -1,22 +1,21 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
-import DirectorDashboardDrawer from '../../Component/Director/DashboardP/DirectorDashboardDrawer';
+import DirectorReportDrawer from '../../Component/HeadofExam/Report/DirectorReportDrawer';
 import DirectorNavbar from '../../Component/DirectorNavbar';
 import Footer from '../../Component/Footer';
 
-
-function DirectorDashboard() {
+function HoESummaryReport() {
   return (
-    <>
+    <div>
       <Helmet>
         <style>{'body { background: #E4EBF5 !important; }'}</style>
       </Helmet>
       <DirectorNavbar />
-      <DirectorDashboardDrawer/><br></br>
+      <DirectorReportDrawer/><br></br><br></br><br></br><br></br><br></br>
       <Footer/>
-    </>
+      
+    </div>
   )
 }
 
-export default DirectorDashboard
-
+export default HoESummaryReport
