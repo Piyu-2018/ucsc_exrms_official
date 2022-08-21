@@ -9,6 +9,7 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
+import PlaylistAddCheckIcon from "@mui/icons-material/PlaylistAddCheck";
 import React from "react";
 // import MenuIcon from "@mui/icons-material/Menu";
 // import InboxIcon from "@mui/icons-material/MoveToInbox";
@@ -80,6 +81,8 @@ function LecSidebar(props) {
     "/lec_exam_timetable",
     "/lec_grading",
     "/lec_exampaper",
+    "/",
+    "/lec_course_grading",
   ];
 
   function renderSwitch(param) {
@@ -97,7 +100,7 @@ function LecSidebar(props) {
       case 5:
         return <Chat />;
       case 6:
-        return <Notifications />;
+        return <PlaylistAddCheckIcon />;
     }
   }
 
@@ -128,7 +131,7 @@ function LecSidebar(props) {
                 "Grades",
                 "Exam Paper",
                 "Chat",
-                "Notifications",
+                "Subject Wise Progress",
               ].map((text, index) => (
                 <>
                   <ListItem key={text} sx={{ height: "80px" }} disablePadding>

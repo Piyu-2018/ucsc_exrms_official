@@ -36,10 +36,12 @@ import Chat from "./pages/Chat";
 import LecExamPaper from "./pages/Lecturer/LecExamPaper";
 import LecExaminations from "./pages/Lecturer/LecExaminations";
 import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
+import LecCourseGrading from "./pages/Lecturer/LecCourseGrading";
 
 import MaUndergraduates from "./pages/Ma/MaUndergraduates";
 import MaExamTimetable from "./pages/Ma/MaExamTimetable";
 import MaPayment from "./pages/Ma/MaPayment";
+import LecCourseResults from "./pages/Lecturer/LecCourseResults";
 
 // const theme = createTheme({
 //   typography: {
@@ -96,6 +98,8 @@ function App() {
           <Route path="/lec_exampaper" element={<LecExamPaper />} />
           <Route path="/lec_examinations" element={<LecExaminations />} />
           <Route path="/lec_course_marking" element={<LecCourseMarking />} />
+          <Route path="/lec_course_grading" element={<LecCourseGrading />} />
+          <Route path="/lec_course_results" element={<LecCourseResults />} />
         </Routes>
       </div>
     </Router>
