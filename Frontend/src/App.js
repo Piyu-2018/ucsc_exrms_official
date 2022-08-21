@@ -39,6 +39,7 @@ import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
 
 import MaUndergraduates from "./pages/Ma/MaUndergraduates";
 import MaExamTimetable from "./pages/Ma/MaExamTimetable";
+import MaPayment from "./pages/Ma/MaPayment";
 
 // const theme = createTheme({
 //   typography: {
