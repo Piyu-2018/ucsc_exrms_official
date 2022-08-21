@@ -12,6 +12,11 @@ import MaDash from './pages/Ma/MaDash';
 import MaAttendance from "./pages/Ma/MaAttendance";
 import MaMarkAttendance from "./pages/Ma/MaMarkAttendance";
 import MaAdmissionCard from "./pages/Ma/MaAdmissionCard";
+import MaExamReport from "./pages/Ma/MaExamReport";
+import MaUndergraduates from "./pages/Ma/MaUndergraduates";
+import MaStuAdmissions from "./pages/Ma/MaStuAdmissions";
+import MaLetters from "./pages/Ma/MaLetters";
+import MaCourses from "./pages/Ma/MaCourses";
 import MaTest from "./pages/Ma/MaTest";
 
 import {
@@ -70,6 +75,11 @@ function App() {
           <Route path='/ma_attendance' element={<MaAttendance/>}/>
           <Route path='/ma_mark_attendance' element={<MaMarkAttendance/>}/>
           <Route path='/ma_admission_card' element={<MaAdmissionCard/>}/>
+          <Route path='/ma_exam_report' element={<MaExamReport/>}/>
+          <Route path='/ma_undergraduates' element={<MaUndergraduates/>}/>
+          <Route path='/ma_admission' element={<MaStuAdmissions/>}/>
+          <Route path='/ma_letters' element={<MaLetters/>}/>
+          <Route path='/ma_courses' element={<MaCourses/>}/>
           <Route path='/ma_test' element={<MaTest/>}/>
 
         </Routes>
