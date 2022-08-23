@@ -82,6 +82,11 @@ function LecNavBar(props) {
 
   const [open, setOpen] = useState(true);
 
+  const sidebarControl = () => {
+    console.log("Clicked");
+    setOpen(false);
+  };
+
   // function clickHandler() {
   //   if (open === true) {
   //     setOpen(false);
@@ -123,7 +128,7 @@ function LecNavBar(props) {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -133,9 +138,7 @@ function LecNavBar(props) {
               textDecoration: "none",
             }}
           >
-            <Link to="/">
-              <Logo />
-            </Link>
+            <Logo onClick={sidebarControl} />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
