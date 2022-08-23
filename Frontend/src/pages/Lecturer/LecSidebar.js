@@ -81,7 +81,7 @@ function LecSidebar(props) {
     "/lec_exam_timetable",
     "/lec_grading",
     "/lec_exampaper",
-    "/",
+    "",
     "/lec_course_grading",
   ];
 

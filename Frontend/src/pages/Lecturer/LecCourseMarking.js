@@ -26,7 +26,7 @@ function LecCourseMarking() {
           </Grid>
           <Grid item xs={8} sm={10}>
             <Typography variant="h3" theme={theme} sx={{ mb: "30px" }}>
-              Assignment 1
+              Examination Marks
             </Typography>
 
             <LecExamMarkTable />
