@@ -16,7 +16,7 @@ function Home() {
         <Navbar/>
         <div className='homeSection'>
         <div className='textSection'>
-            <h3>Welcome to the official student portal of UCSC</h3>
+            <h3>Welcome to the UCSC EXRMS official website</h3>
             <p>Official platform for providing the pathway to communicate with the examination division of University Of Colombo School Of Computing.</p>
         </div>
         <img src={require('./../assets/imgs/homeVector.png')} />

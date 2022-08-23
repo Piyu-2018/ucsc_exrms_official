@@ -1,5 +1,5 @@
 import React from 'react'
-import DirectorNavbar from '../../Component/DirectorNavbar';
+import Footer from '../../Component/Footer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -17,10 +17,8 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import SendIcon from '@mui/icons-material/Send';
-import { borderRadius, borderRight } from '@mui/system';
-import HoESidebar from './HoESidebar';
-import Footer from '../../Component/Footer';
-
+import HoENavbar from '../../Component/HoENavbar';
+import HoESidebar from '../../Component/HeadofExam/HoESidebar';
 
 
 
@@ -84,72 +82,68 @@ const action = (
 
 
 function Chat() {
-    const open = true;
-  console.log(open);
   return (
     <div>
-      <DirectorNavbar/>
+      
+      
     <Box sx={{ flexGrow: 100}}>
-    <Grid container spacing={1} justifyContent="space-between" paddingTop="10px" paddingRight = "40px">
-          <Grid item sm={4} md={2} >
-            <HoESidebar open={open} />
-          </Grid>
-
-          <Grid item sm={8} md={10}>
-              <Grid item sm={6} md={4}>
-              
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search…"
-                  inputProps={{ 'aria-label': 'search' }}
-                />
-              </Search>
-              <List
-                sx={{
-                  width: '100%',
-                  maxWidth: 360,
-                  height:410,
-                  bgcolor: 'background.paper',
-                }}
-              >
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <AccountCircleIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="Hiruni Guruge" secondary="Watch the full video here" />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <AccountCircleIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="Piyumi Rathnayaka" secondary="Hey guys!!! we got two opening in the..." />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-                <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>
-                      <AccountCircleIcon />
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText primary="Pivithuru Batuwangala" secondary="Check it out right here👇" />
-                </ListItem>
-              </List>
-            </Grid>
+    
+      <Grid container spacing={2}>
+      <HoENavbar/>
+      <HoESidebar/>
+        <Grid item xs={2}>
           
+          <Search>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search>
+          <List
+            sx={{
+              width: '100%',
+              maxWidth: 360,
+              height:410,
+              bgcolor: 'background.paper',
+            }}
+          >
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <AccountCircleIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Hiruni Guruge" secondary="Watch the full video here" />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <AccountCircleIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Piyumi Rathnayaka" secondary="Hey guys!!! we got two opening in the..." />
+            </ListItem>
+            <Divider variant="inset" component="li" />
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <AccountCircleIcon />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary="Pivithuru Batuwangala" secondary="Check it out right here👇" />
+            </ListItem>
+          </List>
+        </Grid>
         
-        <Grid item sm={6} md={6}>
+        <Grid item xs={4}>
           <Item>
             <Box sx={{
               width: '100%',
-              
+              minWidth: 990,
               height:410,
               bgcolor: '#EDEDED',
             }}
@@ -165,11 +159,8 @@ function Chat() {
             </Box>
           </Item>
         </Grid>
-            
-          </Grid>
-          
-        </Grid>
-    </Box><br></br>
+      </Grid>
+    </Box>
     <Footer/>
     </div>
   )

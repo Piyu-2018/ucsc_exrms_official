@@ -36,8 +36,14 @@ function Login() {
 
         if (user.user_type === "lecturer") {
           navigate("/lecturer_assignments");
+        } else if (user.user_type === "director") {
+          navigate("/directorDash");
+        } else if (user.user_type === "sar") {
+          navigate("/sar-dash");
+        } else if (user.user_type === "hox") {
+          navigate("/hoEDash");
         } else {
-          navigate("/directorUnder");
+          navigate("/ma_undergraduates");
         }
       }
     }
