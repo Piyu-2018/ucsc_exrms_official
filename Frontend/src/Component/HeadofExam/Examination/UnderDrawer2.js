@@ -5,6 +5,7 @@ import HoESidebar from '../HoESidebar';
 import DayTimeTable from './DayTimeTable'
 import { Grid} from "@mui/material";
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import UnderTable2 from '../../Director/Examination/UnderTable2';
 
 function UnderDrawer() {
   const open = true;
@@ -23,6 +24,7 @@ function UnderDrawer() {
             <Category/> <br></br>
 
             <UnderSeach/><br></br>
+            <UnderTable2/>
            
           </Grid>  
         </Grid>
