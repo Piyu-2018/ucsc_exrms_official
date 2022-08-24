@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import React, { Component } from "react";
 
 
-//import React from "react";
+
 
 
 import DirectorDash from "./pages/Director/DirectorDash";
@@ -64,6 +64,9 @@ import SAR_TransProg from "./pages/SAR/SAR_TransProg";
 import SAR_SubProg from "./pages/SAR/SAR_SubProg";
 import SAR_RescruProg from "./pages/SAR/SAR_RescruProg";
 import SAR_FourthProg from "./pages/SAR/SAR_FourthProg";
+import RequestLetter from "./pages/SAR/RequestLetter";
+import RequestLetter1 from "./pages/SAR/RequestLetter1";
+import SAR_SummaryReport from "./pages/SAR/SAR_SummaryReport";
 
 import LecExamPaper from "./pages/Lecturer/LecExamPaper";
 import LecExaminations from "./pages/Lecturer/LecExaminations";
@@ -72,6 +75,7 @@ import LecCourseMarking from "./pages/Lecturer/LecCourseMarking";
 import MaUndergraduates from "./pages/Ma/MaUndergraduates";
 import MaExamTimetable from "./pages/Ma/MaExamTimetable";
 import MaPayment from "./pages/Ma/MaPayment";
+
 
 // const theme = createTheme({
 //   typography: {
@@ -133,7 +137,12 @@ function App() {
           <Route path='/sarSubProg' element={<SAR_SubProg/>}/>
           <Route path='/sarRescruProg' element={<SAR_RescruProg/>}/>
           <Route path='/sarFourthProg' element={<SAR_FourthProg/>}/>
+          <Route path='/requestletter' element={<RequestLetter/>}/>
+          <Route path='/requestletter1' element={<RequestLetter1/>}/>
+          <Route path='/sar-summary-report' element={<SAR_SummaryReport/>}/>
+         
 
+          
 
           <Route path="/hoEDash" element={<HoEDash />} />
           <Route path="/hoEExamRe" element={<HoEExamRe/>} />
