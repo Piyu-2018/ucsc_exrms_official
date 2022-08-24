@@ -56,8 +56,8 @@ export default function CustomizedTables() {
             <StyledTableRow key={row.name}>
               <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
               <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.SARAction}<Button variant="contained">View Letter</Button></StyledTableCell>
-              <StyledTableCell align="left">{row.SARAction}<Button variant="contained" color='error'>Edit Letter</Button></StyledTableCell>
+              <StyledTableCell align="left">{row.SARAction}<Button variant="contained" color='success'>Accept</Button></StyledTableCell>
+              <StyledTableCell align="left">{row.SARAction}<Button variant="contained" color='error'>Pending</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

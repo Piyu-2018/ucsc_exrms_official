@@ -61,7 +61,7 @@ const pages = [
   </Button>,
 ];
 
-function LecNavBar(props) {
+function MaNavBar(props) {
   const userInfo = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -81,11 +81,6 @@ function LecNavBar(props) {
   }, []);
 
   const [open, setOpen] = useState(true);
-
-  const sidebarControl = () => {
-    console.log("Clicked");
-    setOpen(false);
-  };
 
   // function clickHandler() {
   //   if (open === true) {
@@ -128,7 +123,7 @@ function LecNavBar(props) {
             variant="h6"
             noWrap
             component="a"
-            
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -138,7 +133,9 @@ function LecNavBar(props) {
               textDecoration: "none",
             }}
           >
-            <Logo onClick={sidebarControl} />
+            <Link to="/">
+              <Logo />
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -255,4 +252,4 @@ function LecNavBar(props) {
     </AppBar>
   );
 }
-export default LecNavBar;
+export default MaNavBar;
