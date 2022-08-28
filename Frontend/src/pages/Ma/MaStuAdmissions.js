@@ -2,10 +2,10 @@ import { Box, Grid, Typography, Button, CardContent,Card,FormControl,FormControl
 import React from 'react';
 import MaSidebar from '../../Component/Ma/MaSidebar';
 import MaNavBar from '../../Component/Ma/MaNavBar';
-import MaUndergTable from '../../Component/Ma/MaUndergTable';
+import MaStuAdmissionsTable from '../../Component/Ma/MaStuAdmissionsTable';
 import {useState} from 'react';
 
-function MaUndergraduates() {
+function MaStuAdmission() {
      
   return (
     <>
@@ -18,22 +18,17 @@ function MaUndergraduates() {
                 </Grid>
                 <Grid item sm={8} md={10} >
                     <Typography variant="h4" align="left" >
-                        Undergraduates
+                        Admissions
                     </Typography>
                     <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
-                        <Grid container spacing={1} justifyContent="space-evenly" xs={12} p={2} >
-                            <Button variant="contained" component="label" sx={{backgroundColor:"green", color:"black", padding:"10px 30px 10px 30px", fontSize:"18px",fontWeight:"600"}}>
-                                    Upload Undergraduates (XLSX file)
-                                <input hidden accept="image/*" multiple type="file" />
-                            </Button>
-                        </Grid>
                         <Grid container spacing={1} justifyContent="space-evenly" xs={12} p={2} sx={{ padding:"30px 200px 30px 200px"}}>
                             <Button variant="contained" sx={{backgroundColor:"#23538f"}}>Year 1</Button>
                             <Button variant="contained" sx={{backgroundColor:"#23538f"}}>Year 2</Button>
                             <Button variant="contained" sx={{backgroundColor:"#23538f"}}>Year 3</Button>
                             <Button variant="contained" sx={{backgroundColor:"#23538f"}}>Year 4</Button>
                         </Grid>
-                        <Grid xs={12} container spacing={0.5} justifyContent="space-between" p={2}> 
+                        <Grid xs={12} container spacing={0.5} justifyContent="space-between" p={2}>
+                            
                             <FormControl >
                                 <RadioGroup
                                     row
@@ -45,11 +40,11 @@ function MaUndergraduates() {
                                     <FormControlLabel className='yearBtn' value="3" control={<Radio />} label="ALL" />
                                 </RadioGroup>
                             </FormControl>
-                            
                         </Grid>
+                        
                         <Grid container spacing={1} justifyContent="space-evenly">
-                            <Card sx={{backgroundColor:"#E4EBF5", width:"95%"}}><CardContent>
-                                <MaUndergTable/>
+                            <Card sx={{backgroundColor:"#E4EBF5", width:"75%"}}><CardContent>
+                                <MaStuAdmissionsTable/>
                             </CardContent></Card>
                         </Grid>
 
@@ -65,4 +60,4 @@ function MaUndergraduates() {
   )
 }
 
-export default MaUndergraduates
+export default MaStuAdmission
