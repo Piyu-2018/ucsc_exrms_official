@@ -1,0 +1,26 @@
+.attendanceContainer{
+    margin: 30px 100px 30px 100px;
+    width: 100%;
+}
+.attendanceBtn{
+    width: 300px;
+    height: 45px;
+    font-size: 22px;
+    
+}
+.selectionContainer{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.selectionBox{
+    width: 120px;
+    border-radius: 30px;
+    height: 30px;
+}
+.yearBtn{
+    padding: 0px 60px 0px 60px;
+}
+.tableContainer{
+    margin: 30px;
+}
