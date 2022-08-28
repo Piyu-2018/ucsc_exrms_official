@@ -3,9 +3,11 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import { userReducer } from "./reducers/userReducers";
+import { useState } from "react";
 
 const reducer = combineReducers({
   userInfo: userReducer,
+  
 });
 
 const userInfoFromStorage = localStorage.getItem("user")
@@ -14,14 +16,18 @@ const userInfoFromStorage = localStorage.getItem("user")
 
 const initialState = {
   userInfo: { user: userInfoFromStorage },
+  
 };
+
+
 
 const middleware = [thunk];
 
 const store = createStore(
   reducer,
   initialState,
-  composeWithDevTools(applyMiddleware(...middleware))
+  composeWithDevTools(applyMiddleware(...middleware)),
+  
 );
 
 export default store;
