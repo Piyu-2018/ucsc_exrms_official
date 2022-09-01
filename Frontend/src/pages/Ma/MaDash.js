@@ -1,5 +1,6 @@
 import React from 'react';
-import MaDrawer from '../../Component/MaDrawer';
+import MaDrawer from '../../Component/Ma/MaDrawer';
+import Typography from '@material-ui/core/Typography'
 import Navbar from '../../Component/Navbar';
 
 function MaDash() {
@@ -7,7 +8,9 @@ function MaDash() {
     <div>
         
         <MaDrawer/>
+        
     </div>
+    
   )
 }
 

@@ -1,10 +1,11 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
-import { Box } from '@mui/system';
+import { Button, Card, CardContent, CardMedia, Typography } from '@mui/material'
+// import { Box } from '@mui/system';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
 function LecCourseCard(props) {
     console.log(props);
+    
   return (
     <>
         <Card sx={{ maxWidth:"90%"}}>
@@ -21,7 +22,7 @@ function LecCourseCard(props) {
         <Typography variant="body2" color="text.secondary">
           {props.CourseName}        
         </Typography>
-        <Button sx={{mt:2}} size="small"><Link to='/lec_assign_list'>View Assignments</Link></Button>
+        <Button sx={{mt:2}} size="small"><Link to={"/lec_assign_list/"+props.CourseId}>View Assignments</Link></Button>
       </CardContent>
     </Card>
     </>

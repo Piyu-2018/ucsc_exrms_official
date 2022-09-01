@@ -7,6 +7,8 @@ const nodemailer = require("nodemailer");
 
 const { user } = new PrismaClient();
 
+const {generateOtp,otpEmail} = require("./helpers/authControllerHelper");
+
 const login = asyncHandler(async (req, res) => {
   console.log("Login");
   const { user_name, password } = req.body;
@@ -125,4 +127,172 @@ const register = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { login, register };
+const emailCheck = asyncHandler(async (req, res) => {
+  const { email } = req.body;
+
+  const emailStatus = await user.findUnique({
+    where: {
+      email,
+    },
+  });
+
+  if (emailStatus) {
+    res.json({ isUnique: false });
+  } else {
+    res.json({ isUnique: true });
+  }
+});
+
+const usernameCheck = asyncHandler(async (req, res) => {
+  const { user_name } = req.body;
+
+  const existUser = await user.findFirst({
+    where: {
+      OR: [
+        {
+          user_name,
+        },
+      ],
+    },
+  });
+
+  if (existUser) {
+    res.json({ isExist: true });
+  } else {
+    res.json({ isExist: false });
+  }
+});
+
+forgotPasswordOtp = asyncHandler(async (req, res) => {
+  const { user_name } = req.body;
+  const otp = generateOtp();
+
+  const status = await user.updateMany({
+    where: {
+      OR: [
+        {
+          user_name: user_name,
+        },
+      ],
+    },
+
+    data: {
+      forgotPasswordOtp: otp,
+    },
+  });
+
+  const existUser = await user.findFirst({
+    where: {
+      OR: [
+        {
+          user_name: user_name,
+        },
+      ],
+    },
+  });
+
+  const htmlEmail = otpEmail(existUser.f_name, otp);
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+
+    auth: {
+      user: "exrmsofficial@gmail.com",
+      pass: "$exrms99official#01",
+    },
+  });
+
+  const mailOptions = {
+    from: "exrmsofficial@gmail.com",
+    to: existUser.email,
+    replyTo: existUser.email,
+    subject: "Password Reset - UCSC EXRMS",
+    html: htmlEmail,
+  };
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log("error in sending mail", err);
+      return res.status(400).json({
+        message: `error in sending the mail${err}`,
+      });
+    } else {
+      return res.json({ message: "Email Sent Successfully! " });
+    }
+  });
+
+  if(status) {
+    res.json({
+      statusCode: 1,
+      msg: "OTP generated",
+    });
+  } else {
+    res.json({
+      statusCode: 2,
+      msg: "Error in OTP",
+    });
+  }
+});
+
+const forgetPasswordOtpCheck = asyncHandler(async(req,res) => {
+  const {user_name,otp} = req.body;
+
+  const existUser = await user.findFirst({
+    where: {
+      OR: [
+        {
+          user_name : user_name,
+        },
+      ],
+    },
+    select: {
+      forgotPasswordOtp: true,
+    },
+  });
+
+  if(OTP === existUser.forgotPasswordOtp) {
+    res.json({
+      statusCode: 1,
+      msg:"Valid Access",
+    });
+  } else {
+    res.json({
+      statusCode: 2,
+      msg: "Invalid Access",
+    });
+  }
+});
+
+const resetPassowrd = asyncHandler(asyncHandler(async (req,res) => {
+  const {user_name,password} = req.body;
+
+  bycrypt.hash(password,10).then(async (hash)=>{
+    const status = await user.updateMany({
+      where: {
+        OR: [
+          {
+            user_name: user_name,
+          },
+        ],
+      },
+      data: {
+        password: hash,
+      },
+    });
+
+    if(status) {
+      res.json({
+        statusCode: 1,
+        msg: "Password Changed",
+      });
+    }else {
+      res.json({
+        statusCode: 2,
+        msg: "Error in Password Changed",
+      });
+
+    }
+  });
+}));
+
+module.exports = { login, register, emailCheck };

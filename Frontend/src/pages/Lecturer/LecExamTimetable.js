@@ -52,12 +52,12 @@ const events = [
 function LecExamTimetable() {
   const open = true;
   console.log(open);
-  const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
+  // const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setAllEvents] = useState(events);
 
-  function handleAddEvent() {
-    setAllEvents([...allEvents, newEvent]);
-  }
+  // function handleAddEvent() {
+  //   setAllEvents([...allEvents, newEvent]);
+  // }
 
   return (
     <>

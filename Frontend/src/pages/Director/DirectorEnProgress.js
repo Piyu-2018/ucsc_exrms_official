@@ -2,6 +2,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import DirectorProgEnDrawer from '../../Component/Director/Progress/Enrollment/DirectorProgEnDrawer';
 import DirectorNavbar from '../../Component/DirectorNavbar';
+import Footer from '../../Component/Footer';
 
 function DirectorUnder() {
   return (
@@ -10,8 +11,8 @@ function DirectorUnder() {
         <style>{'body { background: #E4EBF5 !important; }'}</style>
       </Helmet>
       <DirectorNavbar />
-      <DirectorProgEnDrawer/>
-      
+      <DirectorProgEnDrawer/><br></br>
+      <Footer/>
     </div>
   )
 }

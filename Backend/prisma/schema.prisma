@@ -37,6 +37,15 @@ model assign_marks {
   mark_id           Int
 }
 
+model assignments {
+  assignment_id Int    @id @default(autoincrement())
+  name          String @db.VarChar(255)
+  description   String @db.VarChar(1000)
+  contribution  Int
+  lecturer_id   Int
+  course_id     Int
+}
+
 /// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
 model chat {
   index_no     Int
@@ -124,6 +133,13 @@ model lecturer {
   lecturer_id Int    @id @default(autoincrement())
   degree      String @db.VarChar(255)
   user_id     Int
+}
+
+model lecturer_courses {
+  user_id   Int
+  course_id Int
+
+  @@id([user_id, course_id])
 }
 
 model letter {

@@ -10,10 +10,10 @@ import {
 } from "@mui/material";
 import React from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import { useState } from "react";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+// import { useState } from "react";
+// import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+// import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+// import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
 const style = {
   position: "absolute",
@@ -31,18 +31,30 @@ function LecAssignAdd() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [value, setValue] = React.useState(null);
+  // const [value, setValue] = React.useState(null);
 
   return (
     <Box sx={{ mb: "10px" }}>
-      <Button
-        onClick={handleOpen}
-        sx={{ mt: "50px" }}
-        variant="contained"
-        startIcon={<AddBoxIcon />}
-      >
-        Add Assignment Marks
-      </Button>
+      <Box>
+        <Button
+          onClick={handleOpen}
+          sx={{ mt: "50px" }}
+          variant="contained"
+          startIcon={<AddBoxIcon />}
+        >
+          Add Assignment Marks Individually
+        </Button>
+
+        <Button
+          variant="contained"
+          component="label"
+          sx={{ mt: "50px", ml: "5%" }}
+        >
+          Upload (.xlsx format)
+          <input hidden accept="image/*" multiple type="file" />
+        </Button>
+      </Box>
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
