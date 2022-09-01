@@ -50,8 +50,9 @@ body{
         flex-wrap: wrap;
     }
     .homeSection > img {
-        width: 80%;
-    }
+        width: 57%;
+        height: auto;
+}
     .textSection{
         width: 80%;
     }

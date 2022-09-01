@@ -28,3 +28,11 @@ export const userReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const sideBar = () => {
+  
+}
+
+// export const sideBarReducer = (state = {},action) => {
+//   switch(action)
+// }

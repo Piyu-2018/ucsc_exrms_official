@@ -36,7 +36,7 @@ function createData(IndexNumber,  Name, Year, CourseN, Status, MoreAction) {
 const rows = [
     createData(19001428,'Janitha Ratnayake','3rd Year','Computer Science','Pending'),
     createData(19001411,'Dinil Seniru Ratnayake','3rd Year','Computer Science','Pending' ),
-    createData(19020945,'Sasani Samanga','2nd Year','Infomation System', 'Issued'),
+    createData(19020945,'Sasani Samanga','3rd Year','Infomation System', 'Issued'),
 ];
 
 export default function CustomizedTables() {
@@ -61,7 +61,7 @@ export default function CustomizedTables() {
               <StyledTableCell align="left">{row.Year}</StyledTableCell>
               <StyledTableCell align="left">{row.CourseN}</StyledTableCell>
               <StyledTableCell align="left">{row.Status}</StyledTableCell>
-              <StyledTableCell align="left">{row.moreAction}<Button variant="contained">View Letter</Button></StyledTableCell>
+              <StyledTableCell align="left">{row.moreAction}<Button variant="contained">View Transcript</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

@@ -3,6 +3,7 @@ import { styled, useTheme } from '@mui/material/styles';
 import { Grid} from "@mui/material";
 
 import DirectorProgRegChart from './DirectorProgRegChart';
+import DirectorProgYearSl from './DirectorProgYearSl';
 import DirectorProgRegTable from './DirectorProgRegTable';
 import DirectorSidebar from '../../DirectorSidebar';
 
@@ -22,6 +23,7 @@ function DirectorRegDrawer() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
+            <DirectorProgYearSl/><br></br>
             <DirectorProgRegChart/><br></br>
             <DirectorProgRegTable/>
           </Grid>

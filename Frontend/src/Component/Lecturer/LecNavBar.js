@@ -13,22 +13,22 @@ import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import { Avatar, Badge } from "@mui/material";
-import styled from "styled-components";
-import { Mail, Message, Notifications, Pets } from "@mui/icons-material";
+// import styled from "styled-components";
+import { Message, Notifications } from "@mui/icons-material";
 
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {logout} from "../../actions/userActions";
+import { logout } from "../../actions/userActions";
 
-const Icons = styled(Box)(({ theme }) => ({
-  display: "none",
-  alignItems: "center",
-  gap: "20px",
-  [theme.breakpoints.up("sm")]: {
-    display: "flex",
-  },
-}));
+// const Icons = styled(Box)(({ theme }) => ({
+//   display: "none",
+//   alignItems: "center",
+//   gap: "20px",
+//   [theme.breakpoints.up("sm")]: {
+//     display: "flex",
+//   },
+// }));
 
 const pages = [
   <Button>
@@ -76,19 +76,24 @@ function LecNavBar(props) {
     if (!userInfo.user) {
       navigate("/login");
     } else {
-      const { user_id, accessToken } = userInfo.user;
+      // const { user_id, accessToken } = userInfo.user;
     }
   }, []);
 
   const [open, setOpen] = useState(true);
 
-  function clickHandler() {
-    if (open === true) {
-      setOpen(false);
-    } else {
-      setOpen(true);
-    }
-  }
+  const sidebarControl = () => {
+    console.log("Clicked");
+    setOpen(false);
+  };
+
+  // function clickHandler() {
+  //   if (open === true) {
+  //     setOpen(false);
+  //   } else {
+  //     setOpen(true);
+  //   }
+  // }
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
@@ -123,7 +128,7 @@ function LecNavBar(props) {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -133,9 +138,7 @@ function LecNavBar(props) {
               textDecoration: "none",
             }}
           >
-            <Link to="/">
-              <Logo />
-            </Link>
+            <Logo onClick={sidebarControl} />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { initialLoginValues, loginValidation } from "./Validation";
 import { login } from "../actions/userActions";
@@ -36,15 +36,21 @@ function Login() {
 
         if (user.user_type === "lecturer") {
           navigate("/lecturer_assignments");
-        } else {
+        } else if (user.user_type === "director") {
           navigate("/directorDash");
+        } else if (user.user_type === "sar") {
+          navigate("/sar-dash");
+        } else if (user.user_type === "hox") {
+          navigate("/hoEDash");
+        } else {
+          navigate("/ma_undergraduates");
         }
       }
     }
   }, [user]);
 
   const loginUser = (data) => {
-    console.log(data.password);
+    // console.log(data.password);
     dispatch(login(data.username, data.password));
   };
 
@@ -57,7 +63,7 @@ function Login() {
           }
         </style>
       </Helmet>
-      <Navbar/>
+      <Navbar />
       <Container maxWidth="lg">
         <Box sx={{ height: "100vh", ml: "60%" }}>
           <Typography
