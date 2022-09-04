@@ -179,7 +179,7 @@ function App() {
             element={<LecAssignList />}
           />
           <Route path="/lec_exam_timetable" element={<LecExamTimetable />} />
-          <Route path="/lec_assign_marking" element={<LecAssignMarking />} />
+          <Route path="/lec_assign_marking/:assignmentId" element={<LecAssignMarking />} />
           <Route path="/lec_grading" element={<LecGrading />} />
           <Route path="/lec_exampaper" element={<LecExamPaper />} />
           <Route path="/lec_examinations" element={<LecExaminations />} />
