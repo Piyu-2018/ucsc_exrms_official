@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import DirectorUnderYear from './DirectorUnderyear';
 import DirectorUnderSeach from './DirectorUnderSeach';
 import DirectorUnderTable from './DirectorUnderTable';
@@ -7,6 +7,19 @@ import { Grid} from "@mui/material";
 function DirectorUnderDrawer() {
   const open = true;
   console.log(open);
+
+  const [option,setOption] = useState(0);
+  const [year,setYear] = useState("first year");
+
+  const onSelectedOption = (index) => {
+    // console.log(index);
+    setOption(index);
+  }
+
+  const onSelectedYear = (year) => {
+    // console.log(index);
+    setYear(year);
+  }
 
   return (
     <>
@@ -20,9 +33,9 @@ function DirectorUnderDrawer() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10} >
-            <DirectorUnderYear/> <br></br>
+            <DirectorUnderYear onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/> <br></br>
             <DirectorUnderSeach/><br></br>
-            <DirectorUnderTable/>
+            <DirectorUnderTable option={option} year={year}/>
           </Grid>  
         </Grid>
     </>
