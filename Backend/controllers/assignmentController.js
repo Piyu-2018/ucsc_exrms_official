@@ -129,4 +129,22 @@ const assignAdd = asyncHandler(async (req, res) => {
   res.status(StatusCodes.CREATED).json(returnData);
 });
 
-module.exports = { getCourses, getAssign, getUndergraduates, assignAdd };
+const assignMarkAdd = asyncHandler(async (req, res) => {
+  const data = req.body;
+  console.log(data.dataMarks);
+  data.dataMarks.map((row) =>
+  connection.query(
+    `INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES (${row.index_number},${row.marks},${data.assignment_id})`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    })
+  
+  )
+  
+});
+
+
+
+module.exports = { getCourses, getAssign, getUndergraduates, assignAdd,assignMarkAdd };
