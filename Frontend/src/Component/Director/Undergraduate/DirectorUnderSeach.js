@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
-import DirectorUnderTable from './DirectorUnderTable';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -67,12 +66,6 @@ export default function SearchAppBar() {
           </Search>
         </Toolbar>
       </AppBar>
-      <>
-        <Name.Provider value={'Archna'}>
-        {/* <DirectorUnderTable/> */}
-        </Name.Provider>
-      </>
     </Box>
   );
 }
-export {Name};
