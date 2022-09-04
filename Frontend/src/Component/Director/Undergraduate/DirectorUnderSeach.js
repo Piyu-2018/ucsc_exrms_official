@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React , {createContext} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -47,6 +47,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
+const Name = createContext();
 
 export default function SearchAppBar() {
   return (
