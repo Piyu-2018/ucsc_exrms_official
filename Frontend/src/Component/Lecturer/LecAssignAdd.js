@@ -8,8 +8,12 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import readXlsxFile from "read-excel-file";
+import axios from "axios";
+import { API_URL } from "../../constants/globalConstants";
+
 // import { useState } from "react";
 // import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 // import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -27,10 +31,54 @@ const style = {
   p: 4,
 };
 
-function LecAssignAdd() {
-  const [open, setOpen] = React.useState(false);
+
+
+function LecAssignAdd(props) {
+  console.log(props.assignmentId);
+  const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [fileName, setFileName] = useState(null);
+
+  const schema = {
+    index_number: {
+      prop: "index_number",
+      type: Number,
+    },
+    marks: {
+      prop: "marks",
+      type: Number,
+    },
+    assignmentId: {
+      prop: "assignment_id",
+      type: Number,
+    }
+    
+    
+  };
+
+  const handleFile = async (e) => {
+    // console.log(e);
+
+    const file = e.target.files[0];
+    setFileName(file.name);
+    // console.log(file.name);
+
+    readXlsxFile(file, { schema }).then(async (rows, errors) => {
+      const data = {
+        
+        "assignment_id": `${props.assignmentId}`,
+        "dataMarks": rows.rows
+        
+        
+      }
+      console.log(data);
+      await axios
+        .post(API_URL + "/settings/assignMarkAdd", data)
+        .then((response) => {});
+    });
+  };
   // const [value, setValue] = React.useState(null);
 
   return (
@@ -51,7 +99,13 @@ function LecAssignAdd() {
           sx={{ mt: "50px", ml: "5%" }}
         >
           Upload (.xlsx format)
-          <input hidden accept="image/*" multiple type="file" />
+          <input
+            hidden
+            accept=".xlsx"
+            onChange={(e) => handleFile(e)}
+            multiple
+            type="file"
+          />
         </Button>
       </Box>
 
