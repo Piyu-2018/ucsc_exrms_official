@@ -41,7 +41,9 @@ function createData(IndexNumber, RegistrationNumber, Name, MoreActions) {
 }
 
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  console.log(props.option);
+  console.log(props.year);
   const [undegraduateData, setUndergraduateData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { accessToken } = userInfo.user;
