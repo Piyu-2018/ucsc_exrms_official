@@ -8,7 +8,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
-import { Name } from "./DirectorUnderSeach";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -93,13 +92,6 @@ export default function CustomizedTables() {
           ))}
         </TableBody>
       </Table>
-      <>
-        <Name.Consumer>
-          {(fname) => {
-            return <h1>My Name is {fname}</h1>;
-          }}
-        </Name.Consumer>
-      </>
     </TableContainer>
   );
 }
