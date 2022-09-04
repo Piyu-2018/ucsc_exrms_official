@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React , {createContext} from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
+import DirectorUnderTable from './DirectorUnderTable';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -48,6 +49,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+const Name = createContext();
+
 export default function SearchAppBar() {
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -64,6 +67,12 @@ export default function SearchAppBar() {
           </Search>
         </Toolbar>
       </AppBar>
+      <>
+        <Name.Provider value={'Archna'}>
+        {/* <DirectorUnderTable/> */}
+        </Name.Provider>
+      </>
     </Box>
   );
 }
+export {Name};
