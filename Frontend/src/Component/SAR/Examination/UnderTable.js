@@ -47,8 +47,8 @@ export default function CustomizedTables() {
         <TableHead>
           <TableRow>
             <StyledTableCell align="left">Index Number</StyledTableCell>
-            <StyledTableCell align="left"> Subject Marks</StyledTableCell>
-            <StyledTableCell align="left">Assigent nMarks </StyledTableCell>
+            <StyledTableCell align="left"> Sub Marks</StyledTableCell>
+            <StyledTableCell align="left">Assignment Marks </StyledTableCell>
             <StyledTableCell align="left">Total Marks</StyledTableCell>
             <StyledTableCell align="left">Grade </StyledTableCell>
           </TableRow>
