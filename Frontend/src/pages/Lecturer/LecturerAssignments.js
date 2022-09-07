@@ -5,7 +5,8 @@ import LecAssignmentCourses from "../../Component/Lecturer/LecAssignmentCourses"
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 // import LecRightBar from "../../Component/Lecturer/LecRightBar";
 import LecSidebar from "./LecSidebar";
-// import { useState } from "react";
+import { useState } from "react";
+
 
 function LecturerAssignments() {
   const open = true;
