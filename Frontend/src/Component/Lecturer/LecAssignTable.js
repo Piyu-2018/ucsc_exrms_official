@@ -157,7 +157,7 @@ function LecAssignTable(props) {
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-                    <Link to={"/lec_assign_marking/"} sx={{ color: "white" }}>
+                    <Link to={"/lec_assign_marking/"+ row.assignment_id} sx={{ color: "white" }}>
                       <Typography
                         variant="h6"
                         theme={theme}

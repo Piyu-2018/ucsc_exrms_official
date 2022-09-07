@@ -1,5 +1,6 @@
 import { Box, createTheme, Grid, Typography } from "@mui/material";
 import React from "react";
+import { useParams } from "react-router-dom";
 import LecAddFile from "../../Component/Lecturer/LecAddFile";
 import LecAssignAdd from "../../Component/Lecturer/LecAssignAdd";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
@@ -15,6 +16,7 @@ const theme = createTheme({
 });
 
 function LecAssignMarking() {
+  const {assignmentId} = useParams();
   const open = true;
   console.log(open);
   return (
@@ -30,8 +32,8 @@ function LecAssignMarking() {
               Assignment 1
             </Typography>
 
-            <LecassignMarkTable />
-            <LecAssignAdd />
+            <LecassignMarkTable  />
+            <LecAssignAdd assignmentId={assignmentId} />
             <LecAddFile />
           </Grid>
         </Grid>
