@@ -61,18 +61,16 @@ const getAssign = asyncHandler(async (req, res) => {
 });
 
 const getUndergraduates = asyncHandler(async (req, res) => {
-  const ac_year_ID = parseInt(req.params.id1);
-  const degree_type = parseInt(req.params.id2);
-
-  // console.log(degree_type);
-
+  const ac_year_ID = (req.params.id1);
+  const degree_type = (req.params.id2);
+  
   const student = [];
 
   connection.query(
-    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID = 1 AND student.ac_year_ID =" +
-      ac_year_ID +
+    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID =" +'"'+
+      ac_year_ID +'"'+
       " AND student.degree_type =" +
-      degree_type,
+      '"'+degree_type+'"',
     function (error, results, fields) {
       if (error) throw error;
 
