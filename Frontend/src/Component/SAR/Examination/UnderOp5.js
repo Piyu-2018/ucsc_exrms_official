@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Academic Year','2022/2023','2021/2022','2020/2021','2019/2020 ', '2018/2019 ','2017/2018',' 2016/2017'];
+const options = ['Year','1st Year','2nd Year','3rd Year','4th Year '];
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
