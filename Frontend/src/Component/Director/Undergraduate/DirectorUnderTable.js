@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -41,14 +41,18 @@ function createData(IndexNumber, RegistrationNumber, Name, MoreActions) {
 }
 
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  console.log(props.option);
+  console.log(props.year);
+  console.log(props.degree);
   const [undegraduateData, setUndergraduateData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { accessToken } = userInfo.user;
   // console.log(user_id);
 
-  const acYear = "1";
-  const degree = "11";
+  const acYear = props.year;
+  const degree = props.degree;
+ 
 
 
   const getUndergraduates = async () => {
