@@ -149,6 +149,7 @@ const assignMarkAdd = asyncHandler(async (req, res) => {
             console.log(values);
             connection.query(sql, [values], function (err) {
               if (err) throw err;
+              res.json(results);
               // connection.end();
             });
           }
@@ -162,6 +163,7 @@ const assignMarkAdd = asyncHandler(async (req, res) => {
           connection.query(`UPDATE marks_assignment SET marks=${row.marks} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
           function (err, results) {
             if (err) throw err;
+            res.json(results);
           });
       //   }
       // }
