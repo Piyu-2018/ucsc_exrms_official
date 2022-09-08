@@ -7,6 +7,7 @@ import UnderOp1 from './UnderOp1';
 import UnderOp2 from './UnderOp2';
 import UnderOp3 from './UnderOp3';
 import UnderOp4 from './UnderOp4';
+import UnderOp5 from './UnderOp5';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -26,13 +27,16 @@ export default function AutoGrid() {
                 <Grid item xs={12} md={3}>
                     <UnderOp1/>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={2}>
+                    <UnderOp5/>
+                </Grid>
+                <Grid item xs={12} md={2}>
                     <UnderOp2/>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={2}>
                     <UnderOp3/>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                <Grid item xs={12} md={2}>
                     <UnderOp4/>
                 </Grid>
             </Grid>

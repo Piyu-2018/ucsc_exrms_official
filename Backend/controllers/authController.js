@@ -12,7 +12,7 @@ const {generateOtp,otpEmail} = require("./helpers/authControllerHelper");
 const login = asyncHandler(async (req, res) => {
   console.log("Login");
   const { user_name, password } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
 
   const existUser = await user.findUnique({
     where: {
