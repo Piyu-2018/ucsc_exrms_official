@@ -24,7 +24,7 @@ export default function SplitButton(props) {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
-    props.onSelectOption(index);
+    props.onSelectOption(options[index]);
   };
 
   const handleToggle = () => {
