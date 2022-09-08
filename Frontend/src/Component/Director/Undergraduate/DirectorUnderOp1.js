@@ -14,9 +14,10 @@ const options = ['First Year', 'Second Year', 'Third Year', 'Fourth Year'];
 export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleClick = () => {
+
     console.info(`You clicked ${options[selectedIndex]}`);
   };
 
@@ -24,6 +25,9 @@ export default function SplitButton(props) {
     setSelectedIndex(index);
     setOpen(false);
     props.onSelectYear(options[index]);
+    // window.location.reload();
+    
+
   };
 
   const handleToggle = () => {
