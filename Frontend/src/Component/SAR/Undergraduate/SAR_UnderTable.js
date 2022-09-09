@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -13,7 +13,6 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../../constants/globalConstants";
-
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,6 +34,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+
+
 function createData(IndexNumber, RegistrationNumber, Name, MoreActions) {
   return { IndexNumber, RegistrationNumber, Name , MoreActions};
 }
@@ -47,9 +48,18 @@ export default function CustomizedTables(props) {
   const [undegraduateData, setUndergraduateData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { accessToken } = userInfo.user;
+  // console.log(user_id);
 
-  const acYear = props.year;
+  const acYear = props.option;
+  const cuYear = props.year;
   const degree = props.degree;
+ 
+
+  useEffect(() => {
+   
+    getUndergraduates();
+
+  }, [acYear,cuYear, degree])
 
   const getUndergraduates = async () => {
     const config = {
@@ -59,8 +69,8 @@ export default function CustomizedTables(props) {
     };
   console.log("Hi");
 
-  await axios
-      .get(API_URL + "/settings/getUndergraduates/"+acYear+"/"+degree,config)
+    await axios
+      .get(API_URL + "/settings/getUndergraduates/"+acYear+"/"+cuYear+"/"+degree,config)
       .then((response) => {
         setUndergraduateData(response.data);
         console.log(response.data);
@@ -73,8 +83,8 @@ export default function CustomizedTables(props) {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
+        <TableHead >
+          <TableRow >
             <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Registration Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
@@ -86,7 +96,7 @@ export default function CustomizedTables(props) {
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
               <StyledTableCell align="left">{data.reg_no}</StyledTableCell>
-              <StyledTableCell align="left">{data.f_name + " " +data.l_name}</StyledTableCell>
+              <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
               <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell>
             </StyledTableRow>
           ))}

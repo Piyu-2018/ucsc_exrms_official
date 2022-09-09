@@ -86,7 +86,10 @@ const getUndergraduates = asyncHandler(async (req, res) => {
 
 const getResult = asyncHandler(async (req, res) => {
   const mark_id = (req.params.id1);
-  const degree = (req.params.id2);
+  const year = (req.params.id2);
+  const semester = (req.params.id3);
+  const degree = (req.params.id4);
+  const course_name = (req.params.id5);
   
   const mark = [];
 
@@ -94,6 +97,7 @@ const getResult = asyncHandler(async (req, res) => {
     "SELECT exam_mark.*,exam.*,exam_question_mark.* FROM exam,exam_mark,exam_question_mark WHERE exam_mark.mark_id = exam_question_mark.mark_id AND exam_mark.exam_sem_id = exam.exam_sem_id AND exam_mark.mark_id =" +'"'+
     mark_id  +'"'+
       " AND exam_mark.degree =" +
+      '"'+degree+'"'+" AND exam_mark.degree =" +
       '"'+degree+'"',
     function (error, results, fields) {
       if (error) throw error;
