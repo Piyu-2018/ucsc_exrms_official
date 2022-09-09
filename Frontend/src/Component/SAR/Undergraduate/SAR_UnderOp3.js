@@ -23,7 +23,9 @@ export default function SplitButton(props) {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    
     props.onSelectDegree(options[index]);
+    
   };
 
   const handleToggle = () => {
@@ -77,7 +79,7 @@ export default function SplitButton(props) {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 5}
+                      disabled={index === 6}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >

@@ -87,9 +87,9 @@ const getUndergraduates = asyncHandler(async (req, res) => {
 const getResult = asyncHandler(async (req, res) => {
   const mark_id = (req.params.id1);
   const year = (req.params.id2);
-  const semester = (req.params.id2);
-  const degree = (req.params.id2);
-  const course_name = (req.params.id2);
+  const semester = (req.params.id3);
+  const degree = (req.params.id4);
+  const course_name = (req.params.id5);
   
   const mark = [];
 
