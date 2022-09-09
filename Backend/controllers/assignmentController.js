@@ -170,7 +170,7 @@ const assignMarkAdd = asyncHandler(async (req, res) => {
             console.log(values);
             connection.query(sql, [values], function (err) {
               if (err) throw err;
-              res.json(results);
+              // res.json(results);
               // connection.end();
             });
           }
@@ -185,7 +185,7 @@ const assignMarkAdd = asyncHandler(async (req, res) => {
         `UPDATE marks_assignment SET marks=${row.marks} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
         function (err, results) {
           if (err) throw err;
-          res.json(results);
+          // res.json(results);
         }
       );
       //   }
@@ -242,9 +242,7 @@ const getAssignMarks = asyncHandler(async (req, res) => {
   // })
 });
 
-<<<<<<< HEAD
-module.exports = { getCourses, getAssign, getUndergraduates,getResult, assignAdd,assignMarkAdd };
-=======
+
 module.exports = {
   getCourses,
   getAssign,
@@ -253,4 +251,4 @@ module.exports = {
   assignMarkAdd,
   getAssignMarks,
 };
->>>>>>> 5129cad3e23c02101ecbfdb96c10eed1768fceed
+
