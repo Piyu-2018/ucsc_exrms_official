@@ -159,12 +159,12 @@ export default function SAR_Sidebar() {
         </Collapse>
         <Divider />
 
-        <ListItemButton to="/chat">
+        {/* <ListItemButton to="/chat">
           <ListItemIcon>
             <ChatRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Chat" />
-        </ListItemButton>
+        </ListItemButton> */}
 
         <Divider />
         {/* <ListItemButton>
