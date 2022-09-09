@@ -90,9 +90,9 @@ const getResult = asyncHandler(async (req, res) => {
   const mark = [];
 
   connection.query(
-    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.mark_id  =" +'"'+
+    "SELECT exam_mark.*,exam.*,exam_question_mark.* FROM exam,exam_mark,exam_question_mark WHERE exam_mark.mark_id = exam_question_mark.mark_id AND exam_mark.exam_sem_id = exam.exam_sem_id AND exam_mark.mark_id =" +'"'+
     mark_id  +'"'+
-      " AND student.degree_type =" +
+      " AND exam_mark.degree =" +
       '"'+degree+'"',
     function (error, results, fields) {
       if (error) throw error;
