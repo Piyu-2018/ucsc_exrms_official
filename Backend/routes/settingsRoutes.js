@@ -14,12 +14,17 @@ const {
 
 } = require("../controllers/assignmentController");
 
+const {
+  getNewIntake,
+} = require("../controllers/directorNewIntakeController");
+
 const router = express.Router();
 
 router.get("/getCourses/:id", getCourses);
 router.get("/getAssign/:id1/:id2", getAssign);
 
-router.get("/getUndergraduates/:id1/:id2", getUndergraduates);
+router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
+router.get("/getNewIntake",getNewIntake );
 
 router.get("/getResult/:id1/:id2", getResult);
 
