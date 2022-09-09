@@ -10,8 +10,8 @@ function SAR_UnderDrawer() {
   console.log(open);
 
   const [option,setOption] = useState("Academic Year - 2022/2023");
-  const [year,setYear] = useState("Second Year");
-  const [degree,setDegree] = useState("Information System (Bsc)");
+  const [year,setYear] = useState("First Year");
+  const [degree,setDegree] = useState("Computer Science (Bsc)");
 
   const onSelectedOption = (option) => {
     setOption(option);
