@@ -8,9 +8,9 @@ function DirectorUnderDrawer() {
   const open = true;
   console.log(open);
 
-  const [option,setOption] = useState("Academic Year - 2022/2023");
-  const [year,setYear] = useState("Second Year");
-  const [degree,setDegree] = useState("Information System (Bsc)");
+  const [option,setOption] = useState("Academic Year - 2022-2023");
+  const [year,setYear] = useState("First Year");
+  const [degree,setDegree] = useState("Computer Science (Bsc)");
 
   const onSelectedOption = (option) => {
     setOption(option);
@@ -24,7 +24,8 @@ function DirectorUnderDrawer() {
   const onSelectedDegree = (degree) => {
     setDegree(degree);
   }
-
+ 
+ 
   return (
     <>
       {/* <Helmet>
