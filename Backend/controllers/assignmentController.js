@@ -83,6 +83,25 @@ const getUndergraduates = asyncHandler(async (req, res) => {
   );
 });
 
+const getResult = asyncHandler(async (req, res) => {
+  const ac_year_ID = (req.params.id1);
+  const degree_type = (req.params.id2);
+  
+  const student = [];
+
+  connection.query(
+    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID =" +'"'+
+      ac_year_ID +'"'+
+      " AND student.degree_type =" +
+      '"'+degree_type+'"',
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
 const assignAdd = asyncHandler(async (req, res) => {
   const { name, description, contribution, lecturer_id, course_id } = req.body;
 
@@ -223,6 +242,9 @@ const getAssignMarks = asyncHandler(async (req, res) => {
   // })
 });
 
+<<<<<<< HEAD
+module.exports = { getCourses, getAssign, getUndergraduates,getResult, assignAdd,assignMarkAdd };
+=======
 module.exports = {
   getCourses,
   getAssign,
@@ -231,3 +253,4 @@ module.exports = {
   assignMarkAdd,
   getAssignMarks,
 };
+>>>>>>> 5129cad3e23c02101ecbfdb96c10eed1768fceed
