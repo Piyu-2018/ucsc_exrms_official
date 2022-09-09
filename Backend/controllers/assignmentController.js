@@ -97,6 +97,7 @@ const getResult = asyncHandler(async (req, res) => {
     "SELECT exam_mark.*,exam.*,exam_question_mark.* FROM exam,exam_mark,exam_question_mark WHERE exam_mark.mark_id = exam_question_mark.mark_id AND exam_mark.exam_sem_id = exam.exam_sem_id AND exam_mark.mark_id =" +'"'+
     mark_id  +'"'+
       " AND exam_mark.degree =" +
+      '"'+degree+'"'+" AND exam_mark.degree =" +
       '"'+degree+'"',
     function (error, results, fields) {
       if (error) throw error;
