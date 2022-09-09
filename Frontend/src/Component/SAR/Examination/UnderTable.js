@@ -8,6 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../constants/globalConstants";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,14 +38,45 @@ function createData(IndexNumber, SubMarks, AssignMarks,TotalMarks, Grade) {
   return { IndexNumber, SubMarks, AssignMarks,TotalMarks , Grade};
 }
 
-const rows = [
+/* const rows = [
     createData(19001411,'2019|CS|141','80','70','B'),
     createData(19001428,'2019/CS/142','90','80 ','A'),
     createData(19001381,'2019/CS/138','85',' 76','A'),
     createData(19001411,'2019/CS/141','70',' 57','C'),
-];
+]; */
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  console.log(props.option);
+  console.log(props.year);
+  console.log(props.sem);
+  console.log(props.degree);
+  console.log(props.subject);
+  const [examinationData, setExaminationData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+
+  const acYear = props.year;
+  const degree = props.degree;
+
+  const getResult = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+  console.log("Hi");
+
+  await axios
+      .get(API_URL + "/settings/getResult/"+acYear+"/"+degree,config)
+      .then((response) => {
+        setExaminationData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getResult();
+  }, []);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -54,13 +90,13 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.SubMarks}</StyledTableCell>
-              <StyledTableCell align="left">{row.AssignMarks}</StyledTableCell>
-              <StyledTableCell align="left">{row.TotalMarks}</StyledTableCell>
-              <StyledTableCell align="left">{row.Grade}</StyledTableCell>
+        {examinationData.map((data) => (
+            <StyledTableRow>
+              <StyledTableCell align="left">{data.index_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.SubMarks}</StyledTableCell>
+              <StyledTableCell align="left">{data.AssignMarks}</StyledTableCell>
+              <StyledTableCell align="left">{data.TotalMarks}</StyledTableCell>
+              <StyledTableCell align="left">{data.Grade}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
