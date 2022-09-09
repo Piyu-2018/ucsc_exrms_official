@@ -14,7 +14,8 @@ import {
 } from "@mui/material";
 import React from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
-
+import axios from "axios";
+import { API_URL } from "../../constants/globalConstants";
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
 const theme = createTheme({
@@ -53,6 +54,19 @@ function LecResultsTable() {
   // console.log(props.AssignData);
 
   // console.log(assign[0].name);
+
+  // const geAssignMarks = async () => {
+  //   const config = {
+  //     headers = {
+  //       headers: {
+  //         authorization: accessToken,
+  //       },
+  //     };
+
+  //     await axios 
+  //     .get(API_URL+ "/settings")
+  //   }
+  // }
 
   const rows = [
     createData(
