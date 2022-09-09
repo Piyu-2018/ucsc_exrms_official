@@ -61,16 +61,20 @@ const getAssign = asyncHandler(async (req, res) => {
 });
 
 const getUndergraduates = asyncHandler(async (req, res) => {
-  const ac_year_ID = (req.params.id1);
-  const degree_type = (req.params.id2);
-  
+  const ac_year_ID = req.params.id1;
+  const degree_type = req.params.id2;
+
   const student = [];
 
   connection.query(
-    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID =" +'"'+
-      ac_year_ID +'"'+
+    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID =" +
+      '"' +
+      ac_year_ID +
+      '"' +
       " AND student.degree_type =" +
-      '"'+degree_type+'"',
+      '"' +
+      degree_type +
+      '"',
     function (error, results, fields) {
       if (error) throw error;
 
@@ -149,19 +153,104 @@ const assignAdd = asyncHandler(async (req, res) => {
 const assignMarkAdd = asyncHandler(async (req, res) => {
   const data = req.body;
   console.log(data.dataMarks);
-  data.dataMarks.map((row) =>
-  connection.query(
-    `INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES (${row.index_number},${row.marks},${data.assignment_id})`,
-    function (error, results, fields) {
-      if (error) throw error;
+  var values = [];
+  var sql =
+    "INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES (?)";
 
-      res.json(results);
-    })
-  
-  )
-  
+  await data.dataMarks.map(
+    (row) => {
+      connection.query(
+        `SELECT * FROM marks_assignment WHERE index_number = '${row.index_number}'`,
+        function (err, results) {
+          if (err) throw err;
+          // res.json(results);
+          if (results.length == 0) {
+            console.log("where marks havent been added");
+            values = [row.index_number, row.marks, data.assignment_id];
+            console.log(values);
+            connection.query(sql, [values], function (err) {
+              if (err) throw err;
+              res.json(results);
+              // connection.end();
+            });
+          }
+        }
+      );
+
+      // connection.query(`SELECT * FROM marks_assignment WHERE index_number = '${row.index_number}' AND marks!='${row.marks}'`,
+      // function (err,results){
+      //   if(err) throw err;
+      //   if(results.length > 0){
+      connection.query(
+        `UPDATE marks_assignment SET marks=${row.marks} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
+        function (err, results) {
+          if (err) throw err;
+          res.json(results);
+        }
+      );
+      //   }
+      // }
+
+      // );
+    }
+
+    // await connection.query(
+    //   `INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES (${row.index_number},${row.marks},${data.assignment_id})`,
+    //   function (error, results, fields) {
+    //     if (error) throw error;
+
+    //     res.json(results);\
+
+    //     connection.end();
+    //   })
+  );
+
+  // connection.query(sql,[values],function(err){
+  //   if(err) throw err;
+  //   // connection.end();
+  // })
+  console.log("Hi");
+  console.log(values);
 });
 
+const getAssignMarks = asyncHandler(async (req, res) => {
+  // const data = req.body;
+  console.log("HI");
+  const assignment_id = req.params.id;
+  var values = [];
+  var sql =
+    `SELECT user.f_name,user.l_name,marks_assignment.* FROM user,student,marks_assignment WHERE marks_assignment.index_number = student.index_no AND student.user_id = user.user_id AND marks_assignment.assignment_id = "${assignment_id}"`;
 
+    connection.query(sql,function(err,results){
+    if(err) throw err;
+    res.json(results);
+    
+  })
+  // await connection.query(
+  //   `INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES (${row.index_number},${row.marks},${data.assignment_id})`,
+  //   function (error, results, fields) {
+  //     if (error) throw error;
 
+  //     res.json(results);\
+
+  //     connection.end();
+  //   })
+
+  // connection.query(sql,[values],function(err){
+  //   if(err) throw err;
+  //   // connection.end();
+  // })
+});
+
+<<<<<<< HEAD
 module.exports = { getCourses, getAssign, getUndergraduates,getResult, assignAdd,assignMarkAdd };
+=======
+module.exports = {
+  getCourses,
+  getAssign,
+  getUndergraduates,
+  assignAdd,
+  assignMarkAdd,
+  getAssignMarks,
+};
+>>>>>>> 5129cad3e23c02101ecbfdb96c10eed1768fceed
