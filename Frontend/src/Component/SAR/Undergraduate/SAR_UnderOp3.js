@@ -9,12 +9,12 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['3rd Year Computer Science (Bsc)', '3rd Year Information System (Bsc)','3rd Year Computer Science (BSC Hons)','3rd Year Software Engineer (BSC Hons)','3rd Year Information System (BSC Hons)'];
+const options = ['Computer Science (Bsc)', 'Information System (Bsc)', 'Computer Science (Bsc Hons)','Software Engineering (Bsc Hons)', 'Information System (BSC Hons)'];
 
-export default function SplitButton() {
+export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
@@ -23,6 +23,7 @@ export default function SplitButton() {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    props.onSelectDegree(options[index]);
   };
 
   const handleToggle = () => {
