@@ -14,6 +14,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function LecExamCard(props) {
+  console.log(props);
   return (
     <>
       <Card sx={{ maxWidth: "90%" }}>
@@ -24,14 +25,20 @@ function LecExamCard(props) {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.courseCode}
+          <Typography gutterBottom variant="h6" component="div">
+            {props.CourseCode}
           </Typography>
-          <Typography gutterBottom variant="h5" component="div">
-            {props.courseName}
+          <Typography gutterBottom variant="h6" component="div">
+            {props.CourseName}
           </Typography>
+          <Typography gutterBottom variant="body2" component="div">
+            ({props.MarkingStatus == 1 ? "First Marking" : "Second Marking"})
+          </Typography>
+
           <Button sx={{ mt: 2 }} size="small">
-            <Link to={"/lec_course_marking"}>Mark Course</Link>
+          <Typography gutterBottom variant="body2" component="div">
+            <Link to={`/lec_course_marking/${props.CourseId}/${props.MarkingStatus}`}>Mark Course</Link>
+          </Typography>
           </Button>
         </CardContent>
       </Card>
