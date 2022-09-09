@@ -9,7 +9,11 @@ const {
   assignAdd,
   getUndergraduates,
   assignMarkAdd,
+<<<<<<< HEAD
   getResult,
+=======
+  getAssignMarks,
+>>>>>>> 5129cad3e23c02101ecbfdb96c10eed1768fceed
 } = require("../controllers/assignmentController");
 
 const router = express.Router();
@@ -23,5 +27,6 @@ router.get("/getResult/:id1/:id2", getResult);
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd",assignMarkAdd);
+router.get("/getAssignMarks/:id",getAssignMarks);
 
 module.exports = router;
