@@ -9,6 +9,7 @@ const {
   assignAdd,
   getUndergraduates,
   assignMarkAdd,
+  getAssignMarks,
 } = require("../controllers/assignmentController");
 
 const router = express.Router();
@@ -20,5 +21,6 @@ router.get("/getUndergraduates/:id1/:id2", getUndergraduates);
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd",assignMarkAdd);
+router.get("/getAssignMarks/:id",getAssignMarks);
 
 module.exports = router;
