@@ -50,10 +50,16 @@ export default function CustomizedTables(props) {
   const { accessToken } = userInfo.user;
   // console.log(user_id);
 
-  const acYear = props.year;
+  const acYear = props.option;
+  const cuYear = props.year;
   const degree = props.degree;
  
 
+  useEffect(() => {
+   
+    getUndergraduates();
+
+  }, [acYear,cuYear, degree])
 
   const getUndergraduates = async () => {
     const config = {
@@ -64,7 +70,7 @@ export default function CustomizedTables(props) {
   console.log("Hi");
 
     await axios
-      .get(API_URL + "/settings/getUndergraduates/"+acYear+"/"+degree,config)
+      .get(API_URL + "/settings/getUndergraduates/"+acYear+"/"+cuYear+"/"+degree,config)
       .then((response) => {
         setUndergraduateData(response.data);
         console.log(response.data);
@@ -90,7 +96,7 @@ export default function CustomizedTables(props) {
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
               <StyledTableCell align="left">{data.reg_no}</StyledTableCell>
-              <StyledTableCell align="left">{data.f_name + " " +data.l_name}</StyledTableCell>
+              <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
               <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell>
             </StyledTableRow>
           ))}
