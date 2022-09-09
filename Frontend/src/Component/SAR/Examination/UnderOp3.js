@@ -11,7 +11,7 @@ import MenuList from '@mui/material/MenuList';
 
 const options = ['Degree','Computer Science (Bsc)', 'Information System (Bsc)','Computer Science (BSC Hons)','Software Engineer (BSC Hons)','Information System (BSC Hons)'];
 
-export default function SplitButton() {
+export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -23,6 +23,7 @@ export default function SplitButton() {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    props.onSelectOption(options[index]);
   };
 
   const handleToggle = () => {
