@@ -1,11 +1,40 @@
 import { Box, Grid } from "@mui/material";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import LecExamCard from "../../Component/Lecturer/Examinations/LecExamCard";
 import LecExamUploads from "../../Component/Lecturer/ExamPaper/LecExamUploads";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
+import { API_URL } from "../../constants/globalConstants";
 import LecSidebar from "./LecSidebar";
 
 function LecExaminations() {
+
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  const [courseData, setCourseData] = useState([]);
+
+  const getCourses = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + "/settings/getExaminationCourses/" + user_id, config)
+      .then((response) => {
+        setCourseData(response.data);
+        console.log(response.data);
+      });
+  }
+
+  useEffect(() => {
+    getCourses();
+  }, []);
+
+
+
   const open = true;
   return (
     <>
@@ -17,27 +46,16 @@ function LecExaminations() {
           </Grid>
           <Grid item sm={8} md={10}>
             <Grid container sx={{ mt: "20px" }} spacing={3}>
-              <Grid item xs={6} justifyContent="space-between">
-                <LecExamCard
-                  courseCode="SCS3201"
-                  courseName="Machine Learning and Neural Computing"
-                />
-              </Grid>
-              <Grid item xs={6} justifyContent="space-between">
-                <LecExamCard
-                  courseCode="SCS3202"
-                  courseName="Middleware Architecture"
-                />
-              </Grid>
-              <Grid item xs={6} justifyContent="space-between">
-                <LecExamCard
-                  courseCode="SCS2205"
-                  courseName="Network Engineering"
-                />
-              </Grid>
-              <Grid item xs={6} justifyContent="space-between">
-                <LecExamCard courseCode="SCS1202" courseName="Laboratory I" />
-              </Grid>
+            {courseData.map((data) => (
+          <Grid item xs={12} sm={6}>
+            <LecExamCard
+              CourseCode={data.course_code}
+              CourseName={data.course_name}
+              CourseId={data.course_id}
+              MarkingStatus = {data.lecturer_id_for_first_marking == user_id ? 1: 2 }
+            />
+          </Grid>
+        ))}
             </Grid>
           </Grid>
           {/* <Grid item sm={0} md={3}>
