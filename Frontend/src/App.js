@@ -20,7 +20,6 @@ import DirectorExamRe from "./pages/Director/DirectorExamRe";
 import DirectorExamReToBe from "./pages/Director/DirectorExamReToBe";
 import DirectorExamTimetable from "./pages/Director/DirectorExamTimetable";
 
-
 import MaDash from "./pages/Ma/MaDash";
 import MaAttendance from "./pages/Ma/MaAttendance";
 import MaMarkAttendance from "./pages/Ma/MaMarkAttendance";
@@ -180,11 +179,17 @@ function App() {
             element={<LecAssignList />}
           />
           <Route path="/lec_exam_timetable" element={<LecExamTimetable />} />
-          <Route path="/lec_assign_marking/:assignmentId" element={<LecAssignMarking />} />
+          <Route
+            path="/lec_assign_marking/:assignmentId"
+            element={<LecAssignMarking />}
+          />
           <Route path="/lec_grading" element={<LecGrading />} />
           <Route path="/lec_exampaper" element={<LecExamPaper />} />
           <Route path="/lec_examinations" element={<LecExaminations />} />
-          <Route path="/lec_course_marking" element={<LecCourseMarking />} />
+          <Route
+            path="/lec_course_marking/:CourseId/:MarkingStatus"
+            element={<LecCourseMarking />}
+          />
           <Route path="/lec_course_grading" element={<LecCourseGrading />} />
           <Route path="/lec_course_results" element={<LecCourseResults />} />
           <Route path="/lec_chat" element={<LecChat />} />
