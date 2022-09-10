@@ -14,7 +14,7 @@ var connection = mysql.createConnection({
 
 connection.connect();
 
-const { user, course, lecturer_courses, assignments, student } =
+const { user, course, lecturer_courses, assignments, student, mark } =
   new PrismaClient();
 
 const getCourses = asyncHandler(async (req, res) => {
@@ -61,20 +61,21 @@ const getAssign = asyncHandler(async (req, res) => {
 });
 
 const getUndergraduates = asyncHandler(async (req, res) => {
-  const ac_year_ID = req.params.id1;
-  const degree_type = req.params.id2;
+
+  const acYear = (req.params.id1);
+  const cuYear = (req.params.id2);
+  const degree_type = (req.params.id3);
+
 
   const student = [];
 
   connection.query(
-    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID =" +
-      '"' +
-      ac_year_ID +
-      '"' +
-      " AND student.degree_type =" +
-      '"' +
-      degree_type +
-      '"',
+
+    "SELECT academic_year.* FROM academic_year WHERE academic_year.aca_year ="+'"'+
+    acYear+'"'+ "AND academic_year.current_year =" +'"'+
+    cuYear +'"'+
+      " AND academic_year.degree_type =" +
+      '"'+degree_type+'"',
     function (error, results, fields) {
       if (error) throw error;
 
@@ -84,16 +85,20 @@ const getUndergraduates = asyncHandler(async (req, res) => {
 });
 
 const getResult = asyncHandler(async (req, res) => {
-  const ac_year_ID = (req.params.id1);
-  const degree_type = (req.params.id2);
+  const mark_id = (req.params.id1);
+  const year = (req.params.id2);
+  const semester = (req.params.id3);
+  const degree = (req.params.id4);
+  const course_name = (req.params.id5);
   
-  const student = [];
+  const mark = [];
 
   connection.query(
-    "SELECT student.*,user.* FROM user,student WHERE user.user_id = student.user_id AND student.ac_year_ID =" +'"'+
-      ac_year_ID +'"'+
-      " AND student.degree_type =" +
-      '"'+degree_type+'"',
+    "SELECT exam_mark.*,exam.*,exam_question_mark.* FROM exam,exam_mark,exam_question_mark WHERE exam_mark.mark_id = exam_question_mark.mark_id AND exam_mark.exam_sem_id = exam.exam_sem_id AND exam_mark.mark_id =" +'"'+
+    mark_id  +'"'+
+      " AND exam_mark.degree =" +
+      '"'+degree+'"'+" AND exam_mark.degree =" +
+      '"'+degree+'"',
     function (error, results, fields) {
       if (error) throw error;
 
@@ -247,6 +252,7 @@ module.exports = {
   getCourses,
   getAssign,
   getUndergraduates,
+  getResult,
   assignAdd,
   assignMarkAdd,
   getAssignMarks,

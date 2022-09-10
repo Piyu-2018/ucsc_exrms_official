@@ -34,8 +34,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(IndexNumber, SubMarks, AssignMarks,TotalMarks, Grade) {
-  return { IndexNumber, SubMarks, AssignMarks,TotalMarks , Grade};
+function createData(IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks, Grade) {
+  return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks , Grade};
 }
 
 /* const rows = [
@@ -55,8 +55,18 @@ export default function CustomizedTables(props) {
   const userInfo = useSelector((state) => state.userInfo);
   const { accessToken } = userInfo.user;
 
-  const acYear = props.year;
+  const acYear = props.option;
+  const cuYear = props.year;
+  const sem = props.sem ;
   const degree = props.degree;
+  const subject = props.subject;
+
+  useEffect(() => {
+   
+    getResult();
+
+  }, [acYear,cuYear, sem, degree, subject])
+ 
 
   const getResult = async () => {
     const config = {
@@ -67,7 +77,7 @@ export default function CustomizedTables(props) {
   console.log("Hi");
 
   await axios
-      .get(API_URL + "/settings/getResult/"+acYear+"/"+degree,config)
+      .get(API_URL + "/settings/getResult/"+acYear+"/"+cuYear+"/"+sem+"/"+degree+"/"+subject,config)
       .then((response) => {
         setExaminationData(response.data);
         console.log(response.data);
@@ -83,7 +93,10 @@ export default function CustomizedTables(props) {
         <TableHead>
           <TableRow>
             <StyledTableCell align="left">Index Number</StyledTableCell>
-            <StyledTableCell align="left"> Sub Marks</StyledTableCell>
+            <StyledTableCell align="left">Q1</StyledTableCell>
+            <StyledTableCell align="left">Q2</StyledTableCell>
+            <StyledTableCell align="left">Q3</StyledTableCell>
+            <StyledTableCell align="left">Q4</StyledTableCell>
             <StyledTableCell align="left">Assignment Marks </StyledTableCell>
             <StyledTableCell align="left">Total Marks</StyledTableCell>
             <StyledTableCell align="left">Grade </StyledTableCell>
@@ -93,7 +106,10 @@ export default function CustomizedTables(props) {
         {examinationData.map((data) => (
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
-              <StyledTableCell align="left">{data.SubMarks}</StyledTableCell>
+              <StyledTableCell align="left">{data.q1}</StyledTableCell>
+              <StyledTableCell align="left">{data.q2}</StyledTableCell>
+              <StyledTableCell align="left">{data.q3}</StyledTableCell>
+              <StyledTableCell align="left">{data.q4}</StyledTableCell>
               <StyledTableCell align="left">{data.AssignMarks}</StyledTableCell>
               <StyledTableCell align="left">{data.TotalMarks}</StyledTableCell>
               <StyledTableCell align="left">{data.Grade}</StyledTableCell>
