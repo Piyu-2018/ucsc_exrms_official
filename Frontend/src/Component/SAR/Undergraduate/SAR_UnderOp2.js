@@ -17,6 +17,7 @@ export default function SplitButton(props) {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleClick = () => {
+
     console.info(`You clicked ${options[selectedIndex]}`);
   };
 
@@ -24,6 +25,9 @@ export default function SplitButton(props) {
     setSelectedIndex(index);
     setOpen(false);
     props.onSelectYear(options[index]);
+    // window.location.reload();
+    
+
   };
 
   const handleToggle = () => {
@@ -41,14 +45,15 @@ export default function SplitButton(props) {
   return (
     <React.Fragment>
       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-        <Button onClick={handleClick}>{options[selectedIndex]}</Button>
-        <Button
+        <Button onClick={handleClick} >{options[selectedIndex]} </Button>
+        <Button 
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
+          
         >
           <ArrowDropDownIcon />
         </Button>
@@ -77,7 +82,7 @@ export default function SplitButton(props) {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 2}
+                      disabled={index === 6}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >
