@@ -12,7 +12,10 @@ const {
   getAssignMarks,
 } = require("../controllers/assignmentController");
 
-const {getExaminationCourses} = require("../controllers/examinationController")
+const {
+  getExaminationCourses,
+  getExaminationQuestion,
+} = require("../controllers/examinationController");
 
 const router = express.Router();
 
@@ -26,6 +29,7 @@ router.get("/getUndergraduates/:id1/:id2", getUndergraduates);
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd", assignMarkAdd);
 router.get("/getAssignMarks/:id", getAssignMarks);
-router.get("/getExaminationCourses/:id",getExaminationCourses);
+router.get("/getExaminationCourses/:id", getExaminationCourses);
+router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
 
 module.exports = router;

@@ -89,16 +89,41 @@ const rows = [
   ),
 ];
 
-function LecExamMarkTable() {
+function LecExamMarkTable(props) {
+  const QuestionData = props.QuestionData;
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Index Number</StyledTableCell>
-            <StyledTableCell>Marks (1st Marking)</StyledTableCell>
-            <StyledTableCell>Marks (2nd Marking)</StyledTableCell>
-            <StyledTableCell>More Actions</StyledTableCell>
+            <StyledTableCell >Index Number</StyledTableCell>
+            <StyledTableCell colSpan={QuestionData.length}>Marks (1st Marking)</StyledTableCell>
+            <StyledTableCell colSpan={QuestionData.length}>Marks (2nd Marking)</StyledTableCell>
+            <StyledTableCell>Total Marks</StyledTableCell>
+            </TableRow>
+            <TableRow>
+            <StyledTableCell >  </StyledTableCell>
+            {
+              QuestionData.map((row)=> (
+                <>
+                
+                <StyledTableCell>Question {row.question_number}</StyledTableCell>
+                
+                </>
+              ))
+            }
+
+{
+              QuestionData.map((row)=> (
+                <>
+                
+                <StyledTableCell>Question {row.question_number}</StyledTableCell>
+                
+                </>
+              ))
+            }
+            <StyledTableCell >  </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -109,7 +134,8 @@ function LecExamMarkTable() {
               </StyledTableCell>
               <StyledTableCell>{row.marks1}</StyledTableCell>
               <StyledTableCell>{row.marks2}</StyledTableCell>
-              <StyledTableCell>{row.more}</StyledTableCell>
+              <StyledTableCell>Total</StyledTableCell>
+              
             </StyledTableRow>
           ))}
         </TableBody>

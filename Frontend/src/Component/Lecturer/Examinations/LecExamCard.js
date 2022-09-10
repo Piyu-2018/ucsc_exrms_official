@@ -37,7 +37,7 @@ function LecExamCard(props) {
 
           <Button sx={{ mt: 2 }} size="small">
           <Typography gutterBottom variant="body2" component="div">
-            <Link to={`/lec_course_marking/${props.CourseId}/${props.MarkingStatus}`}>Mark Course</Link>
+            <Link to={`/lec_course_marking/${props.CourseId}/${props.MarkingStatus}/`}>Mark Course</Link>
           </Typography>
           </Button>
         </CardContent>
