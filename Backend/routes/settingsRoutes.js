@@ -11,8 +11,7 @@ const {
   assignMarkAdd,
   getResult,
   getAssignMarks,
-
-
+  getIndexAssign,
 } = require("../controllers/assignmentController");
 
 const {
@@ -22,11 +21,7 @@ const {
   getMarksFromIndex,
 } = require("../controllers/examinationController");
 
-
-const {
-  getNewIntake,
-} = require("../controllers/directorNewIntakeController");
-
+const { getNewIntake } = require("../controllers/directorNewIntakeController");
 
 const router = express.Router();
 
@@ -34,9 +29,10 @@ router.get("/getCourses/:id", getCourses);
 router.get("/getAssign/:id1/:id2", getAssign);
 
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
-router.get("/getNewIntake",getNewIntake );
+router.get("/getNewIntake", getNewIntake);
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
+router.get("/getIndexAssign/:id", getIndexAssign);
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd", assignMarkAdd);
