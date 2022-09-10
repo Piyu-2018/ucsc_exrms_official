@@ -34,7 +34,7 @@ function LecAssignMarking() {
 
             <LecassignMarkTable  assignmentId={assignmentId}/>
             <LecAssignAdd assignmentId={assignmentId} />
-            <LecAddFile />
+            <LecAddFile assignmentId={assignmentId}/>
           </Grid>
         </Grid>
       </Box>
