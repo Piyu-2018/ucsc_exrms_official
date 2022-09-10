@@ -49,14 +49,49 @@ const getExaminationQuestion = asyncHandler(async (req, res) => {
     }
   );
 
-  // const courses = await findMany({
-  //     where: {
-  //         course_id : course.course_id
-  //     }
-  // })
 });
+
+const getDistinctIndex = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id);
+
+  
+  
+  connection.query(
+    `SELECT DISTINCT marks.index_number FROM marks,course_exam_question WHERE course_exam_question.question_id = marks.question_id AND course_exam_question.course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+    //console.log(results);
+      res.json(results);
+    }
+  );
+
+});
+
+
+const getMarksFromIndex = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id1);
+  const index_number = parseInt(req.params.id2);
+
+
+  
+  
+  connection.query(
+    `SELECT marks.* FROM marks,course_exam_question WHERE marks.question_id = course_exam_question.question_id AND marks.index_number = ${index_number} AND course_exam_question.course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+    //console.log(results);
+      res.json(results);
+    }
+  );
+
+});
+
 
 module.exports = {
   getExaminationCourses,
   getExaminationQuestion,
+  getDistinctIndex,
+  getMarksFromIndex,
 };

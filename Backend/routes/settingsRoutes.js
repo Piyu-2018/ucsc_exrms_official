@@ -18,6 +18,8 @@ const {
 const {
   getExaminationCourses,
   getExaminationQuestion,
+  getDistinctIndex,
+  getMarksFromIndex,
 } = require("../controllers/examinationController");
 
 
@@ -41,5 +43,7 @@ router.post("/assignMarkAdd", assignMarkAdd);
 router.get("/getAssignMarks/:id", getAssignMarks);
 router.get("/getExaminationCourses/:id", getExaminationCourses);
 router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
+router.get("/getDistinctIndex/:id", getDistinctIndex);
+router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
 
 module.exports = router;
