@@ -22,6 +22,7 @@ const {
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
+const { getTimetable } = require("../controllers/timeTableController");
 
 const router = express.Router();
 
@@ -41,5 +42,7 @@ router.get("/getExaminationCourses/:id", getExaminationCourses);
 router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
 router.get("/getDistinctIndex/:id", getDistinctIndex);
 router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
+
+router.get("getTimetable",getTimetable)
 
 module.exports = router;
