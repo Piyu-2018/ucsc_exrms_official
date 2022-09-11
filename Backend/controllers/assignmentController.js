@@ -145,6 +145,25 @@ const assignMarkAdd = asyncHandler(async (req, res) => {
   
 });
 
+const getPayment = asyncHandler(async (req, res) => {
+  const ac_year_ID = parseInt(req.params.id1);
+  const degree_type = parseInt(req.params.id2);
+
+  // console.log(degree_type);
+
+  const student = [];
+
+  connection.query(
+    "SELECT * FROM payment",
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
 
 
-module.exports = { getCourses, getAssign, getUndergraduates, assignAdd,assignMarkAdd };
+
+
+module.exports = { getCourses, getAssign, getUndergraduates, assignAdd,assignMarkAdd ,getPayment};
