@@ -11,8 +11,7 @@ const {
   assignMarkAdd,
   getResult,
   getAssignMarks,
-
-
+  getIndexAssign,
 } = require("../controllers/assignmentController");
 
 const {
@@ -22,15 +21,8 @@ const {
   getMarksFromIndex,
 } = require("../controllers/examinationController");
 
-
-const {
-  getNewIntake,
-} = require("../controllers/directorNewIntakeController");
-
-const {
-  getRegistration,
-} = require("../controllers/directorRegistrationController");
-
+const { getNewIntake } = require("../controllers/directorNewIntakeController");
+const { getTimetable } = require("../controllers/timeTableController");
 
 const router = express.Router();
 
@@ -41,7 +33,9 @@ router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
 router.get("/getNewIntake",getNewIntake );
 router.get("/getRegistration/:id1/:id2", getRegistration);
 
+
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
+router.get("/getIndexAssign/:id", getIndexAssign);
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd", assignMarkAdd);
@@ -50,5 +44,7 @@ router.get("/getExaminationCourses/:id", getExaminationCourses);
 router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
 router.get("/getDistinctIndex/:id", getDistinctIndex);
 router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
+
+router.get("getTimetable",getTimetable)
 
 module.exports = router;
