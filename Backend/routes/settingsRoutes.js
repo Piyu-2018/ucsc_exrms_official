@@ -9,7 +9,12 @@ const {
   assignAdd,
   getUndergraduates,
   assignMarkAdd,
+  getPayment,
 } = require("../controllers/assignmentController");
+
+const {
+  getLetterRequest,
+} = require("../controllers/ma/reqLetterController");
 
 const router = express.Router();
 
@@ -20,5 +25,8 @@ router.get("/getUndergraduates/:id1/:id2", getUndergraduates);
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd",assignMarkAdd);
+
+router.get("/getPayment", getPayment);
+router.get("/getLetterRequest", getLetterRequest);
 
 module.exports = router;
