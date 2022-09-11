@@ -22,6 +22,7 @@ const {
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
+const { getRegistration } = require("../controllers/directorRegistrationController");
 const { getTimetable } = require("../controllers/timeTableController");
 
 const router = express.Router();

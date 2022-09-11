@@ -1,4 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
+// const { PrismaClient } = require("@prisma/client");
 const asyncHandler = require("express-async-handler");
 const { StatusCodes } = require("http-status-codes");
 
