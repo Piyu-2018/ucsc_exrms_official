@@ -13,7 +13,8 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import readXlsxFile from "read-excel-file";
 import axios from "axios";
 import { API_URL } from "../../constants/globalConstants";
-import LoadingButton from '@mui/lab/LoadingButton';
+import LoadingButton from "@mui/lab/LoadingButton";
+
 
 // import { useState } from "react";
 // import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -47,19 +48,15 @@ const styleSuccess = {
 function LecAssignAdd(props) {
   console.log(props.assignmentId);
   const [open, setOpen] = useState(false);
-  const [openUpload,setOpenUpload] = useState(false);
-  const [buttonState, setButtonState] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [openUpload, setOpenUpload] = useState(false);
+  const [buttonState, setButtonState] = useState(true);
+  const [fileName, setFileName] = useState(null);
   const handleCloseUpload = () => {
     setOpenUpload(false);
-    window.location.reload(); 
-    
-  }
-  ;
-
-  const [fileName, setFileName] = useState(null);
-
+    window.location.reload();
+  };
   const schema = {
     index_number: {
       prop: "index_number",
@@ -71,24 +68,20 @@ function LecAssignAdd(props) {
     },
   };
 
+  
+
   const handleFile = async (e) => {
     // console.log(e);
     setButtonState(false);
-    
+
     setTimeout(() => {
-      
       setOpenUpload(true);
-      
-    }, 3000);
+    }, 2000);
 
     setTimeout(() => {
-      
       setButtonState(true);
-      
-    }, 3000);
+    }, 2000);
 
-    
-    
     const file = e.target.files[0];
     setFileName(file.name);
     // console.log(file.name);
@@ -99,7 +92,6 @@ function LecAssignAdd(props) {
         dataMarks: rows.rows,
       };
       console.log(data);
-      console.log(buttonState);
       await axios
         .post(API_URL + "/settings/assignMarkAdd", data)
         .then((response) => {
@@ -127,33 +119,32 @@ function LecAssignAdd(props) {
           Add Assignment Marks Individually
         </Button>
 
-        
-          <LoadingButton
-            variant="contained"
-            component="label"
-            sx={{ mt: "50px", ml: "5%" }}
-            loading={!buttonState}
-            loadingPosition="start"
-          >
-            {buttonState && ( <>
-            <Typography>Upload (.xlsx format)</Typography>
-            <input
-              hidden
-              accept=".xlsx"
-              onChange={(e) => handleFile(e)}
-              multiple
-              type="file"
-            /></>)}
-            {!buttonState && (
-              <>
+        <LoadingButton
+          variant="contained"
+          component="label"
+          sx={{ mt: "50px", ml: "5%" }}
+          loading={!buttonState}
+          loadingPosition="start"
+        >
+          {buttonState && (
+            <>
+              <Typography>Upload (.xlsx format)</Typography>
+              <input
+                hidden
+                accept=".xlsx"
+                onChange={(e) => handleFile(e)}
+                multiple
+                type="file"
+              />
+            </>
+          )}
+          {!buttonState && (
+            <>
+              <Typography>&nbsp; &nbsp; &nbsp; Loading</Typography>
+            </>
+          )}
+        </LoadingButton>
 
-              <Typography>
-              &nbsp; &nbsp; &nbsp; Loading
-              </Typography>
-              </>
-            )}
-          </LoadingButton>
-       
         {/* {!buttonState && (
           <LoadingButton
             variant="contained"
@@ -214,7 +205,6 @@ function LecAssignAdd(props) {
           </Box>
         </Fade>
       </Modal>
-
       <Modal
         open={openUpload}
         onClose={handleClose}
@@ -239,8 +229,6 @@ function LecAssignAdd(props) {
         </Box>
       </Modal>
     </Box>
-
-    
   );
 }
 

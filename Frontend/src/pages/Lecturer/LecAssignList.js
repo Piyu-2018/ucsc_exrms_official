@@ -28,11 +28,11 @@ function LecAssignList() {
   const { user_id, accessToken } = userInfo.user;
 
   const getAssign = async () => {
-    const config = {
-      headers: {
-        authorization: accessToken,
-      },
-    };
+      const config = {
+        headers: {
+          authorization: accessToken,
+        },
+      };
 
     await axios
       .get(API_URL + "/settings/getAssign/" + CourseId + "/" + user_id, config)
