@@ -5,12 +5,11 @@ const asyncHandler = require("express-async-handler");
 const { sign } = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
-
 // const { user } = new PrismaClient();
 
 const { generateOtp, otpEmail } = require("./helpers/authControllerHelper");
 
-var mysql = require("mysql");
+// var mysql = require("mysql");
 // var connection = mysql.createConnection({
 //   host: "localhost",
 //   user: "root",
@@ -47,7 +46,6 @@ const login = asyncHandler(async (req, res) => {
           },
         });
       } else {
-
         console.log(results[0].password);
 
         bycrypt.compare(password, results[0].password).then((match) => {
@@ -61,7 +59,7 @@ const login = asyncHandler(async (req, res) => {
               },
               process.env.JWT_SECRET
             );
-    
+
             let returnData = {
               user_id: results[0].user_id,
               f_name: results[0].f_name,
@@ -72,7 +70,6 @@ const login = asyncHandler(async (req, res) => {
               accessToken: accessToken,
             };
             res.json(returnData);
-
           } else {
             res.json({
               error: {
@@ -82,16 +79,9 @@ const login = asyncHandler(async (req, res) => {
             });
           }
         });
-          
-        
       }
-    
-    });
-
-  
-
-  
-  
+    }
+  );
 });
 
 // const login = asyncHandler(async (req, res) => {
@@ -159,18 +149,19 @@ const register = asyncHandler(async (req, res) => {
     function (error, results, fields) {
       if (error) throw error;
 
-      if(results.length != 0){
-        res.json({ error: "Email already exist please login "});
-      }else{
-        bycrypt.hash(password,10).then(async (hash) => {
+      if (results.length != 0) {
+        res.json({ error: "Email already exist please login " });
+      } else {
+        bycrypt.hash(password, 10).then(async (hash) => {
           connection.query(
             `INSERT INTO user (user_name,password,email,user_type,f_name,l_name) VALUES ("${user_name}","${hash}","${email}","${user_type}","${f_name}","${l_name}")`,
-            function (error){
+            function (error) {
               if (error) throw error;
 
-              const accessToken = sign({email:email,user_name:user_name},
+              const accessToken = sign(
+                { email: email, user_name: user_name },
                 process.env.JWT_SECRET
-                );
+              );
 
               const returnData = {
                 user_type: user_type,
@@ -178,21 +169,18 @@ const register = asyncHandler(async (req, res) => {
                 l_name: l_name,
                 email: email,
                 emailStatus: false,
-                user_name:user_name,
+                user_name: user_name,
                 accessToken: accessToken,
               };
-              
+
               res.status(StatusCodes.CREATED).json(returnData);
             }
-          )
-        })
+          );
+        });
       }
-
-     
     }
   );
-
-});  
+});
 
 // const register = asyncHandler(async (req, res) => {
 //   const { user_name, user_type, f_name, l_name, password, email } = req.body;
@@ -424,4 +412,4 @@ const resetPassowrd = asyncHandler(
   })
 );
 
-module.exports = { login, register};
+module.exports = { login, register };

@@ -43,6 +43,6 @@ router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
 router.get("/getDistinctIndex/:id", getDistinctIndex);
 router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
 
-router.get("getTimetable",getTimetable)
+router.get("/getTimetable",getTimetable)
 
 module.exports = router;
