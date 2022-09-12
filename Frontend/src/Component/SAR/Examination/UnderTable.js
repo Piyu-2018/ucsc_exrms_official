@@ -16,7 +16,7 @@ import { API_URL } from "../../../constants/globalConstants";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#06283D',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
