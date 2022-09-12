@@ -26,8 +26,8 @@ export default function AutoGrid() {
                 <Grid item xs={12} md={3}>
                 <Stack spacing={2} direction="row">
                   
-                  <Button variant="contained" sx={{textcolor:'white'}} color="success"><a href='/update-results'>Update</a></Button>
-                  <Button variant="contained" sx={{textcolor:'white'}} color="error"><a href='/released'>Release</a></Button>
+                  <Button variant="contained" sx={{color:'white'}} color="success"><a href='/update-results'>Update</a></Button>
+                  <Button variant="contained" sx={{color:'white'}} color="error"><a href='/released'>Release</a></Button>
                 </Stack>
                 </Grid>
                 <Grid item xs={12} md={3}>

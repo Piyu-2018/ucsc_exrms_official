@@ -149,12 +149,12 @@ export default function SAR_Sidebar() {
               <ListItemText primary="Summary Report" />
             </ListItemButton>
 
-            <ListItemButton sx={{ pl: 4 }} to="">
+       {/*      <ListItemButton sx={{ pl: 4 }} to="">
               <ListItemIcon>
                 <HowToRegRoundedIcon />
               </ListItemIcon>
               <ListItemText primary="Generate Report" />
-            </ListItemButton>
+            </ListItemButton> */}
           </List>
         </Collapse>
         <Divider />
