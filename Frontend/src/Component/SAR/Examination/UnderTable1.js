@@ -8,11 +8,15 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import CreateIcon from '@mui/icons-material/Create';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../constants/globalConstants";
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
+    backgroundColor: '#06283D',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -30,40 +34,87 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(IndexNumber, SubMarks, AssignMarks,TotalMarks, Grade, Edit) {
-  return { IndexNumber, SubMarks, AssignMarks,TotalMarks , Grade, Edit};
+function createData(IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks, Grade) {
+  return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks , Grade};
 }
 
-const rows = [
+/* const rows = [
     createData(19001411,'2019|CS|141','80','70','B ',''),
     createData(19001428,'2019/CS/142','90','80 ','A',''),
     createData(19001381,'2019/CS/138','85',' 76','A',''),
     createData(19001411,'2019/CS/141','70',' 57','C',''),
-];
+]; */
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  console.log(props.option);
+  console.log(props.year);
+  console.log(props.sem);
+  console.log(props.degree);
+  console.log(props.subject);
+  const [examinationData, setExaminationData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+
+  const acYear = props.option;
+  const cuYear = props.year;
+  const sem = props.sem ;
+  const degree = props.degree;
+  const subject = props.subject;
+
+  useEffect(() => {
+   
+    getResult1();
+
+  }, [acYear,cuYear, sem, degree, subject])
+ 
+
+  const getResult1 = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+  console.log("Hi");
+
+  await axios
+      .get(API_URL + "/settings/getResult1/"+acYear+"/"+cuYear+"/"+sem+"/"+degree+"/"+subject,config)
+      .then((response) => {
+        setExaminationData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getResult1();
+  }, []);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
             <StyledTableCell align="left">Index Number</StyledTableCell>
-            <StyledTableCell align="left"> Subject Marks</StyledTableCell>
-            <StyledTableCell align="left">Assigent nMarks </StyledTableCell>
+            <StyledTableCell align="left">Q1</StyledTableCell>
+            <StyledTableCell align="left">Q2</StyledTableCell>
+            <StyledTableCell align="left">Q3</StyledTableCell>
+            <StyledTableCell align="left">Q4</StyledTableCell>
+            <StyledTableCell align="left">Assignment Marks </StyledTableCell>
             <StyledTableCell align="left">Total Marks</StyledTableCell>
             <StyledTableCell align="left">Grade </StyledTableCell>
             <StyledTableCell align="left"> </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.SubMarks}</StyledTableCell>
-              <StyledTableCell align="left">{row.AssignMarks}</StyledTableCell>
-              <StyledTableCell align="left">{row.TotalMarks}</StyledTableCell>
-              <StyledTableCell align="left">{row.Grade}  </StyledTableCell>
-              <StyledTableCell align="left">{row.Edit}<CreateIcon fontSize="small" sx={{Floatleft: 50}} /></StyledTableCell>
+        {examinationData.map((data) => (
+            <StyledTableRow>
+              <StyledTableCell align="left">{data.index_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.q1}</StyledTableCell>
+              <StyledTableCell align="left">{data.q2}</StyledTableCell>
+              <StyledTableCell align="left">{data.q3}</StyledTableCell>
+              <StyledTableCell align="left">{data.q4}</StyledTableCell>
+              <StyledTableCell align="left">{data.AssignMarks}</StyledTableCell>
+              <StyledTableCell align="left">{data.TotalMarks}</StyledTableCell>
+              <StyledTableCell align="left">{data.Grade}</StyledTableCell>
+              <StyledTableCell align="left">{data.Edit}<CreateIcon fontSize="small" sx={{Floatleft: 50}} /></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

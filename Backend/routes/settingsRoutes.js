@@ -10,6 +10,7 @@ const {
   getUndergraduates,
   assignMarkAdd,
   getResult,
+  getResult1,
   getAssignMarks,
   getIndexAssign,
 } = require("../controllers/assignmentController");
@@ -36,7 +37,11 @@ router.get("/getRegistration/:id1/:id2", getRegistration);
 
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
+
+router.get("/getResult1/:id1/:id2/:id3/:id4/:id5", getResult1);
+
 router.get("/getIndexAssign/:id", getIndexAssign);
+
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd", assignMarkAdd);
