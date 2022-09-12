@@ -27,9 +27,8 @@ export default class Demo extends React.PureComponent {
 
     return (
       <Paper>
-        <Chart
-          data={chartData}
-        >
+        <Chart 
+          data={chartData}>
           <PieSeries
             valueField="val"
             argumentField="region"

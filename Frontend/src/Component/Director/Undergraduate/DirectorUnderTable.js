@@ -80,6 +80,7 @@ export default function CustomizedTables(props) {
   useEffect(() => {
     getUndergraduates();
   }, []);
+  
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
