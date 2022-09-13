@@ -69,9 +69,9 @@ export default function AutoGrid() {
   const open = true;
   console.log(open);
 
-  const [option,setOption] = useState("2022/2023");
+  const [option,setOption] = useState("2022-2023");
   const [year,setYear] = useState("2nd Year");
-  const [sem,setSem] = useState("1st Semester");
+  const [semester,setSem] = useState("1st Semester");
   const [degree,setDegree] = useState("Information System (Bsc)");
   const [subject,setSubject] = useState("Enterprise Resource Planning");
 
@@ -83,8 +83,8 @@ export default function AutoGrid() {
     setYear(year);
   }
 
-  const onSelectedSem = (sem) => {
-    setSem(sem);
+  const onSelectedSem = (semester) => {
+    setSem(semester);
   };
 
   const onSelectedDegree = (degree) => {
@@ -107,7 +107,7 @@ export default function AutoGrid() {
           aria-label="full width tabs example"
           sx={{backgroundColor: '#06283D'}}
           TabIndicatorProps={{
-            sx: { backgroundColor: "red" }
+            sx: { backgroundColor: "#1976D2" ,height:5}
           }}
         >
           
@@ -125,12 +125,12 @@ export default function AutoGrid() {
         <TabPanel value={value} index={0} dir={theme.direction}>
            
             <UnderSeach onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedSem={onSelectedSem} onSelectedDegree={onSelectedDegree} onSelectedSubject={onSelectedSubject}/> <br></br>
-            <UnderTable option={option} year={year} sem={sem} degree={degree} subject={subject}/> 
+            <UnderTable option={option} year={year} semester={semester} degree={degree} subject={subject}/> 
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
             
             <UnderSeach onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedSem={onSelectedSem} onSelectedDegree={onSelectedDegree} onSelectedSubject={onSelectedSubject}/> <br></br>
-            <UnderTable1 option={option} year={year} sem={sem} degree={degree} subject={subject}/>
+            <UnderTable1 option={option} year={year} semester={semester} degree={degree} subject={subject}/>
             <DayTimeTable/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>

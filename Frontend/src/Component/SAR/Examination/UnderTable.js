@@ -48,7 +48,7 @@ function createData(IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks, Grade) 
 export default function CustomizedTables(props) {
   console.log(props.option);
   console.log(props.year);
-  console.log(props.sem);
+  console.log(props.semester);
   console.log(props.degree);
   console.log(props.subject);
   const [examinationData, setExaminationData] = useState([]);
@@ -56,8 +56,8 @@ export default function CustomizedTables(props) {
   const { accessToken } = userInfo.user;
 
   const acYear = props.option;
-  const cuYear = props.year;
-  const sem = props.sem ;
+  const year = props.year;
+  const semester = props.semester ;
   const degree = props.degree;
   const subject = props.subject;
 
@@ -65,7 +65,7 @@ export default function CustomizedTables(props) {
    
     getResult();
 
-  }, [acYear,cuYear, sem, degree, subject])
+  }, [acYear,year, semester, degree, subject])
  
 
   const getResult = async () => {
@@ -77,10 +77,11 @@ export default function CustomizedTables(props) {
   console.log("Hi");
 
   await axios
-      .get(API_URL + "/settings/getResult/"+acYear+"/"+cuYear+"/"+sem+"/"+degree+"/"+subject,config)
+      .get(API_URL+`/settings/getResult/${acYear}/${year}/${semester}/${degree}/${subject}`,config)
       .then((response) => {
         setExaminationData(response.data);
         console.log(response.data);
+        console.log("siuvnfiv");
       });
   };
 
@@ -110,9 +111,9 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="left">{data.q2}</StyledTableCell>
               <StyledTableCell align="left">{data.q3}</StyledTableCell>
               <StyledTableCell align="left">{data.q4}</StyledTableCell>
-              <StyledTableCell align="left">{data.AssignMarks}</StyledTableCell>
-              <StyledTableCell align="left">{data.TotalMarks}</StyledTableCell>
-              <StyledTableCell align="left">{data.Grade}</StyledTableCell>
+              <StyledTableCell align="left">{data.assignment_mark}</StyledTableCell>
+              <StyledTableCell align="left">{data.total_mark}</StyledTableCell>
+              <StyledTableCell align="left">{data.grade}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

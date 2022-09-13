@@ -6,11 +6,23 @@ const { StatusCodes } = require("http-status-codes");
 
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-  host: "sql238.main-hosting.eu",
-  user: "u117929562_ucscExrmsUser",
-  password: "lT:@>w0y4",
-  database: "u117929562_ucscEXRMS",
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "u117929562_ucscexrms",
 });
+// var connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "u117929562_ucscexrms",
+// });
+// var connection = mysql.createConnection({
+//   host: "sql238.main-hosting.eu",
+//   user: "u117929562_ucscExrmsUser",
+//   password: "lT:@>w0y4",
+//   database: "u117929562_ucscEXRMS",
+// });
 
 connection.connect();
 
@@ -90,24 +102,40 @@ const getUndergraduates = asyncHandler(async (req, res) => {
 
 const getResult = asyncHandler(async (req, res) => {
 
+  console.log("Hi");
+
   const acYear = (req.params.id1);
   const year = (req.params.id2);
   const semester = (req.params.id3);
   const degree = (req.params.id4);
   const subject = (req.params.id5);
+
+  console.log(req.params);
   
   const mark = [];
 
-  connection.query(
-    "SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.academic_yr ="+'"'+acYear +'"'+ 
-    "AND exam.year = " +'"'+year +'"'+
-    "AND exam.semester=" +'"'+semester +'"'+
-    "AND exam_mark.degree=" +'"'+degree +'"'+
-    "AND exam_mark.course_name=" +'"'+subject +'"',
+  // connection.query(
+  //   "SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.academic_yr ="+'"'+acYear +'"'+ 
+  //   "AND exam.year = " +''+year +''+
+  //   "AND exam.semester=" +''+semester +''+
+  //   "AND exam_mark.degree=" +''+degree +''+
+  //   "AND exam_mark.course_name=" +''+subject +'',
+  connection.query(`SELECT *
+  FROM exam
+  INNER JOIN exam_mark
+  ON exam.exam_sem_id = exam_mark.exam_sem_id 
+  INNER JOIN exam_question_mark
+  ON exam_mark.mark_id = exam_question_mark.mark_id
+  WHERE exam_mark.academic_yr ='${acYear}' 
+  AND exam_mark.degree='${degree}' 
+  AND exam.year = '${year}'
+  AND exam.semester='${semester}' 
+  AND exam_mark.course_name='${subject}'`,
     function (error, results, fields) {
       if (error) throw error;
 
       res.json(results);
+      console.log(results);
     }
   );
 });
