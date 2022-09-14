@@ -1,8 +1,5 @@
-// const { PrismaClient } = require("@prisma/client");
 const asyncHandler = require("express-async-handler");
 const { StatusCodes } = require("http-status-codes");
-
-// const { user, course, lecturer_courses, assignments } = new prismaClient();
 
 var mysql = require("mysql");
 // var connection = mysql.createConnection({
@@ -19,18 +16,24 @@ var connection = mysql.createConnection({
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
+
 connection.connect();
 
-const getNewIntake = asyncHandler(async (req, res) => {
+const getTimetable = asyncHandler(async (req, res) => {
   
+    
+    
     connection.query(
-      "SELECT academic_year.* FROM academic_year WHERE academic_year.aca_year ="+'"'+ "Academic Year - 2022-2023"+'"'+ "AND academic_year.current_year ="+'"'+ "First Year"+'"',
+      `SELECT exam_start,exam_end,course_code,course_name FROM exam_timetable`,
       function (error, results, fields) {
         if (error) throw error;
-  
+      //console.log(results);
         res.json(results);
       }
     );
+  
   });
 
-  module.exports = { getNewIntake};
+module.exports = {
+    getTimetable,
+}; 
