@@ -3,7 +3,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
 
-var mysql = require("mysql");
+// var mysql = require("mysql");
 // var connection = mysql.createConnection({
 //   host: "localhost",
 //   user: "root",
