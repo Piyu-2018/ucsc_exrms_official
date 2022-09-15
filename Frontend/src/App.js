@@ -47,6 +47,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+
 import LecturerAssignments from "./pages/Lecturer/LecturerAssignments";
 import LecAssignList from "./pages/Lecturer/LecAssignList";
 import LecExamTimetable from "./pages/Lecturer/LecExamTimetable";
@@ -100,6 +102,7 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
 
           <Route path="/login" exact element={<Login />} />
+          <Route path="/forgot_password" exact element={<ForgotPassword />} />
           <Route path="/directorDash" element={<DirectorDash />} />
 
           <Route path="/ma_examtimetable" element={<MaExamTimetable />} />

@@ -18,13 +18,21 @@ const { generateOtp, otpEmail } = require("./helpers/authControllerHelper");
 // });
 
 var mysql = require("mysql");
-var connection = mysql.createConnection({
+// var connection = mysql.createConnection({
+//   host: "sql238.main-hosting.eu",
+//   user: "u117929562_ucscExrmsUser",
+//   password: "lT:@>w0y4",
+//   database: "u117929562_ucscEXRMS",
+// });
+// connection.connect();
+
+var connection = mysql.createPool({
+  connectionLimit: 10,
   host: "sql238.main-hosting.eu",
   user: "u117929562_ucscExrmsUser",
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
-connection.connect();
 
 const login = asyncHandler(async (req, res) => {
   console.log("Login using mysql");
@@ -246,96 +254,176 @@ const register = asyncHandler(async (req, res) => {
 const emailCheck = asyncHandler(async (req, res) => {
   const { email } = req.body;
 
-  const emailStatus = await user.findUnique({
-    where: {
-      email,
-    },
-  });
+  connection.query(
+    `SELECT email FROM user WHERE email=${email}`,
+    function (error, results, fields) {
+      if (error) throw error;
 
-  if (emailStatus) {
-    res.json({ isUnique: false });
-  } else {
-    res.json({ isUnique: true });
-  }
+      if (results.length == 0) {
+        res.json({ isUnique: true });
+      } else {
+        res.json({ isUnique: false });
+      }
+    }
+  );
 });
+
+// const emailCheck = asyncHandler(async (req, res) => {
+//   const { email } = req.body;
+
+//   const emailStatus = await user.findUnique({
+//     where: {
+//       email,
+//     },
+//   });
+
+//   if (emailStatus) {
+//     res.json({ isUnique: false });
+//   } else {
+//     res.json({ isUnique: true });
+//   }
+// });
 
 const usernameCheck = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const { user_name } = req.body;
 
-  const existUser = await user.findFirst({
-    where: {
-      OR: [
-        {
-          user_name,
-        },
-      ],
-    },
-  });
+  connection.query(
+    `SELECT email FROM user WHERE user_name="${user_name}" OR email="${user_name}"`,
+    function (error, results, fields) {
+      if (error) throw error;
 
-  if (existUser) {
-    res.json({ isExist: true });
-  } else {
-    res.json({ isExist: false });
-  }
+      if (results.length == 0) {
+        res.json({ isUnique: true });
+      } else {
+        res.json({ isUnique: false });
+      }
+    }
+  );
 });
 
-forgotPasswordOtp = asyncHandler(async (req, res) => {
+// const usernameCheck = asyncHandler(async (req, res) => {
+//   const { user_name } = req.body;
+
+//   const existUser = await user.findFirst({
+//     where: {
+//       OR: [
+//         {
+//           user_name,
+//         },
+//       ],
+//     },
+//   });
+
+//   if (existUser) {
+//     res.json({ isExist: true });
+//   } else {
+//     res.json({ isExist: false });
+//   }
+// });
+
+const forgotPasswordOtp = asyncHandler(async (req, res) => {
   const { user_name } = req.body;
   const otp = generateOtp();
 
-  const status = await user.updateMany({
-    where: {
-      OR: [
-        {
-          user_name: user_name,
-        },
-      ],
-    },
-
-    data: {
-      forgotPasswordOtp: otp,
-    },
-  });
-
-  const existUser = await user.findFirst({
-    where: {
-      OR: [
-        {
-          user_name: user_name,
-        },
-      ],
-    },
-  });
-
-  const htmlEmail = otpEmail(existUser.f_name, otp);
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-
-    auth: {
-      user: "exrmsofficial@gmail.com",
-      pass: "$exrms99official#01",
-    },
-  });
-
-  const mailOptions = {
-    from: "exrmsofficial@gmail.com",
-    to: existUser.email,
-    replyTo: existUser.email,
-    subject: "Password Reset - UCSC EXRMS",
-    html: htmlEmail,
-  };
-
-  transporter.sendMail(mailOptions, (err, info) => {
-    if (err) {
-      console.log("error in sending mail", err);
-      return res.status(400).json({
-        message: `error in sending the mail${err}`,
-      });
-    } else {
-      return res.json({ message: "Email Sent Successfully! " });
+  const status = connection.query(
+    `UPDATE user SET forgotPasswordOtp=${otp} WHERE user_name=${user_name}`,
+    function (err, results) {
+      if (err) throw err;
+      // res.json(results);
     }
-  });
+  );
+
+  // const status = await user.updateMany({
+  //   where: {
+  //     OR: [
+  //       {
+  //         user_name: user_name,
+  //       },
+  //     ],
+  //   },
+
+  //   data: {
+  //     forgotPasswordOtp: otp,
+  //   },
+  // });
+
+  connection.query(
+    `SELECT * FROM user WHERE user_name=${user_name}`,
+    function (err, results) {
+      if (err) throw err;
+
+      const htmlEmail = otpEmail(results[0].f_name, otp);
+
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+
+        auth: {
+          user: "exrmsofficial@gmail.com",
+          pass: "$exrms99official#01",
+        },
+      });
+
+      const mailOptions = {
+        from: "exrmsofficial@gmail.com",
+        to: existUser.email,
+        replyTo: existUser.email,
+        subject: "Password Reset - UCSC EXRMS",
+        html: htmlEmail,
+      };
+
+      transporter.sendMail(mailOptions, (err, info) => {
+        if (err) {
+          console.log("error in sending mail", err);
+          return res.status(400).json({
+            message: `error in sending the mail${err}`,
+          });
+        } else {
+          return res.json({ message: "Email Sent Successfully! " });
+        }
+      });
+    }
+  );
+
+  // const existUser = await user.findFirst({
+  //   where: {
+  //     OR: [
+  //       {
+  //         user_name: user_name,
+  //       },
+  //     ],
+  //   },
+  // });
+
+  // const htmlEmail = otpEmail(existUser.f_name, otp);
+
+  // const transporter = nodemailer.createTransport({
+  //   service: "gmail",
+
+  //   auth: {
+  //     user: "exrmsofficial@gmail.com",
+  //     pass: "$exrms99official#01",
+  //   },
+  // });
+
+  // const mailOptions = {
+  //   from: "exrmsofficial@gmail.com",
+  //   to: existUser.email,
+  //   replyTo: existUser.email,
+  //   subject: "Password Reset - UCSC EXRMS",
+  //   html: htmlEmail,
+  // };
+
+  // transporter.sendMail(mailOptions, (err, info) => {
+  //   if (err) {
+  //     console.log("error in sending mail", err);
+  //     return res.status(400).json({
+  //       message: `error in sending the mail${err}`,
+  //     });
+  //   } else {
+  //     return res.json({ message: "Email Sent Successfully! " });
+  //   }
+  // });
 
   if (status) {
     res.json({
@@ -353,30 +441,48 @@ forgotPasswordOtp = asyncHandler(async (req, res) => {
 const forgetPasswordOtpCheck = asyncHandler(async (req, res) => {
   const { user_name, otp } = req.body;
 
-  const existUser = await user.findFirst({
-    where: {
-      OR: [
-        {
-          user_name: user_name,
-        },
-      ],
-    },
-    select: {
-      forgotPasswordOtp: true,
-    },
-  });
+  connection.query(
+    `SELECT forgotPasswordOtp from user WHERE user_name="${user_name}"`,
+    function (error, results) {
+      if (error) throw error;
+      if (OTP === results[0].forgetPasswordOtpCheck) {
+        res.json({
+          statusCode: 1,
+          msg: "Valid Access",
+        });
+      } else {
+        res.json({
+          statusCode: 2,
+          msg: "Invalid Access",
+        });
+      }
+    }
+  );
 
-  if (OTP === existUser.forgotPasswordOtp) {
-    res.json({
-      statusCode: 1,
-      msg: "Valid Access",
-    });
-  } else {
-    res.json({
-      statusCode: 2,
-      msg: "Invalid Access",
-    });
-  }
+  // const existUser = await user.findFirst({
+  //   where: {
+  //     OR: [
+  //       {
+  //         user_name: user_name,
+  //       },
+  //     ],
+  //   },
+  //   select: {
+  //     forgotPasswordOtp: true,
+  //   },
+  // });
+
+  // if (OTP === existUser.forgotPasswordOtp) {
+  //   res.json({
+  //     statusCode: 1,
+  //     msg: "Valid Access",
+  //   });
+  // } else {
+  //   res.json({
+  //     statusCode: 2,
+  //     msg: "Invalid Access",
+  //   });
+  // }
 });
 
 const resetPassowrd = asyncHandler(
@@ -384,18 +490,33 @@ const resetPassowrd = asyncHandler(
     const { user_name, password } = req.body;
 
     bycrypt.hash(password, 10).then(async (hash) => {
-      const status = await user.updateMany({
-        where: {
-          OR: [
-            {
-              user_name: user_name,
-            },
-          ],
-        },
-        data: {
-          password: hash,
-        },
-      });
+      const status = await connection.query(
+        `UPDATE user SET password=${hash} WHERE user_name=${user_name}`,
+        function(error,results){
+          if(error) throw error;
+
+        }
+      );
+
+
+      
+      
+      
+      
+      
+      
+      // user.updateMany({
+      //   where: {
+      //     OR: [
+      //       {
+      //         user_name: user_name,
+      //       },
+      //     ],
+      //   },
+      //   data: {
+      //     password: hash,
+      //   },
+      // });
 
       if (status) {
         res.json({
@@ -412,4 +533,4 @@ const resetPassowrd = asyncHandler(
   })
 );
 
-module.exports = { login, register };
+module.exports = { login, register,emailCheck, usernameCheck };
