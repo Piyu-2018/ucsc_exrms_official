@@ -84,6 +84,7 @@ import MaExamTimetable from "./pages/Ma/MaExamTimetable";
 import MaPayment from "./pages/Ma/MaPayment";
 import LecCourseResults from "./pages/Lecturer/LecCourseResults";
 import LecChat from "./pages/Lecturer/LecChat";
+import PasswordOtp from "./pages/PasswordOtp";
 
 // const theme = createTheme({
 //   typography: {
@@ -103,6 +104,7 @@ function App() {
 
           <Route path="/login" exact element={<Login />} />
           <Route path="/forgot_password" exact element={<ForgotPassword />} />
+          <Route path="/password_otp" exact element={<PasswordOtp />} />
           <Route path="/directorDash" element={<DirectorDash />} />
 
           <Route path="/ma_examtimetable" element={<MaExamTimetable />} />

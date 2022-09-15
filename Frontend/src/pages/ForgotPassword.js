@@ -37,11 +37,9 @@ function ForgotPassword() {
       await axios
         .post(API_URL + "/auth/usernameCheck", inputData)
         .then((response) => {
-          
           if (response.data.isUnique === false) {
             setUsernameError("");
-            // navigate("/forgotpassword/otp", { state: inputData });
-            
+            navigate("/password_otp", { state: inputData });
           } else {
             setUsernameError("Email or Username Doesn't Exist");
           }
