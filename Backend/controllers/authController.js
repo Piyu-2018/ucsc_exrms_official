@@ -323,12 +323,31 @@ const usernameCheck = asyncHandler(async (req, res) => {
 // });
 
 const forgotPasswordOtp = asyncHandler(async (req, res) => {
+  console.log(req.body);
   const { user_name } = req.body;
-  const otp = generateOtp();
+  console.log(user_name);
+
+  const numList = [
+    Math.floor(Math.random() * 10 + 1),
+    Math.floor(Math.random() * 10),
+    Math.floor(Math.random() * 10),
+    Math.floor(Math.random() * 10),
+    Math.floor(Math.random() * 10),
+  ];
+
+  const otp = (
+    numList[0] * 10000 +
+    numList[1] * 1000 +
+    numList[2] * 100 +
+    numList[3] * 10 +
+    numList[4]
+  ).toString();
+
+  console.log(otp);
 
   const status = connection.query(
-    `UPDATE user SET forgotPasswordOtp=${otp} WHERE user_name=${user_name}`,
-    function (err, results) {
+    `UPDATE user SET forgotPasswordOtp=${otp} WHERE user_name="${user_name}" OR email="${user_name}"`,
+    function (err) {
       if (err) throw err;
       // res.json(results);
     }
@@ -349,25 +368,51 @@ const forgotPasswordOtp = asyncHandler(async (req, res) => {
   // });
 
   connection.query(
-    `SELECT * FROM user WHERE user_name=${user_name}`,
+    `SELECT * FROM user WHERE user_name="${user_name}"`,
     function (err, results) {
       if (err) throw err;
 
-      const htmlEmail = otpEmail(results[0].f_name, otp);
+      const htmlEmail = `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+      <div style="margin:50px auto;width:70%;padding:20px 0">
+        <div style="border-bottom:1px solid #eee">
+          <a href="http://localhost:3000/login" style="cursor: pointer;font-size:1.4em;color: #8427e2;text-decoration:none;font-weight:600">UCSC EXRMS</a>
+        </div>
+        <p style="font-size:1.1em">Hi ${results[0].f_name},</p>
+        <p>Use the following OTP to complete your Password Reset procedures. </p>
+        <h2 style="background: #8427e2;margin: 0 auto;width: max-content;padding: 0 10px;color: #fff;border-radius: 4px;">${otp}</h2>
+        <p style="font-size:0.9em;">Regards,<br />UCSC EXRMS</p>
+        <hr style="border:none;border-top:1px solid #eee" />
+        <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
+          <p>UCSC EXRMS</p>
+          <p>UCSC Building Complex</p>
+          <p>35 Reid Ave</p>
+          <p>Colombo 00700</p>
+        </div>
+      </div>
+    </div>`;
 
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+  
+      auth: {
+        user: "dinilr123@gmail.com",
+          pass: "jjzkyvqgqrcdzqxq",
+      },
+    });
 
-        auth: {
-          user: "exrmsofficial@gmail.com",
-          pass: "$exrms99official#01",
-        },
-      });
+      // const transporter = nodemailer.createTransport({
+      //   service: "gmail",
+
+      //   auth: {
+      //     user: "dinilr123@gmail.com",
+      //     pass: "#Indexnumber99",
+      //   },
+      // });
 
       const mailOptions = {
-        from: "exrmsofficial@gmail.com",
-        to: existUser.email,
-        replyTo: existUser.email,
+        from: "dinilr123@gmail.com",
+        to: "dinilsratnayake@gmail.com",
+        replyTo: "dinilsratnayake@gmail.com",
         subject: "Password Reset - UCSC EXRMS",
         html: htmlEmail,
       };
@@ -492,19 +537,11 @@ const resetPassowrd = asyncHandler(
     bycrypt.hash(password, 10).then(async (hash) => {
       const status = await connection.query(
         `UPDATE user SET password=${hash} WHERE user_name=${user_name}`,
-        function(error,results){
-          if(error) throw error;
-
+        function (error, results) {
+          if (error) throw error;
         }
       );
 
-
-      
-      
-      
-      
-      
-      
       // user.updateMany({
       //   where: {
       //     OR: [
@@ -533,4 +570,11 @@ const resetPassowrd = asyncHandler(
   })
 );
 
-module.exports = { login, register,emailCheck, usernameCheck };
+module.exports = {
+  login,
+  register,
+  emailCheck,
+  usernameCheck,
+  forgotPasswordOtp,
+  forgetPasswordOtpCheck,
+};
