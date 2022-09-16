@@ -14,7 +14,7 @@ const options = ['Academic Year','Academic Year - 2022-2023','Academic Year - 20
 export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
