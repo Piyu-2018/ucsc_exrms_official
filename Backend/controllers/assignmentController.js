@@ -89,27 +89,45 @@ const getUndergraduates = asyncHandler(async (req, res) => {
 });
 
 const getResult = asyncHandler(async (req, res) => {
-  const mark_id = req.params.id1;
-  const year = req.params.id2;
-  const semester = req.params.id3;
-  const degree = req.params.id4;
-  const course_name = req.params.id5;
 
+  const acYear = (req.params.id1);
+  const year = (req.params.id2);
+  const semester = (req.params.id3);
+  const degree = (req.params.id4);
+  const subject = (req.params.id5);
+  
   const mark = [];
 
   connection.query(
-    "SELECT exam_mark.*,exam.*,exam_question_mark.* FROM exam,exam_mark,exam_question_mark WHERE exam_mark.mark_id = exam_question_mark.mark_id AND exam_mark.exam_sem_id = exam.exam_sem_id AND exam_mark.mark_id =" +
-      '"' +
-      mark_id +
-      '"' +
-      " AND exam_mark.degree =" +
-      '"' +
-      degree +
-      '"' +
-      " AND exam_mark.degree =" +
-      '"' +
-      degree +
-      '"',
+    "SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.academic_yr ="+'"'+acYear +'"'+ 
+    "AND exam.year = " +'"'+year +'"'+
+    "AND exam.semester=" +'"'+semester +'"'+
+    "AND exam_mark.degree=" +'"'+degree +'"'+
+    "AND exam_mark.course_name=" +'"'+subject +'"',
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
+const getResult1 = asyncHandler(async (req, res) => {
+  const acYear = (req.params.id1);
+  const year = (req.params.id2);
+  const semester = (req.params.id3);
+  const degree = (req.params.id4);
+  const subject = (req.params.id5);
+  
+  const mark = [];
+
+  connection.query(
+    "SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.sar_status='Not Released' AND exam_mark.academic_yr ="+'"'+acYear +'"'+ 
+    "AND exam.year = " +'"'+year +'"'+
+    "AND exam.semester=" +'"'+semester +'"'+
+    "AND exam_mark.degree=" +'"'+degree +'"'+
+    "AND exam_mark.course_name=" +'"'+subject +'"',
+
     function (error, results, fields) {
       if (error) throw error;
 
@@ -300,6 +318,7 @@ module.exports = {
   getAssign,
   getUndergraduates,
   getResult,
+  getResult1,
   assignAdd,
   assignMarkAdd,
   getAssignMarks,
