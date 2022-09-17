@@ -4,20 +4,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Helmet } from "react-helmet";
-// import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Formik, Form, Field } from "formik";
-import { useDispatch, useSelector } from "react-redux";
-import { initialLoginValues, loginValidation } from "./Validation";
-import { login } from "../actions/userActions";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Navbar from "../Component/Navbar";
 import axios from "axios";
 import { API_URL } from "../constants/globalConstants";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
-import { ErrorMessage } from "@hookform/error-message";
+// import { ErrorMessage } from "@hookform/error-message";
 
 function ForgotPassword() {
   const navigate = useNavigate();

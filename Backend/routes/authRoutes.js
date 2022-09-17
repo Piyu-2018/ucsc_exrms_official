@@ -9,6 +9,7 @@ const {
   usernameCheck,
   forgotPasswordOtp,
   forgetPasswordOtpCheck,
+  resetPassword,
 } = require("../controllers/authController");
 
 const router = express.Router();
@@ -19,6 +20,7 @@ router.post("/register", register);
 router.post("/usernameCheck", usernameCheck);
 router.post("/forgotPasswordOtp", forgotPasswordOtp);
 router.post("/forgetPasswordOtpCheck", forgetPasswordOtpCheck);
+router.post("/resetPassword", resetPassword);
 
 // router.post("/registerme", register1);
 // router.post("/emailcheck", emailCheck);
