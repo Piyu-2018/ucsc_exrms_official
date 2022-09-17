@@ -14,10 +14,14 @@ import { initialLoginValues, loginValidation } from "./Validation";
 import { login } from "../actions/userActions";
 import { TextField } from "formik-material-ui";
 import Navbar from "../Component/Navbar";
+import ErrorIcon from "@mui/icons-material/Error";
+import axios from "axios";
+import { API_URL } from "../constants/globalConstants";
 
 function Login() {
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [loginError, setLoginError] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -49,9 +53,30 @@ function Login() {
     }
   }, [user]);
 
-  const loginUser = (data) => {
+  // const errorLogin = async (data) => {
+  //   const inputData = {user_name: data.username}
+  //   await axios
+  //   .post(API_URL + "/auth/usernameCheck",inputData)
+  //   .then((response) => {
+  //     if(response.data.isUnique === ture){
+  //       setUsernameError(true);
+  //     }
+  //   })
+  // }
+
+  const loginUser = async (data) => {
+    const inputData = { user_name: data.username, password: data.password };
+    await axios
+      .post(API_URL + "/auth/usernamePasswordCheck", inputData)
+      .then((response) => {
+        if (response.data.isUnique === true) {
+          setLoginError(true);
+        } else {
+          console.log("Match");
+          dispatch(login(data.username, data.password));
+        }
+      });
     // console.log(data.password);
-    dispatch(login(data.username, data.password));
   };
 
   return (
@@ -132,6 +157,18 @@ function Login() {
                   <p class="error-msg">{passwordError}</p> */}
                   </div>
                 </span>
+
+                {loginError && (
+                  <box>
+                    <Typography variant="caption" display="block" color="red">
+                      <Box sx={{ mt: "10px" }}>
+                        <ErrorIcon />
+                      </Box>
+                      The email or password you entered did not match our
+                      records. Please double-check and try again.
+                    </Typography>
+                  </box>
+                )}
 
                 <div class="col-12 Froget-password">
                   <p class="text-end">
