@@ -84,8 +84,11 @@ import MaExamTimetable from "./pages/Ma/MaExamTimetable";
 import MaPayment from "./pages/Ma/MaPayment";
 import LecCourseResults from "./pages/Lecturer/LecCourseResults";
 import LecChat from "./pages/Lecturer/LecChat";
+
 import PasswordOtp from "./pages/PasswordOtp";
 import ResetPassword from "./pages/ResetPassword";
+import LecHome from "./pages/Lecturer/LecHome";
+import LecDashboard from "./pages/Lecturer/LecDashboard";
 
 // const theme = createTheme({
 //   typography: {
@@ -200,6 +203,8 @@ function App() {
           <Route path="/lec_course_grading" element={<LecCourseGrading />} />
           <Route path="/lec_course_results" element={<LecCourseResults />} />
           <Route path="/lec_chat" element={<LecChat />} />
+          <Route path="/lec_home" element={<LecHome />} />
+          <Route path="/lec_dashboard" element={<LecDashboard />} />
         </Routes>
       </div>
     </Router>

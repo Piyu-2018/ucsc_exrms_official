@@ -57,7 +57,7 @@ function Login() {
         // }
 
         if (user.user_type === "lecturer") {
-          navigate("/lecturer_assignments");
+          navigate("/lec_home");
         } else if (user.user_type === "director") {
           navigate("/directorDash");
         } else if (user.user_type === "sar") {
