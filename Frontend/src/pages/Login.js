@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 // import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { initialLoginValues, loginValidation } from "./Validation";
@@ -17,17 +17,31 @@ import Navbar from "../Component/Navbar";
 import ErrorIcon from "@mui/icons-material/Error";
 import axios from "axios";
 import { API_URL } from "../constants/globalConstants";
+import { Alert } from "@mui/material";
 
 function Login() {
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [loginError, setLoginError] = useState(false);
+  const location = useLocation();
+  // const [success, setSuccess] = useState(true);
+  // if (location.state.reset == "success") {
+  // console.log(location.state.reset);
+  // setSuccess(location.state.reset);
+  // const success = location.state.reset;
+
+  // }
+  var success = false;
+  if (location.state) {
+    success = true;
+  }
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const userInfo = useSelector((state) => state.userInfo);
   const { user } = userInfo;
+  // setSuccess(true);
 
   useEffect(() => {
     if (user) {
@@ -37,6 +51,10 @@ function Login() {
       } else {
         setUsernameError("");
         setPasswordError("");
+
+        // if((location.state)){
+
+        // }
 
         if (user.user_type === "lecturer") {
           navigate("/lecturer_assignments");
@@ -76,8 +94,9 @@ function Login() {
           dispatch(login(data.username, data.password));
         }
       });
-    // console.log(data.password);
   };
+
+  console.log(success);
 
   return (
     <div className="body">
@@ -92,7 +111,7 @@ function Login() {
       <Container maxWidth="lg">
         <Box sx={{ height: "100vh", ml: "60%" }}>
           <Typography
-            sx={{ mb: "15%" }}
+            sx={{ mb: "3%" }}
             variant="h3"
             color="#06283D"
             gutterBottom
@@ -100,6 +119,13 @@ function Login() {
           >
             Login
           </Typography>
+          {success && (
+            <box>
+              <Alert severity="success" sx={{ mb: "3%" }}>
+                Password has been changed successfully
+              </Alert>
+            </box>
+          )}
           <Formik
             initialValues={initialLoginValues}
             validationSchema={loginValidation}
