@@ -302,6 +302,34 @@ const usernameCheck = asyncHandler(async (req, res) => {
   );
 });
 
+const usernamePasswordCheck = asyncHandler(async (req, res) => {
+  // console.log(req.body);
+  const { user_name, password } = req.body;
+
+  bycrypt.hash(password, 10).then(async (hash) => {
+    await connection.query(
+      `SELECT password FROM user WHERE (user_name="${user_name}" OR email="${user_name}")`,
+      function (error, results, fields) {
+        if (error) throw error;
+
+        if (results.length == 0) {
+          res.json({ isUnique: true });
+        } else {
+          console.log("Hi from here");
+          bycrypt.compare(password, results[0].password).then((match) => {
+            if (match) {
+              console.log("password fine");
+              res.json({ isUnique: false });
+            } else {
+              res.json({ isUnique: true });
+            }
+          });
+        }
+      }
+    );
+  });
+});
+
 // const usernameCheck = asyncHandler(async (req, res) => {
 //   const { user_name } = req.body;
 
@@ -584,4 +612,5 @@ module.exports = {
   forgotPasswordOtp,
   forgetPasswordOtpCheck,
   resetPassword,
+  usernamePasswordCheck,
 };
