@@ -30,13 +30,14 @@ function PasswordOtp() {
       console.log(code);
       setOtpError("");
 
-      const inputData = { username: location.state.user_name, otp: code };
+
+      const inputData = { user_name: location.state.user_name, otp: code };
       await axios
-        .post(API_URL + "/auth/forgotpasswordotpcheck", inputData)
+        .post(API_URL + "/auth/forgetPasswordOtpCheck", inputData)
         .then((response) => {
           if (response.data.statusCode === 1) {
             setOtpError("");
-            navigate("/", {
+            navigate("/reset_password", {
               state: { user_name: location.state.user_name },
             });
           } else {

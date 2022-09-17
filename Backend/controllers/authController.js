@@ -391,14 +391,14 @@ const forgotPasswordOtp = asyncHandler(async (req, res) => {
       </div>
     </div>`;
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-  
-      auth: {
-        user: "dinilr123@gmail.com",
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+
+        auth: {
+          user: "dinilr123@gmail.com",
           pass: "jjzkyvqgqrcdzqxq",
-      },
-    });
+        },
+      });
 
       // const transporter = nodemailer.createTransport({
       //   service: "gmail",
@@ -485,12 +485,17 @@ const forgotPasswordOtp = asyncHandler(async (req, res) => {
 
 const forgetPasswordOtpCheck = asyncHandler(async (req, res) => {
   const { user_name, otp } = req.body;
+  console.log("forgotpasswordotpcheck");
+  console.log(otp);
+  console.log(user_name);
 
   connection.query(
-    `SELECT forgotPasswordOtp from user WHERE user_name="${user_name}"`,
+    `SELECT forgotPasswordOtp from user WHERE user_name="${user_name}" OR email="${user_name}"`,
     function (error, results) {
       if (error) throw error;
-      if (OTP === results[0].forgetPasswordOtpCheck) {
+      console.log(results);
+      if (otp === results[0].forgotPasswordOtp) {
+        console.log("success");
         res.json({
           statusCode: 1,
           msg: "Valid Access",
@@ -530,13 +535,13 @@ const forgetPasswordOtpCheck = asyncHandler(async (req, res) => {
   // }
 });
 
-const resetPassowrd = asyncHandler(
+const resetPassword = asyncHandler(
   asyncHandler(async (req, res) => {
     const { user_name, password } = req.body;
 
     bycrypt.hash(password, 10).then(async (hash) => {
       const status = await connection.query(
-        `UPDATE user SET password=${hash} WHERE user_name=${user_name}`,
+        `UPDATE user SET password="${hash}" WHERE user_name= "${user_name}" OR email="${user_name}"`,
         function (error, results) {
           if (error) throw error;
         }
@@ -556,6 +561,7 @@ const resetPassowrd = asyncHandler(
       // });
 
       if (status) {
+        console.log("success reset");
         res.json({
           statusCode: 1,
           msg: "Password Changed",
@@ -577,4 +583,5 @@ module.exports = {
   usernameCheck,
   forgotPasswordOtp,
   forgetPasswordOtpCheck,
+  resetPassword,
 };

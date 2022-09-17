@@ -135,7 +135,7 @@ function Login() {
 
                 <div class="col-12 Froget-password">
                   <p class="text-end">
-                    <Link to="/frogotpassword/username" className="theme">
+                    <Link to="/forgot_password" className="theme">
                       <small>Forgot Password</small>
                     </Link>
                   </p>
