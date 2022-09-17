@@ -13,17 +13,19 @@ import axios from "axios";
 import { API_URL } from "../constants/globalConstants";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
+import ErrorIcon from "@mui/icons-material/Error";
 
 function ResetPassword() {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm();
+  const [error, setError] = useState("");
   const location = useLocation();
   console.log(location);
 
   const submitPassword = async (data) => {
     console.log(data);
     if (data.password === data.confirm_password) {
-        console.log("Same password");
+      console.log("Same password");
       const inputData = {
         user_name: location.state.user_name,
         password: data.password,
@@ -32,20 +34,18 @@ function ResetPassword() {
       await axios
         .post(API_URL + "/auth/resetPassword", inputData)
         .then((response) => {
-            if (response.data.statusCode === 1) {
-              navigate("/login");
-            }
-          })
-          .catch((error) => console.log(error));
-      };
-
-
+          if (response.data.statusCode === 1) {
+            navigate("/login", {
+              state: { reset: "success" },
+            });
+          }
+        })
+        .catch((error) => console.log(error));
+    } else {
+      setError("The passwords don't match");
     }
+  };
 
-
-
-    
-    
   return (
     <>
       <div className="body">
@@ -98,6 +98,17 @@ function ResetPassword() {
                   fullWidth
                   sx={{ mb: "10px" }}
                 />
+
+                {error && (
+                  <box>
+                    <Typography variant="caption" display="block" color="red">
+                      <Box sx={{ mt: "10px" }}>
+                        <ErrorIcon />
+                      </Box>
+                      {error}
+                    </Typography>
+                  </box>
+                )}
 
                 <Button
                   type="submit"

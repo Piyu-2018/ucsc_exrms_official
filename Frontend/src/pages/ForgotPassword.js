@@ -13,6 +13,7 @@ import axios from "axios";
 import { API_URL } from "../constants/globalConstants";
 import { useForm } from "react-hook-form";
 import { TextField } from "@mui/material";
+import ErrorIcon from "@mui/icons-material/Error";
 // import { ErrorMessage } from "@hookform/error-message";
 
 function ForgotPassword() {
@@ -78,6 +79,16 @@ function ForgotPassword() {
                   inputProps={register("name")}
                 />
 
+                {usernameError && (
+                  <box>
+                    <Typography variant="caption" display="block" color="red">
+                      <Box sx={{ mt: "10px" }}>
+                        <ErrorIcon />
+                      </Box>
+                      {usernameError}
+                    </Typography>
+                  </box>
+                )}
                 <Button
                   type="submit"
                   variant="contained"

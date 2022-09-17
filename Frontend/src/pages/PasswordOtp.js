@@ -9,13 +9,14 @@ import OtpInput from "react-otp-input";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../constants/globalConstants";
+import ErrorIcon from "@mui/icons-material/Error";
 
 function PasswordOtp() {
   const [code, setCode] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
 
-  const [optError, setOtpError] = useState("");
+  const [otpError, setOtpError] = useState("");
   const [username, setUsername] = useState(location.state.user_name);
 
   const generateOtp = async () => {
@@ -116,6 +117,17 @@ function PasswordOtp() {
                 }}
               />
             </Box>
+
+            {otpError && (
+                  <box>
+                    <Typography variant="caption" display="block" color="red">
+                      <Box sx={{ mt: "10px" }}>
+                        <ErrorIcon />
+                      </Box>
+                      {otpError}
+                    </Typography>
+                  </box>
+                )}
             <Button
               type="submit"
               variant="contained"
