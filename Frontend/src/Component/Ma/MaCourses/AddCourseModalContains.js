@@ -4,6 +4,8 @@ import {
     TextField,
     Typography,
     Grid,
+    form,
+    Button,
   } from "@mui/material";
   import React from "react";
   import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -12,8 +14,13 @@ import {
   import StudyYearOptions from './StudyYearOptions';
   import SemesterOptions from './SemesterOption';
   import { useState } from "react";
+  
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { API_URL } from "../../../../src/constants/globalConstants";
 
   function CourseModalContains(){
+    const { register, handleSubmit } = useForm();
     const [counterLec, setCounterLec] = useState(0);
     const [counterIns, setCounterIns] = useState(0);
 
@@ -36,8 +43,41 @@ import {
         console.log(counterIns);
     };
 
+    const addCourse = async (data) => {
+        console.log("Hi");
+        if (data.course && data.code && data.lecturer && data.instructor) {
+          setOpen(false);
+    
+          const course = data.course;
+          const code = data.code;
+          const lecturer = data.lecturer;
+          const instructor = data.instructor;
+    
+          console.log(user_id);
+          // const lecturer_id = user_id.toString();
+    
+          const inputData = {
+            course,
+            code,
+            lecturer,
+            instructor,
+          };
+    
+          await axios
+            .post(API_URL + "/settings/addCourse", inputData)
+            .then((response) => {
+              params.assignDataFunc((list) => [...list, response.data]);
+              // if (!response.data.error) {
+              // }
+            });
+        }
+    };
+
+
+
     return (
-        <Box component="form" sx={{flexGrow:1}}>
+        <Box  sx={{flexGrow:1}}>
+        <form method="POST" onSubmit={handleSubmit(addCourse)}>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{padding:"10px"}}>
                 <Grid item xs={4} sm={4} md={4} >
                     <CourseOptions/>
@@ -63,6 +103,7 @@ import {
                         size="small"
                         multiline
                         fullWidth
+                        inputProps={register("course")}
                     />
                 </Grid>
             </Grid>
@@ -80,6 +121,7 @@ import {
                         size="small"
                         multiline
                         fullWidth
+                        inputProps={register("code")}
                     />
                 </Grid>
             </Grid>
@@ -97,6 +139,7 @@ import {
                             size="small"
                             multiline
                             fullWidth
+                            inputProps={register("lecturer")}
                         />
                     {Array.from(Array(counterLec)).map((c, index) => {
                         const a = index + 2;
@@ -142,6 +185,7 @@ import {
                             size="small"
                             multiline
                             fullWidth
+                            inputProps={register("instructor")}
                         />
                     {Array.from(Array(counterIns)).map((c, index) => {
                         const a = index + 2;
@@ -174,10 +218,19 @@ import {
                     </IconButton>
                 </Grid>
             </Grid>
-            
+            <Button
+                  type="submit"
+                  variant="contained"
+                  color="success"
+                  sx={{ mt: "20px", ml: "40%" }}
+                  size="large"
+                >
+                  Submit
+            </Button>
+        </form>  
         </Box>
     );
 
   }
 
-  export default CourseModalContains
+  export default CourseModalContains;

@@ -16,6 +16,10 @@ const {
   getLetterRequest,
 } = require("../controllers/ma/reqLetterController");
 
+const {
+  addCourse,
+} = require("../controllers/ma/addCourseController");
+
 const router = express.Router();
 
 router.get("/getCourses/:id", getCourses);
@@ -28,5 +32,6 @@ router.post("/assignMarkAdd",assignMarkAdd);
 
 router.get("/getPayment", getPayment);
 router.get("/getLetterRequest", getLetterRequest);
+router.post("/addCourse", addCourse);
 
 module.exports = router;
