@@ -11,7 +11,7 @@ import MenuList from '@mui/material/MenuList';
 
 const options = ['1st Year First Semester','1st Year Second Semester','2nd Year First Semester','2nd Year Second Semester','3rd Year First Semester', '4th Year First Semester', '4th Year Second Semester'];
 
-export default function SplitButton() {
+export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -23,6 +23,7 @@ export default function SplitButton() {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    props.onSelectYearSem(options[index]);
   };
 
   const handleToggle = () => {

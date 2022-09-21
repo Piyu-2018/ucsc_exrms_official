@@ -11,6 +11,9 @@ const {
   assignMarkAdd,
   getResult,
   getResult1,
+  getRecruthinization,
+  getSubSelection,
+  getFourthYear,
   getAssignMarks,
   getIndexAssign,
 } = require("../controllers/assignmentController");
@@ -37,8 +40,10 @@ router.get("/getRegistration/:id1/:id2", getRegistration);
 
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
-
 router.get("/getResult1/:id1/:id2/:id3/:id4/:id5", getResult1);
+router.get("/getRecruthinization/:id1/:id2/:id3/:id4", getRecruthinization);
+router.get("/getSubSelection/:id1/:id2/:id3/:id4", getSubSelection);
+router.get("/getFourthYear/:id1/:id2", getFourthYear);
 
 router.get("/getIndexAssign/:id", getIndexAssign);
 

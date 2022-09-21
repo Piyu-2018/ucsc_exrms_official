@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Grid} from "@mui/material";
 import SAR_ProgSubSl from './SAR_ProgSubSl';
@@ -9,6 +9,30 @@ import SAR_Sidebar from '../../SAR_Sidebar';
 function SAR_ProgSubDrawer() {
   const open = true;
   console.log(open);
+
+  const [acYear,setAcYear] = useState("Academic Year - 2022/2023");
+  const [year,setYear] = useState("First Year");
+  const [sem,setSem] = useState("First Year");
+  const [degree,setDegree] = useState("Computer Science (Bsc)");
+
+
+  const onSelectedAcYear = (acYear) => {
+    setAcYear(acYear);
+  }
+
+  const onSelectedYear = (year) => {
+    setYear(year);
+  }
+
+  const onSelectedSem = (sem) => {
+    setSem(sem);
+  }
+
+  const onSelectedDegree = (degree) => {
+    setDegree(degree);
+  }
+  
+ 
 
   return (
     <>
@@ -22,9 +46,9 @@ function SAR_ProgSubDrawer() {
             <SAR_Sidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
-            <SAR_ProgSubSl/><br></br>
-            <SAR_ProgSubChart/><br></br>
-            <SAR_ProgSubTable/>
+            <SAR_ProgSubSl onSelectedAcYear={onSelectedAcYear} onSelectedYear={onSelectedYear} onSelectedSem={onSelectedSem} onSelectedDegree={onSelectedDegree} /> <br></br>
+            <SAR_ProgSubChart /><br></br>
+            <SAR_ProgSubTable acYear={acYear} year={year} sem={sem} degree={degree}/>
           </Grid>
           
         </Grid>

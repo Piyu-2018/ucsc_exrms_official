@@ -5,24 +5,19 @@ const { StatusCodes } = require("http-status-codes");
 // const { user, course, lecturer_courses, assignments } = new prismaClient();
 
 var mysql = require("mysql");
-var connection = mysql.createConnection({
+/* var connection = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "",
   database: "u117929562_ucscexrms",
-});
-// var connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "u117929562_ucscexrms",
-// });
-// var connection = mysql.createConnection({
-//   host: "sql238.main-hosting.eu",
-//   user: "u117929562_ucscExrmsUser",
-//   password: "lT:@>w0y4",
-//   database: "u117929562_ucscEXRMS",
-// });
+}); */
+
+ var connection = mysql.createConnection({
+   host: "sql238.main-hosting.eu",
+   user: "u117929562_ucscExrmsUser",
+   password: "lT:@>w0y4",
+   database: "u117929562_ucscEXRMS",
+ });
 
 connection.connect();
 
@@ -114,12 +109,6 @@ const getResult = asyncHandler(async (req, res) => {
   
   const mark = [];
 
-  // connection.query(
-  //   "SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.academic_yr ="+'"'+acYear +'"'+ 
-  //   "AND exam.year = " +''+year +''+
-  //   "AND exam.semester=" +''+semester +''+
-  //   "AND exam_mark.degree=" +''+degree +''+
-  //   "AND exam_mark.course_name=" +''+subject +'',
   connection.query(`SELECT *
   FROM exam
   INNER JOIN exam_mark
@@ -150,16 +139,108 @@ const getResult1 = asyncHandler(async (req, res) => {
   const mark = [];
 
   connection.query(
-    "SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.sar_status='Not Released' AND exam_mark.academic_yr ="+'"'+acYear +'"'+ 
-    "AND exam.year = " +'"'+year +'"'+
-    "AND exam.semester=" +'"'+semester +'"'+
-    "AND exam_mark.degree=" +'"'+degree +'"'+
-    "AND exam_mark.course_name=" +'"'+subject +'"',
-
+    `SELECT *
+  FROM exam
+  INNER JOIN exam_mark
+  ON exam.exam_sem_id = exam_mark.exam_sem_id 
+  INNER JOIN exam_question_mark
+  ON exam_mark.mark_id = exam_question_mark.mark_id
+  WHERE exam_mark.academic_yr ='${acYear}' 
+  AND exam_mark.degree='${degree}' 
+  AND exam.year = '${year}'
+  AND exam.semester='${semester}' 
+  AND exam_mark.course_name='${subject}'AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`,
     function (error, results, fields) {
       if (error) throw error;
 
       res.json(results);
+      console.log(results);
+    }
+  );
+});
+
+const getRecruthinization = asyncHandler(async (req, res) => {
+  const acYear = (req.params.id1);
+  const yearSem = (req.params.id2);
+  const degree = (req.params.id4);
+  const subject = (req.params.id5);
+  
+  const letter = [];
+
+  connection.query(
+    `SELECT *
+  FROM exam
+  INNER JOIN exam_mark
+  ON exam.exam_sem_id = exam_mark.exam_sem_id 
+  INNER JOIN exam_question_mark
+  ON exam_mark.mark_id = exam_question_mark.mark_id
+  WHERE exam_mark.academic_yr ='${acYear}' 
+  AND exam_mark.degree='${degree}' 
+  AND exam.year = '${year}'
+  AND exam.semester='${semester}' 
+  AND exam_mark.course_name='${subject}'AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+      console.log(results);
+    }
+  );
+});
+
+const getSubSelection = asyncHandler(async (req, res) => {
+  const acYear = (req.params.id1);
+  const year = (req.params.id2);
+  const sem = (req.params.id4);
+  const degree = (req.params.id5);
+  
+  const subselect = [];
+
+  connection.query(
+    `SELECT *
+  FROM exam
+  INNER JOIN exam_mark
+  ON exam.exam_sem_id = exam_mark.exam_sem_id 
+  INNER JOIN exam_question_mark
+  ON exam_mark.mark_id = exam_question_mark.mark_id
+  WHERE exam_mark.academic_yr ='${acYear}' 
+  AND exam_mark.degree='${degree}' 
+  AND exam.year = '${year}'
+  AND exam.semester='${semester}' 
+  AND exam_mark.course_name='${subject}'AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+      console.log(results);
+    }
+  );
+});
+
+const getFourthYear = asyncHandler(async (req, res) => {
+  const acYear = (req.params.id1);
+  const option = (req.params.id2);
+
+  
+  const fourthYear = [];
+
+  connection.query(
+    `SELECT *
+  FROM exam
+  INNER JOIN exam_mark
+  ON exam.exam_sem_id = exam_mark.exam_sem_id 
+  INNER JOIN exam_question_mark
+  ON exam_mark.mark_id = exam_question_mark.mark_id
+  WHERE exam_mark.academic_yr ='${acYear}' 
+  AND exam_mark.degree='${degree}' 
+  AND exam.year = '${year}'
+  AND exam.semester='${semester}' 
+  AND exam_mark.course_name='${subject}'AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+      console.log(results);
     }
   );
 });
@@ -347,6 +428,9 @@ module.exports = {
   getUndergraduates,
   getResult,
   getResult1,
+  getRecruthinization,
+  getSubSelection,
+  getFourthYear,
   assignAdd,
   assignMarkAdd,
   getAssignMarks,
