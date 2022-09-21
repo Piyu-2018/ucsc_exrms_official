@@ -3,6 +3,9 @@ import React from 'react';
 import MaSidebar from '../../Component/Ma/MaSidebar';
 import MaNavBar from '../../Component/Ma/MaNavBar';
 import MaStuAdmissionsTable from '../../Component/Ma/MaStuAdmissionsTable';
+import StudyYearOption from '../../Component/Ma/MaAdmission/StudyYearOption';
+import CourseOption from '../../Component/Ma/MaAdmission/CourseOption';
+import AcademicYearOption from '../../Component/Ma/MaAdmission/AcademicYearOption';
 import {useState} from 'react';
 
 function MaStuAdmission() {
@@ -22,24 +25,13 @@ function MaStuAdmission() {
                     </Typography>
                     <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
                         <Grid container spacing={1} justifyContent="space-evenly" xs={12} p={2} sx={{ padding:"30px 200px 30px 200px"}}>
-                            <Button variant="contained" sx={{backgroundColor:"#23538f"}}>Year 1</Button>
-                            <Button variant="contained" sx={{backgroundColor:"#23538f"}}>Year 2</Button>
-                            <Button variant="contained" sx={{backgroundColor:"#23538f"}}>Year 3</Button>
-                            <Button variant="contained" sx={{backgroundColor:"#23538f"}}>Year 4</Button>
+                            <AcademicYearOption/>
+                            <StudyYearOption/>
+                            <CourseOption/>
                         </Grid>
                         <Grid xs={12} container spacing={0.5} justifyContent="space-between" p={2}>
                             
-                            <FormControl >
-                                <RadioGroup
-                                    row
-                                    aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
-                                >
-                                    <FormControlLabel className='yearBtn' value="1" control={<Radio />} label="CS" />
-                                    <FormControlLabel className='yearBtn' value="2" control={<Radio />} label="IS" />
-                                    <FormControlLabel className='yearBtn' value="3" control={<Radio />} label="ALL" />
-                                </RadioGroup>
-                            </FormControl>
+                            
                         </Grid>
                         
                         <Grid container spacing={1} justifyContent="space-evenly">

@@ -13,6 +13,7 @@ const {
   getResult1,
   getAssignMarks,
   getIndexAssign,
+  getPayment,
 } = require("../controllers/assignmentController");
 
 const {
@@ -25,6 +26,16 @@ const {
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
 const { getRegistration } = require("../controllers/directorRegistrationController");
 const { getTimetable } = require("../controllers/timeTableController");
+  
+
+
+const {
+  getLetterRequest,
+} = require("../controllers/ma/reqLetterController");
+
+const {
+  addCourse,
+} = require("../controllers/ma/addCourseController");
 
 const router = express.Router();
 
@@ -52,5 +63,9 @@ router.get("/getDistinctIndex/:id", getDistinctIndex);
 router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
 
 router.get("getTimetable",getTimetable)
+
+router.get("/getPayment", getPayment);
+router.get("/getLetterRequest", getLetterRequest);
+router.post("/addCourse", addCourse);
 
 module.exports = router;
