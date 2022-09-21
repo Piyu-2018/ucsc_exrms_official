@@ -299,6 +299,24 @@ const getAssignMarks = asyncHandler(async (req, res) => {
   // })
 });
 
+const getPayment = asyncHandler(async (req, res) => {
+  const ac_year_ID = parseInt(req.params.id1);
+  const degree_type = parseInt(req.params.id2);
+
+  // console.log(degree_type);
+
+  const student = [];
+
+  connection.query(
+    "SELECT * FROM payment",
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
 const getIndexAssign = asyncHandler(async (req, res) => {
   // const  = parseInt(req.params.id1);
   const assignment_id = parseInt(req.params.id);
@@ -323,4 +341,5 @@ module.exports = {
   assignMarkAdd,
   getAssignMarks,
   getIndexAssign,
+  getPayment,
 };
