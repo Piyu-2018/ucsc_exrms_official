@@ -19,6 +19,8 @@ const {
   getExaminationQuestion,
   getDistinctIndex,
   getMarksFromIndex,
+  getQuestionFromCourse,
+  getIndexCourse,
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
@@ -42,7 +44,9 @@ router.get("/getExaminationCourses/:id", getExaminationCourses);
 router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
 router.get("/getDistinctIndex/:id", getDistinctIndex);
 router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
+router.get("/getQuestionFromCourse/:id", getQuestionFromCourse);
+router.get("/getIndexCourse/:id", getIndexCourse);
 
-router.get("/getTimetable",getTimetable)
+router.get("/getTimetable", getTimetable);
 
 module.exports = router;
