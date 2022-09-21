@@ -20,17 +20,19 @@ const { user, course, lecturer_courses, assignments, student } =
 
 const addCourse = asyncHandler(async (req, res) => {
     const data = req.body;
-    console.log(data.dataCourse);
-    data.dataCourse.map((row) =>
+    // console.log("addcourse");
+    // console.log(data);
+    
     connection.query(
-      `INSERT INTO course(course_name) VALUES ("${row.course}")`,
+      `INSERT INTO course(course_name,course_code,lecture_name,instructor) VALUES ("${data.course}","${data.code}","${data.lecturer}","${data.instructor}")`,
       function (error, results, fields) {
         if (error) throw error;
+        // console.log("Success");
   
-        res.json(results);
+        
       })
     
-    )
+  
     
   });
 
