@@ -11,10 +11,11 @@ import MenuList from '@mui/material/MenuList';
 
 const options = ['Subject','Enterprise Resource Planning','Software Quality Assurance','Human Computer Interaction','Professional Practice','Enterprise Applications','DBMS-II','E-Learning'];
 
-export default function SplitButton() {
+export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
@@ -23,6 +24,7 @@ export default function SplitButton() {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    props.onSelectSubject(options[index]);
   };
 
   const handleToggle = () => {
@@ -36,6 +38,7 @@ export default function SplitButton() {
 
     setOpen(false);
   };
+
 
   return (
     <React.Fragment>

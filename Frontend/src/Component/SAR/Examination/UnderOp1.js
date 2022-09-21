@@ -11,10 +11,11 @@ import MenuList from '@mui/material/MenuList';
 
 const options = ['Academic Year','2022/2023','2021/2022','2020/2021','2019/2020 ', '2018/2019 ','2017/2018',' 2016/2017'];
 
-export default function SplitButton() {
+export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
@@ -23,6 +24,7 @@ export default function SplitButton() {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    props.onSelectOption(options[index]);
   };
 
   const handleToggle = () => {

@@ -1,4 +1,5 @@
 import * as React from "react";
+import {useState,useEffect} from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -8,6 +9,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { createTheme, Typography } from "@mui/material";
+import { API_URL } from "../../constants/globalConstants";
+import { useSelector } from "react-redux";
+import axios from "axios";
 // import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 
 const theme = createTheme({
@@ -78,7 +82,31 @@ const rows = [
   ),
 ];
 
-function LecassignMarkTable() {
+function LecassignMarkTable(props) {
+  const assignment_id = props.assignmentId;
+  const [assignMarks, setAssignMarks] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+  const getAssignMarks = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+    await axios 
+    .get(API_URL+"/settings/getAssignMarks/"+assignment_id,config)
+    .then((response)=>{
+      setAssignMarks(response.data);
+      console.log(response.data);
+    });
+  };
+
+  useEffect(()=>{
+    getAssignMarks();
+  },[]);
+
+  console.log(assignMarks);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -90,12 +118,12 @@ function LecassignMarkTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {assignMarks.map((row) => (
             <StyledTableRow key={row.index}>
               <StyledTableCell component="th" scope="row">
-                {row.index}
+                {row.index_number}
               </StyledTableCell>
-              <StyledTableCell>{row.name}</StyledTableCell>
+              <StyledTableCell>{row.f_name} {row.l_name}</StyledTableCell>
               <StyledTableCell>{row.marks}</StyledTableCell>
             </StyledTableRow>
           ))}

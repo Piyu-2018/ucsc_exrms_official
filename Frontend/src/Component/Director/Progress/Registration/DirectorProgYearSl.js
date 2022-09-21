@@ -7,20 +7,31 @@ import DirectorProgRegOp1 from './DirectorProgRegOp1';
 import DirectorProgRegOp2 from './DirectorProgRegOp2';
 
 
-export default function AutoGrid() {
+export default function AutoGrid(props) {
+  const [option, setOption] = React.useState(0);
+
+  const onSelectOption = (option) => {
+    props.onSelectedOption(option);
+  };
+
+  const onSelectYear = (year) => {
+    // console.log(year);
+    props.onSelectedYear(year);
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
 
 
             <Grid item xs={3} md={12} container spacing={4} columnpacing={10} >
                 <Grid item xs={12} md={3}>
-                    <DirectorProgRegOp1/>
+                    <DirectorProgRegOp1 onSelectOption={onSelectOption} />
                 </Grid>
                 {/* <Grid item xs={12} md={3}>
                     <DirectorProgRescruOp2/>
                 </Grid> */}
                 <Grid item xs={12} md={3}>
-                    <DirectorProgRegOp2/>
+                    <DirectorProgRegOp2 onSelectYear={onSelectYear}/>
                 </Grid>
             </Grid>
 

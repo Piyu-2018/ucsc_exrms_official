@@ -20,14 +20,17 @@ import DirectorUnderOp4 from "./DirectorUnderOp4";
 export default function AutoGrid(props) {
   const [option, setOption] = React.useState(0);
 
-  const onSelectOption = (index) => {
-    setOption(index);
-    props.onSelectedOption(index);
+  const onSelectOption = (option) => {
+    props.onSelectedOption(option);
   };
 
   const onSelectYear = (year) => {
     // console.log(year);
     props.onSelectedYear(year);
+  };
+
+  const onSelectDegree = (degree) => {
+    props.onSelectedDegree(degree);
   };
 
   return (
@@ -40,7 +43,7 @@ export default function AutoGrid(props) {
           <DirectorUnderOp1 onSelectYear={onSelectYear} />
         </Grid>
         <Grid item xs={12} md={4}>
-          <DirectorUnderOp2 />
+          <DirectorUnderOp2 onSelectDegree={onSelectDegree}/>
         </Grid>
       </Grid>
     </Box>

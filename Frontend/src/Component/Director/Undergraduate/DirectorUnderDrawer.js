@@ -8,12 +8,12 @@ function DirectorUnderDrawer() {
   const open = true;
   console.log(open);
 
-  const [option,setOption] = useState(0);
-  const [year,setYear] = useState("first year");
+  const [option,setOption] = useState("Academic Year - 2022-2023");
+  const [year,setYear] = useState("First Year");
+  const [degree,setDegree] = useState("Computer Science (Bsc)");
 
-  const onSelectedOption = (index) => {
-    // console.log(index);
-    setOption(index);
+  const onSelectedOption = (option) => {
+    setOption(option);
   }
 
   const onSelectedYear = (year) => {
@@ -21,6 +21,11 @@ function DirectorUnderDrawer() {
     setYear(year);
   }
 
+  const onSelectedDegree = (degree) => {
+    setDegree(degree);
+  }
+ 
+ 
   return (
     <>
       {/* <Helmet>
@@ -33,9 +38,9 @@ function DirectorUnderDrawer() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10} >
-            <DirectorUnderYear onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/> <br></br>
+            <DirectorUnderYear onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedDegree={onSelectedDegree}/> <br></br>
             <DirectorUnderSeach/><br></br>
-            <DirectorUnderTable option={option} year={year}/>
+            <DirectorUnderTable option={option} year={year} degree={degree}/>
           </Grid>  
         </Grid>
     </>
