@@ -57,32 +57,32 @@ function LecAddExamFile(props) {
 
   const schema = [
     {
-      column: `index_number of students`,
+      column: `index_number_of_students`,
       value: (student) => student.index_no,
       width: 20,
       type: Number,
       wrap: false,
     },
     {
-      column: "Question 1 marks",
+      column: "question_1_marks",
       value: (student) => student.q1_1st,
       width: 20,
       type: Number,
     },
     {
-      column: "Question 2 marks",
+      column: "question_2_marks",
       value: (student) => student.q1_1st,
       width: 20,
       type: Number,
     },
     {
-      column: "Question 3 marks",
+      column: "question_3_marks",
       value: (student) => student.q1_1st,
       width: 20,
       type: Number,
     },
     {
-      column: "Question 4 marks",
+      column: "question_4_marks",
       value: (student) => student.q1_1st,
       width: 20,
       type: Number,
@@ -107,7 +107,6 @@ function LecAddExamFile(props) {
         backgroundColor: "#eeeeee",
         fontWeight: "bold",
         align: "center",
-        rowSpan: 3,
         wrap: true,
       },
       fileName: "exam.xlsx",

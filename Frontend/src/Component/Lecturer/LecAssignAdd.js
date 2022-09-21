@@ -89,6 +89,7 @@ function LecAssignAdd(props) {
     // console.log(file.name);
 
     readXlsxFile(file, { schema }).then(async (rows, errors) => {
+      
       const data = {
         assignment_id: `${props.assignmentId}`,
         dataMarks: rows.rows,

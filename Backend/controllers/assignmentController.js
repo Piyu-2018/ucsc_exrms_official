@@ -15,7 +15,7 @@ var mysql = require("mysql");
 // connection.connect();
 
 var connection = mysql.createPool({
-  connectionLimit : 10,
+  connectionLimit: 10,
   host: "sql238.main-hosting.eu",
   user: "u117929562_ucscExrmsUser",
   password: "lT:@>w0y4",
@@ -126,7 +126,7 @@ const getResult = asyncHandler(async (req, res) => {
   );
 });
 
-const assignAdd = asyncHandler(async (req,res) => {
+const assignAdd = asyncHandler(async (req, res) => {
   const { name, description, contribution, lecturer_id, course_id } = req.body;
 
   const contribution1 = parseInt(contribution);
@@ -135,8 +135,8 @@ const assignAdd = asyncHandler(async (req,res) => {
 
   connection.query(
     `INSERT INTO assignments (name,description,contribution,lecturer_id,course_id) VALUES ("${name}","${description}","${contribution1}","${lecturer_id1}","${course_id1}")`,
-    function(error){
-      if(error) throw error;
+    function (error) {
+      if (error) throw error;
 
       const returnData = {
         name: name,
@@ -148,8 +148,8 @@ const assignAdd = asyncHandler(async (req,res) => {
 
       res.status(StatusCodes.CREATED).json(returnData);
     }
-  )
-})
+  );
+});
 
 // const assignAdd = asyncHandler(async (req, res) => {
 //   const { name, description, contribution, lecturer_id, course_id } = req.body;
@@ -201,58 +201,114 @@ const assignAdd = asyncHandler(async (req,res) => {
 
 const assignMarkAdd = asyncHandler(async (req, res) => {
   const data = req.body;
-  console.log(data.dataMarks);
+  console.log(data.assignment_id);
   var values = [];
   var sql =
     "INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES (?)";
 
-  await data.dataMarks.map(
-    (row) => {
-      connection.query(
-        `SELECT * FROM marks_assignment WHERE index_number = '${row.index_number}'`,
-        function (err, results) {
-          if (err) throw err;
-          // res.json(results);
-          if (results.length == 0) {
-            console.log("where marks havent been added");
-            values = [row.index_number, row.marks, data.assignment_id];
-            console.log(values);
-            connection.query(sql, [values], function (err) {
+  await data.dataMarks.map((row) => {
+    connection.query(
+      `SELECT marks_assignment.*,assignments.course_id,assignments.contribution FROM marks_assignment,assignments WHERE marks_assignment.assignment_id = assignments.assignment_id AND marks_assignment.index_number = '${row.index_number}' AND marks_assignment.assignment_id=${data.assignment_id}`,
+      function (err, results) {
+        if (err) throw err;
+        var contribution = results[0].contribution;
+        var oldMarks = results[0].marks;
+        // res.json(results);
+        if (results.length == 0) {
+          console.log("where marks havent been added");
+          values = [row.index_number, row.marks, data.assignment_id];
+          console.log(values);
+          connection.query(sql, [values], function (err) {
+            if (err) throw err;
+            connection.query(
+              `SELECT * FROM exam_mark WHERE index_no = ${row.index_number}`,
+              function (error, results) {
+                if (results.length == 0) {
+                  var newMarks = (row.marks * contribution) / 100;
+                  connection.query(
+                    `INSERT INTO exam_mark(index_no,course_id,asignement_mark) VALUES ("${row.index_number}","${results[0].course_id}","${row.marks}*${results[0].contribution}/100") WHERE index_no=${row.index_number}`,
+                    function (error, results) {
+                      if (error) throw error;
+                    }
+                  );
+                } else {
+                  var newMarks =
+                    results[0].assignment_mark +
+                    (row.marks * contribution) / 100;
+                  connection.query(
+                    `UPDATE exam_mark SET assignment_mark = ${newMarks} WHERE index_no = ${row.index_number}`,
+                    function (error, results) {
+                      if (error) throw error;
+                    }
+                  );
+                }
+              }
+            );
+            // connection.query(`UPDATE exam_mark SET assignment_mark = ${}`)
+            // res.json(results);
+            // connection.end();
+          });
+        } else {
+          connection.query(
+            `UPDATE marks_assignment SET marks=${row.marks},assignment_id=${data.assignment_id} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
+            function (err, results) {
               if (err) throw err;
+              connection.query(
+                `SELECT * FROM exam_mark WHERE index_no = ${row.index_number}`,
+                function (error, results) {
+                  if (results.length == 0) {
+                    var newMarks =
+                      (row.marks * contribution) / 100 -
+                      (oldMarks * contribution) / 100;
+                    console.log(newMarks);
+                    connection.query(
+                      `INSERT INTO exam_mark(index_no,course_id,asignement_mark) VALUES ("${row.index_number}","${results[0].course_id}","${newMarks}") WHERE index_no=${row.index_number}`,
+                      function (error, results) {
+                        if (error) throw error;
+                      }
+                    );
+                  } else {
+                    // console.log(results.RowDataPacket[0].assignment_mark);
+                    var newMarks =
+                      results[0].assignment_mark +
+                      (row.marks * contribution) / 100 -
+                      (oldMarks * contribution) / 100;
+                    console.log(newMarks);
+                    connection.query(
+                      `UPDATE exam_mark SET assignment_mark = "${newMarks}" WHERE index_no = ${row.index_number}`,
+                      function (error, results) {
+                        if (error) throw error;
+                      }
+                    );
+                  }
+                }
+              );
               // res.json(results);
-              // connection.end();
-            });
-          }
+            }
+          );
         }
-      );
+      }
+    );
+    // connection.query(`SELECT * FROM marks_assignment WHERE index_number = '${row.index_number}' AND marks!='${row.marks}'`,
+    // function (err,results){
+    //   if(err) throw err;
+    //   if(results.length > 0){
 
-      // connection.query(`SELECT * FROM marks_assignment WHERE index_number = '${row.index_number}' AND marks!='${row.marks}'`,
-      // function (err,results){
-      //   if(err) throw err;
-      //   if(results.length > 0){
-      connection.query(
-        `UPDATE marks_assignment SET marks=${row.marks} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
-        function (err, results) {
-          if (err) throw err;
-          // res.json(results);
-        }
-      );
-      //   }
-      // }
+    //   }
+    // }
 
-      // );
-    }
+    // );
+  });
 
-    // await connection.query(
-    //   `INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES (${row.index_number},${row.marks},${data.assignment_id})`,
-    //   function (error, results, fields) {
-    //     if (error) throw error;
+  // await connection.query(
+  //   `INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES (${row.index_number},${row.marks},${data.assignment_id})`,
+  //   function (error, results, fields) {
+  //     if (error) throw error;
 
-    //     res.json(results);\
+  //     res.json(results);\
 
-    //     connection.end();
-    //   })
-  );
+  //     connection.end();
+  //   })
 
   // connection.query(sql,[values],function(err){
   //   if(err) throw err;
@@ -302,8 +358,6 @@ const getIndexAssign = asyncHandler(async (req, res) => {
     }
   );
 });
-
-
 
 module.exports = {
   getCourses,
