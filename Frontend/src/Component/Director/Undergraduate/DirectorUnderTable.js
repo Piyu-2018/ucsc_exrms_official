@@ -44,14 +44,22 @@ function createData(IndexNumber, RegistrationNumber, Name, MoreActions) {
 export default function CustomizedTables(props) {
   console.log(props.option);
   console.log(props.year);
+  console.log(props.degree);
   const [undegraduateData, setUndergraduateData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { accessToken } = userInfo.user;
   // console.log(user_id);
 
-  const acYear = "1";
-  const degree = "11";
+  const acYear = props.option;
+  const cuYear = props.year;
+  const degree = props.degree;
+ 
 
+  useEffect(() => {
+   
+    getUndergraduates();
+
+  }, [acYear,cuYear, degree])
 
   const getUndergraduates = async () => {
     const config = {
@@ -62,7 +70,7 @@ export default function CustomizedTables(props) {
   console.log("Hi");
 
     await axios
-      .get(API_URL + "/settings/getUndergraduates/"+acYear+"/"+degree,config)
+      .get(API_URL + "/settings/getUndergraduates/"+acYear+"/"+cuYear+"/"+degree,config)
       .then((response) => {
         setUndergraduateData(response.data);
         console.log(response.data);
@@ -72,6 +80,7 @@ export default function CustomizedTables(props) {
   useEffect(() => {
     getUndergraduates();
   }, []);
+  
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -88,7 +97,7 @@ export default function CustomizedTables(props) {
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
               <StyledTableCell align="left">{data.reg_no}</StyledTableCell>
-              <StyledTableCell align="left">{data.f_name + " " +data.l_name}</StyledTableCell>
+              <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
               <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell>
             </StyledTableRow>
           ))}

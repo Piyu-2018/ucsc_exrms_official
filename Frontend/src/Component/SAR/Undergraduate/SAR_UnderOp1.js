@@ -9,12 +9,13 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['1st Year Computer Science (Bsc)', '1st Year Information System (Bsc)'];
+const options = ['Academic Year - 2022-2023','Academic Year - 2021-2022','Academic Year - 2020-2021','Academic Year - 2019-2020','Academic Year - 2018-2019','Academic Year - 2017-2018','Academic Year - 2016-2017'];
 
-export default function SplitButton() {
+export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
@@ -23,6 +24,7 @@ export default function SplitButton() {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    props.onSelectOption(options[index]);
   };
 
   const handleToggle = () => {
@@ -40,14 +42,15 @@ export default function SplitButton() {
   return (
     <React.Fragment>
       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-        <Button onClick={handleClick}>{options[selectedIndex]}</Button>
-        <Button
+        <Button onClick={handleClick} >{options[selectedIndex]} </Button>
+        <Button 
           size="small"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
+          
         >
           <ArrowDropDownIcon />
         </Button>
@@ -76,7 +79,7 @@ export default function SplitButton() {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 2}
+                      disabled={index === 8}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >

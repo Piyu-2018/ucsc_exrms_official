@@ -32,9 +32,9 @@ function LecAssignMarking() {
               Assignment 1
             </Typography>
 
-            <LecassignMarkTable  />
+            <LecassignMarkTable  assignmentId={assignmentId}/>
             <LecAssignAdd assignmentId={assignmentId} />
-            <LecAddFile />
+            <LecAddFile assignmentId={assignmentId}/>
           </Grid>
         </Grid>
       </Box>

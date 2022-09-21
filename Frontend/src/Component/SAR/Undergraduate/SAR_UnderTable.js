@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,6 +8,11 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../constants/globalConstants";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,23 +34,57 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
+
+
 function createData(IndexNumber, RegistrationNumber, Name, MoreActions) {
   return { IndexNumber, RegistrationNumber, Name , MoreActions};
 }
 
-const rows = [
-    createData(19001411,'2019/CS/141','Dinil Seniru Ratnayake'),
-    createData(19001428,'2019/CS/142','Janitha Ratnayake'),
-    createData(19001381,'2019/CS/138','Piyumi Rathnayaka'),
-    createData(19001411,'2019/CS/141','Dinil Seniru Ratnayake'),
-];
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  console.log(props.option);
+  console.log(props.year);
+  console.log(props.degree);
+  const [undegraduateData, setUndergraduateData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+  // console.log(user_id);
+
+  const acYear = props.option;
+  const cuYear = props.year;
+  const degree = props.degree;
+ 
+
+  useEffect(() => {
+   
+    getUndergraduates();
+
+  }, [acYear,cuYear, degree])
+
+  const getUndergraduates = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+  console.log("Hi");
+
+    await axios
+      .get(API_URL + "/settings/getUndergraduates/"+acYear+"/"+cuYear+"/"+degree,config)
+      .then((response) => {
+        setUndergraduateData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getUndergraduates();
+  }, []);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
-        <TableHead>
-          <TableRow>
+        <TableHead >
+          <TableRow >
             <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Registration Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
@@ -53,12 +92,12 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.RegistrationNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.MoreAction}<Button variant="contained">View Profile</Button></StyledTableCell>
+          {undegraduateData.map((data) => (
+            <StyledTableRow>
+              <StyledTableCell align="left">{data.index_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.reg_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
+              <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
