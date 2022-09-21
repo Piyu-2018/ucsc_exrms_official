@@ -17,6 +17,7 @@ import React from "react";
 // import { useState } from "react";
 // import { styled} from "@mui/material/styles";
 import AssignmentIcon from "@mui/icons-material/Assignment";
+import DashboardRoundedIcon from "@mui/icons-material/DashboardRounded";
 import GradingIcon from "@mui/icons-material/Grading";
 import {
   Attachment,
@@ -25,6 +26,7 @@ import {
   Grade,
   Notifications,
 } from "@mui/icons-material";
+import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 // import { Link } from "react-router-dom";
 const drawerWidth = 220;
 
@@ -76,30 +78,33 @@ function LecSidebar(props) {
   // }
 
   const link = [
+    "/lec_home",
+    "lec_dashboard",
     "/lecturer_assignments",
     "/lec_examinations",
     "/lec_exam_timetable",
     "/lec_grading",
     "/lec_exampaper",
-    "",
     "/lec_course_grading",
   ];
 
   function renderSwitch(param) {
     switch (param) {
       case 0:
-        return <AssignmentIcon />;
+        return <HomeRoundedIcon />;
       case 1:
-        return <GradingIcon />;
+        return <DashboardRoundedIcon />;
       case 2:
-        return <CalendarMonth />;
+        return <AssignmentIcon />;
       case 3:
-        return <Grade />;
+        return <GradingIcon />;
       case 4:
-        return <Attachment />;
+        return <CalendarMonth />;
       case 5:
-        return <Chat />;
+        return <Grade />;
       case 6:
+        return <Attachment />;
+      case 7:
         return <PlaylistAddCheckIcon />;
     }
   }
@@ -125,12 +130,13 @@ function LecSidebar(props) {
           <Box sx={{ overflow: "auto" }}>
             <List>
               {[
+                "Home",
+                "Dashboard",
                 "Assignments",
                 "Exam Marks",
                 "Exam Timetable",
                 "Grades",
                 "Exam Paper",
-                "Chat",
                 "Subject Wise Progress",
               ].map((text, index) => (
                 <>
