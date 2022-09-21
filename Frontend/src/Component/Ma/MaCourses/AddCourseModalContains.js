@@ -4,8 +4,9 @@ import {
     TextField,
     Typography,
     Grid,
-    form,
+    Form,
     Button,
+    Fade,
   } from "@mui/material";
   import React from "react";
   import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -19,8 +20,9 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { API_URL } from "../../../../src/constants/globalConstants";
 
-  function CourseModalContains(){
+  function CourseModalContains(params){
     const { register, handleSubmit } = useForm();
+    const [open, setOpen] = useState(false);
     const [counterLec, setCounterLec] = useState(0);
     const [counterIns, setCounterIns] = useState(0);
 
@@ -52,8 +54,10 @@ import { API_URL } from "../../../../src/constants/globalConstants";
           const code = data.code;
           const lecturer = data.lecturer;
           const instructor = data.instructor;
+
+          
     
-          console.log(user_id);
+        //   console.log(user_id);
           // const lecturer_id = user_id.toString();
     
           const inputData = {
@@ -62,6 +66,9 @@ import { API_URL } from "../../../../src/constants/globalConstants";
             lecturer,
             instructor,
           };
+
+          console.log(inputData);
+          console.log("Inputdata");
     
           await axios
             .post(API_URL + "/settings/addCourse", inputData)
@@ -76,7 +83,10 @@ import { API_URL } from "../../../../src/constants/globalConstants";
 
 
     return (
+        
         <Box  sx={{flexGrow:1}}>
+            
+        
         <form method="POST" onSubmit={handleSubmit(addCourse)}>
             <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{padding:"10px"}}>
                 <Grid item xs={4} sm={4} md={4} >
@@ -228,6 +238,7 @@ import { API_URL } from "../../../../src/constants/globalConstants";
                   Submit
             </Button>
         </form>  
+        
         </Box>
     );
 
