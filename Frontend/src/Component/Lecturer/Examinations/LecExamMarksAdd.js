@@ -41,18 +41,29 @@ function LecExamMarksAdd(props) {
   const [buttonState, setButtonState] = useState(true);
   const [openUpload, setOpenUpload] = useState(false);
   const [fileName, setFileName] = useState(null);
-  const [question,setQuestion] = useState(null);
+  const [question, setQuestion] = useState(null);
   const userInfo = useSelector((state) => state.userInfo);
   const { user_id, accessToken } = userInfo.user;
-  
 
   const schema = {
-    index_number: {
-      prop: "index_number",
+    index_number_of_students: {
+      prop: "index_number_of_students",
       type: Number,
     },
-    marks: {
-      prop: "marks",
+    question_1_marks: {
+      prop: "question_1_marks",
+      type: Number,
+    },
+    question_2_marks: {
+      prop: "question_2_marks",
+      type: Number,
+    },
+    question_3_marks: {
+      prop: "question_3_marks",
+      type: Number,
+    },
+    question_4_marks: {
+      prop: "question_4_marks",
       type: Number,
     },
   };
@@ -64,9 +75,8 @@ function LecExamMarksAdd(props) {
   //     },
   //   };
 
-
   //   await axios
-  //     .ge(
+  //     .get(
   //       API_URL + `/settings/getQuestionFromIndex/${props.course_id}`,
   //       config
   //     )
@@ -75,13 +85,12 @@ function LecExamMarksAdd(props) {
   //       console.log(response.data.length);
   //       setQuestion(response.data);
   //     });
-  
+
   // };
 
   // useEffect(() => {
   //   getQuestion();
   // }, []);
-
 
   const handleFile = async (e) => {
     // console.log(e);
@@ -95,29 +104,28 @@ function LecExamMarksAdd(props) {
       setButtonState(true);
     }, 2000);
 
-    
-
     const file = e.target.files[0];
     setFileName(file.name);
-    // console.log(file.name);
+    console.log(file.name);
 
     readXlsxFile(file, { schema }).then(async (rows, errors) => {
+      console.log(rows.rows);
       const data = {
         course_id: `${props.course_id}`,
         dataMarks: rows.rows,
       };
       console.log(data);
-    //   await axios
-    //     .post(API_URL + "/settings/assignMarkAdd", data)
-    //     .then((response) => {
-    //       console.log(response);
+      await axios
+        .post(API_URL + "/settings/examMarksAdd", data)
+        .then((response) => {
+          console.log(response);
 
-    //       // setButtonState("loading");
-    //       // console.log(buttonState);
+          // setButtonState("loading");
+          // // console.log(buttonState);
 
-    //       // setButtonState("clicked")
-    //       // console.log(buttonState);
-    //     });
+          // setButtonState("clicked");
+          // //       // console.log(buttonState);
+        });
     });
   };
   // const [value, setValue] = React.useState(null);
@@ -149,29 +157,29 @@ function LecExamMarksAdd(props) {
         2nd Marking Add Individually
       </Button>
       <LoadingButton
-          variant="contained"
-          component="label"
-          sx={{ mt: "50px", ml: "5%" }}
-          loading={!buttonState}
-          loadingPosition="start"
-        >
-      {buttonState && (
-        <>
-          <Typography>Upload (.xlsx format)</Typography>
-          <input
-            hidden
-            accept=".xlsx"
-            onChange={(e) => handleFile(e)}
-            multiple
-            type="file"
-          />
-        </>
-      )}
-      {!buttonState && (
-        <>
-          <Typography>&nbsp; &nbsp; &nbsp; Loading</Typography>
-        </>
-      )}
+        variant="contained"
+        component="label"
+        sx={{ mt: "50px", ml: "5%" }}
+        loading={!buttonState}
+        loadingPosition="start"
+      >
+        {buttonState && (
+          <>
+            <Typography>Upload (.xlsx format)</Typography>
+            <input
+              hidden
+              accept=".xlsx"
+              onChange={(e) => handleFile(e)}
+              multiple
+              type="file"
+            />
+          </>
+        )}
+        {!buttonState && (
+          <>
+            <Typography>&nbsp; &nbsp; &nbsp; Loading</Typography>
+          </>
+        )}
       </LoadingButton>
       <Modal
         aria-labelledby="transition-modal-title"
@@ -235,7 +243,6 @@ function LecExamMarksAdd(props) {
                     id="outlined-textarea"
                     label={string2}
                     placeholder={string1}
-                
                     multiline
                     fullWidth
                     sx={{ mt: "20px" }}
