@@ -59,7 +59,7 @@ const login = asyncHandler(async (req, res) => {
                 email: results[0].email,
                 user_id: results[0].user_id,
               },
-              process.env.JWT_SECRET
+              "exrms2002"
             );
     
             let returnData = {

@@ -11,8 +11,8 @@ function SAR_ProgSubDrawer() {
   console.log(open);
 
   const [acYear,setAcYear] = useState("Academic Year - 2022/2023");
-  const [year,setYear] = useState("First Year");
-  const [sem,setSem] = useState("First Year");
+  const [year,setYear] = useState("3rd Year");
+  const [sem,setSem] = useState("First Semester");
   const [degree,setDegree] = useState("Computer Science (Bsc)");
 
 

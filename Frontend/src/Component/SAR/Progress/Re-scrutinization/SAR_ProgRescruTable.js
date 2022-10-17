@@ -91,8 +91,8 @@ export default function CustomizedTables(props) {
           <TableRow>
             <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
-            <StyledTableCell align="left">SAR Action</StyledTableCell>
-            <StyledTableCell align="left"></StyledTableCell>
+            {/* <StyledTableCell align="left">SAR Action</StyledTableCell> */}
+            {/* <StyledTableCell align="left"></StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -100,8 +100,8 @@ export default function CustomizedTables(props) {
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
               <StyledTableCell align="left">{data.name}</StyledTableCell>
-              <StyledTableCell align="left">{data.SARAction}<Button variant="contained" color='success'>Accept</Button></StyledTableCell>
-              <StyledTableCell align="left">{data.SARAction}<Button variant="contained" color='error'>Pending</Button></StyledTableCell>
+              {/* <StyledTableCell align="left">{data.SARAction}<Button variant="contained" color='success'>Accept</Button></StyledTableCell> */}
+              {/* <StyledTableCell align="left">{data.SARAction}<Button variant="contained" color='error'>Pending</Button></StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>

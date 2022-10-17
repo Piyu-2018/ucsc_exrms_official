@@ -197,17 +197,10 @@ const getSubSelection = asyncHandler(async (req, res) => {
   const subselect = [];
 
   connection.query(
-    `SELECT *
-  FROM exam
-  INNER JOIN exam_mark
-  ON exam.exam_sem_id = exam_mark.exam_sem_id 
-  INNER JOIN exam_question_mark
-  ON exam_mark.mark_id = exam_question_mark.mark_id
-  WHERE exam_mark.academic_yr ='${acYear}' 
-  AND exam_mark.degree='${degree}' 
-  AND exam.year = '${year}'
-  AND exam.semester='${semester}' 
-  AND exam_mark.course_name='${subject}'AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`,
+    `SELECT * FROM student INNER JOIN sub_selection ON student.selection_id=sub_selection.selection_id WHERE sub_selection.academic_yr='${acYear}' 
+    AND sub_selection.degree='${degree}' 
+    AND sub_selection.year = '${year}'
+    AND sub_selection.sem='${sem}'`,
     function (error, results, fields) {
       if (error) throw error;
 

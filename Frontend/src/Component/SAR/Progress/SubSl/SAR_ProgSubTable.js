@@ -97,7 +97,7 @@ export default function CustomizedTables(props) {
           {subSelectionData.map((data) => (
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
-              <StyledTableCell align="left">{data.name}</StyledTableCell>
+              <StyledTableCell align="left">{data.name_initial}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
