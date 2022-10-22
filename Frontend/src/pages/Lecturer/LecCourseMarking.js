@@ -63,9 +63,15 @@ function LecCourseMarking() {
               Examination Marks
             </Typography>
 
-            <LecExamMarkTable QuestionData={questionData} course_id = {CourseId}/>
-            <LecExamMarksAdd />
-            <LecAddExamFile />
+            <LecExamMarkTable
+              QuestionData={questionData}
+              course_id={CourseId}
+            />
+            <LecExamMarksAdd course_id={CourseId} />
+            <LecAddExamFile
+              course_id={CourseId}
+              MarkingStatus={MarkingStatus}
+            />
           </Grid>
         </Grid>
       </Box>
