@@ -11,9 +11,9 @@ import {
   } from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-const options = ['ALL', 'CS', 'IS'];
+const options = ['2022/2021', '2021/2020','2020/2019','2019/2018','2018/2017'];
 
-function CourseOption() {
+function StudyYearOption() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -94,4 +94,4 @@ function CourseOption() {
   );
 }
 
-export default CourseOption
+export default StudyYearOption
