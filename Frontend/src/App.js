@@ -31,6 +31,8 @@ import MaLetters from "./pages/Ma/MaLetters";
 import MaCourses from "./pages/Ma/MaCourses";
 import MaTest from "./pages/Ma/MaTest";
 import MaRegistration from "./pages/Ma/MaRegistration";
+// import MaLetterFormat from "./component/Ma/MaLetterFormat";
+import ReqLetter from "./pages/Ma/ReqLetter";
 
 import HoEDash from "./pages/HeadofExam/HoEDash";
 import HoEExamRe from "./pages/HeadofExam/HoEExamRe";
@@ -47,6 +49,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/Login";
+import ForgotPassword from "./pages/ForgotPassword";
+
 import LecturerAssignments from "./pages/Lecturer/LecturerAssignments";
 import LecAssignList from "./pages/Lecturer/LecAssignList";
 import LecExamTimetable from "./pages/Lecturer/LecExamTimetable";
@@ -83,6 +87,11 @@ import MaPayment from "./pages/Ma/MaPayment";
 import LecCourseResults from "./pages/Lecturer/LecCourseResults";
 import LecChat from "./pages/Lecturer/LecChat";
 
+import PasswordOtp from "./pages/PasswordOtp";
+import ResetPassword from "./pages/ResetPassword";
+import LecHome from "./pages/Lecturer/LecHome";
+import LecDashboard from "./pages/Lecturer/LecDashboard";
+
 // const theme = createTheme({
 //   typography: {
 //     h3: {
@@ -100,6 +109,9 @@ function App() {
           <Route path="*" element={<Navigate to="/" />} />
 
           <Route path="/login" exact element={<Login />} />
+          <Route path="/forgot_password" exact element={<ForgotPassword />} />
+          <Route path="/password_otp" exact element={<PasswordOtp />} />
+          <Route path="/reset_password" exact element={<ResetPassword />} />
           <Route path="/directorDash" element={<DirectorDash />} />
 
           <Route path="/ma_examtimetable" element={<MaExamTimetable />} />
@@ -115,6 +127,8 @@ function App() {
           <Route path="/ma_courses" element={<MaCourses />} />
           <Route path="/ma_test" element={<MaTest />} />
           <Route path="/ma_registration" element={<MaRegistration />} />
+          {/* <Route path="/ma_req_letter" element={<MaLetterFormat />} /> */}
+          <Route path="/req_letter" element={<ReqLetter />} />
 
           <Route path="/directorUnder" element={<DirectorUnder />} />
           <Route path="/directorEnProgress" element={<DirectorEnProgress />} />
@@ -193,6 +207,8 @@ function App() {
           <Route path="/lec_course_grading" element={<LecCourseGrading />} />
           <Route path="/lec_course_results" element={<LecCourseResults />} />
           <Route path="/lec_chat" element={<LecChat />} />
+          <Route path="/lec_home" element={<LecHome />} />
+          <Route path="/lec_dashboard" element={<LecDashboard />} />
         </Routes>
       </div>
     </Router>
