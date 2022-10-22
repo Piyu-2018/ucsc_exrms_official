@@ -199,6 +199,88 @@ const assignAdd = asyncHandler(async (req, res) => {
 //   res.status(StatusCodes.CREATED).json(returnData);
 // });
 
+const assignMarkAdd1 = asyncHandler(async (req, res) => {
+  const data = req.body;
+  var values = [];
+  connection.query(
+    `SELECT marks_assignment.*,assignments.course_id,assignments.contribution FROM marks_assignment,assignments WHERE marks_assignment.assignment_id = assignments.assignment_id AND marks_assignment.index_number = '${data.index_number}' AND marks_assignment.assignment_id=${data.assignment_id}`,
+    function (err, results) {
+      if (err) throw err;
+      var contribution = results[0].contribution;
+      var oldMarks = results[0].marks;
+      if (results.length == 0) {
+        console.log("where marks havent been added");
+        connection.query(
+          `INSERT INTO marks_assignment(index_number,marks,assignment_id) VALUES ("${data.index_number}","${data.marks}","${data.assignment_id}")`,
+          function (err, results) {
+            if (err) throw err;
+            connection.query(
+              `SELECT * FROM exam_mark WHERE index_no = ${data.index_number}`,
+              function (error, results) {
+                if (results.length == 0) {
+                  var newMarks = (data.marks * contribution) / 100;
+                  connection.query(
+                    `INSERT INTO exam_mark(index_no,course_id,asignement_mark) VALUES ("${data.index_number}","${results[0].course_id}","${newMarks}") WHERE index_no=${data.index_number}`,
+                    function (error, results) {
+                      if (error) throw error;
+                    }
+                  );
+                } else {
+                  var newMarks =
+                    results[0].assignment_mark +
+                    (data.marks * contribution) / 100;
+                  connection.query(
+                    `UPDATE exam_mark SET assignment_mark = ${newMarks} WHERE index_no = ${data.index_number}`,
+                    function (error, results) {
+                      if (error) throw error;
+                    }
+                  );
+                }
+              }
+            );
+          }
+        );
+      } else {
+        connection.query(
+          `UPDATE marks_assignment SET marks=${data.marks},assignment_id=${data.assignment_id} WHERE marks!='${data.marks}' AND index_number=${data.index_number}`,
+          function(err,results){
+            if(err) throw err;
+            connection.query(
+              `SELECT * FROM exam_mark WHERE index_no = ${data.index_number}`,
+              function(error,results){
+                if (results.length == 0) {
+                  var newMarks =
+                    (data.marks * contribution) / 100 -
+                    (oldMarks * contribution) / 100;
+                  console.log(newMarks);
+                  connection.query(
+                    `INSERT INTO exam_mark(index_no,course_id,asignement_mark) VALUES ("${data.index_number}","${results[0].course_id}","${newMarks}") WHERE index_no=${data.index_number}`,
+                    function (error, results) {
+                      if (error) throw error;
+                    }
+                  );
+                } else {
+                  var newMarks =
+                        results[0].assignment_mark +
+                        (data.marks * contribution) / 100 -
+                        (oldMarks * contribution) / 100;
+                      console.log(newMarks);
+                      connection.query(
+                        `UPDATE exam_mark SET assignment_mark = "${newMarks}" WHERE index_no = ${data.index_number}`,
+                        function (error, results) {
+                          if (error) throw error;
+                        }
+                      );
+                }
+              }
+            )
+          }
+        )
+      }
+    }
+  );
+});
+
 const assignMarkAdd = asyncHandler(async (req, res) => {
   const data = req.body;
   console.log(data.assignment_id);
@@ -368,4 +450,5 @@ module.exports = {
   assignMarkAdd,
   getAssignMarks,
   getIndexAssign,
+  assignMarkAdd1,
 };
