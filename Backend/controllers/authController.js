@@ -9,6 +9,8 @@ const nodemailer = require("nodemailer");
 
 const { generateOtp, otpEmail } = require("./helpers/authControllerHelper");
 
+const auditGenerator = require("./auditController");
+
 // var mysql = require("mysql");
 // var connection = mysql.createConnection({
 //   host: "localhost",
@@ -36,6 +38,8 @@ var connection = mysql.createPool({
 
 const login = asyncHandler(async (req, res) => {
   console.log("Login using mysql");
+
+  auditGenerator();
 
   const { user_name, password } = req.body;
 
