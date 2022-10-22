@@ -12,6 +12,7 @@ const {
   getResult,
   getAssignMarks,
   getIndexAssign,
+  assignMarkAdd1,
 } = require("../controllers/assignmentController");
 
 const {
@@ -40,6 +41,7 @@ router.get("/getIndexAssign/:id", getIndexAssign);
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd", assignMarkAdd);
+router.post("/assignMarkAdd1", assignMarkAdd1);
 router.get("/getAssignMarks/:id", getAssignMarks);
 router.get("/getExaminationCourses/:id", getExaminationCourses);
 router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
