@@ -2,9 +2,12 @@ import { Box, Grid, Typography, Button } from '@mui/material';
 import React from 'react';
 import MaSidebar from '../../Component/Ma/MaSidebar';
 import MaNavBar from '../../Component/Ma/MaNavBar';
-import MaCourseCard from '../../Component/Ma/MaCourseCard';
+import MaCourseCard from '../../Component/Ma/MaCourseTable/MaCourseCard';
 import MaAddCourse from '../../Component/Ma/MaCourses/AddCourseModal';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import StudyYearOption from '../../Component/Ma/MaCourseTable/StudyYearOption';
+import CourseOption from '../../Component/Ma/MaCourseTable/CourseOption';
+import AcademicYearOption from '../../Component/Ma/MaCourseTable/AcademicYearOption';
+import SemesterOption from '../../Component/Ma/MaCourseTable/SemesterOption';
 
 function MaCourses() {
      
@@ -22,18 +25,18 @@ function MaCourses() {
                     </Typography>
                     <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
                         <Grid container spacing={1} justifyContent="space-evenly" xs={12} p={2} sx={{ padding:"30px 200px 30px 200px"}}>
-                            {/* <Button variant="contained" sx={{backgroundColor:"#114ca7", width:"350px", fontSize:"22px", borderRadius:"30px"}}>
-                                <AddCircleOutlineIcon/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ADD COURSE 
-                            </Button> */}
+                            
                             <MaAddCourse/>
                             
                         </Grid>
-                        {/* <Grid container spacing={1} justifyContent="space-evenly">
-                            <MaAddCourse/>
-                        </Grid> */}
-                        
-                        <Grid container spacing={1} justifyContent="space-evenly">
+        
+                        <Grid container spacing={1} justifyContent="space-evenly" xs={12} p={2} sx={{ padding:"30px 200px 30px 200px"}}>
+                            <AcademicYearOption/>
+                            <StudyYearOption/>
+                            <CourseOption/>
+                            <SemesterOption/>
                             <MaCourseCard/>
+
                         </Grid>
 
                     </Grid>

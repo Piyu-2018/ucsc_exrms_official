@@ -1,15 +1,14 @@
-import { Box, Grid, Stack, Typography,Item, Button, FormControl, InputLabel, Select, MenuItem, CardContent,  } from '@mui/material';
+import { Box, Grid, Card, Radio,RadioGroup, Typography,FormControlLabel, Button, FormControl, InputLabel, Select, MenuItem, CardContent,  } from '@mui/material';
 import React from 'react';
 import MaSidebar from '../../Component/Ma/MaSidebar';
 import MaNavBar from '../../Component/Ma/MaNavBar';
 import TotalAttendanceTable from '../../Component/Ma/MaTotalAttTable';
-import Navbar from '../../Component/Navbar';
 import {useState} from 'react';
-import Card from '@mui/material/Card';
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import './../../style/ma/MaAttendance.css';
+import StudyYearOption from '../../Component/Ma/MaAttendance/StudyYearOption';
+import CourseOption from '../../Component/Ma/MaAttendance/CourseOption';
+import AcademicYearOption from '../../Component/Ma/MaAttendance/AcademicYearOption';
+import SemesterOption from '../../Component/Ma/MaAttendance/SemesterOption'; 
 
 function MaAttendance() {
     const [age, setAge] = React.useState('');
@@ -45,78 +44,20 @@ function MaAttendance() {
                     </Typography>
                     <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
                         <Grid xs={12} p={2} style={{ paddingTop:30,  paddingBottom:30 }}>
-                            <Button variant="contained" className='attendanceBtn' sx={{backgroundColor:"#23538f"}}>MARK ATTENDANCE</Button>
+                            <Button variant="contained" className='attendanceBtn' sx={{backgroundColor:"#06283D"}}>MARK ATTENDANCE</Button>
                         </Grid>
                         
                         <Card className='attendanceContainer' sx={{backgroundColor:"#E4EBF5", borderRadius:"30px"}}><CardContent>
                         <Grid xs={12} container spacing={0.5} justifyContent="space-evenly" p={2}>
-                            
-                            <FormControl >
-                                <RadioGroup
-                                    row
-                                    aria-labelledby="demo-row-radio-buttons-group-label"
-                                    name="row-radio-buttons-group"
-                                >
-                                    <FormControlLabel className='yearBtn' value="1" control={<Radio />} label="Year 1" />
-                                    <FormControlLabel className='yearBtn' value="2" control={<Radio />} label="Year 2" />
-                                    <FormControlLabel className='yearBtn' value="3" control={<Radio />} label="Year 3" />
-                                    <FormControlLabel className='yearBtn' value="4" control={<Radio />} label="Year 4" />
-                                </RadioGroup>
-                            </FormControl>
-                        </Grid>
-                        <Grid xs={12} container spacing={0.5}  p={2} className='selectionContainer'>
-                            
-                                <FormControl className='selectionBox'>
-                                    <InputLabel id="demo-simple-select-label" >Year</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={age}
-                                        label="Year"
-                                        onChange={handleChangeAge}
-                                        sx={{height:"40px"}}
-                                    >
-                                        <MenuItem value={2022}>2022</MenuItem>
-                                        <MenuItem value={2021}>2021</MenuItem>
-                                        <MenuItem value={2020}>2020</MenuItem>
-                                        <MenuItem value={2019}>2019</MenuItem>
-                                        <MenuItem value={2018}>2018</MenuItem>
-                                    </Select>
-                                </FormControl>
-                                <FormControl className='selectionBox'>
-                                    <InputLabel id="demo-simple-select-label">Course</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={course}
-                                        label="Course"
-                                        onChange={handleChangeCourse}
-                                        sx={{height:"40px"}}
-                                    >
-                                        <MenuItem value="cs">CS</MenuItem>
-                                        <MenuItem value="is">IS</MenuItem>
-                                        
-                                    </Select>
-                                </FormControl>
-                                <FormControl className='selectionBox'>
-                                    <InputLabel id="demo-simple-select-label">Semester</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={semester}
-                                        label="Semester"
-                                        onChange={handleChangeSemester}
-                                        sx={{height:"40px"}}
-                                    >
-                                        <MenuItem value="first">First</MenuItem>
-                                        <MenuItem value="second">Second</MenuItem>
-                                            
-                                        </Select>
-                                </FormControl>
-                          
+
+                            <AcademicYearOption/>
+                            <StudyYearOption/>
+                            <CourseOption/>
+                            <SemesterOption/>
                             
                         </Grid>
-                        <Grid xs={12} p={2} className='tableContainer'>
+                        
+                        <Grid xs={12} p={1} className='tableContainer'>
                             <TotalAttendanceTable/>
                         </Grid>
                         </CardContent></Card>
