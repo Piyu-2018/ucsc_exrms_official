@@ -10,9 +10,14 @@ const {
   getUndergraduates,
   assignMarkAdd,
   getResult,
+  getResult1,
   getAssignMarks,
   getIndexAssign,
+
   assignMarkAdd1,
+
+  getPayment,
+
 } = require("../controllers/assignmentController");
 
 const {
@@ -26,7 +31,18 @@ const {
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
+const { getRegistration } = require("../controllers/directorRegistrationController");
 const { getTimetable } = require("../controllers/timeTableController");
+  
+
+
+const {
+  getLetterRequest,
+} = require("../controllers/ma/reqLetterController");
+
+const {
+  addCourse,
+} = require("../controllers/ma/addCourseController");
 
 const router = express.Router();
 
@@ -34,10 +50,16 @@ router.get("/getCourses/:id", getCourses);
 router.get("/getAssign/:id1/:id2", getAssign);
 
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
-router.get("/getNewIntake", getNewIntake);
+router.get("/getNewIntake",getNewIntake );
+router.get("/getRegistration/:id1/:id2", getRegistration);
+
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
+
+router.get("/getResult1/:id1/:id2/:id3/:id4/:id5", getResult1);
+
 router.get("/getIndexAssign/:id", getIndexAssign);
+
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd", assignMarkAdd);
@@ -52,5 +74,9 @@ router.get("/getIndexCourse/:id", getIndexCourse);
 router.post("/examMarksAdd", examMarksAdd);
 
 router.get("/getTimetable", getTimetable);
+
+router.get("/getPayment", getPayment);
+router.get("/getLetterRequest", getLetterRequest);
+router.post("/addCourse", addCourse);
 
 module.exports = router;
