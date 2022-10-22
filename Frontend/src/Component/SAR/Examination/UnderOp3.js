@@ -16,6 +16,7 @@ export default function SplitButton(props) {
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
 
+
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
   };
@@ -23,7 +24,7 @@ export default function SplitButton(props) {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
-    props.onSelectOption(options[index]);
+    props.onSelectDegree(options[index]);
   };
 
   const handleToggle = () => {
@@ -37,6 +38,7 @@ export default function SplitButton(props) {
 
     setOpen(false);
   };
+
 
   return (
     <React.Fragment>

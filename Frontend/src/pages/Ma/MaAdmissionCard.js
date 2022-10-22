@@ -1,9 +1,8 @@
-import { Box, Grid, Stack, Typography,Divider, IconButton,Avatar, Button, FormControl, InputLabel, Select, MenuItem, CardContent,  } from '@mui/material';
+import { Box, Grid, Card, Typography,Divider, IconButton,Avatar, Button, FormControl, InputLabel, Select, MenuItem, CardContent,  } from '@mui/material';
 import React from 'react';
 import MaSidebar from '../../Component/Ma/MaSidebar';
 import MaNavBar from '../../Component/Ma/MaNavBar';
 import StuAttMarkingTT from '../../Component/Ma/MaStuMarkingTT';
-import Card from '@mui/material/Card';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import './../../style/ma/MaAttendance.css';
 
@@ -13,7 +12,7 @@ function MaAdmissionCard() {
     <>
         
         <Box sx={{backgroundColor:"#E4EBF5"}}>
-        <MaNavBar />
+            <MaNavBar />
             <Grid container spacing={1} justifyContent="space-between">
                 <Grid item sm={4} md={2}>
                   <MaSidebar/>

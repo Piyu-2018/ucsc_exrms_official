@@ -1,17 +1,19 @@
 import * as React from 'react';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import {
+    Button,
+    ButtonGroup,
+    ClickAwayListener,
+    Grow,
+    Paper,
+    Popper,
+    MenuItem,
+    MenuList,
+  } from "@mui/material";
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
 
-const options = ['Year','First Year', 'Second Year', 'Third Year', 'Fourth Year'];
+const options = ['Study Year 1', 'Study Year 2','Study Year 3','Study Year 4'];
 
-export default function SplitButton(props) {
+function StudyYearOption() {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(1);
@@ -23,7 +25,6 @@ export default function SplitButton(props) {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
-    props.onSelectYear(options[index]);
   };
 
   const handleToggle = () => {
@@ -41,15 +42,14 @@ export default function SplitButton(props) {
   return (
     <React.Fragment>
       <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-        <Button onClick={handleClick} >{options[selectedIndex]} </Button>
-        <Button 
-          size="small"
+        <Button onClick={handleClick}>{options[selectedIndex]}</Button>
+        <Button
+          size="normal"
           aria-controls={open ? 'split-button-menu' : undefined}
           aria-expanded={open ? 'true' : undefined}
           aria-label="select merge strategy"
           aria-haspopup="menu"
           onClick={handleToggle}
-          
         >
           <ArrowDropDownIcon />
         </Button>
@@ -78,7 +78,6 @@ export default function SplitButton(props) {
                   {options.map((option, index) => (
                     <MenuItem
                       key={option}
-                      disabled={index === 6}
                       selected={index === selectedIndex}
                       onClick={(event) => handleMenuItemClick(event, index)}
                     >
@@ -94,3 +93,5 @@ export default function SplitButton(props) {
     </React.Fragment>
   );
 }
+
+export default StudyYearOption

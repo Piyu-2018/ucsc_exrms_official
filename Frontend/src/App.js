@@ -31,6 +31,8 @@ import MaLetters from "./pages/Ma/MaLetters";
 import MaCourses from "./pages/Ma/MaCourses";
 import MaTest from "./pages/Ma/MaTest";
 import MaRegistration from "./pages/Ma/MaRegistration";
+// import MaLetterFormat from "./component/Ma/MaLetterFormat";
+import ReqLetter from "./pages/Ma/ReqLetter";
 
 import HoEDash from "./pages/HeadofExam/HoEDash";
 import HoEExamRe from "./pages/HeadofExam/HoEExamRe";
@@ -125,6 +127,8 @@ function App() {
           <Route path="/ma_courses" element={<MaCourses />} />
           <Route path="/ma_test" element={<MaTest />} />
           <Route path="/ma_registration" element={<MaRegistration />} />
+          {/* <Route path="/ma_req_letter" element={<MaLetterFormat />} /> */}
+          <Route path="/req_letter" element={<ReqLetter />} />
 
           <Route path="/directorUnder" element={<DirectorUnder />} />
           <Route path="/directorEnProgress" element={<DirectorEnProgress />} />
