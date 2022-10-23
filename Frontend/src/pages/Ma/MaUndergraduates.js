@@ -2,7 +2,7 @@ import { Box, Grid, Typography, Button, CardContent,Card,FormControl,FormControl
 import React from 'react';
 import MaSidebar from '../../Component/Ma/MaSidebar';
 import MaNavBar from '../../Component/Ma/MaNavBar';
-import MaUndergTable from '../../Component/Ma/MaUndergTable';
+import MaUndergTable from '../../Component/Ma/MaUndergraduates/MaUndergTable';
 import StudyYearOption from '../../Component/Ma/MaUndergraduates/StudyYearOption';
 import CourseOption from '../../Component/Ma/MaUndergraduates/CourseOption';
 import AcademicYearOption from '../../Component/Ma/MaUndergraduates/AcademicYearOption';

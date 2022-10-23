@@ -2,7 +2,6 @@ import { Box, Grid, Typography, CardContent, Card } from "@mui/material";
 import React from "react";
 import MaSidebar from "../../Component/Ma/MaSidebar";
 // import MaNavBar from "../../Component/Ma/MaNavBar";
-import MaUndergTable from "../../Component/Ma/MaUndergTable";
 import { useState } from "react";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import MaCalendar from "../../Component/Ma/MaCalendar";

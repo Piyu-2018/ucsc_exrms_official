@@ -18,18 +18,18 @@ const { user, course, lecturer_courses, assignments, student } =
   new PrismaClient();
 
 
-const getLetterRequest = asyncHandler(async (req, res) => {
+const getStudents = asyncHandler(async (req, res) => {
   
 
-  // console.log(degree_type);
+  // console.log("bye");
 
   const student = [];
 
   connection.query(
-    "SELECT * FROM letter,payment WHERE letter.payment_id = payment.payment_id",
+    "SELECT * FROM student WHERE student.index_no > '22000000'",
     function (error, results, fields) {
       if (error) throw error;
-
+      // console.log("Success");
       res.json(results);
     }
   );
@@ -38,4 +38,4 @@ const getLetterRequest = asyncHandler(async (req, res) => {
 
 
 
-module.exports = { getLetterRequest };
+module.exports = { getStudents };

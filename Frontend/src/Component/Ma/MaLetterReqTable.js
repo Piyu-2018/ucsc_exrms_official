@@ -64,7 +64,6 @@ function MaLetterReqTable(props) {
 
   console.log(props);
 
-
   // console.log(props.AssignData);
   const assign = props.AssignData;
   console.log(props.AssignData);

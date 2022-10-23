@@ -37,6 +37,10 @@ const {
   addCourse,
 } = require("../controllers/ma/addCourseController");
 
+const{
+  getStudents,
+} = require("../controllers/ma/undergraduatesController");
+
 const router = express.Router();
 
 router.get("/getCourses/:id", getCourses);
@@ -67,5 +71,6 @@ router.get("getTimetable",getTimetable)
 router.get("/getPayment", getPayment);
 router.get("/getLetterRequest", getLetterRequest);
 router.post("/addCourse", addCourse);
+router.post("/getStudents", getStudents);
 
 module.exports = router;
