@@ -64,6 +64,8 @@ function Login() {
           navigate("/sar-dash");
         } else if (user.user_type === "hox") {
           navigate("/hoEDash");
+        } else if (user.user_type === "admin") {
+          navigate("/admin_Home");
         } else {
           navigate("/ma_undergraduates");
         }

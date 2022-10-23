@@ -8,7 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Button, createTheme, Typography } from "@mui/material";
+import { Box, Button, createTheme, Typography } from "@mui/material";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -122,6 +122,8 @@ function LecExamMarkTable(props) {
   }, []);
 
   return (
+    <Box>
+      
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
@@ -169,7 +171,9 @@ function LecExamMarkTable(props) {
         </TableBody>
       </Table>
     </TableContainer>
+    </Box>
   );
+
 }
 
 function Welcome(props) {
