@@ -1,23 +1,25 @@
 const generateOtp = () => {
-    const numList = [
-        Math.floor(Math.random() * 10 + 1),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-        Math.floor(Math.random() * 10),
-    ];
 
-    return (
-        numList[0] * 10000 +
-        numList[1] * 1000 +
-        numList[2] * 100 +
-        numList[3] * 10 +
-        numList[4]
-    ).toString();
+  
+  const numList = [
+    Math.floor(Math.random() * 10 + 1),
+    Math.floor(Math.random() * 10),
+    Math.floor(Math.random() * 10),
+    Math.floor(Math.random() * 10),
+    Math.floor(Math.random() * 10),
+  ];
+
+  return (
+    numList[0] * 10000 +
+    numList[1] * 1000 +
+    numList[2] * 100 +
+    numList[3] * 10 +
+    numList[4]
+  ).toString();
 };
 
-const otpEmail = (name,otp) => {
-    return `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+const otpEmail = (name, otp) => {
+  return `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
     <div style="margin:50px auto;width:70%;padding:20px 0">
       <div style="border-bottom:1px solid #eee">
         <a href="http://localhost:3000/login" style="cursor: pointer;font-size:1.4em;color: #8427e2;text-decoration:none;font-weight:600">UCSC EXRMS</a>
@@ -34,5 +36,5 @@ const otpEmail = (name,otp) => {
         <p>Colombo 00700</p>
       </div>
     </div>
-  </div>`
-}
+  </div>`;
+};
