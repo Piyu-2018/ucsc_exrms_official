@@ -45,7 +45,12 @@ const { getTimetable } = require("../controllers/timeTableController");
 const { getLetterRequest } = require("../controllers/ma/reqLetterController");
 
 const { addCourse } = require("../controllers/ma/addCourseController");
-const { getLogins, getLecActivity } = require("../controllers/adminController");
+const {
+  getLogins,
+  getLecActivity,
+  getUserLecturer,
+  getUserOther,
+} = require("../controllers/adminController");
 
 const router = express.Router();
 
@@ -84,5 +89,7 @@ router.post("/addCourse", addCourse);
 // router.get("/getLogins",getLogins)
 router.get("/getLogins", getLogins);
 router.get("/getLecActivity", getLecActivity);
+router.get("/getUserLecturer", getUserLecturer);
+router.get("/getUserOther", getUserOther);
 
 module.exports = router;

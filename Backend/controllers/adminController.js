@@ -32,4 +32,26 @@ const getLecActivity = asyncHandler(async (req, res) => {
   );
 });
 
-module.exports = {getLogins,getLecActivity};
+const getUserLecturer = asyncHandler(async (req, res) => {
+  connection.query(
+    `SELECT user_name,email,f_name,l_name FROM user WHERE user_type = "lecturer"`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
+const getUserOther = asyncHandler(async (req, res) => {
+  connection.query(
+    `SELECT user_name,email,f_name,l_name FROM user WHERE user_type = "ma" OR user_type="director" OR user_type = "sar" OR user_type = "hox"`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
+module.exports = {getLogins,getLecActivity,getUserLecturer,getUserOther};

@@ -12,9 +12,13 @@ import {
   createTheme,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { API_URL } from "../../constants/globalConstants";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
@@ -56,10 +60,33 @@ function createData(
   return { AssignmentName, Description, Contribution, Deadline, Action };
 }
 
-function LecAssignTable(props) {
+function AdminUserTable() {
   // console.log(props.AssignData);
-  const assign = props.AssignData;
-  console.log(props.AssignData);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  const [userData, setUserData] = useState([]);
+  let date = [];
+
+  const getUserLecturer = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + "/settings/getUserLecturer", config)
+      .then((response) => {
+        setUserData(response.data);
+
+        // console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getUserLecturer();
+  }, []);
+
   return (
     <>
       <TableContainer component={Paper} sx={{ mt: "20px" }}>
@@ -67,13 +94,13 @@ function LecAssignTable(props) {
           <TableHead>
             <TableRow>
               <StyledTableCell align="left">
-                <Typography variant="h6">Assignment Name</Typography>
+                <Typography variant="h6">User_Name</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Typography variant="h6">Description</Typography>
+                <Typography variant="h6">Name</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Typography variant="h6">Contribution(%)</Typography>
+                <Typography variant="h6">Email</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
                 <Typography variant="h6">More Actions</Typography>
@@ -81,34 +108,26 @@ function LecAssignTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {assign.map((row) => (
-              <StyledTableRow key={row.name}>
+            {userData.map((row) => (
+              <StyledTableRow key={row.user_name}>
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
-                    {row.name}
+                    {row.user_name}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
-                    {row.description}
+                    {row.f_name} {row.l_name}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
-                    {row.contribution}
+                    {row.email}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
-                  <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-                    <Link to={"/lec_assign_marking/"+ row.assignment_id} sx={{ color: "white" }}>
-                      <Typography
-                        variant="h6"
-                        theme={theme}
-                        sx={{ color: "white" }}
-                      >
-                        Mark Assigment
-                      </Typography>
-                    </Link>
+                  <Button variant="outlined" startIcon={<DeleteIcon />}>
+                    Delete User
                   </Button>
                 </StyledTableCell>
               </StyledTableRow>
@@ -120,4 +139,4 @@ function LecAssignTable(props) {
   );
 }
 
-export default LecAssignTable;
+export default AdminUserTable;
