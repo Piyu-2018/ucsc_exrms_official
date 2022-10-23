@@ -19,14 +19,18 @@ import {
   Popper,
   Grow,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import { Link } from "react-router-dom";
 import { Box } from "@mui/system";
 import { Select } from "formik-material-ui";
 import ButtonGroup from "@mui/material/ButtonGroup";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import { API_URL } from "../../constants/globalConstants";
+import moment from "moment";
 
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
@@ -102,11 +106,36 @@ function AdminLoginTable(props) {
     setOpen(false);
   };
 
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  const [logins, setLogins] = useState([]);
+  let date = [];
+
+  const getLogins = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + "/settings/getLogins", config)
+      .then((response) => {
+        setLogins(response.data);
+
+        // console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getLogins();
+  }, []);
+
   return (
     <Box>
       <Box sx={{ mt: "10px", mr: "80%" }}>
-        <Typography variant="h5" sx={{ml: "80px"}} gutterBottom>
-          <AccessTimeFilledIcon/> By Time
+        <Typography variant="h5" sx={{ ml: "80px" }} gutterBottom>
+          <AccessTimeFilledIcon /> By Time
         </Typography>
         <ButtonGroup
           variant="contained"
@@ -171,39 +200,49 @@ function AdminLoginTable(props) {
                 <Typography variant="h6">User Name</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
+                <Typography variant="h6">Name</Typography>
+              </StyledTableCell>
+              <StyledTableCell align="left">
                 <Typography variant="h6">Type</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
                 <Typography variant="h6">Time and Date</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Typography variant="h6">Success</Typography>
+                <Typography variant="h6">Status</Typography>
               </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* {assign.map((row) => (
+            {logins.map((row) => (
               <StyledTableRow key={row.name}>
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
-                    {row.name}
+                    {row.user_name}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
-                    {row.description}
+                    {row.f_name} {row.l_name}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
-                    {row.contribution}
+                    {row.type}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
-                  
+                  <Typography variant="h6" theme={theme}>
+                    {moment(row.datetime).format("MMMM Do YYYY, h:mm:ss a")}
+                  </Typography>
+                </StyledTableCell>
+                <StyledTableCell align="left">
+                  <Typography variant="h6" theme={theme}>
+                    {row.status}
+                  </Typography>
                 </StyledTableCell>
               </StyledTableRow>
-            ))} */}
+            ))}
           </TableBody>
         </Table>
       </TableContainer>

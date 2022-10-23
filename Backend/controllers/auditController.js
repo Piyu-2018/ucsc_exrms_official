@@ -12,10 +12,18 @@ var connection = mysql.createPool({
   database: "u117929562_ucscEXRMS",
 });
 
-function auditGenerator (auditData) {
-
+function auditGenerator(auditData) {
   console.log(auditData);
+
+  connection.query(
+    `INSERT INTO audit_trail (user_id,type,status) VALUES ("${auditData.user_id}","${auditData.type}","${auditData.success}")`,
+    function (error) {
+      if (error) throw error;
+    }
+  );
+
   
+
   // connection.query(
   //   `SELECT email FROM user`,
   //   function (error, results, fields) {
@@ -25,6 +33,6 @@ function auditGenerator (auditData) {
   //   }
   // );
   // console.log("Audit function");
-};
+}
 
 module.exports = auditGenerator;

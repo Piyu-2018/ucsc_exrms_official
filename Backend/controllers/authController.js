@@ -39,9 +39,9 @@ var connection = mysql.createPool({
 const login = asyncHandler(async (req, res) => {
   console.log("Login using mysql");
 
-  auditGenerator();
 
   const { user_name, password } = req.body;
+  console.log(user_name);
 
   var exist = false;
 
@@ -74,9 +74,9 @@ const login = asyncHandler(async (req, res) => {
 
             let auditData = {
               user_id: results[0].user_id,
-              type: "Successfully logged in",
+              type: "Log in",
               success: "success",
-            } 
+            };
 
             auditGenerator(auditData);
 
