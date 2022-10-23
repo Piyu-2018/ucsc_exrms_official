@@ -2,6 +2,16 @@ const asyncHandler = require("express-async-handler");
 const { StatusCodes } = require("http-status-codes");
 
 var mysql = require("mysql");
+// <<<<<<< HEAD
+// var connection = mysql.createPool({
+//   connectionLimit: 10,
+//   host: "sql238.main-hosting.eu",
+//   user: "u117929562_ucscExrmsUser",
+//   password: "lT:@>w0y4",
+//   database: "u117929562_ucscEXRMS",
+// });
+
+// =======
 // var connection = mysql.createConnection({
 //   host: "localhost",
 //   user: "root",
@@ -18,6 +28,7 @@ var connection = mysql.createPool({
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
+//>>>>>>> afa16db780afed1121374c6ae103cf345c7bd7c8
 
 const getExaminationCourses = asyncHandler(async (req, res) => {
   const lecturer_id = parseInt(req.params.id);

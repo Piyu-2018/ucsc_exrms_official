@@ -32,6 +32,7 @@ const {
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
 const { getRegistration } = require("../controllers/directorRegistrationController");
+const { getRegistrationCR } = require("../controllers/directorRegistrationControllerCR");
 const { getConfirmation } = require("../controllers/directorConfirmLetController");
 const { getTranscript } = require("../controllers/directorTranscriptController");
 const { getTimetable } = require("../controllers/timeTableController");
@@ -56,6 +57,7 @@ router.get("/getAssign/:id1/:id2", getAssign);
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
 router.get("/getNewIntake",getNewIntake );
 router.get("/getRegistration/:id1/:id2", getRegistration);
+router.get("/getRegistrationCR/:id1/:id2", getRegistrationCR);
 router.get("/getConfirmation/:id1/:id2", getConfirmation);
 router.get("/getTranscript/:id1/:id2", getTranscript);
 
