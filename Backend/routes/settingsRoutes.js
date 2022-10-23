@@ -32,8 +32,11 @@ const {
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
 const { getRegistration } = require("../controllers/directorRegistrationController");
+const { getConfirmation } = require("../controllers/directorConfirmLetController");
+const { getTranscript } = require("../controllers/directorTranscriptController");
 const { getTimetable } = require("../controllers/timeTableController");
-  
+// const { getLogins } = require("../controllers/adminController"); 
+
 
 
 const {
@@ -43,6 +46,7 @@ const {
 const {
   addCourse,
 } = require("../controllers/ma/addCourseController");
+const getLogins = require("../controllers/adminController");
 
 const router = express.Router();
 
@@ -52,6 +56,8 @@ router.get("/getAssign/:id1/:id2", getAssign);
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
 router.get("/getNewIntake",getNewIntake );
 router.get("/getRegistration/:id1/:id2", getRegistration);
+router.get("/getConfirmation/:id1/:id2", getConfirmation);
+router.get("/getTranscript/:id1/:id2", getTranscript);
 
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
@@ -78,5 +84,7 @@ router.get("/getTimetable", getTimetable);
 router.get("/getPayment", getPayment);
 router.get("/getLetterRequest", getLetterRequest);
 router.post("/addCourse", addCourse);
+// router.get("/getLogins",getLogins)
+router.get("/getLogins",getLogins);
 
 module.exports = router;
