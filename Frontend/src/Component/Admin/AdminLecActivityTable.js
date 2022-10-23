@@ -72,7 +72,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 //   return { AssignmentName, Description, Contribution, Deadline, Action };
 // }
 
-function AdminLoginTable(props) {
+function AdminLecActivityTable(props) {
   // console.log(props.AssignData);
   //   const assign = props.AssignData;
   console.log(props.AssignData);
@@ -111,7 +111,7 @@ function AdminLoginTable(props) {
   const [logins, setLogins] = useState([]);
   let date = [];
 
-  const getLogins = async () => {
+  const getLecActivity = async () => {
     const config = {
       headers: {
         authorization: accessToken,
@@ -119,16 +119,17 @@ function AdminLoginTable(props) {
     };
 
     await axios
-      .get(API_URL + "/settings/getLogins", config)
+      .get(API_URL + "/settings/getLecActivity", config)
       .then((response) => {
         setLogins(response.data);
+        console.log(response.data);
 
         // console.log(response.data);
       });
   };
 
   useEffect(() => {
-    getLogins();
+    getLecActivity();
   }, []);
 
   return (
@@ -197,10 +198,10 @@ function AdminLoginTable(props) {
           <TableHead>
             <TableRow>
               <StyledTableCell align="left">
-                <Typography variant="h6">User Name</Typography>
+                <Typography variant="h6">Lecturer id</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Typography variant="h6">Name</Typography>
+                <Typography variant="h6">Lecturer Name</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
                 <Typography variant="h6">Type</Typography>
@@ -209,7 +210,7 @@ function AdminLoginTable(props) {
                 <Typography variant="h6">Time and Date</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Typography variant="h6">Status</Typography>
+                <Typography variant="h6">Desription</Typography>
               </StyledTableCell>
             </TableRow>
           </TableHead>
@@ -233,7 +234,7 @@ function AdminLoginTable(props) {
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
-                    {moment(row.timedate).format("MMMM Do YYYY, h:mm:ss a")}
+                  {moment(row.timedate).format("MMMM Do YYYY, h:mm:ss a")}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
@@ -250,4 +251,4 @@ function AdminLoginTable(props) {
   );
 }
 
-export default AdminLoginTable;
+export default AdminLecActivityTable;

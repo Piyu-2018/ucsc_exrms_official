@@ -2,6 +2,7 @@ const asyncHandler = require("express-async-handler");
 const { StatusCodes } = require("http-status-codes");
 
 var mysql = require("mysql");
+const auditGenerator = require("./auditController");
 // var connection = mysql.createConnection({
 //   host: "localhost",
 //   user: "root",
@@ -219,27 +220,35 @@ const examMarksAdd = asyncHandler(async (req, res) => {
 
           connection.query(
             `SELECT mark_id from exam_mark WHERE index_no = ${row.index_number_of_students}`,
-            function(error,results,fields){
-              if(error) throw error;
-              if(results.length == 0) {
+            function (error, results, fields) {
+              if (error) throw error;
+              if (results.length == 0) {
                 connection.query(
                   `INSERT INTO exam_mark (index_no,exam_marks,course_id) VALUES ("${row.index_number_of_students}","${totalMarks}","${data.course_id}")`
-                ),function(error,results,fields){
-                  if(error) throw error;
-                }
+                ),
+                  function (error, results, fields) {
+                    if (error) throw error;
+                  };
               } else {
                 connection.query(
                   `UPDATE exam_mark SET exam_marks=${totalMarks} WHERE index_no = ${row.index_number_of_students} AND course_id = ${data.course_id}`,
-                  function(error,results,fields){
-                    if(error) throw error;
+                  function (error, results, fields) {
+                    if (error) throw error;
                   }
-                )
+                );
               }
             }
-          )
-          
+          );
         }
       });
+
+      let auditData = {
+        user_id: data.user_id,
+        type: "Exam Marks adding Bulk",
+        success: `Lecturer added the marks in examination ${data.course_id} as bulk`,
+      };
+
+      auditGenerator(auditData);
     }
   );
   // await data.dataMarks.map(

@@ -95,31 +95,34 @@ function LecAssignAdd(props) {
   }, []);
 
   const addAssign = async (data1) => {
-    console.log("HI");
-    console.log(data1.marks);
-    console.log(data1.index_number);
-    const data = {
-      assignment_id: `${props.assignmentId}`,
-      index_number: data1.index_number,
-      marks: data1.marks,
-    };
+    if (data1) {
+      console.log("HI");
+      console.log(data1.marks);
+      console.log(data1.index_number);
+      const data = {
+        assignment_id: `${props.assignmentId}`,
+        index_number: data1.index_number,
+        marks: data1.marks,
+        user_id: user_id,
+      };
 
-    console.log(data);
-    window.location.reload();
+      console.log(data);
+      window.location.reload();
 
-    await axios
-      .post(API_URL + "/settings/assignMarkAdd1", data)
-      .then((response) => {
-        console.log(response);
-        // setOpen(false);
-        // window.location.reload();
+      await axios
+        .post(API_URL + "/settings/assignMarkAdd1", data)
+        .then((response) => {
+          console.log(response);
+          // setOpen(false);
+          // window.location.reload();
 
-        // setButtonState("loading");
-        // console.log(buttonState);
+          // setButtonState("loading");
+          // console.log(buttonState);
 
-        // setButtonState("clicked")
-        // console.log(buttonState);
-      });
+          // setButtonState("clicked")
+          // console.log(buttonState);
+        });
+    }
   };
 
   const index_numbers = [
@@ -162,6 +165,7 @@ function LecAssignAdd(props) {
       const data = {
         assignment_id: `${props.assignmentId}`,
         dataMarks: rows.rows,
+        user_id: user_id,
       };
       console.log(data);
       await axios

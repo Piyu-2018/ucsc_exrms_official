@@ -93,6 +93,7 @@ import LecHome from "./pages/Lecturer/LecHome";
 import LecDashboard from "./pages/Lecturer/LecDashboard";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdminLogins from "./pages/Admin/AdminLogins";
+import AdminLecActivity from "./pages/Admin/AdminLecActivity";
 
 // const theme = createTheme({
 //   typography: {
@@ -214,6 +215,7 @@ function App() {
 
           <Route path="/admin_home" element={<AdminHome />} />
           <Route path="/admin_logins" element={<AdminLogins />} />
+          <Route path="/admin_lec_activity" element={<AdminLecActivity />} />
         </Routes>
       </div>
     </Router>
