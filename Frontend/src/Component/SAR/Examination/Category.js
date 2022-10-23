@@ -69,7 +69,7 @@ export default function AutoGrid() {
   const open = true;
   console.log(open);
 
-  const [option,setOption] = useState("2022/2023");
+  const [option,setOption] = useState("2022-2023");
   const [year,setYear] = useState("2nd Year");
   const [sem,setSem] = useState("1st Semester");
   const [degree,setDegree] = useState("Information System (Bsc)");
