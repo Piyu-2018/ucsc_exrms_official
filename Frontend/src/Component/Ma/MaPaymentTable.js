@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import React from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
-import LecYears from "../Lecturer/Gradings/LecYears";
 import { Box } from "@mui/system";
 import MaPayStatus from "./MaPayStatus";
 
@@ -54,9 +53,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(Position, IndexNumber, GPA, Action) {
-  return { Position, IndexNumber, GPA, Action };
-}
+// function createData(Position, IndexNumber, GPA, Action) {
+//   return { Position, IndexNumber, GPA, Action };
+// }
 
 function MaPaymentTable(props) {
   
@@ -102,9 +101,6 @@ function MaPaymentTable(props) {
         return <Chip label={param} color="error" /> ;
     }
   }
-
- 
-  
 
   return (
     <>
