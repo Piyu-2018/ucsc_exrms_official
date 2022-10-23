@@ -72,6 +72,14 @@ const login = asyncHandler(async (req, res) => {
               "exrms2002"
             );
 
+            let auditData = {
+              user_id: results[0].user_id,
+              type: "Successfully logged in",
+              success: "success",
+            } 
+
+            auditGenerator(auditData);
+
             let returnData = {
               user_id: results[0].user_id,
               f_name: results[0].f_name,

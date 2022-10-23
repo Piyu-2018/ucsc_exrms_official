@@ -12,8 +12,19 @@ var connection = mysql.createPool({
   database: "u117929562_ucscEXRMS",
 });
 
-function auditGenerator () {
-  console.log("Audit function");
+function auditGenerator (auditData) {
+
+  console.log(auditData);
+  
+  // connection.query(
+  //   `SELECT email FROM user`,
+  //   function (error, results, fields) {
+  //     if (error) throw error;
+
+  //     console.log(results);
+  //   }
+  // );
+  // console.log("Audit function");
 };
 
 module.exports = auditGenerator;
