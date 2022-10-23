@@ -19,6 +19,11 @@ import LecYears from "../Lecturer/Gradings/LecYears";
 import { Box } from "@mui/system";
 import MaPayStatus from "./MaPayStatus";
 
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../constants/globalConstants";
+
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
 const theme = createTheme({
@@ -54,10 +59,52 @@ function createData(Position, IndexNumber, GPA, Action) {
 }
 
 function MaPaymentTable(props) {
+  
+  const [paymentData, setPaymentData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  console.log(user_id);
+
+  const getPayment = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + "/settings/getPayment/", config)
+      .then((response) => {
+        setPaymentData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getPayment();
+  }, []);
+
+  console.log(props);
+
+
   // console.log(props.AssignData);
   const assign = props.AssignData;
   console.log(props.AssignData);
   // console.log(assign[0].name);
+
+  function statusDisplay(param) {
+    switch (param) {
+      case 'Pending':
+        return <Chip label={param} sx={{ backgroundColor: "#fcc603" }} /> ;
+      case 'Approved':
+        return <Chip label={param} color="success" /> ;
+      case 'Rejected':
+        return <Chip label={param} color="error" /> ;
+    }
+  }
+
+ 
+  
 
   return (
     <>
@@ -83,29 +130,32 @@ function MaPaymentTable(props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            <StyledTableRow>
+            {paymentData.map((data) => (
+            <StyledTableRow >
               <StyledTableCell align="left">
                 <Typography variant="h6" theme={theme}>
-                  19001134
+                  {data.index_no}
                 </Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
                 <Typography variant="h6" theme={theme}>
-                  Transcript Letter Request
+                  {data.process}
                 </Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
                 <Typography variant="h6" theme={theme}>
-                  400
+                  {data.amount}
                 </Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Chip label="Pending" sx={{ backgroundColor: "#fcc603" }} />
+                {statusDisplay(data.status)}
+                
               </StyledTableCell>
+              
               <StyledTableCell align="left">
                 <Box>
                   <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-                    <a href="./slip.jpeg" target="_blank">
+                    <a href={'./slips/' + data.uploaded_img} target="_blank">
                       <Typography variant="p" sx={{ color: "white" }}>
                         View Slip
                       </Typography>
@@ -115,105 +165,9 @@ function MaPaymentTable(props) {
                 </Box>
               </StyledTableCell>
             </StyledTableRow>
-
-            <StyledTableRow>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  19001234
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  Registration Payment
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  1500
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Chip label="Approved" color="success" />
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Box>
-                  <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-                    <a href="./slip.jpeg" target="_blank">
-                      <Typography variant="p" sx={{ color: "white" }}>
-                        View Slip
-                      </Typography>
-                    </a>
-                  </Button>
-                  <MaPayStatus />
-                </Box>
-              </StyledTableCell>
-            </StyledTableRow>
-
-            <StyledTableRow>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  19001444
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  Rescrutinization payment
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  200
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Chip label="Rejected" color="error" />
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Box>
-                  <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-                    <a href="./slip.jpeg" target="_blank">
-                      <Typography variant="p" sx={{ color: "white" }}>
-                        View Slip
-                      </Typography>
-                    </a>
-                  </Button>
-                  <MaPayStatus />
-                </Box>
-              </StyledTableCell>
-            </StyledTableRow>
-
-            <StyledTableRow>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  19001851
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  Status Letter
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Typography variant="h6" theme={theme}>
-                  200
-                </Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Chip label="Approved" color="success" />
-              </StyledTableCell>
-              <StyledTableCell align="left">
-                <Box>
-                  <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-                    <a href="./slip.jpeg" target="_blank">
-                      <Typography variant="p" sx={{ color: "white" }}>
-                        View Slip
-                      </Typography>
-                    </a>
-                  </Button>
-                  <MaPayStatus />
-                </Box>
-              </StyledTableCell>
-            </StyledTableRow>
+            ))}
+            
+  
           </TableBody>
         </Table>
       </TableContainer>

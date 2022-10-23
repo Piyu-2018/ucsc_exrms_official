@@ -1,5 +1,5 @@
 import { Box } from "@mui/system";
-import React from "react";
+import React, { useEffect } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import format from "date-fns/format";
@@ -10,6 +10,9 @@ import { useState } from "react";
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import { createTheme, Grid, Typography } from "@mui/material";
 import LecSidebar from "./LecSidebar";
+import { API_URL } from "../../constants/globalConstants";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const locales = {
   "en-US": require("date-fns/locale/en-US"),
@@ -53,12 +56,52 @@ function LecExamTimetable() {
   const open = true;
   console.log(open);
   // const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
-  const [allEvents, setAllEvents] = useState(events);
+  const [allEvents, setAllEvents] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+
+  const getTimetable = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+  await axios
+    .get(API_URL + "/settings/getTimetable", config)
+    .then((response) => {
+      setAllEvents(response.data);
+
+      // console.log(response.data);
+    });
+};
+
+useEffect(() => {
+  getTimetable();
+}, []);
+
+console.log(allEvents);
+
+let Data = [];
+
+
+allEvents.map((row)=>{
+  Data.push({title: `${row.course_code} ${row.course_name}`,
+  start: `${row.exam_start}`,
+  end: `${row.exam_end}`,
+})
+});
+
+console.log(Data);
+
+
 
   // function handleAddEvent() {
   //   setAllEvents([...allEvents, newEvent]);
   // }
 
+
+  
   return (
     <>
       <Box>
@@ -73,7 +116,7 @@ function LecExamTimetable() {
             </Typography>
             <Calendar
               localizer={localizer}
-              events={allEvents}
+              events={Data}
               startAccessor="start"
               endAccessor="end"
               style={{ height: 400, margin: "50px" }}
