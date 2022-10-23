@@ -47,3 +47,4 @@ const getRegistration = asyncHandler(async (req, res) => {
 });
 
 module.exports = { getRegistration };
+

@@ -76,6 +76,7 @@ export default function CustomizedTables(props) {
       .then((response) => {
         setRegistrationData(response.data);
         console.log(response.data);
+        console.log("Hi");
       });
   };
 
