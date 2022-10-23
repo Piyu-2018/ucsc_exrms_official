@@ -4,20 +4,21 @@ const { StatusCodes } = require("http-status-codes");
 
 // const { user, course, lecturer_courses, assignments } = new prismaClient();
 
-// var mysql = require("mysql");
-// var connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "u117929562_ucscexrms",
-// });
 var mysql = require("mysql");
 var connection = mysql.createConnection({
-  host: "sql238.main-hosting.eu",
-  user: "u117929562_ucscExrmsUser",
-  password: "lT:@>w0y4",
-  database: "u117929562_ucscEXRMS",
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "u117929562_ucscexrms",
 });
+
+// var mysql = require("mysql");
+// var connection = mysql.createConnection({
+//   host: "sql238.main-hosting.eu",
+//   user: "u117929562_ucscExrmsUser",
+//   password: "lT:@>w0y4",
+//   database: "u117929562_ucscEXRMS",
+// });
 
 connection.connect();
 
@@ -25,15 +26,18 @@ const { user, course, lecturer_courses, assignments, student } =
   new PrismaClient();
 
 
-const getStudents = asyncHandler(async (req, res) => {
+const getStuAddmDetails = asyncHandler(async (req, res) => {
+  
+
+  // console.log(degree_type);
 
   const student = [];
 
   connection.query(
-    "SELECT * FROM student,user WHERE student.index_no > '22000000' AND user.user_id = student.user_id",
+    "SELECT index_no, reg_no, user_id FROM student WHERE index_no > 22000000",
     function (error, results, fields) {
       if (error) throw error;
-      // console.log("Success");
+
       res.json(results);
     }
   );
@@ -42,4 +46,4 @@ const getStudents = asyncHandler(async (req, res) => {
 
 
 
-module.exports = { getStudents };
+module.exports = { getStuAddmDetails };

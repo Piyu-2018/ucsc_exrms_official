@@ -32,12 +32,14 @@ const { getTimetable } = require("../controllers/timeTableController");
 const {
   getLetterRequest,
 } = require("../controllers/ma/reqLetterController");
-
 const {
   addCourse,
+  getCourse,
 } = require("../controllers/ma/addCourseController");
-
-const{
+const {
+  getStuAddmDetails,
+} = require("../controllers/ma/admissionController");
+const {
   getStudents,
 } = require("../controllers/ma/undergraduatesController");
 
@@ -71,6 +73,8 @@ router.get("getTimetable",getTimetable)
 router.get("/getPayment", getPayment);
 router.get("/getLetterRequest", getLetterRequest);
 router.post("/addCourse", addCourse);
-router.post("/getStudents", getStudents);
+router.get("/getStuAddmDetails", getStuAddmDetails);
+router.get("/getStudents", getStudents);
+router.get("/getCourse", getCourse);
 
 module.exports = router;
