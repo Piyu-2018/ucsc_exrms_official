@@ -19,7 +19,7 @@ export const sideBar = () => (dispatch) => {
 export const login = (user_name, password) => async (dispatch) => {
   try {
     const inputData = { user_name, password };
-    // console.log(inputData.password);
+    console.log(inputData.password);
 
     await axios.post(API_URL + "/auth/login", inputData).then((response) => {
       if (!response.data.error) {

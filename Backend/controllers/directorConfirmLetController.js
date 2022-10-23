@@ -23,27 +23,24 @@ var connection = mysql.createPool({
   database: "u117929562_ucscEXRMS",
 });
 
-const getRegistration = asyncHandler(async (req, res) => {
-  const acYear = req.params.id1;
-  const cuYear = req.params.id2;
+const getConfirmation = asyncHandler(async (req, res) => {
 
-  const student = [];
+    const acYear = (req.params.id1);
+    const cuYear = (req.params.id2);
+  
+    const student = [];
+  
+    connection.query(
+  
+      "SELECT letter.* FROM letter WHERE letter.aca_year ="+'"'+
+      acYear+'"'+ "AND letter.study_year =" +'"'+
+      cuYear +'"'+"AND letter.letter_type ="+'"'+"confirmation"+'"',
+      function (error, results, fields) {
+        if (error) throw error;
+  
+        res.json(results);
+      }
+    );
+  });
 
-  connection.query(
-    "SELECT academic_year.* FROM academic_year WHERE academic_year.aca_year =" +
-      '"' +
-      acYear +
-      '"' +
-      "AND academic_year.current_year =" +
-      '"' +
-      cuYear +
-      '"',
-    function (error, results, fields) {
-      if (error) throw error;
-
-      res.json(results);
-    }
-  );
-});
-
-module.exports = { getRegistration };
+  module.exports = {getConfirmation};
