@@ -35,7 +35,8 @@ const { getRegistration } = require("../controllers/directorRegistrationControll
 const { getConfirmation } = require("../controllers/directorConfirmLetController");
 const { getTranscript } = require("../controllers/directorTranscriptController");
 const { getTimetable } = require("../controllers/timeTableController");
-  
+// const { getLogins } = require("../controllers/adminController"); 
+
 
 
 const {
@@ -45,6 +46,7 @@ const {
 const {
   addCourse,
 } = require("../controllers/ma/addCourseController");
+const getLogins = require("../controllers/adminController");
 
 const router = express.Router();
 
@@ -82,5 +84,7 @@ router.get("/getTimetable", getTimetable);
 router.get("/getPayment", getPayment);
 router.get("/getLetterRequest", getLetterRequest);
 router.post("/addCourse", addCourse);
+// router.get("/getLogins",getLogins)
+router.get("/getLogins",getLogins);
 
 module.exports = router;
