@@ -91,6 +91,8 @@ import PasswordOtp from "./pages/PasswordOtp";
 import ResetPassword from "./pages/ResetPassword";
 import LecHome from "./pages/Lecturer/LecHome";
 import LecDashboard from "./pages/Lecturer/LecDashboard";
+import AdminHome from "./pages/Admin/AdminHome";
+import AdminLogins from "./pages/Admin/AdminLogins";
 
 // const theme = createTheme({
 //   typography: {
@@ -209,6 +211,9 @@ function App() {
           <Route path="/lec_chat" element={<LecChat />} />
           <Route path="/lec_home" element={<LecHome />} />
           <Route path="/lec_dashboard" element={<LecDashboard />} />
+
+          <Route path="/admin_home" element={<AdminHome />} />
+          <Route path="/admin_logins" element={<AdminLogins />} />
         </Routes>
       </div>
     </Router>

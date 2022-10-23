@@ -64,6 +64,8 @@ function Login() {
           navigate("/sar-dash");
         } else if (user.user_type === "hox") {
           navigate("/hoEDash");
+        } else if (user.user_type === "admin") {
+          navigate("/admin_Home");
         } else {
           navigate("/ma_undergraduates");
         }
@@ -84,6 +86,7 @@ function Login() {
 
   const loginUser = async (data) => {
     const inputData = { user_name: data.username, password: data.password };
+
     await axios
       .post(API_URL + "/auth/usernamePasswordCheck", inputData)
       .then((response) => {
@@ -91,6 +94,7 @@ function Login() {
           setLoginError(true);
         } else {
           console.log("Match");
+          
           dispatch(login(data.username, data.password));
         }
       });

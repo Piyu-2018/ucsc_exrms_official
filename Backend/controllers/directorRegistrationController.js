@@ -15,56 +15,36 @@ const { StatusCodes } = require("http-status-codes");
 // connection.connect();
 
 var mysql = require("mysql");
-var connection = mysql.createConnection({
+var connection = mysql.createPool({
+  connectionLimit: 10,
   host: "sql238.main-hosting.eu",
   user: "u117929562_ucscExrmsUser",
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
-connection.connect();
 
 const getRegistration = asyncHandler(async (req, res) => {
+  const acYear = req.params.id1;
+  const cuYear = req.params.id2;
 
-    const acYear = (req.params.id1);
-    const cuYear = (req.params.id2);
-  
-    const student = [];
-  
+  const student = [];
 
-    connection.query(
-  
-      "SELECT academic_year.* FROM academic_year WHERE academic_year.aca_year ="+'"'+
-      acYear+'"'+ "AND academic_year.current_year =" +'"'+
-      cuYear +'"',
+  connection.query(
+    "SELECT academic_year.* FROM academic_year WHERE academic_year.aca_year =" +
+      '"' +
+      acYear +
+      '"' +
+      "AND academic_year.current_year =" +
+      '"' +
+      cuYear +
+      '"',
+    function (error, results, fields) {
+      if (error) throw error;
 
-      function (error, results, fields) {
-        if (error) throw error;
-  
-        res.json(results);
-      }
-    );
+      res.json(results);
+    }
+  );
+});
 
-    // connection.query(
-  
-    //   "SELECT COUNT(academic_year.ma_pa_status) AS countR FROM academic_year WHERE academic_year.ma_pa_status="+'"'+approved+'"',
+module.exports = { getRegistration };
 
-    //   function (error, results, fields) {
-    //     if (error) throw error;
-  
-    //     res.json(results);
-    //   }
-    // );
-
-    // connection.query(
-  
-    //   "SELECT COUNT(academic_year.ma_pa_status) AS countN FROM academic_year WHERE academic_year.ma_pa_status="+'"'+notApproved+'"',
-
-    //   function (error, results, fields) {
-    //     if (error) throw error;
-  
-    //     res.json(results);
-    //   }
-    // );
-  });
-
-  module.exports = {getRegistration};
