@@ -21,4 +21,15 @@ const getLogins = asyncHandler(async (req, res) => {
   );
 });
 
-module.exports = getLogins;
+const getLecActivity = asyncHandler(async (req, res) => {
+  connection.query(
+    `SELECT audit_trail.*,user.user_name,user.f_name,user.l_name FROM audit_trail,user WHERE audit_trail.user_id = user.user_id AND user.user_type = "lecturer"`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
+module.exports = {getLogins,getLecActivity};
