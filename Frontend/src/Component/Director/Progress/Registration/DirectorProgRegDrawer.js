@@ -36,7 +36,7 @@ function DirectorRegDrawer() {
           </Grid>
           <Grid item sm={8} md={10}>
             <DirectorProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-            <DirectorProgRegChart sx={{
+            <DirectorProgRegChart option={option} year={year} sx={{
             zIndex: -1,
           }}/><br></br>
             <DirectorProgRegTable option={option} year={year}/>
