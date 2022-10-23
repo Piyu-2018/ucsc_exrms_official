@@ -23,7 +23,7 @@ var connection = mysql.createConnection({
 });
 connection.connect();
 
-const getRegistration = asyncHandler(async (req, res) => {
+const getRegistrationCR = asyncHandler(async (req, res) => {
 
     const acYear = (req.params.id1);
     const cuYear = (req.params.id2);
@@ -31,22 +31,11 @@ const getRegistration = asyncHandler(async (req, res) => {
     const student = [];
   
 
-    connection.query(
-  
-      "SELECT academic_year.* FROM academic_year WHERE academic_year.aca_year ="+'"'+
-      acYear+'"'+ "AND academic_year.current_year =" +'"'+
-      cuYear +'"',
-
-      function (error, results, fields) {
-        if (error) throw error;
-  
-        res.json(results);
-      }
-    );
-
     // connection.query(
   
-    //   "SELECT COUNT(academic_year.ma_pa_status) AS countR FROM academic_year WHERE academic_year.ma_pa_status="+'"'+approved+'"',
+    //   "SELECT academic_year.* FROM academic_year WHERE academic_year.aca_year ="+'"'+
+    //   acYear+'"'+ "AND academic_year.current_year =" +'"'+
+    //   cuYear +'"',
 
     //   function (error, results, fields) {
     //     if (error) throw error;
@@ -54,6 +43,17 @@ const getRegistration = asyncHandler(async (req, res) => {
     //     res.json(results);
     //   }
     // );
+
+    connection.query(
+  
+      "SELECT COUNT(academic_year.ma_pa_status) AS countR FROM academic_year WHERE academic_year.ma_pa_status="+'"'+approved+'"',
+
+      function (error, results, fields) {
+        if (error) throw error;
+  
+        res.json(results);
+      }
+    );
 
     // connection.query(
   
@@ -67,4 +67,4 @@ const getRegistration = asyncHandler(async (req, res) => {
     // );
   });
 
-  module.exports = {getRegistration};
+  module.exports = {getRegistrationCR};

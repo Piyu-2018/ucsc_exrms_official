@@ -8,27 +8,61 @@ import {
 } from '@devexpress/dx-react-chart-material-ui';
 import { Animation } from '@devexpress/dx-react-chart';
 
-const data = [
-  { region: 'Registered - 78%', val: 78 },
-  { region: 'Not-registered - 22%', val: 22},
-];
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../../constants/globalConstants"; 
 
-export default class Demo extends React.PureComponent {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      data,
+function DirectorProgRegChart(props) {
+  console.log(props.option);
+  console.log(props.year);
+  const [registrationData, setRegistrationData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+  // console.log(user_id);
+
+  const acYear = props.option;
+  const cuYear = props.year;
+ 
+
+  useEffect(() => {
+   
+    getRegistrationCR();
+
+  }, [acYear,cuYear])
+
+  const getRegistrationCR = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
     };
-  }
+  console.log("Hi");
 
-  render() {
-    const { data: chartData } = this.state;
+    await axios
+      .get(API_URL + "/settings/getRegistrationCR/"+acYear+"/"+cuYear,config)
+      .then((response) => {
+        setRegistrationData(response.registrationData.data.countR);
+        console.log(response.registrationData.data.countR);
+        // console.log("Hi");
+      });
+  };
+
+  useEffect(() => {
+    getRegistrationCR();
+  }, []);
+
+  const data = [
+    { region: 'Registered - 78%', val: 78 },
+    { region: 'Not-registered - 22%', val: 22},
+  ];
+ 
 
     return (
       <Paper>
         <Chart 
-          data={chartData}>
+          data={data}>
           <PieSeries
             valueField="val"
             argumentField="region"
@@ -42,5 +76,6 @@ export default class Demo extends React.PureComponent {
         </Chart>
       </Paper>
     );
-  }
 }
+
+export default DirectorProgRegChart;
