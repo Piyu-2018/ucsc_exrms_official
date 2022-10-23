@@ -36,7 +36,24 @@ const addCourse = asyncHandler(async (req, res) => {
     
   });
 
+  const getCourse = asyncHandler(async (req, res) => {
+  
+
+    // console.log(degree_type);
+  
+    const student = [];
+  
+    connection.query(
+      "SELECT course_code, course_name, credit, lecture_name, instructor FROM course WHERE ac_year_ID = 2022",
+      function (error, results, fields) {
+        if (error) throw error;
+  
+        res.json(results);
+      }
+    );
+  });
 
 
 
-module.exports = { addCourse };
+
+module.exports = { addCourse,getCourse };

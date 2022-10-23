@@ -2,7 +2,7 @@ import { Box, Grid, Card, Radio,RadioGroup, Typography,FormControlLabel, Button,
 import React from 'react';
 import MaSidebar from '../../Component/Ma/MaSidebar';
 import MaNavBar from '../../Component/Ma/MaNavBar';
-import TotalAttendanceTable from '../../Component/Ma/MaTotalAttTable';
+import TotalAttendanceTable from '../../Component/Ma/MaAttendance/MaTotalAttTable';
 import {useState} from 'react';
 import './../../style/ma/MaAttendance.css';
 import StudyYearOption from '../../Component/Ma/MaAttendance/StudyYearOption';
