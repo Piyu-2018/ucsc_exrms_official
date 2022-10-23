@@ -94,6 +94,8 @@ import LecDashboard from "./pages/Lecturer/LecDashboard";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdminLogins from "./pages/Admin/AdminLogins";
 import AdminLecActivity from "./pages/Admin/AdminLecActivity";
+import AdminUsers from "./pages/Admin/adminUsers";
+import AdminUserOther from "./pages/Admin/AdminUserOther";
 
 // const theme = createTheme({
 //   typography: {
@@ -216,6 +218,8 @@ function App() {
           <Route path="/admin_home" element={<AdminHome />} />
           <Route path="/admin_logins" element={<AdminLogins />} />
           <Route path="/admin_lec_activity" element={<AdminLecActivity />} />
+          <Route path="/admin_users" element={<AdminUsers />} />
+          <Route path="/admin_user_other" element={<AdminUserOther />} />
         </Routes>
       </div>
     </Router>
