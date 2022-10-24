@@ -11,6 +11,9 @@ import {
   Button,
   createTheme,
   Typography,
+  Modal,
+  Box,
+  Stack,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
@@ -66,6 +69,59 @@ function AdminUserTable() {
   const { user_id, accessToken } = userInfo.user;
   const [userData, setUserData] = useState([]);
   let date = [];
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 500,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleClick = async (data) => {
+    console.info(data);
+    // const config = {
+    //   headers: {
+    //     authorization: accessToken,
+    //   },
+    // };
+
+    setOpen(data);
+
+    // await axios
+    //   .get(API_URL + `/settings/getUserOther/${data}`, config)
+    //   .then((response) => {
+    //     setUserData(response.data);
+
+    //     // console.log(response.data);
+    //   });
+  };
+
+  const handleClick1 = async (data) => {
+    console.info(data);
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + `/settings/deleteUser/${data}`, config)
+      .then((response) => {
+        setOpen(null);
+        window.location.reload();
+
+        // console.log(response.data);
+      });
+  };
 
   const getUserLecturer = async () => {
     const config = {
@@ -126,9 +182,41 @@ function AdminUserTable() {
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">
-                  <Button variant="outlined" startIcon={<DeleteIcon />}>
+                  <Button
+                    variant="outlined"
+                    onClick={() => handleClick(row.user_name)}
+                    startIcon={<DeleteIcon />}
+                  >
                     Delete User
                   </Button>
+                  {open === row.user_name && (
+                    <Modal
+                      open={open}
+                      onClose={handleClose}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                    >
+                      <Box sx={style}>
+                        <Typography
+                          sx={{ mb: "30px" }}
+                          id="modal-modal-title"
+                          variant="h6"
+                          component="h2"
+                        >
+                          Are you sure you want to delete user {row.user_name}?
+                        </Typography>
+                        <Stack spacing={3} direction="row">
+                          <Button
+                            variant="contained"
+                            onClick={() => handleClick1(row.user_name)}
+                          >
+                            Yes
+                          </Button>
+                          <Button variant="contained">No</Button>
+                        </Stack>
+                      </Box>
+                    </Modal>
+                  )}
                 </StyledTableCell>
               </StyledTableRow>
             ))}

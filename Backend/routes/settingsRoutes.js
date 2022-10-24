@@ -50,6 +50,7 @@ const {
   getLecActivity,
   getUserLecturer,
   getUserOther,
+  deleteUser,
 } = require("../controllers/adminController");
 
 const router = express.Router();
@@ -91,5 +92,6 @@ router.get("/getLogins", getLogins);
 router.get("/getLecActivity", getLecActivity);
 router.get("/getUserLecturer", getUserLecturer);
 router.get("/getUserOther", getUserOther);
+router.get("/deleteUser/:id", deleteUser);
 
 module.exports = router;

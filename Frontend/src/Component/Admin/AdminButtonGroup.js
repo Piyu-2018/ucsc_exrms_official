@@ -15,9 +15,14 @@ function AdminButtonGroup() {
       <ButtonGroup
         variant="contained"
         aria-label="outlined primary button group"
+        spacing={3}
       >
-        <Button>Lecturers</Button>
-        <Button>Other Executives</Button>
+        <Link to="/admin_users">
+          <Button sx={{ mr: "10px" }}>Lecturers</Button>
+        </Link>
+        <Link to="/admin_user_other">
+          <Button>Other Executives</Button>
+        </Link>
       </ButtonGroup>
     </>
   );

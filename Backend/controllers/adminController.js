@@ -54,4 +54,16 @@ const getUserOther = asyncHandler(async (req, res) => {
   );
 });
 
-module.exports = {getLogins,getLecActivity,getUserLecturer,getUserOther};
+const deleteUser = asyncHandler(async (req, res) => {
+  const user_name = req.params.id;
+  connection.query(
+    `DELETE from user WHERE user_name = "${user_name}"`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
+module.exports = { getLogins, getLecActivity, getUserLecturer, getUserOther,deleteUser };
