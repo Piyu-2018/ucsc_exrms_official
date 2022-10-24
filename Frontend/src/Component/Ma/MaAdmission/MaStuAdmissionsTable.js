@@ -29,29 +29,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-// function createData(index,regNo, name, option) {
-//   return { index,regNo, name, option };
-// }
-// const btn = <Button variant="contained" href="/ma_admission_card" sx={{color:"white", backgroundColor:"#8dabd8", height:"30px"}}>View Admission&nbsp;&nbsp;&nbsp;<KeyboardDoubleArrowRightIcon/></Button>;
-
-// const rows = [
-//   createData('19001381', '2019/CS/138', 'P. D. P. P. Rathnayaka', btn),
-//   createData('19000596', '2019/CS/059', 'B. A. P. Hiruthma', btn),
-//   createData('19000324', '2019/CS/032', 'H. D. A. Dhanapala', btn),
-//   createData('19000208', '2019/CS/020', 'A. B. C. Kasun',btn),
-//   createData('19000104', '2019/CS/010', 'K. P. Saman',btn),
-//   createData('19001861', '2019/CS/186', 'D. D. Damitha',btn),
-//   createData('19000324', '2019/CS/232', 'A. B. Nimal',btn),
-//   createData('19001324', '2019/CS/132', 'G. A. Sanduni', btn),
-//   createData('19000464', '2019/CS/046', 'W. A. Hirushika', btn),
-//   createData('19001784', '2019/CS/178', 'S. D. Perera', btn),
-  
-  
-// ];
 
 function MaAdmissionsTable(props) {
-
-  <Typography>HI</Typography>
 
   const [stuAddmData, setStuAddmData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);

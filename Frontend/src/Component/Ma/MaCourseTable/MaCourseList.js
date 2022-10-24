@@ -8,7 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-import { Link } from '@mui/material';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../constants/globalConstants";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -30,21 +33,40 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(subCode, subName, credits,lecturers,instructors) {
-  return { subCode, subName, credits,lecturers,instructors };
-}
 
-const data = [
-  createData('SCS 2201', 'Data Structures & Algorithm III', '3','Mr. A. K. Saman','Mr. K. G. Lakshan'),
-  createData('SCS 2203', 'Software Engineering III', '2','Mrs. P. Sanduni','Miss. S. S. Malsha'),
-  createData('SCS 2204', 'Functional Programming', '3','Mrs. G. Nimali','Mr. K. G. Lakshan'),
-  createData('SCS 2205', 'Computer Network I', '2','Mr. A. K. Saman','Miss. S. S. Malsha'),
-  createData('SCS 2206', 'Mathematical Methods II', '2','Mr. S. Shanaka','Mr. K. G. Lakshan'),
-  createData('SCS 2207', 'Programming Language', '3','Mr. Namal Perera','Miss. S. S. Malsha'),
-  createData('SCS 2208', 'RAD', '3','Mr. Kasun Gamage','Miss. S. S. Malsha'),
-];
+function LecturerDetails(props) {
 
-function LecturerDetails() {
+  const [courseData, setCourseData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  console.log(user_id);
+
+  const getCourse = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + "/settings/getCourse/", config)
+      .then((response) => {
+        setCourseData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getCourse();
+  }, []);
+
+  console.log(props);
+
+  // console.log(props.AssignData);
+  const assign = props.AssignData;
+  console.log(props.AssignData);
+  // console.log(assign[0].name);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -58,15 +80,15 @@ function LecturerDetails() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.subCode}
+          {courseData.map((data) => (
+            <StyledTableRow key={data.name}>
+              <StyledTableCell component="th" scope="data">
+                {data.course_code}
               </StyledTableCell>
-              <StyledTableCell align="left">{row.subName}</StyledTableCell>
-              <StyledTableCell align="left">{row.credits}</StyledTableCell>
-              <StyledTableCell align="left">{row.lecturers}</StyledTableCell>
-              <StyledTableCell align="left">{row.instructors}</StyledTableCell>
+              <StyledTableCell align="left">{data.course_name}</StyledTableCell>
+              <StyledTableCell align="left">{data.credit}</StyledTableCell>
+              <StyledTableCell align="left">{data.lecture_name}</StyledTableCell>
+              <StyledTableCell align="left">{data.instructor}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
