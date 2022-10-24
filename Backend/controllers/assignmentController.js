@@ -357,115 +357,124 @@ const assignMarkAdd = asyncHandler(async (req, res) => {
 
   await data.dataMarks.map((row) => {
     connection.query(
-      `SELECT marks_assignment.*,assignments.course_id,assignments.contribution FROM marks_assignment,assignments WHERE marks_assignment.assignment_id = assignments.assignment_id AND marks_assignment.index_number = '${row.index_number}' AND marks_assignment.assignment_id=${data.assignment_id}`,
+      `SELECT course_id,contribution FROM assignments WHERE assignment_id=${data.assignment_id}`,
       function (err, results) {
-        if (err) throw err;
         var contribution = results[0].contribution;
-        var oldMarks = results[0].marks;
-        // res.json(results);
-        if (results.length == 0) {
-          console.log("where marks havent been added");
-          values = [row.index_number, row.marks, data.assignment_id];
-          console.log(values);
-          connection.query(sql, [values], function (err) {
+
+        connection.query(
+          `SELECT marks_assignment.*,assignments.course_id,assignments.contribution FROM marks_assignment,assignments WHERE marks_assignment.assignment_id = assignments.assignment_id AND marks_assignment.index_number = '${row.index_number}' AND marks_assignment.assignment_id=${data.assignment_id}`,
+          function (err, results) {
             if (err) throw err;
-            connection.query(
-              `SELECT * FROM exam_mark WHERE index_no = ${row.index_number}`,
-              function (error, results) {
-                if (results.length == 0) {
-                  var newMarks = (row.marks * contribution) / 100;
-                  connection.query(
-                    `INSERT INTO exam_mark(index_no,course_id,asignement_mark) VALUES ("${row.index_number}","${results[0].course_id}","${row.marks}*${results[0].contribution}/100") WHERE index_no=${row.index_number}`,
-                    function (error, results) {
-                      if (error) throw error;
-                      let auditData = {
-                        user_id: data.user_id,
-                        type: "Marks adding Bulk",
-                        success: `Lecturer added the marks in assignment ${data.assignment_id} as bulk`,
-                      };
+            // var contribution = results[0].contribution;
 
-                      auditGenerator(auditData);
-                    }
-                  );
-                } else {
-                  var newMarks =
-                    results[0].assignment_mark +
-                    (row.marks * contribution) / 100;
-                  connection.query(
-                    `UPDATE exam_mark SET assignment_mark = ${newMarks} WHERE index_no = ${row.index_number}`,
-                    function (error, results) {
-                      if (error) throw error;
-                      let auditData = {
-                        user_id: data.user_id,
-                        type: "Marks adding Bulk",
-                        success: `Lecturer added the marks in assignment ${data.assignment_id} as bulk`,
-                      };
-
-                      auditGenerator(auditData);
-                    }
-                  );
-                }
-              }
-            );
-            // connection.query(`UPDATE exam_mark SET assignment_mark = ${}`)
             // res.json(results);
-            // connection.end();
-          });
-        } else {
-          connection.query(
-            `UPDATE marks_assignment SET marks=${row.marks},assignment_id=${data.assignment_id} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
-            function (err, results) {
-              if (err) throw err;
-              connection.query(
-                `SELECT * FROM exam_mark WHERE index_no = ${row.index_number}`,
-                function (error, results) {
-                  if (results.length == 0) {
-                    var newMarks =
-                      (row.marks * contribution) / 100 -
-                      (oldMarks * contribution) / 100;
-                    console.log(newMarks);
-                    connection.query(
-                      `INSERT INTO exam_mark(index_no,course_id,asignement_mark) VALUES ("${row.index_number}","${results[0].course_id}","${newMarks}") WHERE index_no=${row.index_number}`,
-                      function (error, results) {
-                        if (error) throw error;
-                        let auditData = {
-                          user_id: data.user_id,
-                          type: "Marks adding Bulk",
-                          success: `Lecturer added the marks in assignment ${data.assignment_id} as bulk`,
-                        };
+            if (results.length == 0) {
+              console.log("where marks havent been added");
+              values = [row.index_number, row.marks, data.assignment_id];
+              console.log(values);
+              connection.query(sql, [values], function (err) {
+                if (err) throw err;
+                connection.query(
+                  `SELECT * FROM exam_mark WHERE index_no = ${row.index_number}`,
+                  function (error, results) {
+                    if (results.length == 0) {
+                      var newMarks = (row.marks * contribution) / 100;
+                      connection.query(
+                        `INSERT INTO exam_mark(index_no,course_id,asignement_mark) VALUES ("${row.index_number}","${results[0].course_id}","${row.marks}*${results[0].contribution}/100") WHERE index_no=${row.index_number}`,
+                        function (error, results) {
+                          if (error) throw error;
+                          let auditData = {
+                            user_id: data.user_id,
+                            type: "Marks adding Bulk",
+                            success: `Lecturer added the marks in assignment ${data.assignment_id} as bulk`,
+                          };
 
-                        auditGenerator(auditData);
-                      }
-                    );
-                  } else {
-                    // console.log(results.RowDataPacket[0].assignment_mark);
-                    var newMarks =
-                      results[0].assignment_mark +
-                      (row.marks * contribution) / 100 -
-                      (oldMarks * contribution) / 100;
-                    console.log(newMarks);
-                    connection.query(
-                      `UPDATE exam_mark SET assignment_mark = "${newMarks}" WHERE index_no = ${row.index_number}`,
-                      function (error, results) {
-                        if (error) throw error;
-                        let auditData = {
-                          user_id: data.user_id,
-                          type: "Marks adding Bulk",
-                          success: `Lecturer added the marks in assignment ${data.assignment_id} as bulk`,
-                        };
+                          auditGenerator(auditData);
+                        }
+                      );
+                    } else {
+                      var newMarks =
+                        results[0].assignment_mark +
+                        (row.marks * contribution) / 100;
+                      connection.query(
+                        `UPDATE exam_mark SET assignment_mark = ${newMarks} WHERE index_no = ${row.index_number}`,
+                        function (error, results) {
+                          if (error) throw error;
+                          let auditData = {
+                            user_id: data.user_id,
+                            type: "Marks adding Bulk",
+                            success: `Lecturer added the marks in assignment ${data.assignment_id} as bulk`,
+                          };
 
-                        auditGenerator(auditData);
-                      }
-                    );
+                          auditGenerator(auditData);
+                        }
+                      );
+                    }
                   }
+                );
+                // connection.query(`UPDATE exam_mark SET assignment_mark = ${}`)
+                // res.json(results);
+                // connection.end();
+              });
+            } else {
+              var oldMarks = results[0].marks;
+              connection.query(
+                `UPDATE marks_assignment SET marks=${row.marks},assignment_id=${data.assignment_id} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
+                function (err, results) {
+                  if (err) throw err;
+                  connection.query(
+                    `SELECT * FROM exam_mark WHERE index_no = ${row.index_number}`,
+                    function (error, results) {
+                      if (results.length == 0) {
+                        var newMarks =
+                          (row.marks * contribution) / 100 -
+                          (oldMarks * contribution) / 100;
+                        console.log(newMarks);
+                        connection.query(
+                          `INSERT INTO exam_mark(index_no,course_id,asignement_mark) VALUES ("${row.index_number}","${results[0].course_id}","${newMarks}") WHERE index_no=${row.index_number}`,
+                          function (error, results) {
+                            if (error) throw error;
+                            let auditData = {
+                              user_id: data.user_id,
+                              type: "Marks adding Bulk",
+                              success: `Lecturer added the marks in assignment ${data.assignment_id} as bulk`,
+                            };
+
+                            auditGenerator(auditData);
+                          }
+                        );
+                      } else {
+                        // console.log(results.RowDataPacket[0].assignment_mark);
+                        var newMarks =
+                          results[0].assignment_mark +
+                          (row.marks * contribution) / 100 -
+                          (oldMarks * contribution) / 100;
+                        console.log(newMarks);
+                        connection.query(
+                          `UPDATE exam_mark SET assignment_mark = "${newMarks}" WHERE index_no = ${row.index_number}`,
+                          function (error, results) {
+                            if (error) throw error;
+                            let auditData = {
+                              user_id: data.user_id,
+                              type: "Marks adding Bulk",
+                              success: `Lecturer added the marks in assignment ${data.assignment_id} as bulk`,
+                            };
+
+                            auditGenerator(auditData);
+                          }
+                        );
+                      }
+                    }
+                  );
+                  // res.json(results);
                 }
               );
-              // res.json(results);
             }
-          );
-        }
+          }
+        );
       }
     );
+
     // connection.query(`SELECT * FROM marks_assignment WHERE index_number = '${row.index_number}' AND marks!='${row.marks}'`,
     // function (err,results){
     //   if(err) throw err;
