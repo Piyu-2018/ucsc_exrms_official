@@ -15,7 +15,7 @@ function MaUndergraduates() {
         
         <Box sx={{backgroundColor:"#E4EBF5"}}>
         <MaNavBar />
-            <Grid container spacing={1} justifyContent="space-between">
+            <Grid container spacing={1} justifyContent="space-between" >
                 <Grid item sm={4} md={2}>
                   <MaSidebar/>
                 </Grid>
@@ -23,8 +23,8 @@ function MaUndergraduates() {
                     <Typography variant="h4" align="left" >
                         Undergraduates
                     </Typography>
-                    <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
-                        <Grid container spacing={1} justifyContent="space-evenly" xs={12} p={2} >
+                    <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }} >
+                        <Grid container spacing={1} justifyContent="space-evenly" xs={12} p={2}>
                             <Button variant="contained" component="label" sx={{backgroundColor:"#114CA7", color:"white", padding:"10px 30px 10px 30px", fontSize:"18px",fontWeight:"600"}}>
                                     Upload Undergraduates (XLSX file)
                                 <input hidden accept="image/*" multiple type="file" />
