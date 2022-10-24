@@ -31,6 +31,7 @@ const {
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
+const { getFourth } = require("../controllers/directorFourthAController");
 const { getRegistration } = require("../controllers/directorRegistrationController");
 const { getRegistrationCR } = require("../controllers/directorRegistrationControllerCR");
 const { getConfirmation } = require("../controllers/directorConfirmLetController");
@@ -55,6 +56,7 @@ router.get("/getCourses/:id", getCourses);
 router.get("/getAssign/:id1/:id2", getAssign);
 
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
+router.get("/getFourth/:id1", getFourth);
 router.get("/getNewIntake",getNewIntake );
 router.get("/getRegistration/:id1/:id2", getRegistration);
 router.get("/getRegistrationCR/:id1/:id2", getRegistrationCR);
