@@ -11,7 +11,7 @@ function UnderDrawer() {
   const open = true;
   console.log(open);
   
-  const [option,setOption] = useState("2022/2023");
+  const [option,setOption] = useState("2022-2023");
   const [year,setYear] = useState("2nd Year");
   const [semester,setSem] = useState("1st Semester");
   const [degree,setDegree] = useState("Information System (Bsc)");

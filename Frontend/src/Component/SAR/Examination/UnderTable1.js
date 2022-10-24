@@ -12,6 +12,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../../constants/globalConstants";
+import Modal from './Modal';
 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -38,12 +39,6 @@ function createData(IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks, Grade) 
   return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks , Grade};
 }
 
-/* const rows = [
-    createData(19001411,'2019|CS|141','80','70','B ',''),
-    createData(19001428,'2019/CS/142','90','80 ','A',''),
-    createData(19001381,'2019/CS/138','85',' 76','A',''),
-    createData(19001411,'2019/CS/141','70',' 57','C',''),
-]; */
 
 export default function CustomizedTables(props) {
   console.log(props.option);
@@ -88,6 +83,9 @@ export default function CustomizedTables(props) {
   useEffect(() => {
     getResult1();
   }, []);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -115,7 +113,8 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="left">{data.assignment_mark}</StyledTableCell>
               <StyledTableCell align="left">{data.total_mark}</StyledTableCell>
               <StyledTableCell align="left">{data.grade}</StyledTableCell>
-              <StyledTableCell align="left">{data.Edit}<CreateIcon fontSize="small" sx={{Floatleft: 50}} /></StyledTableCell>
+              <StyledTableCell align="left">{data.Edit}<button className="openModalBtn" onClick={() => {setModalOpen(true);}}>{/* <CreateIcon fontSize="small" sx={{Floatleft: 50}} /> */}EDIT</button></StyledTableCell>
+              {modalOpen && <Modal setOpenModal={setModalOpen} />}
             </StyledTableRow>
           ))}
         </TableBody>
