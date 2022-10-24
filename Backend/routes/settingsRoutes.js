@@ -42,6 +42,12 @@ const {
 const {
   getStudents,
 } = require("../controllers/ma/undergraduatesController");
+const {
+  getCourseReport,
+} = require("../controllers/ma/reportController");
+// const {
+//   sendMail,
+// } = require("../controllers/ma/sendMail");
 
 const router = express.Router();
 
@@ -76,5 +82,7 @@ router.post("/addCourse", addCourse);
 router.get("/getStuAddmDetails", getStuAddmDetails);
 router.get("/getStudents", getStudents);
 router.get("/getCourse", getCourse);
+router.get("/getCourseReport", getCourseReport);
+// router.get("/sendMail", sendMail);
 
 module.exports = router;

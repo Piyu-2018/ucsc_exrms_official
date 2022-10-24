@@ -4,6 +4,13 @@ const { StatusCodes } = require("http-status-codes");
 
 // const { user, course, lecturer_courses, assignments } = new prismaClient();
 
+// var mysql = require("mysql");
+// var connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "u117929562_ucscexrms",
+// });
 var mysql = require("mysql");
 var connection = mysql.createConnection({
   host: "sql238.main-hosting.eu",
@@ -18,25 +25,7 @@ const { user, course, lecturer_courses, assignments, student } =
   new PrismaClient();
 
 
-const addCourse = asyncHandler(async (req, res) => {
-    const data = req.body;
-    // console.log("addcourse");
-    // console.log(data);
-    
-    connection.query(
-      `INSERT INTO course(course_name,course_code,lecture_name,instructor) VALUES ("${data.course}","${data.code}","${data.lecturer}","${data.instructor}")`,
-      function (error, results, fields) {
-        if (error) throw error;
-        // console.log("Success");
-  
-        
-      })
-    
-  
-    
-  });
-
-  const getCourse = asyncHandler(async (req, res) => {
+  const getCourseReport = asyncHandler(async (req, res) => {
   
 
     // console.log(degree_type);
@@ -44,7 +33,7 @@ const addCourse = asyncHandler(async (req, res) => {
     const student = [];
   
     connection.query(
-      "SELECT course_code, course_name, credit, lecture_name, instructor FROM course WHERE ac_year_ID = 2022 AND year = 1",
+      "SELECT course_code, course_name FROM course WHERE ac_year_ID = 2022 AND year = 1",
       function (error, results, fields) {
         if (error) throw error;
   
@@ -56,4 +45,4 @@ const addCourse = asyncHandler(async (req, res) => {
 
 
 
-module.exports = { addCourse,getCourse };
+module.exports = { getCourseReport };
