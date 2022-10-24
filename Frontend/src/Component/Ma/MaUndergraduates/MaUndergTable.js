@@ -95,7 +95,7 @@ function MaUndergTable(props) {
               <StyledTableCell align="left">{data.reg_no}</StyledTableCell>
               <StyledTableCell align="left">{data.name_initial}</StyledTableCell>
               <StyledTableCell align="left">{data.email}</StyledTableCell>
-              <StyledTableCell align="left">{data.address_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.address_no + ", " + data.address_city}</StyledTableCell>
               <StyledTableCell align="left">{data.telep_1}</StyledTableCell>
               <StyledTableCell align="left">{btn}</StyledTableCell>
             </StyledTableRow>

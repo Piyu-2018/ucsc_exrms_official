@@ -37,7 +37,7 @@ const getStudents = asyncHandler(async (req, res) => {
       res.json(results);
     }
   );
-});
+}); 
 
 
 

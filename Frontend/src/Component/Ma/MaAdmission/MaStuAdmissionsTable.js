@@ -63,6 +63,8 @@ function MaAdmissionsTable(props) {
   console.log(props.AssignData);
   // console.log(assign[0].name);
 
+  const btn = <Button variant="contained" href="/ma_admission_card" sx={{color:"white", backgroundColor:"#8dabd8", height:"30px"}}>View Admission&nbsp;&nbsp;&nbsp;<KeyboardDoubleArrowRightIcon/></Button>;
+
 
   return (
     <TableContainer component={Paper}>
@@ -82,8 +84,8 @@ function MaAdmissionsTable(props) {
                 {data.index_no}
               </StyledTableCell>
               <StyledTableCell align="left">{data.reg_no}</StyledTableCell>
-              <StyledTableCell align="left">{data.user_id}</StyledTableCell>
-              <StyledTableCell align="left">{data.user_id}</StyledTableCell>
+              <StyledTableCell align="left">{data.name_initial}</StyledTableCell>
+              <StyledTableCell align="left">{btn}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
