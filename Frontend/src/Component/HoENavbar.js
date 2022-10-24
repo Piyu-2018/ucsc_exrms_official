@@ -47,7 +47,7 @@ const pages = [
   </Button>,
   <Button sx={{ marginLeft: "10px" }}>
     <Link
-      to="/About"
+      to="/aboutUs"
       style={{
         textDecoration: "none",
         fontSize: "18px",

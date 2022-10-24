@@ -20,6 +20,7 @@ function DirectorProgRegChart(props) {
   const [registrationData, setRegistrationData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { accessToken } = userInfo.user;
+  let chartData = null;
   // console.log(user_id);
 
   const acYear = props.option;
@@ -43,18 +44,28 @@ function DirectorProgRegChart(props) {
     await axios
       .get(API_URL + "/settings/getRegistrationCR/"+acYear+"/"+cuYear,config)
       .then((response) => {
-        setRegistrationData(response.registrationData.data.countR);
-        console.log(response.registrationData.data.countR);
+        setRegistrationData(response.data[0]);
+        console.log(response.data[0]);
+        console.log(registrationData);
+      
         // console.log("Hi");
       });
   };
 
   useEffect(() => {
     getRegistrationCR();
+    chartData = registrationData.countR;
   }, []);
 
+  // useEffect(() => {
+   
+  // }, [registrationData]);
+  console.log(chartData);
+
+  // let chartData = registrationData.countR;
+
   const data = [
-    { region: 'Registered - 78%', val: 78 },
+    { region: 'Registered - 78%', val: 78},
     { region: 'Not-registered - 22%', val: 22},
   ];
  
