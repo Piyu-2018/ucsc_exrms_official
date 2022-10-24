@@ -30,7 +30,8 @@ import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { API_URL } from "../../constants/globalConstants";
-import moment from "moment";
+// import moment from "moment";
+import moment from "moment-timezone";
 
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
@@ -233,7 +234,9 @@ function AdminLoginTable(props) {
                 </StyledTableCell>
                 <StyledTableCell align="left">
                   <Typography variant="h6" theme={theme}>
-                    {moment(row.timedate).format("MMMM Do YYYY, h:mm:ss a")}
+                    {moment(row.timedate)
+                      .tz("Asia/Colombo")
+                      .format("MMMM Do YYYY, h:mm:ss a")}
                   </Typography>
                 </StyledTableCell>
                 <StyledTableCell align="left">

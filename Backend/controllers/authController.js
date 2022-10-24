@@ -39,7 +39,6 @@ var connection = mysql.createPool({
 const login = asyncHandler(async (req, res) => {
   console.log("Login using mysql");
 
-
   const { user_name, password } = req.body;
   console.log(user_name);
 
@@ -278,6 +277,19 @@ const emailCheck = asyncHandler(async (req, res) => {
       }
     }
   );
+});
+
+const logOut = asyncHandler(async (req, res) => {
+  const user_id = parseInt(req.params.id);
+  console.log("Logout");
+
+  let auditData = {
+    user_id: user_id,
+    type: "Log Out",
+    success: "Success",
+  };
+
+  auditGenerator(auditData);
 });
 
 // const emailCheck = asyncHandler(async (req, res) => {
@@ -625,4 +637,5 @@ module.exports = {
   forgetPasswordOtpCheck,
   resetPassword,
   usernamePasswordCheck,
+  logOut,
 };
