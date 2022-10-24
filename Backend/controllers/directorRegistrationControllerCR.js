@@ -27,8 +27,11 @@ const getRegistrationCR = asyncHandler(async (req, res) => {
 
     const acYear = (req.params.id1);
     const cuYear = (req.params.id2);
+
+    console.log(req.params);
   
     const student = [];
+    console.log("GetregistrationCR");
   
 
     // connection.query(
@@ -46,10 +49,11 @@ const getRegistrationCR = asyncHandler(async (req, res) => {
 
     connection.query(
   
-      "SELECT COUNT(academic_year.ma_pa_status) AS countR FROM academic_year WHERE academic_year.ma_pa_status="+'"'+approved+'"',
+      `SELECT COUNT(academic_year.ma_pa_status) AS countR FROM academic_year WHERE academic_year.ma_pa_status="approved"`,
 
       function (error, results, fields) {
         if (error) throw error;
+        console.log(results);
   
         res.json(results);
       }
