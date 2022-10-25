@@ -9,12 +9,13 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Academeic Year','1st Year', '2nd Year','3rd Year','4th Year'];
+const options = ['2022-2023','2022-2023','2021-2022','2020-2021','2019-2020 ', '2018-2019 ','2017-2018',' 2016-2017'];
 
-export default function SplitButton() {
+export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const [selectedIndex, setSelectedIndex] = React.useState(0);
+
 
   const handleClick = () => {
     console.info(`You clicked ${options[selectedIndex]}`);
@@ -23,6 +24,7 @@ export default function SplitButton() {
   const handleMenuItemClick = (event, index) => {
     setSelectedIndex(index);
     setOpen(false);
+    props.onSelectOption(options[index]);
   };
 
   const handleToggle = () => {
