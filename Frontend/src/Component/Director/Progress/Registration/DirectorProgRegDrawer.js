@@ -35,11 +35,12 @@ function DirectorRegDrawer() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
-            <DirectorProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
-            <DirectorProgRegChart sx={{
+            <DirectorProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/><br></br><br></br>
+            <DirectorProgRegTable option={option} year={year}/><br></br><br></br>
+            <DirectorProgRegChart option={option} year={year} sx={{
             zIndex: -1,
           }}/><br></br>
-            <DirectorProgRegTable option={option} year={year}/>
+            
           </Grid>
           
         </Grid>

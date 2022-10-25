@@ -4,7 +4,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 
 import DirectorProgYearSl from "./DirectorProgYearSl";
-
+import { useState, useEffect } from "react";
 import DirectorProgTransChart from "./DirectorProgTransChart";
 import DirectorProgTransTable from "./DirectorProgTransTable";
 import DirectorSidebar from "../../DirectorSidebar";
@@ -12,6 +12,18 @@ import DirectorSidebar from "../../DirectorSidebar";
 function DirectorProgTransDrawer() {
   const open = true;
   console.log(open);
+
+  const [option,setOption] = useState("Academic Year - 2022-2023");
+  const [year,setYear] = useState("First Year");
+
+  const onSelectedOption = (option) => {
+    setOption(option);
+  }
+
+  const onSelectedYear = (year) => {
+    // console.log(index);
+    setYear(year);
+  }
 
   return (
     <>
@@ -30,11 +42,12 @@ function DirectorProgTransDrawer() {
           <DirectorSidebar open={open} />
         </Grid>
         <Grid item sm={8} md={10}>
-          <DirectorProgYearSl />
+          <DirectorProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/>
           <br></br>
+          
+          
+          <DirectorProgTransTable option={option} year={year}/><br></br>
           <DirectorProgTransChart />
-          <br></br>
-          <DirectorProgTransTable />
         </Grid>
       </Grid>
     </>

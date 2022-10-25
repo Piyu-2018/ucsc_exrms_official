@@ -31,6 +31,7 @@ function LecResultsGraph() {
                 valueField="val"
                 argumentField="region"
                 innerRadius={0.6}
+
               />
               <Title text="Gradings Distribution SCS3301" />
 

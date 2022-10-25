@@ -31,6 +31,8 @@ import MaLetters from "./pages/Ma/MaLetters";
 import MaCourses from "./pages/Ma/MaCourses";
 import MaTest from "./pages/Ma/MaTest";
 import MaRegistration from "./pages/Ma/MaRegistration";
+// import MaLetterFormat from "./component/Ma/MaLetterFormat";
+import ReqLetter from "./pages/Ma/ReqLetter";
 
 import HoEDash from "./pages/HeadofExam/HoEDash";
 import HoEExamRe from "./pages/HeadofExam/HoEExamRe";
@@ -47,6 +49,9 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/Login";
+import AboutUs from "./pages/AboutUs";
+import ForgotPassword from "./pages/ForgotPassword";
+
 import LecturerAssignments from "./pages/Lecturer/LecturerAssignments";
 import LecAssignList from "./pages/Lecturer/LecAssignList";
 import LecExamTimetable from "./pages/Lecturer/LecExamTimetable";
@@ -83,6 +88,17 @@ import MaPayment from "./pages/Ma/MaPayment";
 import LecCourseResults from "./pages/Lecturer/LecCourseResults";
 import LecChat from "./pages/Lecturer/LecChat";
 
+import PasswordOtp from "./pages/PasswordOtp";
+import ResetPassword from "./pages/ResetPassword";
+import LecHome from "./pages/Lecturer/LecHome";
+import LecDashboard from "./pages/Lecturer/LecDashboard";
+import AdminHome from "./pages/Admin/AdminHome";
+import AdminLogins from "./pages/Admin/AdminLogins";
+import AdminLecActivity from "./pages/Admin/AdminLecActivity";
+import AdminUsers from "./pages/Admin/adminUsers";
+import AdminUserOther from "./pages/Admin/AdminUserOther";
+import AdminUserStu from "./pages/Admin/AdminUserStu";
+
 // const theme = createTheme({
 //   typography: {
 //     h3: {
@@ -99,7 +115,11 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="*" element={<Navigate to="/" />} />
 
+          <Route path="/aboutUs" exact element={<AboutUs />} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/forgot_password" exact element={<ForgotPassword />} />
+          <Route path="/password_otp" exact element={<PasswordOtp />} />
+          <Route path="/reset_password" exact element={<ResetPassword />} />
           <Route path="/directorDash" element={<DirectorDash />} />
 
           <Route path="/ma_examtimetable" element={<MaExamTimetable />} />
@@ -115,6 +135,8 @@ function App() {
           <Route path="/ma_courses" element={<MaCourses />} />
           <Route path="/ma_test" element={<MaTest />} />
           <Route path="/ma_registration" element={<MaRegistration />} />
+          {/* <Route path="/ma_req_letter" element={<MaLetterFormat />} /> */}
+          <Route path="/req_letter" element={<ReqLetter />} />
 
           <Route path="/directorUnder" element={<DirectorUnder />} />
           <Route path="/directorEnProgress" element={<DirectorEnProgress />} />
@@ -191,8 +213,20 @@ function App() {
             element={<LecCourseMarking />}
           />
           <Route path="/lec_course_grading" element={<LecCourseGrading />} />
-          <Route path="/lec_course_results" element={<LecCourseResults />} />
+          <Route
+            path="/lec_course_results/:CourseId"
+            element={<LecCourseResults />}
+          />
           <Route path="/lec_chat" element={<LecChat />} />
+          <Route path="/lec_home" element={<LecHome />} />
+          <Route path="/lec_dashboard" element={<LecDashboard />} />
+
+          <Route path="/admin_home" element={<AdminHome />} />
+          <Route path="/admin_logins" element={<AdminLogins />} />
+          <Route path="/admin_lec_activity" element={<AdminLecActivity />} />
+          <Route path="/admin_users" element={<AdminUsers />} />
+          <Route path="/admin_user_other" element={<AdminUserOther />} />
+          <Route path="/admin_user_stu" element={<AdminUserStu />} />
         </Routes>
       </div>
     </Router>
