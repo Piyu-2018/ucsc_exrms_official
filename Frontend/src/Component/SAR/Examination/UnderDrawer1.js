@@ -11,10 +11,10 @@ function UnderDrawer() {
   const open = true;
   console.log(open);
   
-  const [option,setOption] = useState("2022-2023");
-  const [year,setYear] = useState("2nd Year");
+  const [option,setOption] = useState("2020-2021");
+  const [year,setYear] = useState("1st Year");
   const [semester,setSem] = useState("1st Semester");
-  const [degree,setDegree] = useState("Information System (Bsc)");
+  const [degree,setDegree] = useState("Computer Science (Bsc)");
   const [subject,setSubject] = useState("Enterprise Resource Planning");
 
   const onSelectedOption = (option) => {
