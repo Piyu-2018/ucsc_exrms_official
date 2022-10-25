@@ -15,13 +15,13 @@ const { StatusCodes } = require("http-status-codes");
 // connection.connect();
 
 var mysql = require("mysql");
-var connection = mysql.createConnection({
+var connection = mysql.createPool({
+  connectionLimit: 10,
   host: "sql238.main-hosting.eu",
   user: "u117929562_ucscExrmsUser",
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
-connection.connect();
 
 const getRegistrationCR = asyncHandler(async (req, res) => {
 
