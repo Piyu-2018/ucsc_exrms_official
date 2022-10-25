@@ -17,6 +17,8 @@ const {
   assignMarkAdd1,
 
   getPayment,
+  getCourseCode,
+  getCourseAssign,
 } = require("../controllers/assignmentController");
 
 const {
@@ -49,11 +51,12 @@ const {
 const { getFourth } = require("../controllers/directorFourthAController");
 
 const { getApprove } = require("../controllers/directorExamApproveController");
-const { getRegistration } = require("../controllers/directorRegistrationController");
-const { getRegistrationCR } = require("../controllers/directorRegistrationControllerCR");
-const { getConfirmation } = require("../controllers/directorConfirmLetController");
-const { getTranscript } = require("../controllers/directorTranscriptController");
-
+// const { getRegistration } = require("../controllers/directorRegistrationController");
+const {
+  getRegistrationCR,
+} = require("../controllers/directorRegistrationControllerCR");
+// const { getConfirmation } = require("../controllers/directorConfirmLetController");
+// const { getTranscript } = require("../controllers/directorTranscriptController");
 
 const { getTimetable } = require("../controllers/timeTableController");
 // const { getLogins } = require("../controllers/adminController");
@@ -95,9 +98,8 @@ router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
 
 router.get("/getFourth/:id1", getFourth);
 
-router.get("/getNewIntake",getNewIntake );
-router.get("/getApprove/:id1",getApprove );
-
+router.get("/getNewIntake", getNewIntake);
+router.get("/getApprove/:id1", getApprove);
 
 router.get("/getRegistration/:id1/:id2", getRegistration);
 router.get("/getRegistrationCR/:id1/:id2", getRegistrationCR);
@@ -148,5 +150,8 @@ router.get("/getExamTotalMarks/:id1/:id2", getExamTotalMarks);
 router.get("/getAssignTotalMarks/:id1/:id2", getAssignTotalMarks);
 router.get("/getTotalExam/:id1/:id2", getTotalExam);
 router.get("/getWeights/:id", getWeights);
+
+router.get("/getCourseCode/:id", getCourseCode);
+router.get("/getCourseAssign/:id", getCourseAssign);
 
 module.exports = router;

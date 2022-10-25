@@ -118,13 +118,13 @@ const getResult = asyncHandler(async (req, res) => {
 });
 
 const getResult1 = asyncHandler(async (req, res) => {
-  const acYear = (req.params.id1);
-  const year = (req.params.id2);
-  const semester = (req.params.id3);
-  const degree = (req.params.id4);
-  const subject = (req.params.id5);
-  const approve = (req.params.id6);
-  
+  const acYear = req.params.id1;
+  const year = req.params.id2;
+  const semester = req.params.id3;
+  const degree = req.params.id4;
+  const subject = req.params.id5;
+  const approve = req.params.id6;
+
   const mark = [];
 
   connection.query(
@@ -148,8 +148,6 @@ const getResult1 = asyncHandler(async (req, res) => {
   //     res.json(results);
   //   }
   // );
-
-
 });
 
 const assignAdd = asyncHandler(async (req, res) => {
@@ -556,6 +554,34 @@ const getIndexAssign = asyncHandler(async (req, res) => {
   );
 });
 
+const getCourseCode = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id);
+
+  connection.query(
+    `SELECT * from course WHERE course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getCourseAssign = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const assignment_id = parseInt(req.params.id);
+
+  connection.query(
+    `SELECT course.course_code,assignments.name from course,assignments WHERE assignments.course_id = course.course_id AND assignment_id = ${assignment_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
 module.exports = {
   getCourses,
   getAssign,
@@ -566,8 +592,8 @@ module.exports = {
   assignMarkAdd,
   getAssignMarks,
   getIndexAssign,
-
+  getCourseCode,
   assignMarkAdd1,
-
+  getCourseAssign,
   getPayment,
 };
