@@ -49,6 +49,9 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/Login";
+import AboutUs from "./pages/AboutUs";
+import ForgotPassword from "./pages/ForgotPassword";
+
 import LecturerAssignments from "./pages/Lecturer/LecturerAssignments";
 import LecAssignList from "./pages/Lecturer/LecAssignList";
 import LecExamTimetable from "./pages/Lecturer/LecExamTimetable";
@@ -85,6 +88,13 @@ import MaPayment from "./pages/Ma/MaPayment";
 import LecCourseResults from "./pages/Lecturer/LecCourseResults";
 import LecChat from "./pages/Lecturer/LecChat";
 
+import PasswordOtp from "./pages/PasswordOtp";
+import ResetPassword from "./pages/ResetPassword";
+import LecHome from "./pages/Lecturer/LecHome";
+import LecDashboard from "./pages/Lecturer/LecDashboard";
+import AdminHome from "./pages/Admin/AdminHome";
+import AdminLogins from "./pages/Admin/AdminLogins";
+
 // const theme = createTheme({
 //   typography: {
 //     h3: {
@@ -101,7 +111,11 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="*" element={<Navigate to="/" />} />
 
+          <Route path="/aboutUs" exact element={<AboutUs />} />
           <Route path="/login" exact element={<Login />} />
+          <Route path="/forgot_password" exact element={<ForgotPassword />} />
+          <Route path="/password_otp" exact element={<PasswordOtp />} />
+          <Route path="/reset_password" exact element={<ResetPassword />} />
           <Route path="/directorDash" element={<DirectorDash />} />
 
           <Route path="/ma_examtimetable" element={<MaExamTimetable />} />
@@ -197,6 +211,11 @@ function App() {
           <Route path="/lec_course_grading" element={<LecCourseGrading />} />
           <Route path="/lec_course_results" element={<LecCourseResults />} />
           <Route path="/lec_chat" element={<LecChat />} />
+          <Route path="/lec_home" element={<LecHome />} />
+          <Route path="/lec_dashboard" element={<LecDashboard />} />
+
+          <Route path="/admin_home" element={<AdminHome />} />
+          <Route path="/admin_logins" element={<AdminLogins />} />
         </Routes>
       </div>
     </Router>

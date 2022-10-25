@@ -1,6 +1,7 @@
 import React from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Grid} from "@mui/material";
+import { useState, useEffect } from "react";
 import DirectorProgConfirmChart from './DirectorProgConfirmChart';
 import DirectorProgConfirmTable from './DirectorProgConfirmTable';
 import DirectorProgYearSl from './DirectorProgYearSl';
@@ -9,6 +10,18 @@ import DirectorSidebar from '../../DirectorSidebar';
 function DirectorProgConfirmDrawer() {
   const open = true;
   console.log(open);
+
+  const [option,setOption] = useState("Academic Year - 2022-2023");
+  const [year,setYear] = useState("First Year");
+
+  const onSelectedOption = (option) => {
+    setOption(option);
+  }
+
+  const onSelectedYear = (year) => {
+    // console.log(index);
+    setYear(year);
+  }
 
   return (
     <>
@@ -22,9 +35,9 @@ function DirectorProgConfirmDrawer() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
-            <DirectorProgYearSl/><br></br>
+            <DirectorProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/><br></br>
             <DirectorProgConfirmChart/><br></br>
-            <DirectorProgConfirmTable/>
+            <DirectorProgConfirmTable option={option} year={year}/>
           </Grid>
           
         </Grid>
