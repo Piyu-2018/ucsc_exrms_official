@@ -31,6 +31,7 @@ const {
   getAssignTotalMarks,
   getWeights,
   getTotalExam,
+  getLecturer,
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
@@ -137,6 +138,7 @@ router.get("/getUserLecturer", getUserLecturer);
 router.get("/getUserOther", getUserOther);
 router.get("/getUserStu", getUserStu);
 router.get("/deleteUser/:id", deleteUser);
+router.get("/getLecturer", getLecturer);
 
 router.get("/getExamTotalMarks/:id1/:id2", getExamTotalMarks);
 router.get("/getAssignTotalMarks/:id1/:id2", getAssignTotalMarks);

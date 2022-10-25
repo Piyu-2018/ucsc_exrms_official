@@ -16,43 +16,47 @@ var connection = mysql.createPool({
 const { user, course, lecturer_courses, assignments, student } =
   new PrismaClient();
 
-
 const addCourse = asyncHandler(async (req, res) => {
-    const data = req.body;
-    // console.log("addcourse");
-    // console.log(data);
-    
-    connection.query(
-      `INSERT INTO course(course_name,course_code,lecture_name,instructor) VALUES ("${data.course}","${data.code}","${data.lecturer}","${data.instructor}")`,
-      function (error, results, fields) {
-        if (error) throw error;
-        // console.log("Success");
-  
-        
-      })
-    
-  
-    
-  });
+  const data = req.body;
+  // console.log("addcourse");
+  // console.log(data);
 
-  const getCourse = asyncHandler(async (req, res) => {
-  
+  connection.query(
+    `INSERT INTO course(course_name,course_code,lecture_name) VALUES ("${data.course}","${data.code}","${data.lecturer}")`,
+    function (error, results, fields) {
+      if (error) throw error;
+      // console.log("Success");
+      connection.query(
+        `SELECT course_id from course WHERE course_code = "${data.code}"`,
+        function (error, results, fields) {
+          if (error) throw error;
 
-    // console.log(degree_type);
-  
-    const student = [];
-  
-    connection.query(
-      "SELECT course_code, course_name, credit, lecture_name, instructor FROM course WHERE ac_year_ID = 2022 AND year = 1",
-      function (error, results, fields) {
-        if (error) throw error;
-  
-        res.json(results);
-      }
-    );
-  });
+          console.log(results[0].course_id);
+          connection.query(
+            `INSERT INTO lecturer_courses(user_id,course_id) VALUES (${data.lecturer},${results[0].course_id})`,
+            function (error, results, fields) {
+              if (error) throw error;
+            }
+          );
+        }
+      );
+    }
+  );
+});
 
+const getCourse = asyncHandler(async (req, res) => {
+  // console.log(degree_type);
 
+  const student = [];
 
+  connection.query(
+    "SELECT course_code, course_name, credit, lecture_name, instructor FROM course WHERE ac_year_ID = 2022 AND year = 1",
+    function (error, results, fields) {
+      if (error) throw error;
 
-module.exports = { addCourse,getCourse };
+      res.json(results);
+    }
+  );
+});
+
+module.exports = { addCourse, getCourse };
