@@ -9,7 +9,7 @@ var mysql = require("mysql");
 //   database: "u117929562_ucscexrms",
 // });
 
-var mysql = require("mysql");
+// var mysql = require("mysql");
 // var connection = mysql.createConnection({
 //   host: "sql238.main-hosting.eu",
 //   user: "u117929562_ucscExrmsUser",
