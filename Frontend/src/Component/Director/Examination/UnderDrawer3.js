@@ -1,12 +1,12 @@
 import React from 'react';
 import Category from './Category';
 import UnderSeach from './UnderSeach';
-import UnderTable from './UnderTable';
+import UnderTable1 from './UnderTable1';
 import DirectorSidebar from '../DirectorSidebar';
 import { Grid} from "@mui/material";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 
-function UnderDrawer1() {
+function UnderDrawer() {
   const open = true;
   console.log(open);
 
@@ -19,17 +19,17 @@ function UnderDrawer1() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10} >
-          <h1 text-color='#06283D'><AssignmentIcon sx={{ fontSize: 27 , color:'#06283D'}}/> Examination</h1>
+          <h2><AssignmentIcon sx={{ fontSize: 20 }}/> Examination</h2>
             <Category/> <br></br>
 
-            {/* <UnderSeach onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedSem={onSelectedSem} onSelectedDegree={onSelectedDegree} onSelectedSubject={onSelectedSubject}/> <br></br>
-            <UnderTable option={option} year={year} sem={sem} degree={degree} subject={subject}/> */}
+            <UnderSeach/><br></br>
+            <UnderTable1/>
           </Grid>  
         </Grid>
     </>
   );
 }
 
-export default UnderDrawer1;
+export default UnderDrawer;
 
 
