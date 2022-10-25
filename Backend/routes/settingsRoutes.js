@@ -15,9 +15,14 @@ const {
   
   getAssignMarks,
   getIndexAssign,
- /*  getRecruthinization, */
- /*  getSubSelection,
-  getFourthYear, */
+
+
+  assignMarkAdd1,
+
+  getPayment,
+  getCourseCode,
+  getCourseAssign,
+
 } = require("../controllers/assignmentController");
 
 const {
@@ -28,7 +33,29 @@ const {
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
-const { getRegistration } = require("../controllers/directorRegistrationController");
+
+
+const {
+  getRegistration,
+} = require("../controllers/directorRegistrationController");
+const {
+  getConfirmation,
+} = require("../controllers/directorConfirmLetController");
+const {
+  getTranscript,
+} = require("../controllers/directorTranscriptController");
+
+const { getFourth } = require("../controllers/directorFourthAController");
+
+const { getApprove } = require("../controllers/directorExamApproveController");
+// const { getRegistration } = require("../controllers/directorRegistrationController");
+const {
+  getRegistrationCR,
+} = require("../controllers/directorRegistrationControllerCR");
+// const { getConfirmation } = require("../controllers/directorConfirmLetController");
+// const { getTranscript } = require("../controllers/directorTranscriptController");
+
+
 const { getTimetable } = require("../controllers/timeTableController");
 
 const router = express.Router();
@@ -37,7 +64,14 @@ router.get("/getCourses/:id", getCourses);
 router.get("/getAssign/:id1/:id2", getAssign);
 
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
-router.get("/getNewIntake",getNewIntake );
+
+
+router.get("/getFourth/:id1", getFourth);
+
+router.get("/getNewIntake", getNewIntake);
+router.get("/getApprove/:id1", getApprove);
+
+
 router.get("/getRegistration/:id1/:id2", getRegistration);
 
 
@@ -60,5 +94,8 @@ router.get("/getDistinctIndex/:id", getDistinctIndex);
 router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
 
 router.get("getTimetable",getTimetable)
+
+router.get("/getCourseCode/:id", getCourseCode);
+router.get("/getCourseAssign/:id", getCourseAssign);
 
 module.exports = router;
