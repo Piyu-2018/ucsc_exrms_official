@@ -92,7 +92,7 @@ export default function CustomizedTables(props) {
             <StyledTableCell align="left">Year</StyledTableCell>
             <StyledTableCell align="left">Course Type</StyledTableCell>
             <StyledTableCell align="left">Status</StyledTableCell>
-            <StyledTableCell align="left">More Action</StyledTableCell>
+            {/* <StyledTableCell align="left">More Action</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -103,7 +103,7 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="left">{data.study_year}</StyledTableCell>
               <StyledTableCell align="left">{data.degree_status}</StyledTableCell>
               <StyledTableCell align="left">{data.status}</StyledTableCell>
-              <StyledTableCell align="left"><Button variant="contained">View Letter</Button></StyledTableCell>
+              {/* <StyledTableCell align="left"><Button variant="contained">View Letter</Button></StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>
