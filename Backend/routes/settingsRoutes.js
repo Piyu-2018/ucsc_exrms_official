@@ -47,10 +47,10 @@ const {
 
 const { getFourth } = require("../controllers/directorFourthAController");
 const { getApprove } = require("../controllers/directorExamApproveController");
-const { getRegistration } = require("../controllers/directorRegistrationController");
+// const { getRegistration } = require("../controllers/directorRegistrationController");
 const { getRegistrationCR } = require("../controllers/directorRegistrationControllerCR");
-const { getConfirmation } = require("../controllers/directorConfirmLetController");
-const { getTranscript } = require("../controllers/directorTranscriptController");
+// const { getConfirmation } = require("../controllers/directorConfirmLetController");
+// const { getTranscript } = require("../controllers/directorTranscriptController");
 
 const { getTimetable } = require("../controllers/timeTableController");
 // const { getLogins } = require("../controllers/adminController");
@@ -68,10 +68,9 @@ const {
   getUserStu,
 } = require("../controllers/adminController");
 
-  getLetterRequest,
-} = require("../controllers/ma/reqLetterController");
+//   const {getLetterRequest,
+// } = require("../controllers/ma/reqLetterController");
 const {
-  addCourse,
   getCourse,
 } = require("../controllers/ma/addCourseController");
 
@@ -91,7 +90,7 @@ const {
 //   sendMail,
 // } = require("../controllers/ma/sendMail");
 
-const getLogins = require("../controllers/adminController");
+// const getLogins = require("../controllers/adminController");
 
 
 

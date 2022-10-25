@@ -48,7 +48,7 @@ export default function BasicSelect(props) {
       await axios
         .post(API_URL + "/settings/addPaymentAction", inputData)
         .then((response) => {
-          params.assignDataFunc((list) => [...list, response.data]);
+          // params.assignDataFunc((list) => [...list, response.data]);
           // if (!response.data.error) {
           // }
         });
