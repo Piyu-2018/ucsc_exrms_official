@@ -6,7 +6,7 @@ import MaUndergTable from "../../Component/Ma/MaUndergraduates/MaUndergTable";
 
 import LecNavBar from "../../Component/Lecturer/LecNavBar";
 import MaCalendar from "../../Component/Ma/MaCalendar";
-import MaPaymentTable from "../../Component/Ma/MaPaymentTable";
+import MaPaymentTable from "../../Component/Ma/MaPayment/MaPaymentTable";
 // import MaSidebar from "../../Component/Ma/MaSidebar";
 
 

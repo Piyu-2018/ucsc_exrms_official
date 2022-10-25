@@ -6,7 +6,7 @@ import getDay from "date-fns/getDay";
 import parse from "date-fns/parse";
 import startOfWeek from "date-fns/StartOfWeek";
 import { useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -51,31 +51,44 @@ function MaCalendar() {
     <>
       <Box>
         <Box>
-          <input
-            type="text"
-            className="subject-event"
-            placeholder="Add Title"
-            style={{}}
-            value={newEvent.title}
-            onChange={(e) =>
-              setNewEvent({ ...newEvent, title: e.target.value })
-            }
-          />
-          <DatePicker
-            placeholderText="Start Date"
-            className="datepick"
-            selected={newEvent.start}
-            onChange={(start) => setNewEvent({ ...newEvent, start })}
-            showTimeSelect
-          />
-          <DatePicker
-            placeholderText="End Date"
-            className="datepick"
-            selected={newEvent.end}
-            onChange={(end) => setNewEvent({ ...newEvent, end })}
-            showTimeSelect
-            style="width:300px;"
-          />
+        <Grid container spacing={2}>
+          <Grid item xs={4}>
+            <input
+            size="large"
+              type="text"
+              className="subject-event"
+              placeholder="Add Title"
+              style={{}}
+              value={newEvent.title}
+              onChange={(e) =>
+                setNewEvent({ ...newEvent, title: e.target.value })
+              }
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <DatePicker
+              placeholderText="Start Date"
+              className="datepick"
+              selected={newEvent.start}
+              onChange={(start) => setNewEvent({ ...newEvent, start })}
+              showTimeSelect
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <DatePicker
+              placeholderText="End Date"
+              className="datepick"
+              selected={newEvent.end}
+              onChange={(end) => setNewEvent({ ...newEvent, end })}
+              showTimeSelect
+              style="width:300px;"
+            />
+          </Grid>
+          
+        </Grid>
+          
+          
+          
         </Box>
         <Box sx={{ justifyItems: "left", mt: "10px" }}>
           <Button

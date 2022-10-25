@@ -45,6 +45,9 @@ const {
 const {
   getCourseReport,
 } = require("../controllers/ma/reportController");
+const {
+  addPaymentAction,
+} = require("../controllers/ma/paymentController");
 // const {
 //   sendMail,
 // } = require("../controllers/ma/sendMail");
@@ -83,6 +86,7 @@ router.get("/getStuAddmDetails", getStuAddmDetails);
 router.get("/getStudents", getStudents);
 router.get("/getCourse", getCourse);
 router.get("/getCourseReport", getCourseReport);
+router.post("/addPaymentAction", addPaymentAction);
 // router.get("/sendMail", sendMail);
 
 module.exports = router;
