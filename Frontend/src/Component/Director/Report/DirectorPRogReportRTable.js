@@ -156,7 +156,7 @@ import {
     ];
     return (
       <>
-        <TableContainer component={Paper} sx={{ mt: "20px", ml: "240px" }}>
+        <TableContainer component={Paper} sx={{ mt: "20px"}}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
               <TableRow>
