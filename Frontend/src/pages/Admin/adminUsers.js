@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import AdminAddUser from "../../Component/Admin/AdminAddUser";
 import AdminButtonGroup from "../../Component/Admin/AdminButtonGroup";
 import AdminLecActivityTable from "../../Component/Admin/AdminLecActivityTable";
 import AdminLoginTable from "../../Component/Admin/AdminLoginTable";
@@ -58,7 +59,7 @@ function AdminUsers() {
     <>
       <Box>
         <LecNavBar open={true} />
-        <Grid container spacing={1} justifyContent="space-between">
+        <Grid container spacing={1}>
           <Grid item xs={4} sm={2}>
             <AdminSidebar open={open} />
           </Grid>
@@ -66,6 +67,8 @@ function AdminUsers() {
             <Typography variant="h3" theme={theme} sx={{ mb: "30px" }}>
               Users
             </Typography>
+
+            <AdminAddUser />
             <AdminButtonGroup />
             <br></br>
             <Typography sx={{ mr: "1000px", color: "#06283D" }} variant="h5">

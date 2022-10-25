@@ -24,19 +24,39 @@ const localizer = dateFnsLocalizer({
 
 const events = [
   {
-    title: "SCS2301",
-    start: new Date(2022, 6, 2, 13, 0, 0),
-    end: new Date(2022, 6, 2, 15, 0, 0),
+    title: "SCS2301 Machine Learning and Neural Computing",
+    start: new Date(2022, 8, 30, 13, 0, 0),
+    end: new Date(2022, 8, 30, 15, 0, 0),
   },
   {
-    title: "SCS2303",
-    start: new Date(2022, 7, 2, 13, 0, 0),
-    end: new Date(2022, 7, 2, 15, 0, 0),
+    title: "SCS2303 Middleware Architecture",
+    start: new Date(2022, 9, 3, 13, 0, 0),
+    end: new Date(2022, 9, 3, 15, 0, 0),
   },
   {
-    title: "SCS2305",
-    start: new Date(2022, 7, 3, 13, 0, 0),
-    end: new Date(2022, 7, 3, 15, 0, 0),
+    title: "SCS2304 Management",
+    start: new Date(2022, 9, 4, 13, 0, 0),
+    end: new Date(2022, 9, 4, 15, 0, 0),
+  },
+  {
+    title: "SCS2307 Software Quality Assurance",
+    start: new Date(2022, 9, 10, 13, 0, 0),
+    end: new Date(2022, 9, 10, 15, 0, 0),
+  },
+  {
+    title: "SCS2309 Human Computer Interaction",
+    start: new Date(2022, 9, 11, 13, 0, 0),
+    end: new Date(2022, 9, 11, 15, 0, 0),
+  },
+  {
+    title: "SCS2315 Professional Practice",
+    start: new Date(2022, 9, 12, 13, 0, 0),
+    end: new Date(2022, 9, 12, 15, 0, 0),
+  },
+  {
+    title: "SCS2308 Software Project Management",
+    start: new Date(2022, 9, 13, 13, 0, 0),
+    end: new Date(2022, 9, 13, 15, 0, 0),
   },
 ];
 
