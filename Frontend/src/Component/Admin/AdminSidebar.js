@@ -78,14 +78,14 @@ function AdminSidebar(props) {
   // }
 
   const link = [
-    "/lec_home",
-    "lec_dashboard",
-    "/lecturer_assignments",
-    "/lec_examinations",
-    "/lec_exam_timetable",
-    "/lec_grading",
-    "/lec_exampaper",
-    "/lec_course_grading",
+    "/admin_home",
+    "/admin_logins",
+    "/admin_lec_activity",
+    "/admin_users",
+    // "/lec_exam_timetable",
+    // "/lec_grading",
+    // "/lec_exampaper",
+    // "/lec_course_grading",
   ];
 
   function renderSwitch(param) {
@@ -98,14 +98,14 @@ function AdminSidebar(props) {
         return <AssignmentIcon />;
       case 3:
         return <GradingIcon />;
-      case 4:
-        return <CalendarMonth />;
-      case 5:
-        return <Grade />;
-      case 6:
-        return <Attachment />;
-      case 7:
-        return <PlaylistAddCheckIcon />;
+      // case 4:
+      //   return <CalendarMonth />;
+      // case 5:
+      //   return <Grade />;
+      // case 6:
+      //   return <Attachment />;
+      // case 7:
+      //   return <PlaylistAddCheckIcon />;
     }
   }
 
@@ -131,13 +131,13 @@ function AdminSidebar(props) {
             <List>
               {[
                 "Home",
-                "Dashboard",
-                "Assignments",
-                "Exam Marks",
-                "Exam Timetable",
-                "Grades",
-                "Exam Paper",
-                "Subject Wise Progress",
+                "Login Activity",
+                "Lectuerer Activity",
+                "Users",
+                // "Exam Timetable",
+                // "Grades",
+                // "Exam Paper",
+                // "Subject Wise Progress",
               ].map((text, index) => (
                 <>
                   <ListItem key={text} sx={{ height: "80px" }} disablePadding>
