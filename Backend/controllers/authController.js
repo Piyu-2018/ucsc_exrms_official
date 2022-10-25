@@ -9,7 +9,6 @@ const nodemailer = require("nodemailer");
 
 const { generateOtp, otpEmail } = require("./helpers/authControllerHelper");
 
-
 const auditGenerator = require("./auditController");
 
 // var mysql = require("mysql");
@@ -382,7 +381,7 @@ const forgotPasswordOtp = asyncHandler(async (req, res) => {
   console.log(user_name);
 
   const numList = [
-    Math.floor(Math.random() * 10 + 1),
+    Math.floor(Math.random() * 10),
     Math.floor(Math.random() * 10),
     Math.floor(Math.random() * 10),
     Math.floor(Math.random() * 10),
@@ -445,14 +444,42 @@ const forgotPasswordOtp = asyncHandler(async (req, res) => {
       </div>
     </div>`;
 
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
+      const status = connection.query(
+        `SELECT email from user WHERE user_name="${user_name}" OR email="${user_name}"`,
+        function (err, results) {
+          if (err) throw err;
 
-        auth: {
-          user: "dinilr123@gmail.com",
-          pass: "jjzkyvqgqrcdzqxq",
-        },
-      });
+          const transporter = nodemailer.createTransport({
+            service: "gmail",
+
+            auth: {
+              user: "dinilr123@gmail.com",
+              pass: "jjzkyvqgqrcdzqxq",
+            },
+          });
+
+          const mailOptions = {
+            from: "dinilr123@gmail.com",
+            to: results[0].email,
+            replyTo: results[0].email,
+            subject: "Password Reset - UCSC EXRMS",
+            html: htmlEmail,
+          };
+
+          transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+              console.log("error in sending mail", err);
+              return res.status(400).json({
+                message: `error in sending the mail${err}`,
+              });
+            } else {
+              return res.json({ message: "Email Sent Successfully! " });
+            }
+          });
+
+          // res.json(results);
+        }
+      );
 
       // const transporter = nodemailer.createTransport({
       //   service: "gmail",
@@ -462,25 +489,6 @@ const forgotPasswordOtp = asyncHandler(async (req, res) => {
       //     pass: "#Indexnumber99",
       //   },
       // });
-
-      const mailOptions = {
-        from: "dinilr123@gmail.com",
-        to: "dinilsratnayake@gmail.com",
-        replyTo: "dinilsratnayake@gmail.com",
-        subject: "Password Reset - UCSC EXRMS",
-        html: htmlEmail,
-      };
-
-      transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-          console.log("error in sending mail", err);
-          return res.status(400).json({
-            message: `error in sending the mail${err}`,
-          });
-        } else {
-          return res.json({ message: "Email Sent Successfully! " });
-        }
-      });
     }
   );
 
