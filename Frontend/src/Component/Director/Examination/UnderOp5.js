@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Year','1st Year','2nd Year','3rd Year','4th Year '];
+const options = ['1st Year','1st Year','2nd Year','3rd Year','4th Year '];
 
 export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
