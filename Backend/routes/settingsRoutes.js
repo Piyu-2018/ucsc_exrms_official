@@ -13,7 +13,11 @@ const {
   getResult1,
   getAssignMarks,
   getIndexAssign,
+
+  assignMarkAdd1,
+
   getPayment,
+
 } = require("../controllers/assignmentController");
 
 const {
@@ -21,12 +25,20 @@ const {
   getExaminationQuestion,
   getDistinctIndex,
   getMarksFromIndex,
+  getQuestionFromCourse,
+  getIndexCourse,
+  examMarksAdd,
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
+const { getFourth } = require("../controllers/directorFourthAController");
 const { getRegistration } = require("../controllers/directorRegistrationController");
+const { getRegistrationCR } = require("../controllers/directorRegistrationControllerCR");
+const { getConfirmation } = require("../controllers/directorConfirmLetController");
+const { getTranscript } = require("../controllers/directorTranscriptController");
 const { getTimetable } = require("../controllers/timeTableController");
-  
+// const { getLogins } = require("../controllers/adminController"); 
+
 
 
 const {
@@ -36,6 +48,7 @@ const {
   addCourse,
   getCourse,
 } = require("../controllers/ma/addCourseController");
+
 const {
   getStuAddmDetails,
 } = require("../controllers/ma/admissionController");
@@ -52,14 +65,21 @@ const {
 //   sendMail,
 // } = require("../controllers/ma/sendMail");
 
+const getLogins = require("../controllers/adminController");
+
+
 const router = express.Router();
 
 router.get("/getCourses/:id", getCourses);
 router.get("/getAssign/:id1/:id2", getAssign);
 
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
+router.get("/getFourth/:id1", getFourth);
 router.get("/getNewIntake",getNewIntake );
 router.get("/getRegistration/:id1/:id2", getRegistration);
+router.get("/getRegistrationCR/:id1/:id2", getRegistrationCR);
+router.get("/getConfirmation/:id1/:id2", getConfirmation);
+router.get("/getTranscript/:id1/:id2", getTranscript);
 
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
@@ -71,22 +91,31 @@ router.get("/getIndexAssign/:id", getIndexAssign);
 
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd", assignMarkAdd);
+router.post("/assignMarkAdd1", assignMarkAdd1);
 router.get("/getAssignMarks/:id", getAssignMarks);
 router.get("/getExaminationCourses/:id", getExaminationCourses);
 router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
 router.get("/getDistinctIndex/:id", getDistinctIndex);
 router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
+router.get("/getQuestionFromCourse/:id", getQuestionFromCourse);
+router.get("/getIndexCourse/:id", getIndexCourse);
+router.post("/examMarksAdd", examMarksAdd);
 
-router.get("getTimetable",getTimetable)
+router.get("/getTimetable", getTimetable);
 
 router.get("/getPayment", getPayment);
 router.get("/getLetterRequest", getLetterRequest);
 router.post("/addCourse", addCourse);
+
 router.get("/getStuAddmDetails", getStuAddmDetails);
 router.get("/getStudents", getStudents);
 router.get("/getCourse", getCourse);
 router.get("/getCourseReport", getCourseReport);
 router.post("/addPaymentAction", addPaymentAction);
 // router.get("/sendMail", sendMail);
+
+// router.get("/getLogins",getLogins)
+router.get("/getLogins",getLogins);
+
 
 module.exports = router;

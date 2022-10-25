@@ -7,23 +7,41 @@ import { Helmet } from "react-helmet";
 // import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { initialLoginValues, loginValidation } from "./Validation";
 import { login } from "../actions/userActions";
 import { TextField } from "formik-material-ui";
 import Navbar from "../Component/Navbar";
+import ErrorIcon from "@mui/icons-material/Error";
+import axios from "axios";
+import { API_URL } from "../constants/globalConstants";
+import { Alert } from "@mui/material";
 
 function Login() {
   const [usernameError, setUsernameError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [loginError, setLoginError] = useState(false);
+  const location = useLocation();
+  // const [success, setSuccess] = useState(true);
+  // if (location.state.reset == "success") {
+  // console.log(location.state.reset);
+  // setSuccess(location.state.reset);
+  // const success = location.state.reset;
+
+  // }
+  var success = false;
+  if (location.state) {
+    success = true;
+  }
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const userInfo = useSelector((state) => state.userInfo);
   const { user } = userInfo;
+  // setSuccess(true);
 
   useEffect(() => {
     if (user) {
@@ -34,14 +52,20 @@ function Login() {
         setUsernameError("");
         setPasswordError("");
 
+        // if((location.state)){
+
+        // }
+
         if (user.user_type === "lecturer") {
-          navigate("/lecturer_assignments");
+          navigate("/lec_home");
         } else if (user.user_type === "director") {
           navigate("/directorDash");
         } else if (user.user_type === "sar") {
           navigate("/sar-dash");
         } else if (user.user_type === "hox") {
           navigate("/hoEDash");
+        } else if (user.user_type === "admin") {
+          navigate("/admin_Home");
         } else {
           navigate("/ma_undergraduates");
         }
@@ -49,10 +73,34 @@ function Login() {
     }
   }, [user]);
 
-  const loginUser = (data) => {
-    // console.log(data.password);
-    dispatch(login(data.username, data.password));
+  // const errorLogin = async (data) => {
+  //   const inputData = {user_name: data.username}
+  //   await axios
+  //   .post(API_URL + "/auth/usernameCheck",inputData)
+  //   .then((response) => {
+  //     if(response.data.isUnique === ture){
+  //       setUsernameError(true);
+  //     }
+  //   })
+  // }
+
+  const loginUser = async (data) => {
+    const inputData = { user_name: data.username, password: data.password };
+
+    await axios
+      .post(API_URL + "/auth/usernamePasswordCheck", inputData)
+      .then((response) => {
+        if (response.data.isUnique === true) {
+          setLoginError(true);
+        } else {
+          console.log("Match");
+          
+          dispatch(login(data.username, data.password));
+        }
+      });
   };
+
+  console.log(success);
 
   return (
     <div className="body">
@@ -67,7 +115,7 @@ function Login() {
       <Container maxWidth="lg">
         <Box sx={{ height: "100vh", ml: "60%" }}>
           <Typography
-            sx={{ mb: "15%" }}
+            sx={{ mb: "3%" }}
             variant="h3"
             color="#06283D"
             gutterBottom
@@ -75,6 +123,13 @@ function Login() {
           >
             Login
           </Typography>
+          {success && (
+            <box>
+              <Alert severity="success" sx={{ mb: "3%" }}>
+                Password has been changed successfully
+              </Alert>
+            </box>
+          )}
           <Formik
             initialValues={initialLoginValues}
             validationSchema={loginValidation}
@@ -133,9 +188,21 @@ function Login() {
                   </div>
                 </span>
 
+                {loginError && (
+                  <box>
+                    <Typography variant="caption" display="block" color="red">
+                      <Box sx={{ mt: "10px" }}>
+                        <ErrorIcon />
+                      </Box>
+                      The email or password you entered did not match our
+                      records. Please double-check and try again.
+                    </Typography>
+                  </box>
+                )}
+
                 <div class="col-12 Froget-password">
                   <p class="text-end">
-                    <Link to="/frogotpassword/username" className="theme">
+                    <Link to="/forgot_password" className="theme">
                       <small>Forgot Password</small>
                     </Link>
                   </p>

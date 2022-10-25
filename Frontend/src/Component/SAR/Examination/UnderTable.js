@@ -1,22 +1,21 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../../constants/globalConstants";
 
-
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#06283D',
+    backgroundColor: "#06283D",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -25,17 +24,26 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
-function createData(IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks, Grade) {
-  return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks , Grade};
+function createData(
+  IndexNumber,
+  Q1,
+  Q2,
+  Q3,
+  Q4,
+  AssignMarks,
+  TotalMarks,
+  Grade
+) {
+  return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks, TotalMarks, Grade };
 }
 
 /* const rows = [
@@ -51,22 +59,20 @@ export default function CustomizedTables(props) {
   console.log(props.sem);
   console.log(props.degree);
   console.log(props.subject);
+  console.log("Props end");
   const [examinationData, setExaminationData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { accessToken } = userInfo.user;
 
   const acYear = props.option;
   const cuYear = props.year;
-  const sem = props.sem ;
+  const sem = props.sem;
   const degree = props.degree;
   const subject = props.subject;
 
   useEffect(() => {
-   
     getResult();
-
-  }, [acYear,cuYear, sem, degree, subject])
- 
+  }, [acYear, cuYear, sem, degree, subject]);
 
   const getResult = async () => {
     const config = {
@@ -74,13 +80,19 @@ export default function CustomizedTables(props) {
         authorization: accessToken,
       },
     };
-  console.log("Hi");
+    console.log("Hi");
 
-  await axios
-      .get(API_URL + "/settings/getResult/"+acYear+"/"+cuYear+"/"+sem+"/"+degree+"/"+subject,config)
+    await axios
+      .get(
+        API_URL +
+          `/settings/getResult/${acYear}/${cuYear}/${sem}/${degree}/${subject}`,
+        config
+      )
       .then((response) => {
         setExaminationData(response.data);
+
         console.log(response.data);
+        console.log("Response data");
       });
   };
 
@@ -103,7 +115,7 @@ export default function CustomizedTables(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-        {examinationData.map((data) => (
+          {examinationData.map((data) => (
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
               <StyledTableCell align="left">{data.q1}</StyledTableCell>
