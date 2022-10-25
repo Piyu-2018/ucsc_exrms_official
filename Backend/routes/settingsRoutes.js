@@ -47,12 +47,13 @@ const {
 } = require("../controllers/directorTranscriptController");
 
 const { getFourth } = require("../controllers/directorFourthAController");
-// const { getRegistration } = require("../controllers/directorRegistrationController");
-const {
-  getRegistrationCR,
-} = require("../controllers/directorRegistrationControllerCR");
-// const { getConfirmation } = require("../controllers/directorConfirmLetController");
-// const { getTranscript } = require("../controllers/directorTranscriptController");
+
+const { getApprove } = require("../controllers/directorExamApproveController");
+const { getRegistration } = require("../controllers/directorRegistrationController");
+const { getRegistrationCR } = require("../controllers/directorRegistrationControllerCR");
+const { getConfirmation } = require("../controllers/directorConfirmLetController");
+const { getTranscript } = require("../controllers/directorTranscriptController");
+
 
 const { getTimetable } = require("../controllers/timeTableController");
 // const { getLogins } = require("../controllers/adminController");
@@ -93,7 +94,10 @@ router.get("/getAssign/:id1/:id2", getAssign);
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
 
 router.get("/getFourth/:id1", getFourth);
-router.get("/getNewIntake", getNewIntake);
+
+router.get("/getNewIntake",getNewIntake );
+router.get("/getApprove/:id1",getApprove );
+
 
 router.get("/getRegistration/:id1/:id2", getRegistration);
 router.get("/getRegistrationCR/:id1/:id2", getRegistrationCR);
@@ -102,7 +106,7 @@ router.get("/getTranscript/:id1/:id2", getTranscript);
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
 
-router.get("/getResult1/:id1/:id2/:id3/:id4/:id5", getResult1);
+router.get("/getResult1/:id1/:id2/:id3/:id4/:id5/:id6", getResult1);
 
 router.get("/getIndexAssign/:id", getIndexAssign);
 
