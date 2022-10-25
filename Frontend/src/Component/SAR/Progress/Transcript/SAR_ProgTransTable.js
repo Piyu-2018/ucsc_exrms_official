@@ -9,6 +9,11 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../../constants/globalConstants"; 
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -36,34 +41,69 @@ function createData(IndexNumber,  Name, Year, CourseN, Status, MoreAction) {
 const rows = [
     createData(19001428,'Janitha Ratnayake','3rd Year','Computer Science','Pending'),
     createData(19001411,'Dinil Seniru Ratnayake','3rd Year','Computer Science','Pending' ),
-    createData(19020945,'Sasani Samanga','2nd Year','Infomation System', 'Issued'),
+    createData(19020945,'Sasani Samanga','3rd Year','Infomation System', 'Issued'),
 ];
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  console.log(props.option);
+  console.log(props.year);
+  const [trancriptData, setTranscriptnData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+  // console.log(user_id);
+
+  const acYear = props.option;
+  const cuYear = props.year;
+ 
+
+  useEffect(() => {
+   
+    getTranscript();
+
+  }, [acYear,cuYear])
+
+  const getTranscript = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+  console.log("Hi");
+
+    await axios
+      .get(API_URL + "/settings/getTranscript/"+acYear+"/"+cuYear,config)
+      .then((response) => {
+        setTranscriptnData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getTranscript();
+  }, []); 
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell align="left">Index Number</StyledTableCell>
+            {/* <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
             <StyledTableCell align="left">Year</StyledTableCell>
             <StyledTableCell align="left">Course Type</StyledTableCell>
-            <StyledTableCell align="left">Status</StyledTableCell>
-            <StyledTableCell align="left">More Action</StyledTableCell>
-            <StyledTableCell align="left"></StyledTableCell>
+            <StyledTableCell align="left">Status</StyledTableCell> */}
+            {/* <StyledTableCell align="left">More Action</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.Year}</StyledTableCell>
-              <StyledTableCell align="left">{row.CourseN}</StyledTableCell>
-              <StyledTableCell align="left">{row.Status}</StyledTableCell>
-              <StyledTableCell align="left">{row.moreAction}<Button variant="contained">View Letter</Button></StyledTableCell>
-              <StyledTableCell align="left">{row.moreAction}<Button variant="contained" color='error'>Edit Letter</Button></StyledTableCell>
+          {trancriptData.map((data) => (
+            <StyledTableRow>
+              <StyledTableCell align="left">{data.index_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
+              <StyledTableCell align="left">{data.study_year}</StyledTableCell>
+              <StyledTableCell align="left">{data.degree_status}</StyledTableCell>
+              <StyledTableCell align="left">{data.status}</StyledTableCell>
+              {/* <StyledTableCell align="left"><Button variant="contained">View Letter</Button></StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>
