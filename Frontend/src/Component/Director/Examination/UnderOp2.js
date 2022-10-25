@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Semester','1st Semester', '2nd Semester'];
+const options = ['1st Semester','1st Semester', '2nd Semester'];
 
 export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);
