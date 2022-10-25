@@ -35,7 +35,7 @@ function SAR_UnderDrawer() {
           </Grid>
           <Grid item sm={8} md={10} >
             <SAR_UnderYear onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedDegree={onSelectedDegree}/> <br></br>
-            <SAR_UnderSeach/><br></br>
+            {/* <SAR_UnderSeach/><br></br> */}
             <SAR_UnderTable option={option} year={year} degree={degree}/>
           </Grid>  
         </Grid>

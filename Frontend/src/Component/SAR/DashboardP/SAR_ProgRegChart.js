@@ -9,8 +9,8 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
-  { region: 'Applied - 22%', val: 22 },
-  { region: 'Not-applied - 78%', val: 78 },
+  { region: 'Registered - 78%', val: 78 },
+  { region: 'Not-registered - 22%', val: 22},
 ];
 
 export default class Demo extends React.PureComponent {
@@ -36,7 +36,7 @@ export default class Demo extends React.PureComponent {
             innerRadius={0.6}
           />
           <Title
-            text="The Progress of Fourth Year Applied Student"
+            text="The Progress of Academic Year Registration Process"
           />
           <Animation />
           <Legend />

@@ -7,6 +7,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Typography } from "@mui/material";
+
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../../constants/globalConstants"; 
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -39,7 +45,45 @@ const rows = [
     createData(19001411,'Dinil Seniru Ratnayake','Registered'),
 ];
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  console.log(props.option);
+  console.log(props.year);
+  const [registrationData, setRegistrationData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+  // console.log(user_id);
+
+  const acYear = props.option;
+  const cuYear = props.year;
+ 
+
+  useEffect(() => {
+   
+    getRegistration();
+
+  }, [acYear,cuYear])
+
+  const getRegistration = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+  console.log("Hi");
+
+    await axios
+      .get(API_URL + "/settings/getRegistration/"+acYear+"/"+cuYear,config)
+      .then((response) => {
+        setRegistrationData(response.data);
+        console.log(response.data);
+        console.log("Hi");
+      });
+  };
+
+  useEffect(() => {
+    getRegistration();
+  }, []);
+  
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -51,11 +95,11 @@ export default function CustomizedTables() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.Registration}</StyledTableCell>
+          {registrationData.map((data) => (
+            <StyledTableRow>
+              <StyledTableCell align="left">{data.index_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
+              <StyledTableCell>{data.ma_pa_status == "approved" ? (<Typography>Registered</Typography>) : (<Typography>Not Registered</Typography>)}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

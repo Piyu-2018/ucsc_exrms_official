@@ -60,6 +60,13 @@ export default function SAR_Sidebar() {
         </ListItemButton>
 
         <Divider />
+        <ListItemButton to='/SAR_Dashboard'>
+        <ListItemIcon>
+          <DashboardRoundedIcon />
+        </ListItemIcon>
+        <ListItemText primary="Dashboard" />
+        </ListItemButton>
+       <Divider />
 
         <ListItemButton to="/sarUnder">
           <ListItemIcon>
@@ -91,7 +98,7 @@ export default function SAR_Sidebar() {
               <ListItemIcon>
                 <ContactMailRoundedIcon />
               </ListItemIcon>
-              <ListItemText primary="Enrollment" />
+              <ListItemText primary="Intake Details" />
             </ListItemButton>
             <ListItemButton sx={{ pl: 4 }} to="/sarRegProg">
               <ListItemIcon>
