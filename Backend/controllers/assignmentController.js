@@ -118,12 +118,12 @@ const getResult = asyncHandler(async (req, res) => {
 });
 
 const getResult1 = asyncHandler(async (req, res) => {
-  const acYear = req.params.id1;
-  const year = req.params.id2;
-  const semester = req.params.id3;
-  const degree = req.params.id4;
-  const subject = req.params.id5;
-  const approve = req.params.id6;
+  const acYear = (req.params.id1);
+  const year = (req.params.id2);
+  const semester = (req.params.id3);
+  const degree = (req.params.id4);
+  const subject = (req.params.id5);
+  const approve = (req.params.id6);
 
   const mark = [];
 

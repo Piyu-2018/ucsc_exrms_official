@@ -36,6 +36,7 @@ var connection = mysql.createPool({
   database: "u117929562_ucscEXRMS",
 });
 
+
 const login = asyncHandler(async (req, res) => {
   console.log("Login using mysql");
 
