@@ -27,11 +27,11 @@ export default function CustomizedProgressBars() {
               <Typography sx={{ fontSize: 24 ,fontFamily: "Montserrat",fontWeight: 400 , textAlign: 'center' }} color="text.secondary">Precentage of Student Intake Process</Typography><br></br>
             <div>
             <Typography sx={{ fontSize: 16  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Academic Year 2022/2023</Typography><br></br>
-            <Typography sx={{ fontSize: 12  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Computer Science - 95%</Typography>
-                <BorderLinearProgress variant="determinate" value={95}/>
+            <Typography sx={{ fontSize: 12  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Computer Science - 94%</Typography>
+                <BorderLinearProgress variant="determinate" value={94}/>
                 <br />
-                <Typography sx={{ fontSize: 12  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Information System - 97%</Typography>
-                <BorderLinearProgress variant="determinate" value={97} />
+                <Typography sx={{ fontSize: 12  , fontFamily: "Montserrat",fontWeight: 600 , textAlign: 'left' }} color="text.secondary">Information System - 90%</Typography>
+                <BorderLinearProgress variant="determinate" value={90} />
                 <br /><br />
             </div>   
 
