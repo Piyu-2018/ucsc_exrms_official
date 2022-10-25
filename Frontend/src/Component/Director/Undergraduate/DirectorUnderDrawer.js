@@ -39,7 +39,7 @@ function DirectorUnderDrawer() {
           </Grid>
           <Grid item sm={8} md={10} >
             <DirectorUnderYear onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedDegree={onSelectedDegree}/> <br></br>
-            <DirectorUnderSeach/><br></br>
+            {/* <DirectorUnderSeach/><br></br> */}
             <DirectorUnderTable option={option} year={year} degree={degree}/>
           </Grid>  
         </Grid>
