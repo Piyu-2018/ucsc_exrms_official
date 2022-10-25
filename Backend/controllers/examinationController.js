@@ -60,9 +60,10 @@ const getExaminationQuestion = asyncHandler(async (req, res) => {
 const getDistinctIndex = asyncHandler(async (req, res) => {
   // const  = parseInt(req.params.id1);
   const course_id = parseInt(req.params.id);
+  console.log(course_id);
 
   connection.query(
-    `SELECT DISTINCT marks.index_number FROM marks,course_exam_question WHERE course_exam_question.question_id = marks.question_id AND course_exam_question.course_id = ${course_id}`,
+    `SELECT DISTINCT marks.index_number,course.course_name FROM marks,course_exam_question,course WHERE course_exam_question.question_id = marks.question_id AND course.course_id = course_exam_question.course_id AND course_exam_question.course_id = ${course_id}`,
     function (error, results, fields) {
       if (error) throw error;
       //console.log(results);
@@ -267,6 +268,123 @@ const examMarksAdd = asyncHandler(async (req, res) => {
   // );
 });
 
+const getExamTotalMarks = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id1);
+  const index_number = req.params.id2;
+  // const index_number = parseInt(req.params.id2);
+
+  console.log(course_id);
+
+  connection.query(
+    `SELECT SUM(marks.marks_by_second_marker) AS total FROM marks,course_exam_question 
+    WHERE marks.question_id = course_exam_question.question_id AND marks.index_number = "${index_number}" 
+    AND course_exam_question.course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getAssignTotalMarks = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id1);
+  const index_number = req.params.id2;
+  // const index_number = parseInt(req.params.id2);
+
+  console.log(course_id);
+
+  connection.query(
+    `SELECT SUM(marks_assignment.marks*assignments.contribution/100) AS total
+    FROM marks_assignment,assignments 
+    WHERE marks_assignment.assignment_id = assignments.assignment_id 
+    AND marks_assignment.index_number = "${index_number}" AND assignments.course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getTotalExam = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id1);
+  const index_number = req.params.id2;
+  // const index_number = parseInt(req.params.id2);
+
+  console.log(course_id);
+  var assignment = null;
+  var exam = null;
+  var assignWeight = null;
+  var examWeight = null;
+
+  connection.query(
+    `SELECT SUM(marks_assignment.marks*assignments.contribution/100) AS total
+    FROM marks_assignment,assignments 
+    WHERE marks_assignment.assignment_id = assignments.assignment_id 
+    AND marks_assignment.index_number = "${index_number}" AND assignments.course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      console.log(results);
+      assignment = results[0].total;
+      console.log("Assignment");
+      console.log(assignment);
+      // res.json(results);
+
+      connection.query(
+        `SELECT SUM(marks.marks_by_second_marker) AS total FROM marks,course_exam_question 
+        WHERE marks.question_id = course_exam_question.question_id AND marks.index_number = "${index_number}" 
+        AND course_exam_question.course_id = ${course_id}`,
+        function (error, results, fields) {
+          if (error) throw error;
+          console.log(results);
+          exam = results[0].total;
+          console.log("Exam");
+          console.log(exam);
+
+          connection.query(
+            `SELECT weight_for_exam,weight_for_assignment FROM course WHERE course_id = ${course_id}`,
+            function (error, results, fields) {
+              if (error) throw error;
+              assignWeight = results[0].weight_for_assignment;
+              examWeight = results[0].weight_for_exam;
+              //console.log(results);
+
+              var total =
+                (assignment * assignWeight) / 100 + (exam * examWeight) / 100;
+              console.log("Total");
+              console.log(total);
+              res.json(total);
+            }
+          );
+
+          // res.json(results);
+        }
+      );
+    }
+  );
+});
+
+const getWeights = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id);
+  // const index_number = parseInt(req.params.id2);
+
+  console.log(course_id);
+
+  connection.query(
+    `SELECT weight_for_exam,weight_for_assignment FROM course WHERE course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
 module.exports = {
   getExaminationCourses,
   getExaminationQuestion,
@@ -275,4 +393,8 @@ module.exports = {
   getQuestionFromCourse,
   getIndexCourse,
   examMarksAdd,
+  getExamTotalMarks,
+  getAssignTotalMarks,
+  getWeights,
+  getTotalExam,
 };

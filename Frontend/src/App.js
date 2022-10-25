@@ -210,7 +210,7 @@ function App() {
             element={<LecCourseMarking />}
           />
           <Route path="/lec_course_grading" element={<LecCourseGrading />} />
-          <Route path="/lec_course_results" element={<LecCourseResults />} />
+          <Route path="/lec_course_results/:CourseId" element={<LecCourseResults />} />
           <Route path="/lec_chat" element={<LecChat />} />
           <Route path="/lec_home" element={<LecHome />} />
           <Route path="/lec_dashboard" element={<LecDashboard />} />
