@@ -141,17 +141,17 @@ const getResult1 = asyncHandler(async (req, res) => {
     }
   );
 
-  connection.query(
-    `UPDATE exam_mark SER director_status ="${approve}" WHERE  exam_mark.academic_yr = "${acYear}"
-     AND exam_mark.degree="${degree}"
-     AND exam_mark.course_name="${subject}"`,
+  // connection.query(
+  //   `UPDATE exam_mark SER director_status ="${approve}" WHERE  exam_mark.academic_yr = "${acYear}"
+  //    AND exam_mark.degree="${degree}"
+  //    AND exam_mark.course_name="${subject}"`,
 
-    function (error, results, fields) {
-      if (error) throw error;
+  //   function (error, results, fields) {
+  //     if (error) throw error;
 
-      res.json(results);
-    }
-  );
+  //     res.json(results);
+  //   }
+  // );
 
 
 });
