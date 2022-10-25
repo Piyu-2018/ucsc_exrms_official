@@ -21,7 +21,10 @@ function AdminButtonGroup() {
           <Button sx={{ mr: "10px" }}>Lecturers</Button>
         </Link>
         <Link to="/admin_user_other">
-          <Button>Other Executives</Button>
+          <Button sx={{ mr: "10px" }}>Other Executives</Button>
+        </Link>
+        <Link to="/admin_user_stu">
+          <Button sx={{ mr: "10px" }}>Students</Button>
         </Link>
       </ButtonGroup>
     </>
