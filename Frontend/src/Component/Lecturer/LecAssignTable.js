@@ -60,63 +60,6 @@ function LecAssignTable(props) {
   // console.log(props.AssignData);
   const assign = props.AssignData;
   console.log(props.AssignData);
-  // console.log(assign[0].name);
-
-  // const rows = [
-  //   assign.map((data) =>
-  //     createData(
-  //       <Typography variant="h6" theme={theme}>
-  //         Assignment 1
-  //       </Typography>,
-  //       <Typography variant="h6" theme={theme}>
-  //         Coding Assignment group
-  //       </Typography>,
-  //       <Typography variant="h6" theme={theme}>
-  //         20%
-  //       </Typography>,
-  //       <Typography variant="h6" theme={theme}>
-  //         August 15 2022
-  //       </Typography>,
-  //       <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-  //         Mark Assignment
-  //       </Button>
-  //     )
-  //   ),
-  //   // createData(
-  //   <Typography variant="h6" theme={theme}>
-  //     Assignment 1
-  //   </Typography>,
-  //   <Typography variant="h6" theme={theme}>
-  //     Coding Assignment group
-  //   </Typography>,
-  //   <Typography variant="h6" theme={theme}>
-  //     20%
-  //   </Typography>,
-  //   <Typography variant="h6" theme={theme}>
-  //     August 15 2022
-  //   </Typography>,
-  //   <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-  //     Mark Assignment
-  //   </Button>
-  // ),
-  // createData(
-  //   <Typography variant="h6" theme={theme}>
-  //     Assignment 2
-  //   </Typography>,
-  //   <Typography variant="h6" theme={theme}>
-  //     Individual Review paper
-  //   </Typography>,
-  //   <Typography variant="h6" theme={theme}>
-  //     20%
-  //   </Typography>,
-  //   <Typography variant="h6" theme={theme}>
-  //     August 17 2022
-  //   </Typography>,
-  //   <Button variant="contained" endIcon={<DoubleArrowIcon />}>
-  //     Mark Assignment
-  //   </Button>
-  // ),
-  // ];
   return (
     <>
       <TableContainer component={Paper} sx={{ mt: "20px" }}>

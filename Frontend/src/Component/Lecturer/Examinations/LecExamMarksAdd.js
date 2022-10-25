@@ -113,6 +113,7 @@ function LecExamMarksAdd(props) {
       const data = {
         course_id: `${props.course_id}`,
         dataMarks: rows.rows,
+        user_id: user_id,
       };
       console.log(data);
       await axios

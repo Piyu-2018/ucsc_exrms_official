@@ -94,6 +94,9 @@ import LecHome from "./pages/Lecturer/LecHome";
 import LecDashboard from "./pages/Lecturer/LecDashboard";
 import AdminHome from "./pages/Admin/AdminHome";
 import AdminLogins from "./pages/Admin/AdminLogins";
+import AdminLecActivity from "./pages/Admin/AdminLecActivity";
+import AdminUsers from "./pages/Admin/adminUsers";
+import AdminUserOther from "./pages/Admin/AdminUserOther";
 
 // const theme = createTheme({
 //   typography: {
@@ -209,13 +212,16 @@ function App() {
             element={<LecCourseMarking />}
           />
           <Route path="/lec_course_grading" element={<LecCourseGrading />} />
-          <Route path="/lec_course_results" element={<LecCourseResults />} />
+          <Route path="/lec_course_results/:CourseId" element={<LecCourseResults />} />
           <Route path="/lec_chat" element={<LecChat />} />
           <Route path="/lec_home" element={<LecHome />} />
           <Route path="/lec_dashboard" element={<LecDashboard />} />
 
           <Route path="/admin_home" element={<AdminHome />} />
           <Route path="/admin_logins" element={<AdminLogins />} />
+          <Route path="/admin_lec_activity" element={<AdminLecActivity />} />
+          <Route path="/admin_users" element={<AdminUsers />} />
+          <Route path="/admin_user_other" element={<AdminUserOther />} />
         </Routes>
       </div>
     </Router>

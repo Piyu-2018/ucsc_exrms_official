@@ -20,6 +20,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userActions";
+import axios from "axios";
+import { API_URL } from "../../constants/globalConstants";
 
 // const Icons = styled(Box)(({ theme }) => ({
 //   display: "none",
@@ -63,13 +65,28 @@ const pages = [
 
 function LecNavBar(props) {
   const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const signout = (e) => {
+  const signout = async (e) => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
     e.preventDefault();
+
     dispatch(logout());
     navigate("/login");
+    window.location.reload();
+    await axios
+      .get(API_URL + `/auth/logout/${user_id}`, config)
+      .then((response) => {
+        // console.log(response.data);
+      });
   };
 
   useEffect(() => {
@@ -128,7 +145,6 @@ function LecNavBar(props) {
             variant="h6"
             noWrap
             component="a"
-            
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
