@@ -7,7 +7,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Link, Typography, Chip } from '@mui/material';
+import { Link, Typography, Chip, Button } from '@mui/material';
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -64,11 +64,15 @@ function MaLetterReqTable(props) {
 
   console.log(props);
 
-
   // console.log(props.AssignData);
   const assign = props.AssignData;
   console.log(props.AssignData);
   // console.log(assign[0].name);
+
+  
+
+  //onClick={sendEmail(letterType,email)}
+  const actionBtn = <Button >Send Mail</Button>
 
   function paymentStatus(param) {
     switch (param) {
@@ -112,6 +116,7 @@ function MaLetterReqTable(props) {
             <StyledTableCell align="left">Payment Method</StyledTableCell>
             <StyledTableCell align="left">Payment Status</StyledTableCell>
             <StyledTableCell align="left">Action</StyledTableCell>
+            <StyledTableCell align="left">Action2</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -128,6 +133,7 @@ function MaLetterReqTable(props) {
               <StyledTableCell align="left">{data.payment_voucher}</StyledTableCell>
               <StyledTableCell align="left">{paymentStatus(data.status)}</StyledTableCell>
               <StyledTableCell align="left">{letterStatus(data.letter_status)}</StyledTableCell>
+              <StyledTableCell align="left">{actionBtn}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

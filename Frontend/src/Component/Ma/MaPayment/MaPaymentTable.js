@@ -15,14 +15,14 @@ import {
 } from "@mui/material";
 import React from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
-import LecYears from "../Lecturer/Gradings/LecYears";
 import { Box } from "@mui/system";
 import MaPayStatus from "./MaPayStatus";
+import MaPayAction from "./MaPaymentAction";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { API_URL } from "../../constants/globalConstants";
+import { API_URL } from "../../../constants/globalConstants";
 
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
@@ -54,9 +54,9 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(Position, IndexNumber, GPA, Action) {
-  return { Position, IndexNumber, GPA, Action };
-}
+// function createData(Position, IndexNumber, GPA, Action) {
+//   return { Position, IndexNumber, GPA, Action };
+// }
 
 function MaPaymentTable(props) {
   
@@ -102,9 +102,6 @@ function MaPaymentTable(props) {
         return <Chip label={param} color="error" /> ;
     }
   }
-
- 
-  
 
   return (
     <>
@@ -161,7 +158,8 @@ function MaPaymentTable(props) {
                       </Typography>
                     </a>
                   </Button>
-                  <MaPayStatus />
+                  {/* <MaPayStatus /> */}
+                  <MaPayAction PaymentId={data.payment_id}/>
                 </Box>
               </StyledTableCell>
             </StyledTableRow>

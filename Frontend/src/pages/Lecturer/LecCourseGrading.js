@@ -23,6 +23,28 @@ const theme = createTheme({
 });
 
 function LecCourseGrading() {
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  const [courseData, setCourseData] = useState([]);
+
+  const getCourses = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + "/settings/getExaminationCourses/" + user_id, config)
+      .then((response) => {
+        setCourseData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getCourses();
+  }, []);
   // console.log(CourseId);
   const open = true;
   console.log(open);
@@ -41,7 +63,16 @@ function LecCourseGrading() {
           </Grid>
 
           <Grid container spacing={3} sx={{ marginTop: "20px", ml: "180px" }}>
-            <Grid item xs={12} sm={6}>
+            {courseData.map((data) => (
+              <Grid item xs={12} sm={6}>
+                <LecCourseGradingCard
+                  CourseCode={data.course_code}
+                  CourseName={data.course_name}
+                  CourseId={data.course_id}
+                />
+              </Grid>
+            ))}
+            {/* <Grid item xs={12} sm={6}>
               <LecCourseGradingCard
                 CourseCode={"SCS3302"}
                 CourseName={"Middleware Architecture"}
@@ -52,7 +83,7 @@ function LecCourseGrading() {
                 CourseCode={"SCS3301"}
                 CourseName={"Machine Learning and Neural Computing"}
               />
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Box>

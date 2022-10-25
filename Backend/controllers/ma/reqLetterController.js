@@ -38,4 +38,4 @@ const getLetterRequest = asyncHandler(async (req, res) => {
 
 
 
-module.exports = { getLetterRequest};
+module.exports = { getLetterRequest };
