@@ -47,7 +47,9 @@ export default function BasicSelect(props) {
         .post(API_URL + "/settings/addPaymentAction", inputData)
         .then((response) => {
           // params.assignDataFunc((list) => [...list, response.data]);
-          props.assignDataFunc((list) => [...list, response.data]);
+
+          // props.assignDataFunc((list) => [...list, response.data]);
+
           // if (!response.data.error) {
           // }
         });

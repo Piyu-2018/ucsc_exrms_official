@@ -11,9 +11,9 @@ function UnderDrawer() {
   const open = true;
   console.log(open);
   
-  const [option,setOption] = useState("2022/2023");
+  const [option,setOption] = useState("2022-2023");
   const [year,setYear] = useState("2nd Year");
-  const [sem,setSem] = useState("1st Semester");
+  const [semester,setSem] = useState("1st Semester");
   const [degree,setDegree] = useState("Information System (Bsc)");
   const [subject,setSubject] = useState("Enterprise Resource Planning");
 
@@ -25,8 +25,8 @@ function UnderDrawer() {
     setYear(year);
   }
 
-  const onSelectedSem = (sem) => {
-    setSem(sem);
+  const onSelectedSem = (semester) => {
+    setSem(semester);
   };
 
   const onSelectedDegree = (degree) => {
@@ -51,7 +51,7 @@ function UnderDrawer() {
             <Category/> <br></br>
 
             <UnderSeach onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedSem={onSelectedSem} onSelectedDegree={onSelectedDegree} onSelectedSubject={onSelectedSubject}/> <br></br>
-            <UnderTable1 option={option} year={year} sem={sem} degree={degree} subject={subject}/>
+            <UnderTable1/>
           </Grid>  
         </Grid>
     </>
@@ -59,8 +59,5 @@ function UnderDrawer() {
 }
 
 export default UnderDrawer;
-
-
-
 
 

@@ -1,97 +1,48 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
-const options = ['Director Decission','Not Approved','Approved'];
-
-export default function SplitButton(props) {
+export default function AlertDialog() {
   const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
-
-  const handleClick = () => {
-    console.info(`You clicked ${options[selectedIndex]}`);
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
-  const handleMenuItemClick = (event, index) => {
-    setSelectedIndex(index);
-    setOpen(false);
-    props.onSelectY(options[index]);
-  };
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
+  const handleClose = () => {
     setOpen(false);
   };
 
   return (
-    <React.Fragment>
-      <ButtonGroup variant="contained" ref={anchorRef} aria-label="split button">
-        <Button onClick={handleClick} >{options[selectedIndex]} </Button>
-        <Button 
-          size="small"
-          aria-controls={open ? 'split-button-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
-          aria-label="select merge strategy"
-          aria-haspopup="menu"
-          onClick={handleToggle}
-          
-        >
-          <ArrowDropDownIcon />
-        </Button>
-      </ButtonGroup>
-      <Popper
-        sx={{
-          zIndex: 1,
-        }}
+    <div>
+      <Button variant="outlined" onClick={handleClickOpen}>
+        Approve the marks
+      </Button>
+      <Dialog
         open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === 'bottom' ? 'center top' : 'center bottom',
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="split-button-menu" autoFocusItem>
-                  {options.map((option, index) => (
-                    <MenuItem
-                      key={option}
-                      disabled={index === 8}
-                      selected={index === selectedIndex}
-                      onClick={(event) => handleMenuItemClick(event, index)}
-                    >
-                      {option}
-                    </MenuItem>
-                  ))}
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    </React.Fragment>
+        <DialogTitle id="alert-dialog-title">
+          {/* {"Use Google's location service?"} */}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Successfully approve the examination marks.
+          </DialogContentText>
+        </DialogContent>
+        {/* <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button onClick={handleClose} autoFocus>
+            Agree
+          </Button>
+        </DialogActions> */}
+      </Dialog>
+    </div>
   );
 }

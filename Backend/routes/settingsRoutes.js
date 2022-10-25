@@ -34,6 +34,7 @@ const {
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
 
+
 // const {
 //   getRegistration,
 // } = require("../controllers/directorRegistrationController");
@@ -43,6 +44,7 @@ const { getNewIntake } = require("../controllers/directorNewIntakeController");
 // const {
 //   getTranscript,
 // } = require("../controllers/directorTranscriptController");
+
 
 const {
   getRegistration,
@@ -56,6 +58,7 @@ const {
 
 const { getFourth } = require("../controllers/directorFourthAController");
 
+
 const { getApprove } = require("../controllers/directorExamApproveController");
 // const { getRegistration } = require("../controllers/directorRegistrationController");
 const {
@@ -65,13 +68,20 @@ const {
 // const { getTranscript } = require("../controllers/directorTranscriptController");
 
 
+
 const { getTimetable } = require("../controllers/timeTableController");
 // const { getLogins } = require("../controllers/adminController");
 
 const { getLetterRequest } = require("../controllers/ma/reqLetterController");
 
-// const { addCourse } = require("../controllers/ma/addCourseController");
+
+const { addCourse } = require("../controllers/ma/addCourseController");
+
+
+
+
 const {
+
   getLogins,
   getLecActivity,
   getUserLecturer,
@@ -79,6 +89,7 @@ const {
   deleteUser,
   getUserStu,
 } = require("../controllers/adminController");
+
 
 // const { getLetterRequest } = require("../controllers/ma/reqLetterController");
 const {
@@ -91,11 +102,19 @@ const { getStudents } = require("../controllers/ma/undergraduatesController");
 const { getCourseReport } = require("../controllers/ma/reportController");
 const { getAttendanceDetails } = require("../controllers/ma/attendanceController");
 const { addPaymentAction } = require("../controllers/ma/paymentController");
+
 // const {
 //   sendMail,
 // } = require("../controllers/ma/sendMail");
 
 // const getLogins = require("../controllers/adminController");
+
+
+
+
+// const { getRegistration } = require("../controllers/directorRegistrationController");
+// const { getTimetable } = require("../controllers/timeTableController");
+
 
 const router = express.Router();
 
