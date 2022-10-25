@@ -64,6 +64,7 @@ const {
   getUserLecturer,
   getUserOther,
   deleteUser,
+  getUserStu,
 } = require("../controllers/adminController");
 
   getLetterRequest,
@@ -144,6 +145,7 @@ router.get("/getLogins", getLogins);
 router.get("/getLecActivity", getLecActivity);
 router.get("/getUserLecturer", getUserLecturer);
 router.get("/getUserOther", getUserOther);
+router.get("/getUserStu", getUserStu);
 router.get("/deleteUser/:id", deleteUser);
 
 router.get("/getExamTotalMarks/:id1/:id2", getExamTotalMarks);

@@ -43,6 +43,17 @@ const getUserLecturer = asyncHandler(async (req, res) => {
   );
 });
 
+const getUserStu = asyncHandler(async (req, res) => {
+  connection.query(
+    `SELECT user_name,email,f_name,l_name FROM user WHERE user_type = "student"`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+});
+
 const getUserOther = asyncHandler(async (req, res) => {
   connection.query(
     `SELECT user_name,email,f_name,l_name FROM user WHERE user_type = "ma" OR user_type="director" OR user_type = "sar" OR user_type = "hox"`,
@@ -66,4 +77,11 @@ const deleteUser = asyncHandler(async (req, res) => {
   );
 });
 
-module.exports = { getLogins, getLecActivity, getUserLecturer, getUserOther,deleteUser };
+module.exports = {
+  getLogins,
+  getLecActivity,
+  getUserLecturer,
+  getUserOther,
+  deleteUser,
+  getUserStu,
+};
