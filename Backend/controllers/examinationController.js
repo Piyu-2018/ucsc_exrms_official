@@ -396,6 +396,25 @@ const getWeights = asyncHandler(async (req, res) => {
   );
 });
 
+const getRescrutinization = asyncHandler(async (req, res) => {
+  const acYear = (req.params.id1);
+  const yearSem = (req.params.id2);
+  const degree = (req.params.id3);
+  const subject = (req.params.id4);
+  
+  const letter = [];
+
+  connection.query(
+    `SELECT * FROM rescrutinization WHERE rescrutinization.acYear = "${req.params.id1}" && rescrutinization.yearSem = "${req.params.id2}" && rescrutinization.degree="${req.params.id3}" && rescrutinization.subject="${req.params.id4}"`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+      console.log(results);
+    }
+  );
+});
+
 module.exports = {
   getExaminationCourses,
   getExaminationQuestion,
@@ -409,4 +428,5 @@ module.exports = {
   getWeights,
   getTotalExam,
   getLecturer,
+  getRescrutinization,
 };
