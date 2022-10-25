@@ -2,6 +2,7 @@ import React from 'react';
 import {Helmet} from 'react-helmet';
 import SAR_ProgEnDrawer from '../../Component/SAR/Progress/Enrollment/SAR_ProgEnDrawer';
 import DirectorNavbar from '../../Component/DirectorNavbar';
+import Footer from '../../Component/Footer';
 
 function SAR_EnProgress() {
   return (
@@ -11,6 +12,7 @@ function SAR_EnProgress() {
       </Helmet>
       <DirectorNavbar />
       <SAR_ProgEnDrawer/>
+      <Footer/>
       
     </div>
   )

@@ -15,6 +15,7 @@ const { StatusCodes } = require("http-status-codes");
 // connection.connect();
 
 var mysql = require("mysql");
+
 // var connection = mysql.createConnection({
 //   host: "sql238.main-hosting.eu",
 //   user: "u117929562_ucscExrmsUser",
@@ -22,6 +23,7 @@ var mysql = require("mysql");
 //   database: "u117929562_ucscEXRMS",
 // });
 // connection.connect();
+
 var connection = mysql.createPool({
   connectionLimit: 10,
   host: "sql238.main-hosting.eu",

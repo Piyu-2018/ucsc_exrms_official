@@ -85,7 +85,9 @@ function MaLetterReqTable(props) {
     }
   }
 
-  function letterStatus(param2){
+  function letterStatus(param2,email,stu_year,fName,lName){
+    console.log(email);
+    console.log(stu_year);
     switch (param2) {
       case 'pending':
         return <Chip label="Pending" sx={{ backgroundColor: "ash", fontWeight: "bold", color: "orange" }} />;
@@ -97,7 +99,7 @@ function MaLetterReqTable(props) {
         return <Chip label="Disabled" sx={{ backgroundColor: "ash", fontWeight: "bold", color: "red" }} />;
 
       default :
-        return <Chip label ={<Link href="/req_letter" underline="always">Edit Letter</Link>} sx={{ backgroundColor: "orange", fontWeight: "bold", fontWeight:"600", textDecoration:"underline" }} />;
+        return <Chip label ={<Link href={"/req_letter/"+email+"/"+ stu_year+"/"+ fName+"/"+ lName} underline="always">Edit Letter</Link>} sx={{ backgroundColor: "orange", fontWeight: "bold", fontWeight:"600", textDecoration:"underline" }} />;
 
     }
   }
@@ -116,7 +118,7 @@ function MaLetterReqTable(props) {
             <StyledTableCell align="left">Payment Method</StyledTableCell>
             <StyledTableCell align="left">Payment Status</StyledTableCell>
             <StyledTableCell align="left">Action</StyledTableCell>
-            <StyledTableCell align="left">Action2</StyledTableCell>
+            {/* <StyledTableCell align="left">Action2</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -132,8 +134,8 @@ function MaLetterReqTable(props) {
               <StyledTableCell align="left">{data.address}</StyledTableCell>
               <StyledTableCell align="left">{data.payment_voucher}</StyledTableCell>
               <StyledTableCell align="left">{paymentStatus(data.status)}</StyledTableCell>
-              <StyledTableCell align="left">{letterStatus(data.letter_status)}</StyledTableCell>
-              <StyledTableCell align="left">{actionBtn}</StyledTableCell>
+              <StyledTableCell align="left">{letterStatus(data.letter_status,data.email,data.study_year,data.fName,data.lName)}</StyledTableCell>
+              {/* <StyledTableCell align="left">{actionBtn}</StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>
