@@ -128,11 +128,7 @@ const getResult1 = asyncHandler(async (req, res) => {
   const mark = [];
 
   connection.query(
-    "SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.sar_status='Not Released' AND exam_mark.academic_yr ="+'"'+acYear +'"'+ 
-    "AND exam.year = " +'"'+year +'"'+
-    "AND exam.semester=" +'"'+semester +'"'+
-    "AND exam_mark.degree=" +'"'+degree +'"'+
-    "AND exam_mark.course_name=" +'"'+subject +'"',
+    `SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.academic_yr = "${req.params.id1}" AND exam.year = "${req.params.id2}" AND exam.semester="${req.params.id3}" AND exam_mark.degree="${req.params.id4}" AND exam_mark.course_name="${req.params.id5}" AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`,
 
     function (error, results, fields) {
       if (error) throw error;
