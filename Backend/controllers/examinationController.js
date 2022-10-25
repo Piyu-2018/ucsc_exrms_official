@@ -2,24 +2,8 @@ const asyncHandler = require("express-async-handler");
 const { StatusCodes } = require("http-status-codes");
 
 var mysql = require("mysql");
-// <<<<<<< HEAD
-// var connection = mysql.createPool({
-//   connectionLimit: 10,
-//   host: "sql238.main-hosting.eu",
-//   user: "u117929562_ucscExrmsUser",
-//   password: "lT:@>w0y4",
-//   database: "u117929562_ucscEXRMS",
-// });
 
-// =======
-// var connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database: "u117929562_ucscexrms",
-// });
-
-// connection.connect();
+const auditGenerator = require("./auditController");
 
 var connection = mysql.createPool({
   connectionLimit: 10,
@@ -28,7 +12,6 @@ var connection = mysql.createPool({
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
-//>>>>>>> afa16db780afed1121374c6ae103cf345c7bd7c8
 
 const getExaminationCourses = asyncHandler(async (req, res) => {
   const lecturer_id = parseInt(req.params.id);
@@ -70,9 +53,10 @@ const getExaminationQuestion = asyncHandler(async (req, res) => {
 const getDistinctIndex = asyncHandler(async (req, res) => {
   // const  = parseInt(req.params.id1);
   const course_id = parseInt(req.params.id);
+  console.log(course_id);
 
   connection.query(
-    `SELECT DISTINCT marks.index_number FROM marks,course_exam_question WHERE course_exam_question.question_id = marks.question_id AND course_exam_question.course_id = ${course_id}`,
+    `SELECT DISTINCT marks.index_number,course.course_name FROM marks,course_exam_question,course WHERE course_exam_question.question_id = marks.question_id AND course.course_id = course_exam_question.course_id AND course_exam_question.course_id = ${course_id}`,
     function (error, results, fields) {
       if (error) throw error;
       //console.log(results);
@@ -122,6 +106,24 @@ const getIndexCourse = asyncHandler(async (req, res) => {
 
   connection.query(
     `SELECT index_no FROM student_course WHERE course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getLecturer = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+
+  // const index_number = parseInt(req.params.id2);
+
+  // console.log(course_id);
+  console.log("Get lecturer");
+
+  connection.query(
+    `SELECT f_name,l_name,user_id FROM user WHERE user_type="lecturer"`,
     function (error, results, fields) {
       if (error) throw error;
       //console.log(results);
@@ -230,27 +232,35 @@ const examMarksAdd = asyncHandler(async (req, res) => {
 
           connection.query(
             `SELECT mark_id from exam_mark WHERE index_no = ${row.index_number_of_students}`,
-            function(error,results,fields){
-              if(error) throw error;
-              if(results.length == 0) {
+            function (error, results, fields) {
+              if (error) throw error;
+              if (results.length == 0) {
                 connection.query(
                   `INSERT INTO exam_mark (index_no,exam_marks,course_id) VALUES ("${row.index_number_of_students}","${totalMarks}","${data.course_id}")`
-                ),function(error,results,fields){
-                  if(error) throw error;
-                }
+                ),
+                  function (error, results, fields) {
+                    if (error) throw error;
+                  };
               } else {
                 connection.query(
                   `UPDATE exam_mark SET exam_marks=${totalMarks} WHERE index_no = ${row.index_number_of_students} AND course_id = ${data.course_id}`,
-                  function(error,results,fields){
-                    if(error) throw error;
+                  function (error, results, fields) {
+                    if (error) throw error;
                   }
-                )
+                );
               }
             }
-          )
-          
+          );
         }
       });
+
+      let auditData = {
+        user_id: data.user_id,
+        type: "Exam Marks adding Bulk",
+        success: `Lecturer added the marks in examination ${data.course_id} as bulk`,
+      };
+
+      auditGenerator(auditData);
     }
   );
   // await data.dataMarks.map(
@@ -269,6 +279,123 @@ const examMarksAdd = asyncHandler(async (req, res) => {
   // );
 });
 
+const getExamTotalMarks = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id1);
+  const index_number = req.params.id2;
+  // const index_number = parseInt(req.params.id2);
+
+  console.log(course_id);
+
+  connection.query(
+    `SELECT SUM(marks.marks_by_second_marker) AS total FROM marks,course_exam_question 
+    WHERE marks.question_id = course_exam_question.question_id AND marks.index_number = "${index_number}" 
+    AND course_exam_question.course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getAssignTotalMarks = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id1);
+  const index_number = req.params.id2;
+  // const index_number = parseInt(req.params.id2);
+
+  console.log(course_id);
+
+  connection.query(
+    `SELECT SUM(marks_assignment.marks*assignments.contribution/100) AS total
+    FROM marks_assignment,assignments 
+    WHERE marks_assignment.assignment_id = assignments.assignment_id 
+    AND marks_assignment.index_number = "${index_number}" AND assignments.course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getTotalExam = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id1);
+  const index_number = req.params.id2;
+  // const index_number = parseInt(req.params.id2);
+
+  console.log(course_id);
+  var assignment = null;
+  var exam = null;
+  var assignWeight = null;
+  var examWeight = null;
+
+  connection.query(
+    `SELECT SUM(marks_assignment.marks*assignments.contribution/100) AS total
+    FROM marks_assignment,assignments 
+    WHERE marks_assignment.assignment_id = assignments.assignment_id 
+    AND marks_assignment.index_number = "${index_number}" AND assignments.course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      console.log(results);
+      assignment = results[0].total;
+      console.log("Assignment");
+      console.log(assignment);
+      // res.json(results);
+
+      connection.query(
+        `SELECT SUM(marks.marks_by_second_marker) AS total FROM marks,course_exam_question 
+        WHERE marks.question_id = course_exam_question.question_id AND marks.index_number = "${index_number}" 
+        AND course_exam_question.course_id = ${course_id}`,
+        function (error, results, fields) {
+          if (error) throw error;
+          console.log(results);
+          exam = results[0].total;
+          console.log("Exam");
+          console.log(exam);
+
+          connection.query(
+            `SELECT weight_for_exam,weight_for_assignment FROM course WHERE course_id = ${course_id}`,
+            function (error, results, fields) {
+              if (error) throw error;
+              assignWeight = results[0].weight_for_assignment;
+              examWeight = results[0].weight_for_exam;
+              //console.log(results);
+
+              var total =
+                (assignment * assignWeight) / 100 + (exam * examWeight) / 100;
+              console.log("Total");
+              console.log(total);
+              res.json(total);
+            }
+          );
+
+          // res.json(results);
+        }
+      );
+    }
+  );
+});
+
+const getWeights = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id);
+  // const index_number = parseInt(req.params.id2);
+
+  console.log(course_id);
+
+  connection.query(
+    `SELECT weight_for_exam,weight_for_assignment FROM course WHERE course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
 module.exports = {
   getExaminationCourses,
   getExaminationQuestion,
@@ -277,4 +404,9 @@ module.exports = {
   getQuestionFromCourse,
   getIndexCourse,
   examMarksAdd,
+  getExamTotalMarks,
+  getAssignTotalMarks,
+  getWeights,
+  getTotalExam,
+  getLecturer,
 };

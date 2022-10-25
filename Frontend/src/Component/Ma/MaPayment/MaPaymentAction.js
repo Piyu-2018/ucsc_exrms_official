@@ -1,17 +1,17 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Form from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Form from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-import { useState } from "react"; 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { API_URL } from "../../../../src/constants/globalConstants";
 
 export default function BasicSelect(props) {
-  const [action, setAction] = React.useState('');
+  const [action, setAction] = React.useState("");
   const { register, handleSubmit } = useForm();
 
   const handleChange = (event) => {
@@ -30,14 +30,12 @@ export default function BasicSelect(props) {
       const action = data;
       console.log(action);
 
-      
-
-    //   console.log(user_id);
+      //   console.log(user_id);
       // const lecturer_id = user_id.toString();
 
       const inputData = {
         action,
-        paymentId
+        paymentId,
         // checking_id,
       };
 
@@ -48,15 +46,13 @@ export default function BasicSelect(props) {
       await axios
         .post(API_URL + "/settings/addPaymentAction", inputData)
         .then((response) => {
+          // params.assignDataFunc((list) => [...list, response.data]);
           props.assignDataFunc((list) => [...list, response.data]);
           // if (!response.data.error) {
           // }
         });
-        }
-        
-
-      
-    };
+    }
+  };
 
   return (
     <Box sx={{ mt: "10px" }}>

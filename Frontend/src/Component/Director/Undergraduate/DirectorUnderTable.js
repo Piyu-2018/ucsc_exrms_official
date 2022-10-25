@@ -89,7 +89,7 @@ export default function CustomizedTables(props) {
             <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Registration Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
-            <StyledTableCell align="left">More Action</StyledTableCell>
+            {/* <StyledTableCell align="left">More Action</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -98,7 +98,7 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
               <StyledTableCell align="left">{data.reg_no}</StyledTableCell>
               <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
-              <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell>
+              {/* <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>
