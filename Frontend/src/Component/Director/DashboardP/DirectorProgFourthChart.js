@@ -9,8 +9,8 @@ import {
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
-  { region: 'Selected - 48%', val: 48},
-  { region: 'Not-selected - 52%', val: 52},
+  { region: 'Applied - 22%', val: 22 },
+  { region: 'Not-applied - 78%', val: 78 },
 ];
 
 export default class Demo extends React.PureComponent {
