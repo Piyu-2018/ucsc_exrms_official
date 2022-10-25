@@ -15,7 +15,7 @@ const auditGenerator = require("./auditController");
 
 // connection.connect();
 
-var connection = mysql.createPool({
+var connection = mysql.createPool({ 
   connectionLimit: 10,
   host: "sql238.main-hosting.eu",
   user: "u117929562_ucscExrmsUser",

@@ -132,7 +132,7 @@ function AdminSidebar(props) {
               {[
                 "Home",
                 "Login Activity",
-                "Lectuerer Activity",
+                "User Activity",
                 "Users",
                 // "Exam Timetable",
                 // "Grades",
