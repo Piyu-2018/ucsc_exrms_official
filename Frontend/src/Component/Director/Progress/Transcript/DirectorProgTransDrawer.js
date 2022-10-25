@@ -44,9 +44,10 @@ function DirectorProgTransDrawer() {
         <Grid item sm={8} md={10}>
           <DirectorProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/>
           <br></br>
+          
+          
+          <DirectorProgTransTable option={option} year={year}/><br></br>
           <DirectorProgTransChart />
-          <br></br>
-          <DirectorProgTransTable option={option} year={year}/>
         </Grid>
       </Grid>
     </>
