@@ -70,6 +70,7 @@ function MaNavBar(props) {
     e.preventDefault();
     dispatch(logout());
     navigate("/login");
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -206,7 +207,7 @@ function MaNavBar(props) {
             ))}
           </Box>
           <Box sx={{ display: "flex", gap: "5px", alignItems: "center" }}>
-            <Badge badgeContent={4} color="error">
+            {/* <Badge badgeContent={4} color="error">
               <IconButton>
                 <Message color="primary" />
               </IconButton>
@@ -215,7 +216,7 @@ function MaNavBar(props) {
               <IconButton>
                 <Notifications color="primary" />
               </IconButton>
-            </Badge>
+            </Badge> */}
             <IconButton>
               <Avatar
                 sx={{ width: 30, height: 30 }}

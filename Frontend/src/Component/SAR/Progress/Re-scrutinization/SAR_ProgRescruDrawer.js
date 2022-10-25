@@ -8,10 +8,10 @@ function SAR_ProgRescruDrawer() {
   const open = true;
   console.log(open);
 
-  const [acYear,setAcYear] = useState("Academic Year - 2022/2023");
-  const [yearSem,setYearSem] = useState("First Year");
+  const [acYear,setAcYear] = useState("Academic Year - 2022-2023");
+  const [yearSem,setYearSem] = useState("1st Year First Semester");
   const [degree,setDegree] = useState("Computer Science (Bsc)");
-  const [subject,setSubject] = useState("Computer Science (Bsc)");
+  const [subject,setSubject] = useState("SCS2201-Data Structures & Alogorithms III");
 
   const onSelectedAcYear = (acYear) => {
     setAcYear(acYear);

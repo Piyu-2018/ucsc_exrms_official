@@ -20,6 +20,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userActions";
+import axios from "axios";
+import { API_URL } from "../../constants/globalConstants";
 
 // const Icons = styled(Box)(({ theme }) => ({
 //   display: "none",
@@ -63,13 +65,26 @@ const pages = [
 
 function AdminNavbar(props) {
   const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  // const userInfo = useSelector((state) => state.userInfo);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const signout = (e) => {
+  const signout = async (e) => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
     e.preventDefault();
     dispatch(logout());
     navigate("/login");
+    window.location.reload();
+    await axios
+      .get(API_URL + `/auth/logout/${user_id}`, config)
+      .then((response) => {
+        // console.log(response.data);
+      });
   };
 
   useEffect(() => {
@@ -128,7 +143,7 @@ function AdminNavbar(props) {
             variant="h6"
             noWrap
             component="a"
-            
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -138,7 +153,9 @@ function AdminNavbar(props) {
               textDecoration: "none",
             }}
           >
-            <Logo onClick={sidebarControl} />
+            <Link to="/">
+              <Logo />
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -209,7 +226,7 @@ function AdminNavbar(props) {
             ))}
           </Box>
           <Box sx={{ display: "flex", gap: "5px", alignItems: "center" }}>
-            <Badge badgeContent={4} color="error">
+            {/* <Badge badgeContent={4} color="error">
               <IconButton>
                 <Message color="primary" />
               </IconButton>
@@ -218,7 +235,7 @@ function AdminNavbar(props) {
               <IconButton>
                 <Notifications color="primary" />
               </IconButton>
-            </Badge>
+            </Badge> */}
             <IconButton>
               <Avatar
                 sx={{ width: 30, height: 30 }}

@@ -145,6 +145,7 @@ function LecNavBar(props) {
             variant="h6"
             noWrap
             component="a"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -154,7 +155,9 @@ function LecNavBar(props) {
               textDecoration: "none",
             }}
           >
-            <Logo onClick={sidebarControl} />
+            <Link to="/">
+              <Logo />
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -225,7 +228,7 @@ function LecNavBar(props) {
             ))}
           </Box>
           <Box sx={{ display: "flex", gap: "5px", alignItems: "center" }}>
-            <Badge badgeContent={4} color="error">
+            {/* <Badge badgeContent={4} color="error">
               <IconButton>
                 <Message color="primary" />
               </IconButton>
@@ -234,7 +237,7 @@ function LecNavBar(props) {
               <IconButton>
                 <Notifications color="primary" />
               </IconButton>
-            </Badge>
+            </Badge> */}
             <IconButton>
               <Avatar
                 sx={{ width: 30, height: 30 }}

@@ -34,6 +34,8 @@ const {
   getQuestionFromCourse,
   getIndexCourse,
   examMarksAdd,
+  getLecturer,
+  getRescrutinization,
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
@@ -50,7 +52,6 @@ const {
 
 const { getFourth } = require("../controllers/directorFourthAController");
 
-
 const { getApprove } = require("../controllers/directorExamApproveController");
 // const { getRegistration } = require("../controllers/directorRegistrationController");
 const {
@@ -59,21 +60,14 @@ const {
 // const { getConfirmation } = require("../controllers/directorConfirmLetController");
 // const { getTranscript } = require("../controllers/directorTranscriptController");
 
-
-
 const { getTimetable } = require("../controllers/timeTableController");
 // const { getLogins } = require("../controllers/adminController");
 
 const { getLetterRequest } = require("../controllers/ma/reqLetterController");
 
-
 const { addCourse } = require("../controllers/ma/addCourseController");
 
-
-
-
 const {
-
   getLogins,
   getLecActivity,
   getUserLecturer,
@@ -82,17 +76,15 @@ const {
   getUserStu,
 } = require("../controllers/adminController");
 
-
 // const { getLetterRequest } = require("../controllers/ma/reqLetterController");
-const {
-  addCourse,
-  getCourse,
-} = require("../controllers/ma/addCourseController");
+const { getCourse } = require("../controllers/ma/addCourseController");
 
 const { getStuAddmDetails } = require("../controllers/ma/admissionController");
 const { getStudents } = require("../controllers/ma/undergraduatesController");
 const { getCourseReport } = require("../controllers/ma/reportController");
-const { getAttendanceDetails } = require("../controllers/ma/attendanceController");
+const {
+  getAttendanceDetails,
+} = require("../controllers/ma/attendanceController");
 const { addPaymentAction } = require("../controllers/ma/paymentController");
 
 // const {
@@ -101,12 +93,8 @@ const { addPaymentAction } = require("../controllers/ma/paymentController");
 
 // const getLogins = require("../controllers/adminController");
 
-
-
-
 // const { getRegistration } = require("../controllers/directorRegistrationController");
 // const { getTimetable } = require("../controllers/timeTableController");
-
 
 const router = express.Router();
 
@@ -124,7 +112,7 @@ router.get("/getRegistration/:id1/:id2", getRegistration);
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
 router.get("/getResult1/:id1/:id2/:id3/:id4/:id5", getResult1);
-/* router.get("/getRecruthinization/:id1/:id2/:id3/:id4", getRecruthinization); */
+router.get("/getRescrutinization/:id1/:id2/:id3/:id4", getRescrutinization);
 /*
 router.get("/getSubSelection/:id1/:id2/:id3/:id4", getSubSelection);
 router.get("/getFourthYear/:id1/:id2", getFourthYear); */
@@ -193,5 +181,8 @@ router.get("/getExamTotalMarks/:id1/:id2", getExamTotalMarks);
 router.get("/getAssignTotalMarks/:id1/:id2", getAssignTotalMarks);
 router.get("/getTotalExam/:id1/:id2", getTotalExam);
 router.get("/getWeights/:id", getWeights);
+
+router.get("/getConfirmation/:id1/:id2", getConfirmation);
+router.get("/getTranscript/:id1/:id2", getTranscript);
 
 module.exports = router;
