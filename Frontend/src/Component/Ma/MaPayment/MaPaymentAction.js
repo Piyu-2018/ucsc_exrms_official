@@ -48,7 +48,7 @@ export default function BasicSelect(props) {
       await axios
         .post(API_URL + "/settings/addPaymentAction", inputData)
         .then((response) => {
-          params.assignDataFunc((list) => [...list, response.data]);
+          props.assignDataFunc((list) => [...list, response.data]);
           // if (!response.data.error) {
           // }
         });
@@ -61,9 +61,11 @@ export default function BasicSelect(props) {
   return (
     <Box sx={{ mt: "10px" }}>
       {/* <Form method="POST" size="small" sx={{width: "150px", backgroundColor: "#1976d2", color:"white", borderRadius: "5px"}}> */}
-        <InputLabel id="demo-simple-select-label" sx={{color:"white"}}>-Action-</InputLabel>
+        <InputLabel id="demo-simple-select-label" sx={{ width:"150px"}}>-Action-</InputLabel>
         <Select
-            sx={{color:"white"}}
+        
+        size="small"
+            sx={{color:"white", width:"150px", backgroundColor: "#1976d2"}}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={action}
@@ -71,6 +73,7 @@ export default function BasicSelect(props) {
           onChange={handleChange}
           inputProps={register("action")}
         >
+          {/* <MenuItem value={"action"} >-select action-</MenuItem> */}
           <MenuItem value={"Approved"} onClick={()=>{addAction("Approved")}}>Approve</MenuItem>
           <MenuItem value={"Rejected"} onClick={()=>{addAction("Rejected")}}>Reject</MenuItem>
           <MenuItem value={"Pending"} onClick={()=>{addAction("Pending")}}>Pending</MenuItem>

@@ -132,7 +132,7 @@ function App() {
           <Route path="/ma_test" element={<MaTest />} />
           <Route path="/ma_registration" element={<MaRegistration />} />
           {/* <Route path="/ma_req_letter" element={<MaLetterFormat />} /> */}
-          <Route path="/req_letter" element={<ReqLetter />} />
+          <Route path="/req_letter/:email/:stu_year/:fName/:lName" element={<ReqLetter />} />
 
           <Route path="/directorUnder" element={<DirectorUnder />} />
           <Route path="/directorEnProgress" element={<DirectorEnProgress />} />
