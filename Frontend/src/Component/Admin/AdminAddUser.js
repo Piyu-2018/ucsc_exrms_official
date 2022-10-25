@@ -27,27 +27,27 @@ const style = {
 
 const user_types = [
   {
-    value: "Student",
+    value: "student",
     label: "Student",
   },
   {
-    value: "Ma",
+    value: "ma",
     label: "Ma",
   },
   {
-    value: "Lecturer",
+    value: "lecturer",
     label: "lecturer",
   },
   {
-    value: "Director",
+    value: "director",
     label: "Director",
   },
   {
-    value: "Head of examinations",
+    value: "hox",
     label: "Head of examinations",
   },
   {
-    value: "SAR",
+    value: "sar",
     label: "SAR",
   },
 ];
@@ -61,22 +61,37 @@ function AdminAddUser() {
 
   const addAssign = async (data) => {
     console.log("Hi");
-    if (data.user_name && data.description && data.contribution) {
+    console.log(data);
+    if (
+      data.user_name &&
+      data.f_name &&
+      data.l_name &&
+      data.email &&
+      data.user_type &&
+      data.password
+    ) {
+      var data = {
+        user_name: data.user_name,
+        user_type: data.user_type,
+        f_name: data.f_name,
+        l_name: data.l_name,
+        password: data.password,
+        email: data.email,
+      };
+
+      console.log("inside");
       setOpen(false);
 
-      const name = data.name;
-      const description = data.description;
-      const contribution = data.contribution;
+      // const name = data.name;
+      // const description = data.description;
+      // const contribution = data.contribution;
 
       // const lecturer_id = user_id.toString();
 
-      //   await axios
-      //     .post(API_URL + "/settings/assignAdd", inputData)
-      //     .then((response) => {
-      //       params.assignDataFunc((list) => [...list, response.data]);
-      //       // if (!response.data.error) {
-      //       // }
-      //     });
+      await axios.post(API_URL + "/auth/register", data).then((response) => {
+        // if (!response.data.error) {
+        // }
+      });
     }
   };
 
