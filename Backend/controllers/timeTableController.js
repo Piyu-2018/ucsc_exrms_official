@@ -20,27 +20,23 @@ var mysql = require("mysql");
 // connection.connect();
 
 var connection = mysql.createPool({
-  connectionLimit : 10,
+  connectionLimit: 10,
   host: "sql238.main-hosting.eu",
   user: "u117929562_ucscExrmsUser",
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
 const getTimetable = asyncHandler(async (req, res) => {
-  
-    
-    
-    connection.query(
-      `SELECT exam_start,exam_end,course_code,course_name FROM exam_timetable`,
-      function (error, results, fields) {
-        if (error) throw error;
+  connection.query(
+    `SELECT exam_start,exam_end,course_code,course_name FROM exam_timetable`,
+    function (error, results, fields) {
+      if (error) throw error;
       //console.log(results);
-        res.json(results);
-      }
-    );
-  
-  });
+      res.json(results);
+    }
+  );
+});
 
 module.exports = {
-    getTimetable,
-}; 
+  getTimetable,
+};
