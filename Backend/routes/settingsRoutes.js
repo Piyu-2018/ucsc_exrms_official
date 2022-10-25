@@ -27,6 +27,10 @@ const {
   getQuestionFromCourse,
   getIndexCourse,
   examMarksAdd,
+  getExamTotalMarks,
+  getAssignTotalMarks,
+  getWeights,
+  getTotalExam,
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
@@ -93,5 +97,11 @@ router.get("/getLecActivity", getLecActivity);
 router.get("/getUserLecturer", getUserLecturer);
 router.get("/getUserOther", getUserOther);
 router.get("/deleteUser/:id", deleteUser);
+
+router.get("/getExamTotalMarks/:id1/:id2", getExamTotalMarks);
+router.get("/getAssignTotalMarks/:id1/:id2", getAssignTotalMarks);
+router.get("/getTotalExam/:id1/:id2", getTotalExam);
+router.get("/getWeights/:id", getWeights);
+
 
 module.exports = router;

@@ -12,8 +12,11 @@ import {
   createTheme,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
+import axios from "axios";
+import { API_URL } from "../../constants/globalConstants";
+import { useSelector } from "react-redux";
 
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
@@ -49,10 +52,37 @@ function createData(Position, IndexNumber, Marks, Grading) {
   return { Position, IndexNumber, Marks, Grading };
 }
 
-function LecResultsTable() {
-  // console.log(props.AssignData);
+function LecResultsTable(props) {
+  console.log(props.index_data);
 
   // console.log(assign[0].name);
+
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  const [distinctIndex, setDistinctIndex] = useState([]);
+  console.log(props.course_id);
+
+  const getDistinctIndex = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + `/settings/getDistinctIndex/${props.course_id}`, config)
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.data.length);
+        setDistinctIndex(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getDistinctIndex();
+  }, []);
+
+  console.log(distinctIndex);
 
   const rows = [
     createData(
@@ -161,33 +191,129 @@ function LecResultsTable() {
           <TableHead>
             <TableRow>
               <StyledTableCell align="left">
-                <Typography variant="h6">Position</Typography>
-              </StyledTableCell>
-              <StyledTableCell align="left">
                 <Typography variant="h6">Index Number</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Typography variant="h6">Marks</Typography>
+                <Typography variant="h6">Examination Marks</Typography>
               </StyledTableCell>
               <StyledTableCell align="left">
-                <Typography variant="h6">Grading</Typography>
+                <Typography variant="h6">Assignment Marks</Typography>
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                <Typography variant="h6">Total Marks</Typography>
               </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row) => (
-              <StyledTableRow key={row.name}>
-                <StyledTableCell align="left">{row.Position}</StyledTableCell>
-                <StyledTableCell align="left">
-                  {row.IndexNumber}
+            {distinctIndex.map((row) => (
+              <StyledTableRow key={row.index_number}>
+                <StyledTableCell component="th" scope="row">
+                  {row.index_number}
                 </StyledTableCell>
-                <StyledTableCell align="left">{row.Marks}</StyledTableCell>
-                <StyledTableCell align="left">{row.Grading}</StyledTableCell>
+                <Welcome
+                  index_number={row.index_number}
+                  course_id={props.course_id}
+                />
+                {/* <StyledTableCell>{row.marks1} hi</StyledTableCell>
+              <StyledTableCell>{row.marks2}</StyledTableCell> */}
               </StyledTableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+    </>
+  );
+}
+
+function Welcome(props) {
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  const [marks, setMarks] = useState([]);
+  const [assign, setAssign] = useState([]);
+  const [weights, setweights] = useState([]);
+  const [total, setTotal] = useState(0);
+  // const tot = 0;
+
+  const getMarks = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(
+        API_URL +
+          `/settings/getExamTotalMarks/${props.course_id}/${props.index_number}`,
+        config
+      )
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.data.length);
+        setMarks(response.data);
+      });
+  };
+
+  const getAssign = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(
+        API_URL +
+          `/settings/getAssignTotalMarks/${props.course_id}/${props.index_number}`,
+        config
+      )
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.data.length);
+        setAssign(response.data);
+      });
+  };
+
+  const getWeights = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(
+        API_URL +
+          `/settings/getTotalExam/${props.course_id}/${props.index_number}`,
+        config
+      )
+      .then((response) => {
+        console.log(response.data);
+
+        console.log(response.data.length);
+        setweights(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getMarks();
+    getAssign();
+    getWeights();
+  }, []);
+
+  console.log(marks);
+  //  console.log(marks.marks_by_second_marker.reduce((a,b)=>a+b,0));
+
+  return (
+    <>
+      {marks.map((row) => (
+        <StyledTableCell>{row.total}</StyledTableCell>
+      ))}
+      {assign.map((row) => (
+        <StyledTableCell>{row.total}</StyledTableCell>
+      ))}
+
+      <StyledTableCell>{weights}</StyledTableCell>
     </>
   );
 }

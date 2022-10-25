@@ -164,8 +164,8 @@ function LecExamMarkTable(props) {
                 {row.index_number}
               </StyledTableCell>
               <Welcome index_number={row.index_number} course_id={props.course_id} />
-              <StyledTableCell>{row.marks1}</StyledTableCell>
-              <StyledTableCell>{row.marks2}</StyledTableCell>
+              {/* <StyledTableCell>{row.marks1} hi</StyledTableCell>
+              <StyledTableCell>{row.marks2}</StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>
