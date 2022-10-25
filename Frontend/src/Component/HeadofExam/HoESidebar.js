@@ -73,13 +73,13 @@ export default function HoESidebar() {
           <ListItemText primary="Summary Report" />
         </ListItemButton>
         <Divider />
-        <ListItemButton to="/hoEChat">
+        {/* <ListItemButton to="/hoEChat">
           <ListItemIcon>
             <ChatRoundedIcon />
           </ListItemIcon>
           <ListItemText primary="Chat" />
         </ListItemButton>
-        <Divider />
+        <Divider /> */}
         <ListItemButton>
           <ListItemIcon>
             <NotificationsActiveRoundedIcon />
