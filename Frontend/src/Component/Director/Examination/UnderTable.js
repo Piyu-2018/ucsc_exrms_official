@@ -123,9 +123,9 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="left">{data.q2}</StyledTableCell>
               <StyledTableCell align="left">{data.q3}</StyledTableCell>
               <StyledTableCell align="left">{data.q4}</StyledTableCell>
-              <StyledTableCell align="left">{data.AssignMarks}</StyledTableCell>
-              <StyledTableCell align="left">{data.TotalMarks}</StyledTableCell>
-              <StyledTableCell align="left">{data.Grade}</StyledTableCell>
+              <StyledTableCell align="left">{data.assignment_mark}</StyledTableCell>
+              <StyledTableCell align="left">{data.total_mark}</StyledTableCell>
+              <StyledTableCell align="left">{data.grade}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
