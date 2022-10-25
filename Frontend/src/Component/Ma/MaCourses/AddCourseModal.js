@@ -4,8 +4,6 @@ import {
   Box,
   Button,
   Fade,
-  IconButton,
-  InputAdornment,
   Modal,
   TextField,
   Typography,
@@ -27,11 +25,11 @@ const style = {
   p: 4,
 };
 const buttonStyles = {
-    backgroundColor: '#114CA7',
+    backgroundColor: '#06283D',
     width:"250px",
     color: 'white',
     '&:hover': {
-      backgroundColor: '#1363DF',
+      backgroundColor: '#114CA7',
   }
 };
 

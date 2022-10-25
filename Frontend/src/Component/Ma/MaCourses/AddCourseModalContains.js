@@ -22,7 +22,7 @@ import { API_URL } from "../../../../src/constants/globalConstants";
 
   function CourseModalContains(params){
     const { register, handleSubmit } = useForm();
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(true);
     const [counterLec, setCounterLec] = useState(0);
     const [counterIns, setCounterIns] = useState(0);
 

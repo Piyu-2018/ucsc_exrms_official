@@ -49,6 +49,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./pages/Login";
+import AboutUs from "./pages/AboutUs";
 import ForgotPassword from "./pages/ForgotPassword";
 
 import LecturerAssignments from "./pages/Lecturer/LecturerAssignments";
@@ -114,6 +115,7 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="*" element={<Navigate to="/" />} />
 
+          <Route path="/aboutUs" exact element={<AboutUs />} />
           <Route path="/login" exact element={<Login />} />
           <Route path="/forgot_password" exact element={<ForgotPassword />} />
           <Route path="/password_otp" exact element={<PasswordOtp />} />
