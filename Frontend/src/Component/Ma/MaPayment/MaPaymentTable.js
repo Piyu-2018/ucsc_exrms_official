@@ -17,11 +17,12 @@ import React from "react";
 import DoubleArrowIcon from "@mui/icons-material/DoubleArrow";
 import { Box } from "@mui/system";
 import MaPayStatus from "./MaPayStatus";
+import MaPayAction from "./MaPaymentAction";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { API_URL } from "../../constants/globalConstants";
+import { API_URL } from "../../../constants/globalConstants";
 
 // const UsFormatter = new Intl.DateTimeFormat('en-US')
 
@@ -157,7 +158,8 @@ function MaPaymentTable(props) {
                       </Typography>
                     </a>
                   </Button>
-                  <MaPayStatus />
+                  {/* <MaPayStatus /> */}
+                  <MaPayAction PaymentId={data.payment_id}/>
                 </Box>
               </StyledTableCell>
             </StyledTableRow>

@@ -29,14 +29,3 @@ module.exports = { sendMail }
 
 
 
-// function sendEmail(letterType, email){
-//     const subject =  'Requested Confirmation Letter';
-//     const text = 'Dear undergraduate,';
-//     const html = '<p>This email is sending with the requested '+letterType+ ' file.</p><br/>' ;
-    
-//     sendMail.sendMail(subject,text,html,email);
-//     return res.json({
-//       message: "success",
-//     });
-
-//   }
