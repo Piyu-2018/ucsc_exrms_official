@@ -23,7 +23,7 @@ function UnderDrawer() {
             <Category/> <br></br>
 
             <UnderSeach/><br></br>
-            <UnderTable1/><br></br>
+            <UnderTable1/>
           </Grid>  
         </Grid>
     </>

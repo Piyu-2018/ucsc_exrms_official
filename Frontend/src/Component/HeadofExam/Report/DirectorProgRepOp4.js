@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Subjects','SCS2201-Data Structures & Alogorithms III','SCSC2202-Group Project','SCSC2203-Software Engineering III','SCSC2204-Functional Programming','SCSC2205-Computer Networking','SCSC2206-Mathemical Methods II','SCSC2207-Programming Concept','SCSC2208-Rapid apllication Development'];
+const options = ['Subjects','SCS3201-Machine Learning & Neural Networking','SCSC2202-Group Project','SCSC2203-Software Engineering III','SCSC2204-Functional Programming','SCSC2205-Computer Networking','SCSC2206-Mathemical Methods II','SCSC2207-Programming Concept','SCSC2208-Rapid apllication Development'];
 
 export default function SplitButton() {
   const [open, setOpen] = React.useState(false);
