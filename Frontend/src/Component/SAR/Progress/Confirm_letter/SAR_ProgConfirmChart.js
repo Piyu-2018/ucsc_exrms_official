@@ -13,8 +13,9 @@ import Typography from '@mui/material/Typography';
 import { Animation } from '@devexpress/dx-react-chart';
 
 const data = [
-  { region: 'Issued - 67%', val: 67 },
-  { region: 'Not-issued - 33%', val: 33},
+  { region: 'Issued - 70%', val: 70 },
+  { region: 'Pending- 20%', val: 20},
+  { region: 'Rejected- 10%', val: 10},
 ];
 
 export default class Demo extends React.PureComponent {

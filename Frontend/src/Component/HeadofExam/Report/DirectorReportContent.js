@@ -36,6 +36,7 @@ export default class Demo extends React.PureComponent {
     const { data: chartData } = this.state;
 
     return (
+      <Paper>
         <Chart
           data={chartData}
         >
@@ -50,6 +51,7 @@ export default class Demo extends React.PureComponent {
           <Animation />
           <Legend />
         </Chart>
+      </Paper>
     );
   }
 }
