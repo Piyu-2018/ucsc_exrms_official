@@ -7,16 +7,16 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
-
+import CreateIcon from '@mui/icons-material/Create';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../../constants/globalConstants";
 
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#06283D",
+    backgroundColor: '#06283D',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -25,33 +25,24 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
+  '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  "&:last-child td, &:last-child th": {
+  '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
 
-function createData(
-  IndexNumber,
-  Q1,
-  Q2,
-  Q3,
-  Q4,
-  AssignMarks,
-  TotalMarks,
-  Grade
-) {
-  return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks, TotalMarks, Grade };
+function createData(IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks, Grade) {
+  return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks , Grade};
 }
 
 /* const rows = [
-    createData(19001411,'2019|CS|141','80','70','B'),
-    createData(19001428,'2019/CS/142','90','80 ','A'),
-    createData(19001381,'2019/CS/138','85',' 76','A'),
-    createData(19001411,'2019/CS/141','70',' 57','C'),
+    createData(19001411,'2019|CS|141','80','70','B ',''),
+    createData(19001428,'2019/CS/142','90','80 ','A',''),
+    createData(19001381,'2019/CS/138','85',' 76','A',''),
+    createData(19001411,'2019/CS/141','70',' 57','C',''),
 ]; */
 
 export default function CustomizedTables(props) {
@@ -60,45 +51,43 @@ export default function CustomizedTables(props) {
   console.log(props.sem);
   console.log(props.degree);
   console.log(props.subject);
-  console.log("Props end");
+  console.log(props.ye);
   const [examinationData, setExaminationData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { accessToken } = userInfo.user;
 
   const acYear = props.option;
   const cuYear = props.year;
-  const sem = props.sem;
+  const sem = props.sem ;
   const degree = props.degree;
   const subject = props.subject;
+  const approve = props.ye;
 
   useEffect(() => {
-    getResult();
-  }, [acYear, cuYear, sem, degree, subject]);
+   
+    getResult1();
 
-  const getResult = async () => {
+  }, [acYear,cuYear, sem, degree, subject, approve])
+ 
+
+  const getResult1 = async () => {
     const config = {
       headers: {
         authorization: accessToken,
       },
     };
-    console.log("Hi");
+  console.log("Hi");
 
-    await axios
-      .get(
-        API_URL +
-          `/settings/getResult/${acYear}/${cuYear}/${sem}/${degree}/${subject}`,
-        config
-      )
+  await axios
+      .get(API_URL + "/settings/getResult1/"+acYear+"/"+cuYear+"/"+sem+"/"+degree+"/"+subject+"/"+approve,config)
       .then((response) => {
         setExaminationData(response.data);
-
         console.log(response.data);
-        console.log("Response data");
       });
   };
 
   useEffect(() => {
-    getResult();
+    getResult1();
   }, []);
   return (
     <TableContainer component={Paper}>
@@ -113,10 +102,11 @@ export default function CustomizedTables(props) {
             <StyledTableCell align="left">Assignment Marks </StyledTableCell>
             <StyledTableCell align="left">Total Marks</StyledTableCell>
             <StyledTableCell align="left">Grade </StyledTableCell>
+            <StyledTableCell align="left"> </StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {examinationData.map((data) => (
+        {examinationData.map((data) => (
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
               <StyledTableCell align="left">{data.q1}</StyledTableCell>
@@ -126,6 +116,7 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="left">{data.AssignMarks}</StyledTableCell>
               <StyledTableCell align="left">{data.TotalMarks}</StyledTableCell>
               <StyledTableCell align="left">{data.Grade}</StyledTableCell>
+              <StyledTableCell align="left">{data.Edit}<CreateIcon fontSize="small" sx={{Floatleft: 50}} /></StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
