@@ -36,15 +36,15 @@ const {
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
 
-const {
-  getRegistration,
-} = require("../controllers/directorRegistrationController");
-const {
-  getConfirmation,
-} = require("../controllers/directorConfirmLetController");
-const {
-  getTranscript,
-} = require("../controllers/directorTranscriptController");
+// const {
+//   getRegistration,
+// } = require("../controllers/directorRegistrationController");
+// const {
+//   getConfirmation,
+// } = require("../controllers/directorConfirmLetController");
+// const {
+//   getTranscript,
+// } = require("../controllers/directorTranscriptController");
 
 const { getFourth } = require("../controllers/directorFourthAController");
 
@@ -79,6 +79,7 @@ const {
 const { getStuAddmDetails } = require("../controllers/ma/admissionController");
 const { getStudents } = require("../controllers/ma/undergraduatesController");
 const { getCourseReport } = require("../controllers/ma/reportController");
+const { getAttendanceDetails } = require("../controllers/ma/attendanceController");
 const { addPaymentAction } = require("../controllers/ma/paymentController");
 // const {
 //   sendMail,
@@ -132,6 +133,7 @@ router.get("/getStuAddmDetails", getStuAddmDetails);
 router.get("/getStudents", getStudents);
 router.get("/getCourse", getCourse);
 router.get("/getCourseReport", getCourseReport);
+router.get("/getAttendanceDetails", getAttendanceDetails);
 router.post("/addPaymentAction", addPaymentAction);
 // router.get("/sendMail", sendMail);
 
