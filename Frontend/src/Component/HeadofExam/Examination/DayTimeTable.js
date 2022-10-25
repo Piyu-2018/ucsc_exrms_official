@@ -30,7 +30,7 @@ export default function AutoGrid(props) {
 
             <Grid item xs={3} md={12} container spacing={4} columnpacing={10} sx={{justifyContent:'left'}}>
                 <Grid item xs={12} md={3}>
-                  <UnderOp6 onSelectY={onSelectY}/>
+                  <br></br><UnderOp6 onSelectY={onSelectY}/>
                 </Grid>
                 <Grid item xs={12} md={3}>
                 <Stack spacing={2} direction="row">

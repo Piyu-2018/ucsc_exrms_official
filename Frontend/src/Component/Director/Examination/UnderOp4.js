@@ -9,7 +9,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 
-const options = ['Subject','Enterprise Resource Planning','Software Quality Assurance','Human Computer Interaction','Professional Practice','Enterprise Applications','DBMS-II','E-Learning'];
+const options = ['Machine Learning & Neural Networking','Enterprise Resource Planning','Software Quality Assurance','Human Computer Interaction','Professional Practice','Enterprise Applications','DBMS-II','E-Learning'];
 
 export default function SplitButton(props) {
   const [open, setOpen] = React.useState(false);

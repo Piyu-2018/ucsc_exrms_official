@@ -50,6 +50,7 @@ const {
 
 const { getFourth } = require("../controllers/directorFourthAController");
 
+
 const { getApprove } = require("../controllers/directorExamApproveController");
 // const { getRegistration } = require("../controllers/directorRegistrationController");
 const {
@@ -58,24 +59,54 @@ const {
 // const { getConfirmation } = require("../controllers/directorConfirmLetController");
 // const { getTranscript } = require("../controllers/directorTranscriptController");
 
+
+
 const { getTimetable } = require("../controllers/timeTableController");
+// const { getLogins } = require("../controllers/adminController");
+
+const { getLetterRequest } = require("../controllers/ma/reqLetterController");
+
+
+const { addCourse } = require("../controllers/ma/addCourseController");
+
+
+
+
 const {
+
   getLogins,
   getLecActivity,
   getUserLecturer,
-  getUserStu,
   getUserOther,
   deleteUser,
+  getUserStu,
 } = require("../controllers/adminController");
+
+
+// const { getLetterRequest } = require("../controllers/ma/reqLetterController");
+const {
+  addCourse,
+  getCourse,
+} = require("../controllers/ma/addCourseController");
+
 const { getStuAddmDetails } = require("../controllers/ma/admissionController");
 const { getStudents } = require("../controllers/ma/undergraduatesController");
-const {
-  getCourse,
-  addCourse,
-} = require("../controllers/ma/addCourseController");
 const { getCourseReport } = require("../controllers/ma/reportController");
+const { getAttendanceDetails } = require("../controllers/ma/attendanceController");
 const { addPaymentAction } = require("../controllers/ma/paymentController");
-const { getLetterRequest } = require("../controllers/ma/reqLetterController");
+
+// const {
+//   sendMail,
+// } = require("../controllers/ma/sendMail");
+
+// const getLogins = require("../controllers/adminController");
+
+
+
+
+// const { getRegistration } = require("../controllers/directorRegistrationController");
+// const { getTimetable } = require("../controllers/timeTableController");
+
 
 const router = express.Router();
 
@@ -113,6 +144,31 @@ router.post("/examMarksAdd", examMarksAdd);
 
 router.get("getTimetable", getTimetable);
 
+router.get("/getPayment", getPayment);
+router.get("/getLetterRequest", getLetterRequest);
+router.post("/addCourse", addCourse);
+
+router.get("/getStuAddmDetails", getStuAddmDetails);
+router.get("/getStudents", getStudents);
+router.get("/getCourse", getCourse);
+router.get("/getCourseReport", getCourseReport);
+router.get("/getAttendanceDetails", getAttendanceDetails);
+router.post("/addPaymentAction", addPaymentAction);
+// router.get("/sendMail", sendMail);
+
+// router.get("/getLogins",getLogins)
+router.get("/getLogins", getLogins);
+router.get("/getLecActivity", getLecActivity);
+router.get("/getUserLecturer", getUserLecturer);
+router.get("/getUserOther", getUserOther);
+router.get("/getUserStu", getUserStu);
+router.get("/deleteUser/:id", deleteUser);
+router.get("/getLecturer", getLecturer);
+
+router.get("/getExamTotalMarks/:id1/:id2", getExamTotalMarks);
+router.get("/getAssignTotalMarks/:id1/:id2", getAssignTotalMarks);
+router.get("/getTotalExam/:id1/:id2", getTotalExam);
+router.get("/getWeights/:id", getWeights);
 router.get("/getCourseCode/:id", getCourseCode);
 router.get("/getCourseAssign/:id", getCourseAssign);
 
