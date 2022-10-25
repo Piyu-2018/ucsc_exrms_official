@@ -123,6 +123,7 @@ const getResult1 = asyncHandler(async (req, res) => {
   const semester = (req.params.id3);
   const degree = (req.params.id4);
   const subject = (req.params.id5);
+  const approve = (req.params.id6);
   
   const mark = [];
 
@@ -139,6 +140,20 @@ const getResult1 = asyncHandler(async (req, res) => {
       res.json(results);
     }
   );
+
+  connection.query(
+    `UPDATE exam_mark SER director_status ="${approve}" WHERE  exam_mark.academic_yr = "${acYear}"
+     AND exam_mark.degree="${degree}"
+     AND exam_mark.course_name="${subject}"`,
+
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+    }
+  );
+
+
 });
 
 const assignAdd = asyncHandler(async (req, res) => {
