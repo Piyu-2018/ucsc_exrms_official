@@ -50,7 +50,7 @@ const getCourse = asyncHandler(async (req, res) => {
   const student = [];
 
   connection.query(
-    "SELECT course_code, course_name, credit, lecture_name, instructor FROM course WHERE ac_year_ID = 2022 AND year = 1",
+    "SELECT * FROM course WHERE ac_year_ID = 2022 AND year = 1",
     function (error, results, fields) {
       if (error) throw error;
 
