@@ -72,6 +72,7 @@ import SAR_RegProg from "./pages/SAR/SAR_RegProg";
 import SAR_ConfirmProg from "./pages/SAR/SAR_ConfirmProg";
 import SAR_TransProg from "./pages/SAR/SAR_TransProg";
 import SAR_SubProg from "./pages/SAR/SAR_SubProg";
+import SAR_Dashboard from "./pages/SAR/SAR_Dashboard";
 import SAR_RescruProg from "./pages/SAR/SAR_RescruProg";
 import SAR_FourthProg from "./pages/SAR/SAR_FourthProg";
 import RequestLetter from "./pages/SAR/RequestLetter";
@@ -175,6 +176,7 @@ function App() {
           <Route path="/sarConfirmProg" element={<SAR_ConfirmProg />} />
           <Route path="/sarTransProg" element={<SAR_TransProg />} />
           <Route path="/sarSubProg" element={<SAR_SubProg />} />
+          <Route path="/SAR_Dashboard" element={<SAR_Dashboard />} />
           <Route path="/sarRescruProg" element={<SAR_RescruProg />} />
           <Route path="/sarFourthProg" element={<SAR_FourthProg />} />
           <Route path="/requestletter" element={<RequestLetter />} />

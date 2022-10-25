@@ -6,19 +6,24 @@ import SAR_ProgFourthOp0 from './SAR_ProgFourthOp0';
 import SAR_ProgFourthOp1 from './SAR_ProgFourthOp1';
 
 
-export default function AutoGrid() {
+export default function AutoGrid(props) {
+  const [option, setOption] = React.useState(0);
+
+  const onSelectOption = (option) => {
+    props.onSelectedOption(option);
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
 
 
             <Grid item xs={3} md={12} container spacing={4} columnpacing={12} >
                 <Grid item xs={12} md={4}>
-                    <SAR_ProgFourthOp0/>
+                    <SAR_ProgFourthOp0 onSelectOption={onSelectOption}/>
                 </Grid>
 
-                <Grid item xs={12} md={4}>
+                {/* <Grid item xs={12} md={4}>
                   <SAR_ProgFourthOp1/>
-                </Grid>
+                </Grid> */}
             </Grid>
 
 

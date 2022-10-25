@@ -8,6 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../../constants/globalConstants";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,13 +37,53 @@ function createData(IndexNumber,  Name, SARAction) {
   return { IndexNumber,  Name , SARAction };
 }
 
-const rows = [
+/* const rows = [
     createData(19001428,'Janitha Ratnayake'),
     createData(19001411,'Dinil Seniru Ratnayake'),
     createData(19020945,'Sasani Samanga'),
-];
+]; */
 
-export default function CustomizedTables() {
+export default function CustomizedTables(props) {
+  console.log(props.acYear);
+  console.log(props.yearSem);
+  console.log(props.degree);
+  console.log(props.subject);
+  const [recruthinizationData, setRecruthinizationData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+
+  const acYear = props.acYear;
+  const yearSem = props.yearSem;
+  const degree = props.degree;
+  const subject = props.subject;
+
+  useEffect(() => {
+   
+    getRecruthinization();
+
+  }, [acYear,yearSem, degree, subject])
+ 
+
+  const getRecruthinization = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+  console.log("Hi");
+
+  await axios
+      .get(API_URL + `/settings/getRecruthinization/${acYear}/${yearSem}/${degree}/${subject}`,config)
+      .then((response) => {
+        setRecruthinizationData(response.data);
+        console.log(response.data);
+        console.log("siuvnfiv");
+      });
+  };
+
+  useEffect(() => {
+    getRecruthinization();
+  }, []);
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -47,17 +91,17 @@ export default function CustomizedTables() {
           <TableRow>
             <StyledTableCell align="left">Index Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
-            <StyledTableCell align="left">SAR Action</StyledTableCell>
-            <StyledTableCell align="left"></StyledTableCell>
+            {/* <StyledTableCell align="left">SAR Action</StyledTableCell> */}
+            {/* <StyledTableCell align="left"></StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left">{row.IndexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.Name}</StyledTableCell>
-              <StyledTableCell align="left">{row.SARAction}<Button variant="contained" color='success'>Accept</Button></StyledTableCell>
-              <StyledTableCell align="left">{row.SARAction}<Button variant="contained" color='error'>Pending</Button></StyledTableCell>
+          {recruthinizationData.map((data) => (
+            <StyledTableRow>
+              <StyledTableCell align="left">{data.index_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.name}</StyledTableCell>
+              {/* <StyledTableCell align="left">{data.SARAction}<Button variant="contained" color='success'>Accept</Button></StyledTableCell> */}
+              {/* <StyledTableCell align="left">{data.SARAction}<Button variant="contained" color='error'>Pending</Button></StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>

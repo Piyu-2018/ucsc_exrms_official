@@ -11,12 +11,18 @@ const {
   assignMarkAdd,
   getResult,
   getResult1,
+  
+  
   getAssignMarks,
   getIndexAssign,
+
 
   assignMarkAdd1,
 
   getPayment,
+  getCourseCode,
+  getCourseAssign,
+
 } = require("../controllers/assignmentController");
 
 const {
@@ -24,14 +30,6 @@ const {
   getExaminationQuestion,
   getDistinctIndex,
   getMarksFromIndex,
-  getQuestionFromCourse,
-  getIndexCourse,
-  examMarksAdd,
-  getExamTotalMarks,
-  getAssignTotalMarks,
-  getWeights,
-  getTotalExam,
-  getLecturer,
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
@@ -46,13 +44,25 @@ const { getNewIntake } = require("../controllers/directorNewIntakeController");
 //   getTranscript,
 // } = require("../controllers/directorTranscriptController");
 
+const {
+  getRegistration,
+} = require("../controllers/directorRegistrationController");
+const {
+  getConfirmation,
+} = require("../controllers/directorConfirmLetController");
+const {
+  getTranscript,
+} = require("../controllers/directorTranscriptController");
+
 const { getFourth } = require("../controllers/directorFourthAController");
 
 const { getApprove } = require("../controllers/directorExamApproveController");
-const { getRegistration } = require("../controllers/directorRegistrationController");
-const { getRegistrationCR } = require("../controllers/directorRegistrationControllerCR");
-const { getConfirmation } = require("../controllers/directorConfirmLetController");
-const { getTranscript } = require("../controllers/directorTranscriptController");
+// const { getRegistration } = require("../controllers/directorRegistrationController");
+const {
+  getRegistrationCR,
+} = require("../controllers/directorRegistrationControllerCR");
+// const { getConfirmation } = require("../controllers/directorConfirmLetController");
+// const { getTranscript } = require("../controllers/directorTranscriptController");
 
 
 const { getTimetable } = require("../controllers/timeTableController");
@@ -94,36 +104,35 @@ router.get("/getAssign/:id1/:id2", getAssign);
 
 router.get("/getUndergraduates/:id1/:id2/:id3", getUndergraduates);
 
+
 router.get("/getFourth/:id1", getFourth);
 
-router.get("/getNewIntake",getNewIntake );
-router.get("/getApprove/:id1",getApprove );
+router.get("/getNewIntake", getNewIntake);
+router.get("/getApprove/:id1", getApprove);
 
 
 router.get("/getRegistration/:id1/:id2", getRegistration);
-router.get("/getRegistrationCR/:id1/:id2", getRegistrationCR);
-router.get("/getConfirmation/:id1/:id2", getConfirmation);
-router.get("/getTranscript/:id1/:id2", getTranscript);
+
 
 router.get("/getResult/:id1/:id2/:id3/:id4/:id5", getResult);
-
-router.get("/getResult1/:id1/:id2/:id3/:id4/:id5/:id6", getResult1);
+router.get("/getResult1/:id1/:id2/:id3/:id4/:id5", getResult1);
+/* router.get("/getRecruthinization/:id1/:id2/:id3/:id4", getRecruthinization); */
+/*
+router.get("/getSubSelection/:id1/:id2/:id3/:id4", getSubSelection);
+router.get("/getFourthYear/:id1/:id2", getFourthYear); */
 
 router.get("/getIndexAssign/:id", getIndexAssign);
 
+
 router.post("/assignAdd", assignAdd);
 router.post("/assignMarkAdd", assignMarkAdd);
-router.post("/assignMarkAdd1", assignMarkAdd1);
 router.get("/getAssignMarks/:id", getAssignMarks);
 router.get("/getExaminationCourses/:id", getExaminationCourses);
 router.get("/getExaminationQuestion/:id1/:id2", getExaminationQuestion);
 router.get("/getDistinctIndex/:id", getDistinctIndex);
 router.get("/getMarksFromIndex/:id1/:id2", getMarksFromIndex);
-router.get("/getQuestionFromCourse/:id", getQuestionFromCourse);
-router.get("/getIndexCourse/:id", getIndexCourse);
-router.post("/examMarksAdd", examMarksAdd);
 
-router.get("/getTimetable", getTimetable);
+router.get("getTimetable",getTimetable)
 
 router.get("/getPayment", getPayment);
 router.get("/getLetterRequest", getLetterRequest);
@@ -150,5 +159,7 @@ router.get("/getExamTotalMarks/:id1/:id2", getExamTotalMarks);
 router.get("/getAssignTotalMarks/:id1/:id2", getAssignTotalMarks);
 router.get("/getTotalExam/:id1/:id2", getTotalExam);
 router.get("/getWeights/:id", getWeights);
+router.get("/getCourseCode/:id", getCourseCode);
+router.get("/getCourseAssign/:id", getCourseAssign);
 
 module.exports = router;

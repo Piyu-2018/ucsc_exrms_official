@@ -24,15 +24,16 @@ const theme = createTheme({
 function LecAssignList() {
   const { CourseId } = useParams();
   const [AssignData, setAssignData] = useState([]);
+  const [courseData, setCourseData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { user_id, accessToken } = userInfo.user;
 
   const getAssign = async () => {
-      const config = {
-        headers: {
-          authorization: accessToken,
-        },
-      };
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
 
     await axios
       .get(API_URL + "/settings/getAssign/" + CourseId + "/" + user_id, config)
@@ -43,8 +44,25 @@ function LecAssignList() {
       });
   };
 
+  const getCourseName = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + `/settings/getCourseCode/${CourseId}`, config)
+      .then((response) => {
+        setCourseData(response.data);
+
+        // console.log(response.data);
+      });
+  };
+
   useEffect(() => {
     getAssign();
+    getCourseName();
   }, []);
 
   // console.log(CourseId);
@@ -60,7 +78,7 @@ function LecAssignList() {
           </Grid>
           <Grid item xs={8} sm={10}>
             <Typography variant="h3" theme={theme}>
-              Assignments (SCS3201)
+              Assignments ({courseData[0] && courseData[0].course_code})
             </Typography>
             <LecAssignTable AssignData={AssignData} />
             <LecAddAssign CourseId={CourseId} assignDataFunc={setAssignData} />

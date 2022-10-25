@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState}  from 'react';
 import { Grid} from "@mui/material";
 import SAR_ProgRegChart from './SAR_ProgRegChart';
 import SAR_ProgYearSl from './SAR_ProgYearSl';
@@ -9,6 +9,19 @@ function SAR_RegDrawer() {
   const open = true;
   console.log(open);
 
+  const [option,setOption] = useState("Academic Year - 2022-2023");
+  const [year,setYear] = useState("First Year");
+
+  const onSelectedOption = (option) => {
+    setOption(option);
+  }
+
+  const onSelectedYear = (year) => {
+    // console.log(index);
+    setYear(year);
+  }
+
+
   return (
     <>
       
@@ -18,9 +31,12 @@ function SAR_RegDrawer() {
             <SAR_Sidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
-            <SAR_ProgYearSl/><br></br>
-            <SAR_ProgRegChart/><br></br>
-            <SAR_ProgRegTable/>
+            <SAR_ProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/><br></br><br></br>
+            <SAR_ProgRegTable option={option} year={year}/><br></br><br></br>
+            <SAR_ProgRegChart option={option} year={year} sx={{
+            zIndex: -1,
+          }}/><br></br>
+            
           </Grid>
           
         </Grid>

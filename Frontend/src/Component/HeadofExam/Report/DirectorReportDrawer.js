@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid} from "@mui/material";
 import DirectorProgRespSl from './DirectorProgRespSl';
 import DirectorReportContent from './DirectorReportContent';
+import DirectorPRogReportRTable from './DirectorPRogReportRTable';
 import HoESidebar from '../HoESidebar';
 
 
@@ -22,7 +23,8 @@ function DirectorDash() {
           </Grid>
           <Grid item sm={8} md={10}>
             <DirectorProgRespSl/><br></br>
-            <DirectorReportContent/>
+            <DirectorPRogReportRTable/><br></br>
+            <DirectorReportContent/><br></br><br></br><br></br><br></br>
           </Grid>
           
         </Grid>
