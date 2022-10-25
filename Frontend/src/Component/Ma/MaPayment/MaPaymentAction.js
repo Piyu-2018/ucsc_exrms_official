@@ -1,17 +1,17 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Form from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Form from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-import { useState } from "react"; 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { API_URL } from "../../../../src/constants/globalConstants";
 
 export default function BasicSelect(props) {
-  const [action, setAction] = React.useState('');
+  const [action, setAction] = React.useState("");
   const { register, handleSubmit } = useForm();
 
   const handleChange = (event) => {
@@ -30,14 +30,12 @@ export default function BasicSelect(props) {
       const action = data;
       console.log(action);
 
-      
-
-    //   console.log(user_id);
+      //   console.log(user_id);
       // const lecturer_id = user_id.toString();
 
       const inputData = {
         action,
-        paymentId
+        paymentId,
         // checking_id,
       };
 
@@ -49,21 +47,23 @@ export default function BasicSelect(props) {
         .post(API_URL + "/settings/addPaymentAction", inputData)
         .then((response) => {
           // params.assignDataFunc((list) => [...list, response.data]);
+
+          // props.assignDataFunc((list) => [...list, response.data]);
+
           // if (!response.data.error) {
           // }
         });
-        }
-        
-
-      
-    };
+    }
+  };
 
   return (
     <Box sx={{ mt: "10px" }}>
       {/* <Form method="POST" size="small" sx={{width: "150px", backgroundColor: "#1976d2", color:"white", borderRadius: "5px"}}> */}
-        <InputLabel id="demo-simple-select-label" sx={{color:"white"}}>-Action-</InputLabel>
+        <InputLabel id="demo-simple-select-label" sx={{ width:"150px"}}>-Action-</InputLabel>
         <Select
-            sx={{color:"white"}}
+        
+        size="small"
+            sx={{color:"white", width:"150px", backgroundColor: "#1976d2"}}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={action}
@@ -71,6 +71,7 @@ export default function BasicSelect(props) {
           onChange={handleChange}
           inputProps={register("action")}
         >
+          {/* <MenuItem value={"action"} >-select action-</MenuItem> */}
           <MenuItem value={"Approved"} onClick={()=>{addAction("Approved")}}>Approve</MenuItem>
           <MenuItem value={"Rejected"} onClick={()=>{addAction("Rejected")}}>Reject</MenuItem>
           <MenuItem value={"Pending"} onClick={()=>{addAction("Pending")}}>Pending</MenuItem>

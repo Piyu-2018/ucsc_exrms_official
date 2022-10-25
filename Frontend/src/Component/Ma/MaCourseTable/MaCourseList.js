@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -15,7 +15,7 @@ import { API_URL } from "../../../constants/globalConstants";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: '#06283D',
+    backgroundColor: "#06283D",
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -24,18 +24,16 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: '#C4DDFF',
+  "&:nth-of-type(odd)": {
+    backgroundColor: "#C4DDFF",
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
 
-
 function LecturerDetails(props) {
-
   const [courseData, setCourseData] = useState([]);
   const userInfo = useSelector((state) => state.userInfo);
   const { user_id, accessToken } = userInfo.user;
@@ -76,7 +74,8 @@ function LecturerDetails(props) {
             <StyledTableCell align="left">Subject Name</StyledTableCell>
             <StyledTableCell align="left">Credits</StyledTableCell>
             <StyledTableCell align="left">Lecturers</StyledTableCell>
-            <StyledTableCell align="left">Instructors</StyledTableCell>
+            <StyledTableCell align="left">Weight For Exams</StyledTableCell>
+            <StyledTableCell align="left">Weight For Asignment</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -87,8 +86,15 @@ function LecturerDetails(props) {
               </StyledTableCell>
               <StyledTableCell align="left">{data.course_name}</StyledTableCell>
               <StyledTableCell align="left">{data.credit}</StyledTableCell>
-              <StyledTableCell align="left">{data.lecture_name}</StyledTableCell>
-              <StyledTableCell align="left">{data.instructor}</StyledTableCell>
+              <StyledTableCell align="left">
+                {data.lecture_name}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {data.weight_for_exam}
+              </StyledTableCell>
+              <StyledTableCell align="left">
+                {data.weight_for_assignment}
+              </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
@@ -97,4 +103,4 @@ function LecturerDetails(props) {
   );
 }
 
-export {LecturerDetails};
+export { LecturerDetails };

@@ -10,6 +10,11 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { Typography } from '@mui/material';
 
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../../../constants/globalConstants";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -34,14 +39,32 @@ function createData(tindexNumber,  name, moreActions) {
   return { tindexNumber,  name , moreActions};
 }
 
-const rows = [
-    createData(201144,'Dinil Ratnayake'),
-    createData(201145,'Janitha Ratnayake'),
-    createData(201141,'Piyumi Rathnayaka'),
-    createData(201128,'Hiruni Abeywickrama'),
-];
 
 export default function CustomizedTables() {
+
+  const [intakeData, setIntakeData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { accessToken } = userInfo.user;
+
+  const getNewIntake = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+  console.log("Hi");
+
+    await axios
+      .get(API_URL + "/settings/getNewIntake/",config)
+      .then((response) => {
+        setIntakeData(response.data);
+        console.log(response.data);
+      });
+  };
+  
+  useEffect(() => {
+    getNewIntake();
+  }, []);
   return (
     <TableContainer component={Paper}>
       <Typography sx={{ fontSize: 24  , fontFamily: "Montserrat",fontWeight: 400 , textAlign: 'center' }} color="text.secondary">New Intake Student List in 2022/2023</Typography><br></br>
@@ -50,15 +73,15 @@ export default function CustomizedTables() {
           <TableRow>
             <StyledTableCell align="left">Tempory Index Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
-            <StyledTableCell align="left">More Action</StyledTableCell>
+            {/* <StyledTableCell align="left">More Action</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell align="left">{row.tindexNumber}</StyledTableCell>
-              <StyledTableCell align="left">{row.name}</StyledTableCell>
-              <StyledTableCell align="left">{row.moreAction}<Button variant="contained">View Details</Button></StyledTableCell>
+          {intakeData.map((data) => (
+            <StyledTableRow >
+              <StyledTableCell align="left">{data.student_temp_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
+              {/* <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>

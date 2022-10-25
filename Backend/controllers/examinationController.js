@@ -5,8 +5,6 @@ var mysql = require("mysql");
 
 const auditGenerator = require("./auditController");
 
-
-
 var connection = mysql.createPool({
   connectionLimit: 10,
   host: "sql238.main-hosting.eu",
@@ -14,7 +12,6 @@ var connection = mysql.createPool({
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
-
 
 const getExaminationCourses = asyncHandler(async (req, res) => {
   const lecturer_id = parseInt(req.params.id);
@@ -109,6 +106,24 @@ const getIndexCourse = asyncHandler(async (req, res) => {
 
   connection.query(
     `SELECT index_no FROM student_course WHERE course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getLecturer = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+
+  // const index_number = parseInt(req.params.id2);
+
+  // console.log(course_id);
+  console.log("Get lecturer");
+
+  connection.query(
+    `SELECT f_name,l_name,user_id FROM user WHERE user_type="lecturer"`,
     function (error, results, fields) {
       if (error) throw error;
       //console.log(results);
@@ -393,4 +408,5 @@ module.exports = {
   getAssignTotalMarks,
   getWeights,
   getTotalExam,
+  getLecturer,
 };
