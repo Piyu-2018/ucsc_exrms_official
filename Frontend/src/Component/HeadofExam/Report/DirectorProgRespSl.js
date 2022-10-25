@@ -17,15 +17,15 @@ export default function AutoGrid() {
                 <Grid item xs={12} md={3}>
                     <DirectorProgRepOp0/>
                 </Grid>
-                <Grid item xs={12} md={3}>
+                {/* <Grid item xs={12} md={3}>
                     <DirectorProgRepOp1/>
-                </Grid>
+                </Grid> */}
                 {/* <Grid item xs={12} md={3}>
                     <DirectorProgRescruOp2/>
                 </Grid> */}
-                <Grid item xs={12} md={3}>
+                {/* <Grid item xs={12} md={3}>
                     <DirectorProgRepOp3/>
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} md={3}>
                     <DirectorProgRepOp4/>
                 </Grid>
