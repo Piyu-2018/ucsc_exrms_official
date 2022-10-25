@@ -13,8 +13,8 @@ var connection = mysql.createPool({
   database: "u117929562_ucscEXRMS",
 });
 
-const { user, course, lecturer_courses, assignments, student } =
-  new PrismaClient();
+// const { user, course, lecturer_courses, assignments, student } =
+//   new PrismaClient();
 
 const addCourse = asyncHandler(async (req, res) => {
   const data = req.body;
@@ -22,7 +22,7 @@ const addCourse = asyncHandler(async (req, res) => {
   // console.log(data);
 
   connection.query(
-    `INSERT INTO course(course_name,course_code,lecture_name) VALUES ("${data.course}","${data.code}","${data.lecturer}")`,
+    `INSERT INTO course(course_name,course_code,lecture_name,credit,weight_for_exam,weight_for_assignment) VALUES ("${data.course}","${data.code}","${data.lecturer}","${data.credit}","${data.exam_weight}","${data.assign_weight}")`,
     function (error, results, fields) {
       if (error) throw error;
       // console.log("Success");
