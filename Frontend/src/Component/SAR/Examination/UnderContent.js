@@ -13,7 +13,7 @@ function UnderContent() {
   return (
     <div>
         <div>
-          <Typography variant="h4" theme={theme} align='left'>Examination</Typography>
+          <Typography variant="h3" theme={theme} align='left'>Examination</Typography>
         </div>
       
       

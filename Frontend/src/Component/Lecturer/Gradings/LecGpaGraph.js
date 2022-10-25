@@ -12,10 +12,10 @@ import {
 // import { Animation, Legend } from "@devexpress/dx-react-chart";
 
 const chartData = [
-  { region: "First Class", val: 41, value: 41 },
-  { region: "Second Upper", val: 54, value: 54 },
-  { region: "Second Lower", val: 38, value: 38 },
-  { region: "Normal Class", val: 63, value: 63 },
+  { region: "First Class: 41", val: 41 },
+  { region: "Second Upper: 54", val: 54 },
+  { region: "Second Lower: 38", val: 38 },
+  { region: "Normal Class: 63", val: 63 },
 ];
 
 function LecGpaGraph() {
@@ -29,9 +29,8 @@ function LecGpaGraph() {
                 valueField="val"
                 argumentField="region"
                 innerRadius={0.6}
-                value
               />
-              <Title text="Class Distribution" />
+              <Title text="GPA Class Distribution" />
 
               <Legend />
             </Chart>

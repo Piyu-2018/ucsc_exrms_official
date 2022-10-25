@@ -27,8 +27,9 @@ export default function AutoGrid() {
           <Grid item xs={6} md={12}>
             <UCSCEXRMS />
           </Grid>
+       
 
-          <Grid item xs={6} md={12}>
+          <Grid item xs={6} md={12}> 
             <SAR_Ann />
           </Grid>
         </Grid>

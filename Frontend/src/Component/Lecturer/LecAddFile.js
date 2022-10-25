@@ -1,6 +1,6 @@
 import { Button, Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useEffect,useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import writeXlsxFile from "write-excel-file";
 import axios from "axios";
@@ -52,18 +52,16 @@ function LecAddFile(props) {
         authorization: accessToken,
       },
     };
-    await axios 
-    .get(API_URL+`/settings/getIndexAssign/${assignment_id}`,config)
-    .then((response)=>{
-      setIndexNumbers(response.data);
-      
-    });
+    await axios
+      .get(API_URL + `/settings/getIndexAssign/${assignment_id}`, config)
+      .then((response) => {
+        setIndexNumbers(response.data);
+      });
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getIndexNumbers();
-  },[]);
-
+  }, []);
 
   const objects = [
     {
@@ -81,26 +79,23 @@ function LecAddFile(props) {
   const schema = [
     // Column #1
     {
-      column: "Index Number", // Column title
+      column: "index_number", // Column title
       value: (student) => student.index_no,
       width: 20,
       type: Number,
     },
     {
-      column: "Marks",
+      column: "marks",
       value: (student) => student.marks,
-      
     },
   ];
-
-  
 
   const handleClick = () => {
     WriteFile();
   };
 
   const WriteFile = async () => {
-    await writeXlsxFile(indexnumbers , {
+    await writeXlsxFile(indexnumbers, {
       schema,
       fileName: "assignment.xlsx",
     });

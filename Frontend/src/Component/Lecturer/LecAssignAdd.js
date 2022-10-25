@@ -1,4 +1,5 @@
 import {
+  Autocomplete,
   Backdrop,
   Box,
   Button,
@@ -8,13 +9,14 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import readXlsxFile from "read-excel-file";
 import axios from "axios";
 import { API_URL } from "../../constants/globalConstants";
 import LoadingButton from "@mui/lab/LoadingButton";
-
+import { useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 // import { useState } from "react";
 // import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -46,17 +48,92 @@ const styleSuccess = {
 };
 
 function LecAssignAdd(props) {
+  const { register, handleSubmit } = useForm();
   console.log(props.assignmentId);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [openUpload, setOpenUpload] = useState(false);
   const [buttonState, setButtonState] = useState(true);
+  const [indexNumbers, setIndexNumbers] = useState([]);
   const [fileName, setFileName] = useState(null);
   const handleCloseUpload = () => {
     setOpenUpload(false);
     window.location.reload();
   };
+
+  // const handleClick = () => {
+  //   window.location.reload();
+  // };
+  // const handleClose = () => {
+  //   setOpen(false);
+  //   window.location.reload();
+  // };
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+
+  const getIndex = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + `/settings/getIndexAssign/${props.assignmentId}`, config)
+      .then((response) => {
+        setIndexNumbers(response.data);
+        console.log(`index numbers`);
+        console.log(response.data);
+
+        // console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getIndex();
+  }, []);
+
+  const addAssign = async (data1) => {
+    if (data1) {
+      console.log("HI");
+      console.log(data1.marks);
+      console.log(data1.index_number);
+      const data = {
+        assignment_id: `${props.assignmentId}`,
+        index_number: data1.index_number,
+        marks: data1.marks,
+        user_id: user_id,
+      };
+
+      console.log(data);
+      window.location.reload();
+
+      await axios
+        .post(API_URL + "/settings/assignMarkAdd1", data)
+        .then((response) => {
+          console.log(response);
+          // setOpen(false);
+          // window.location.reload();
+
+          // setButtonState("loading");
+          // console.log(buttonState);
+
+          // setButtonState("clicked")
+          // console.log(buttonState);
+        });
+    }
+  };
+
+  const index_numbers = [
+    {
+      index_number: "19001411",
+    },
+    {
+      index_number: "19001428",
+    },
+  ];
+
   const schema = {
     index_number: {
       prop: "index_number",
@@ -67,8 +144,6 @@ function LecAssignAdd(props) {
       type: Number,
     },
   };
-
-  
 
   const handleFile = async (e) => {
     // console.log(e);
@@ -90,6 +165,7 @@ function LecAssignAdd(props) {
       const data = {
         assignment_id: `${props.assignmentId}`,
         dataMarks: rows.rows,
+        user_id: user_id,
       };
       console.log(data);
       await axios
@@ -171,36 +247,73 @@ function LecAssignAdd(props) {
               Add Marks
             </Typography>
             <Box sx={{ mt: "20px" }}>
-              <TextField
+              <form onSubmit={handleSubmit(addAssign)}>
+                <Autocomplete
+                  id="country-select-demo"
+                  sx={{ width: 530 }}
+                  options={indexNumbers}
+                  autoHighlight
+                  fullWidth
+                  inputProps={register("index_number")}
+                  getOptionLabel={(option) => option.index_no}
+                  renderOption={(props, option) => (
+                    <Box
+                      component="li"
+                      sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                      {...props}
+                    >
+                      <Typography>{option.index_no}</Typography>
+                    </Box>
+                  )}
+                  renderInput={(params) => (
+                    <TextField
+                      id="outlined-textarea"
+                      {...params}
+                      fullWidth
+                      label="Index Number"
+                      inputProps={{
+                        ...params.inputProps,
+                        autoComplete: "new-password",
+                        // disable autocomplete and autofill
+                      }}
+                      {...register("index_number")}
+                      // inputProps={register("index_number")}
+                    />
+                  )}
+                />
+                {/* <TextField
                 id="outlined-textarea"
                 label="Index Number"
                 placeholder="Enter Index Number"
                 multiline
                 fullWidth
-              />
+              /> */}
 
-              <TextField
-                id="outlined-textarea"
-                label="Marks"
-                placeholder="Enter Marks in %"
-                multiline
-                fullWidth
-                sx={{ mt: "20px" }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">%</InputAdornment>
-                  ),
-                }}
-              />
+                <TextField
+                  id="outlined-textarea"
+                  label="Marks"
+                  placeholder="Enter Marks in %"
+                  multiline
+                  fullWidth
+                  inputProps={register("marks")}
+                  sx={{ mt: "20px" }}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">%</InputAdornment>
+                    ),
+                  }}
+                />
 
-              <Button
-                variant="contained"
-                color="success"
-                sx={{ mt: "20px", ml: "40%" }}
-                size="large"
-              >
-                Submit Marks
-              </Button>
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="success"
+                  sx={{ mt: "20px", ml: "40%" }}
+                  size="large"
+                >
+                  Submit Marks
+                </Button>
+              </form>
             </Box>
           </Box>
         </Fade>
@@ -215,17 +328,16 @@ function LecAssignAdd(props) {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             The Excel file uploaded successfully
           </Typography>
-          
+
           <Button
-          onClick={handleCloseUpload}
-          sx={{ mt: "50px" }}
-          variant="contained"
-          color="success"
-          size="large"
-        >
-          OK
-        </Button>
-          
+            onClick={handleCloseUpload}
+            sx={{ mt: "50px" }}
+            variant="contained"
+            color="success"
+            size="large"
+          >
+            OK
+          </Button>
         </Box>
       </Modal>
     </Box>

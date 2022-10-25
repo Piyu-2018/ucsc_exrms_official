@@ -7,7 +7,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Link, Typography } from '@mui/material';
+import { Link, Typography, Chip, Button } from '@mui/material';
+
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../constants/globalConstants";
+
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -29,30 +35,73 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(no, index, regNo, name,year, address,pMethod,pStatus,action ) {
-  return { no, index,regNo, name, year, address,pMethod,pStatus,action };
-}
-const editLetter = <Link href="#" underline="always" sx={{fontWeight:"600"}}>Edit Letter</Link>;
-const completed = <Typography sx={{color:"green"}}>Completed</Typography>;
-const success = <Typography sx={{color:"green"}}>Successfull</Typography>;
-const faild = <Typography sx={{color:"red"}}>Payment Faild</Typography>;
-const faildtosend = <Typography sx={{color:"red"}}>Disabled</Typography>;
 
-const rows = [
-  createData('1','19000324', '2019/CS/032', 'H. D. A. Dhanapala', '3', 'Telijjawila, Matara', 'Online',success,editLetter),
-  createData('2','20000316', '2019/CS/031', 'M. S. Dewanarayana', '2', 'Uyanwatta, Matara', 'Slip Uploaded', success,editLetter),
-  createData('3','20000901', '2019/CS/090', 'S. S. Malsha', '2', 'Kamburupitiya, Matara', 'Slip Uploaded', faild,faildtosend),
-  createData('4','19000596', '2019/CS/059', 'B. A. P. Hiruthma', '3', 'Ambalangoda, Galle', 'Online', success,completed),
-  createData('5','19000208', '2019/CS/020', 'A. B. C. Kasun', '3', 'Karapitiya,Galle', 'Online', success,completed),
-  createData('6','18001861', '2019/CS/186', 'D. D. Damitha', '4', '1st Lane, Colombo 07', 'Slip Uploaded', success,completed),
-  createData('7','19001324', '2019/CS/132', 'G. A. Sanduni', '3', 'Rose, Angoda', 'Slip Uploaded', faild,faildtosend),
-  createData('8','19000464', '2019/CS/046', 'W. A. Hirushika', '3', '1/117, Galewela', 'Online', success,completed),
-  createData('9','18001784', '2019/CS/178', 'S. D. Perera', '4', '10, WR street, Kohuwala', 'Online', success,completed),
-  createData('10','19000104', '2019/CS/010', 'K. P. Saman', '3', 'Dondra, Matara', 'Online', success,completed),
+function MaLetterReqTable(props) {
+
+  const [reqLetterData, setReqLetterData] = useState([]);
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  console.log(user_id);
+
+  const getLetterRequest = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + "/settings/getLetterRequest/", config)
+      .then((response) => {
+        setReqLetterData(response.data);
+        console.log(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getLetterRequest();
+  }, []);
+
+  console.log(props);
+
+  // console.log(props.AssignData);
+  const assign = props.AssignData;
+  console.log(props.AssignData);
+  // console.log(assign[0].name);
+
   
-];
 
-function MaLetterReqTable() {
+  //onClick={sendEmail(letterType,email)}
+  const actionBtn = <Button >Send Mail</Button>
+
+  function paymentStatus(param) {
+    switch (param) {
+      case 'Pending':
+        return <Typography sx={{color:"orange"}}>{param}</Typography> ;
+      case 'Approved':
+        return <Typography sx={{color:"green"}}>{param}</Typography> ;
+      case 'Rejected':
+        return <Typography sx={{color:"red"}}>{param}</Typography> ;
+    }
+  }
+
+  function letterStatus(param2){
+    switch (param2) {
+      case 'pending':
+        return <Chip label="Pending" sx={{ backgroundColor: "ash", fontWeight: "bold", color: "orange" }} />;
+
+      case 'completed':
+        return <Chip label="Completed" sx={{ backgroundColor: "#69cb35", fontWeight: "bold" }} />;
+
+      case 'rejected':
+        return <Chip label="Disabled" sx={{ backgroundColor: "ash", fontWeight: "bold", color: "red" }} />;
+
+      default :
+        return <Chip label ={<Link href="/req_letter" underline="always">Edit Letter</Link>} sx={{ backgroundColor: "orange", fontWeight: "bold", fontWeight:"600", textDecoration:"underline" }} />;
+
+    }
+  }
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -62,27 +111,29 @@ function MaLetterReqTable() {
             <StyledTableCell align="left">Index NO:</StyledTableCell>
             <StyledTableCell align="left">Registration NO:</StyledTableCell>
             <StyledTableCell align="left">Study Year</StyledTableCell>
-            <StyledTableCell align="left">Name</StyledTableCell>
+            <StyledTableCell align="left">Email</StyledTableCell>
             <StyledTableCell align="left">Address</StyledTableCell>
             <StyledTableCell align="left">Payment Method</StyledTableCell>
             <StyledTableCell align="left">Payment Status</StyledTableCell>
             <StyledTableCell align="left">Action</StyledTableCell>
+            <StyledTableCell align="left">Action2</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.no}
+          {reqLetterData.map((data) => (
+            <StyledTableRow key={data.name}>
+              <StyledTableCell component="th" scope="data">
+                {data.letter_id}
               </StyledTableCell>
-              <StyledTableCell align="left">{row.index}</StyledTableCell>
-              <StyledTableCell align="left">{row.regNo}</StyledTableCell>
-              <StyledTableCell align="center">{row.year}</StyledTableCell>
-              <StyledTableCell align="left">{row.name}</StyledTableCell>
-              <StyledTableCell align="left">{row.address}</StyledTableCell>
-              <StyledTableCell align="left">{row.pMethod}</StyledTableCell>
-              <StyledTableCell align="left">{row.pStatus}</StyledTableCell>
-              <StyledTableCell align="left">{row.action}</StyledTableCell>
+              <StyledTableCell align="left">{data.index_no}</StyledTableCell>
+              <StyledTableCell align="left">{data.reg_no}</StyledTableCell>
+              <StyledTableCell align="center">{data.study_year}</StyledTableCell>
+              <StyledTableCell align="left">{data.email}</StyledTableCell>
+              <StyledTableCell align="left">{data.address}</StyledTableCell>
+              <StyledTableCell align="left">{data.payment_voucher}</StyledTableCell>
+              <StyledTableCell align="left">{paymentStatus(data.status)}</StyledTableCell>
+              <StyledTableCell align="left">{letterStatus(data.letter_status)}</StyledTableCell>
+              <StyledTableCell align="left">{actionBtn}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>

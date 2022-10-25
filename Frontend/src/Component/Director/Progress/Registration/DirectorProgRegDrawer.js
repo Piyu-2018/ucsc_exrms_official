@@ -1,4 +1,4 @@
-import React from 'react';
+import React , {useState}  from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Grid} from "@mui/material";
 
@@ -10,6 +10,18 @@ import DirectorSidebar from '../../DirectorSidebar';
 function DirectorRegDrawer() {
   const open = true;
   console.log(open);
+
+  const [option,setOption] = useState("Academic Year - 2022-2023");
+  const [year,setYear] = useState("First Year");
+
+  const onSelectedOption = (option) => {
+    setOption(option);
+  }
+
+  const onSelectedYear = (year) => {
+    // console.log(index);
+    setYear(year);
+  }
 
   return (
     <>
@@ -23,9 +35,11 @@ function DirectorRegDrawer() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
-            <DirectorProgYearSl/><br></br>
-            <DirectorProgRegChart/><br></br>
-            <DirectorProgRegTable/>
+            <DirectorProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/><br></br><br></br><br></br><br></br><br></br><br></br><br></br>
+            <DirectorProgRegChart option={option} year={year} sx={{
+            zIndex: -1,
+          }}/><br></br>
+            <DirectorProgRegTable option={option} year={year}/>
           </Grid>
           
         </Grid>
