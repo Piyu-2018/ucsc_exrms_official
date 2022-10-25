@@ -80,12 +80,23 @@ function CourseModalContains(params) {
 
   const addCourse = async (data) => {
     console.log("Hi add course");
-    if (data.course && data.code && data.lecturer) {
+    if (
+      data.course &&
+      data.code &&
+      data.lecturer &&
+      data.credit &&
+      data.assign_weight &&
+      data.exam_weight
+    ) {
       setOpen(false);
 
       const course = data.course;
       const code = data.code;
       const lecturer = data.lecturer;
+      const credit = data.credit;
+      const assign_weight = data.assign_weight;
+      const exam_weight = data.exam_weight;
+
       // const instructor = data.instructor;
 
       //   console.log(user_id);
@@ -95,6 +106,9 @@ function CourseModalContains(params) {
         course,
         code,
         lecturer,
+        credit,
+        assign_weight,
+        exam_weight,
       };
 
       console.log(inputData);
@@ -173,6 +187,78 @@ function CourseModalContains(params) {
               multiline
               fullWidth
               inputProps={register("code")}
+            />
+          </Grid>
+        </Grid>
+
+        <Grid
+          container
+          Spacing={1}
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          sx={{ padding: "10px" }}
+        >
+          <Grid item xs={4} sm={4} md={4}>
+            <Typography id="transition-modal-description" sx={{ mt: 1 }}>
+              No of credits:
+            </Typography>
+          </Grid>
+          <Grid item xs={8} sm={8} md={8}>
+            <TextField
+              id="outlined-textarea"
+              placeholder="Credits"
+              size="small"
+              multiline
+              fullWidth
+              inputProps={register("credit")}
+            />
+          </Grid>
+        </Grid>
+
+        <Grid
+          container
+          Spacing={1}
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          sx={{ padding: "10px" }}
+        >
+          <Grid item xs={4} sm={4} md={4}>
+            <Typography id="transition-modal-description" sx={{ mt: 1 }}>
+              Weight for assignment: (%)
+            </Typography>
+          </Grid>
+          <Grid item xs={8} sm={8} md={8}>
+            <TextField
+              id="outlined-textarea"
+              placeholder="Weight for assignments"
+              size="small"
+              multiline
+              fullWidth
+              inputProps={register("assign_weight")}
+            />
+          </Grid>
+        </Grid>
+
+        <Grid
+          container
+          Spacing={1}
+          spacing={{ xs: 2, md: 3 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          sx={{ padding: "10px" }}
+        >
+          <Grid item xs={4} sm={4} md={4}>
+            <Typography id="transition-modal-description" sx={{ mt: 1 }}>
+              Weight for exam: (%)
+            </Typography>
+          </Grid>
+          <Grid item xs={8} sm={8} md={8}>
+            <TextField
+              id="outlined-textarea"
+              placeholder="Weight for exams"
+              size="small"
+              multiline
+              fullWidth
+              inputProps={register("exam_weight")}
             />
           </Grid>
         </Grid>
