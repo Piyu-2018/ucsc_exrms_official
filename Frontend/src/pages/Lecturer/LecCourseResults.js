@@ -1,5 +1,5 @@
 import { Box, createTheme, Grid, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LecDegree from "../../Component/Lecturer/Gradings/LecDegree";
 import LecGpaGraph from "../../Component/Lecturer/Gradings/LecGpaGraph";
 import LecGradingTable from "../../Component/Lecturer/Gradings/LecGradingTable";
@@ -10,6 +10,10 @@ import LecSidebar from "./LecSidebar";
 import LecSearchGPAList from "../../Component/Lecturer/Gradings/LecSearchGPAList";
 import LecResultsGraph from "../../Component/Lecturer/LecResultsGraph";
 import LecResultsTable from "../../Component/Lecturer/LecResultsTable";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { API_URL } from "../../constants/globalConstants";
+import axios from "axios";
 
 const theme = createTheme({
   typography: {
@@ -20,7 +24,36 @@ const theme = createTheme({
 });
 
 function LecCourseResults() {
+  const userInfo = useSelector((state) => state.userInfo);
+  const { user_id, accessToken } = userInfo.user;
+  const [distinctIndex, setDistinctIndex] = useState();
+
+  const CourseId = useParams();
+  console.log(CourseId.CourseId);
+  const course_id = CourseId.CourseId;
+  const getDistinctIndex = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + `/settings/getDistinctIndex/${CourseId.CourseId}`, config)
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.data.length);
+        setDistinctIndex(response.data);
+      });
+  };
+
+  useEffect(() => {
+    getDistinctIndex();
+  }, []);
+
   const open = true;
+  // var course = distinctIndex[0];
+  // console.log(course.course_name);
 
   return (
     <>
@@ -32,7 +65,7 @@ function LecCourseResults() {
           </Grid>
           <Grid item xs={8} sm={10}>
             <Typography variant="h3" theme={theme}>
-              Subject Wise Progress
+              Subject Wise Progress {distinctIndex && distinctIndex.course_name}
             </Typography>
 
             <Box>
@@ -47,7 +80,7 @@ function LecCourseResults() {
             </Box>
           </Grid>
           <LecSearchGPAList />
-          <LecResultsTable />
+          <LecResultsTable course_id={course_id} index_data={distinctIndex} />
         </Grid>
       </Box>
     </>

@@ -11,6 +11,7 @@ const {
   forgetPasswordOtpCheck,
   resetPassword,
   usernamePasswordCheck,
+  logOut,
 } = require("../controllers/authController");
 
 const router = express.Router();
@@ -23,6 +24,7 @@ router.post("/usernamePasswordCheck", usernamePasswordCheck);
 router.post("/forgotPasswordOtp", forgotPasswordOtp);
 router.post("/forgetPasswordOtpCheck", forgetPasswordOtpCheck);
 router.post("/resetPassword", resetPassword);
+router.get("/logout/:id", logOut);
 
 // router.post("/registerme", register1);
 // router.post("/emailcheck", emailCheck);
