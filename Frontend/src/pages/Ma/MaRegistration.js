@@ -25,11 +25,11 @@ function MaRegistration() {
                     </Typography>
                     <Grid container columnSpacing={{ xs: 1, sm: 2, md: 5 }}>
                         <Grid container spacing={1} justifyContent="space-evenly" xs={12} p={2} >
-                            <Button variant="contained" component="label" sx={{backgroundColor:"red", color:"black", padding:"10px 30px 10px 30px", fontSize:"18px",fontWeight:"600"}}>
+                            <Button variant="contained" component="label" sx={{backgroundColor:"#1363DF", color:"black", padding:"10px 30px 10px 30px", fontSize:"18px",fontWeight:"600"}}>
                                     Lock Registration
                                 <input hidden accept="image/*" multiple type="file" />
                             </Button>
-                            <Button variant="contained" component="label" sx={{backgroundColor:"green", color:"black", padding:"10px 30px 10px 30px", fontSize:"18px",fontWeight:"600"}}>
+                            <Button variant="contained" component="label" sx={{backgroundColor:"#4D86DD", color:"black", padding:"10px 30px 10px 30px", fontSize:"18px",fontWeight:"600"}}>
                                     Upload Undergraduates (XLSX file)
                                 <input hidden accept="image/*" multiple type="file" />
                             </Button>

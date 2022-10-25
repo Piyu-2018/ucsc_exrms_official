@@ -29,7 +29,9 @@ function LecCourseGradingCard(props) {
             {props.CourseName}
           </Typography>
           <Button sx={{ mt: 2 }} size="small">
-            <Link to={"/lec_course_results/"}>View Progress</Link>
+            <Link to={`/lec_course_results/${props.CourseId}`}>
+              View Progress
+            </Link>
           </Button>
         </CardContent>
       </Card>
