@@ -18,7 +18,7 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
+  width: 600,
   bgcolor: "background.paper",
   border: "2px solid #000",
   boxShadow: 24,
@@ -61,7 +61,7 @@ function AdminAddUser() {
 
   const addAssign = async (data) => {
     console.log("Hi");
-    if (data.name && data.description && data.contribution) {
+    if (data.user_name && data.description && data.contribution) {
       setOpen(false);
 
       const name = data.name;
@@ -101,7 +101,7 @@ function AdminAddUser() {
             <Typography id="transition-modal-title" variant="h6" component="h2">
               Create New User
             </Typography>
-            <Box sx={{ mt: "20px" }}>
+            <Box sx={{ mt: "20px", padding: "5%" }}>
               <form onSubmit={handleSubmit(addAssign)}>
                 <TextField
                   id="outlined-textarea"
@@ -109,6 +109,7 @@ function AdminAddUser() {
                   placeholder="Enter User Name (EX: lec00001)"
                   multiline
                   fullWidth
+                  sx={{ mb: "10px" }}
                   inputProps={register("user_name")}
                 />
 
@@ -118,6 +119,7 @@ function AdminAddUser() {
                   placeholder="Enter First Name"
                   multiline
                   fullWidth
+                  sx={{ mb: "10px" }}
                   inputProps={register("f_name")}
                 />
 
@@ -127,6 +129,7 @@ function AdminAddUser() {
                   placeholder="Enter Last Name"
                   multiline
                   fullWidth
+                  sx={{ mb: "10px" }}
                   inputProps={register("l_name")}
                 />
 
@@ -136,6 +139,7 @@ function AdminAddUser() {
                   placeholder="Enter Email"
                   multiline
                   fullWidth
+                  sx={{ mb: "10px" }}
                   inputProps={register("email")}
                 />
 
@@ -146,6 +150,7 @@ function AdminAddUser() {
                   placeholder="Select User Type"
                   multiline
                   fullWidth
+                  sx={{ mb: "10px" }}
                   inputProps={register("user_type")}
                 >
                   {user_types.map((option) => (
@@ -156,13 +161,13 @@ function AdminAddUser() {
                 </TextField>
 
                 <TextField
-                  id="outlined-textarea"
+                  id="outlined-password-input-1"
                   label="Password"
                   type="password"
-                  placeholder="Enter Password"
-                  multiline
-                  fullWidth
+                  autoComplete="current-password"
                   inputProps={register("password")}
+                  fullWidth
+                  sx={{ mb: "10px" }}
                 />
 
                 <Button
