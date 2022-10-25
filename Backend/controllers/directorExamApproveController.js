@@ -1,7 +1,10 @@
+// cd
 const asyncHandler = require("express-async-handler");
 const { StatusCodes } = require("http-status-codes");
 
-var mysql = require("mysql");
+// const { user, course, lecturer_courses, assignments } = new prismaClient();
+
+// var mysql = require("mysql");
 // var connection = mysql.createConnection({
 //   host: "localhost",
 //   user: "root",
@@ -9,16 +12,9 @@ var mysql = require("mysql");
 //   database: "u117929562_ucscexrms",
 // });
 
-// var mysql = require("mysql");
-// var connection = mysql.createConnection({
-//   host: "sql238.main-hosting.eu",
-//   user: "u117929562_ucscExrmsUser",
-//   password: "lT:@>w0y4",
-//   database: "u117929562_ucscEXRMS",
-// });
-
 // connection.connect();
 
+var mysql = require("mysql");
 var connection = mysql.createPool({
   connectionLimit: 10,
   host: "sql238.main-hosting.eu",
@@ -26,17 +22,24 @@ var connection = mysql.createPool({
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
-const getTimetable = asyncHandler(async (req, res) => {
+
+const getApprove = asyncHandler(async (req, res) => {
+ 
+  const approve = req.params.id1;
+  
+//   const cuYear = req.params.id2;
+
+  const student = [];
+
   connection.query(
-    `SELECT exam_start,exam_end,course_code,course_name FROM exam_timetable`,
+    `INSERT INTO exam_mark (director_status) VALUES ("${approve}") WHERE mark_id=1`,
     function (error, results, fields) {
       if (error) throw error;
-      //console.log(results);
+
       res.json(results);
     }
   );
 });
 
-module.exports = {
-  getTimetable,
-};
+module.exports = { getApprove };
+

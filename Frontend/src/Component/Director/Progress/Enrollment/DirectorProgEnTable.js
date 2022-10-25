@@ -73,7 +73,7 @@ export default function CustomizedTables() {
           <TableRow>
             <StyledTableCell align="left">Tempory Index Number</StyledTableCell>
             <StyledTableCell align="left">Name</StyledTableCell>
-            <StyledTableCell align="left">More Action</StyledTableCell>
+            {/* <StyledTableCell align="left">More Action</StyledTableCell> */}
           </TableRow>
         </TableHead>
         <TableBody>
@@ -81,7 +81,7 @@ export default function CustomizedTables() {
             <StyledTableRow >
               <StyledTableCell align="left">{data.student_temp_no}</StyledTableCell>
               <StyledTableCell align="left">{data.fName + " " +data.lName}</StyledTableCell>
-              <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell>
+              {/* <StyledTableCell align="left"><Button variant="contained">View Profile</Button></StyledTableCell> */}
             </StyledTableRow>
           ))}
         </TableBody>

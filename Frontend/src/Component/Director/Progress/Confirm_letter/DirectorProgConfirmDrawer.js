@@ -36,8 +36,9 @@ function DirectorProgConfirmDrawer() {
           </Grid>
           <Grid item sm={8} md={10}>
             <DirectorProgYearSl onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear}/><br></br>
-            <DirectorProgConfirmChart/><br></br>
-            <DirectorProgConfirmTable option={option} year={year}/>
+            
+            <DirectorProgConfirmTable option={option} year={year}/><br></br>
+            <DirectorProgConfirmChart/>
           </Grid>
           
         </Grid>
