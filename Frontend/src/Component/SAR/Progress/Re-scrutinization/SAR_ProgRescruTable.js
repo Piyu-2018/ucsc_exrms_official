@@ -59,12 +59,12 @@ export default function CustomizedTables(props) {
 
   useEffect(() => {
    
-    getRecruthinization();
+    getRescrutinization();
 
   }, [acYear,yearSem, degree, subject])
  
 
-  const getRecruthinization = async () => {
+  const getRescrutinization = async () => {
     const config = {
       headers: {
         authorization: accessToken,
@@ -73,7 +73,7 @@ export default function CustomizedTables(props) {
   console.log("Hi");
 
   await axios
-      .get(API_URL + `/settings/getRecruthinization/${acYear}/${yearSem}/${degree}/${subject}`,config)
+      .get(API_URL + `/settings/getRescrutinization/${acYear}/${yearSem}/${degree}/${subject}`,config)
       .then((response) => {
         setRecruthinizationData(response.data);
         console.log(response.data);
@@ -82,7 +82,7 @@ export default function CustomizedTables(props) {
   };
 
   useEffect(() => {
-    getRecruthinization();
+    getRescrutinization();
   }, []);
   return (
     <TableContainer component={Paper}>

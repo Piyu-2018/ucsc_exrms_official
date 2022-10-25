@@ -118,12 +118,12 @@ const getResult = asyncHandler(async (req, res) => {
 });
 
 const getResult1 = asyncHandler(async (req, res) => {
-  const acYear = (req.params.id1);
-  const year = (req.params.id2);
-  const semester = (req.params.id3);
-  const degree = (req.params.id4);
-  const subject = (req.params.id5);
-  const approve = (req.params.id6);
+  const acYear = req.params.id1;
+  const year = req.params.id2;
+  const semester = req.params.id3;
+  const degree = req.params.id4;
+  const subject = req.params.id5;
+  const approve = req.params.id6;
 
   const mark = [];
 
@@ -136,7 +136,7 @@ const getResult1 = asyncHandler(async (req, res) => {
       res.json(results);
     }
   );
-/*
+  /*
   const getRecruthinization = asyncHandler(async (req, res) => {
     const acYear = (req.params.id1);
     const yearSem = (req.params.id2);
@@ -493,7 +493,7 @@ const assignMarkAdd = asyncHandler(async (req, res) => {
             } else {
               var oldMarks = results[0].marks;
               connection.query(
-                `UPDATE marks_assignment SET marks=${row.marks},assignment_id=${data.assignment_id} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
+                `UPDATE marks_assignment SET marks=${row.marks},assignment_id=${data.assignment_id} WHERE marks!='${row.marks}' AND index_number=${row.index_number} AND assignment_id=${data.assignment_id}`,
                 function (err, results) {
                   if (err) throw err;
                   connection.query(
@@ -668,7 +668,7 @@ module.exports = {
   getUndergraduates,
   getResult,
   getResult1,
-  /* getRecruthinization, *//*
+  /* getRecruthinization, */ /*
   getSubSelection,
   getFourthYear, */
   assignAdd,

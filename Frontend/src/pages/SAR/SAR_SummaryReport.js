@@ -1,21 +1,23 @@
-import React from 'react';
-import {Helmet} from 'react-helmet';
-import SAR_ReportDrawer from '../../Component/SAR/Report/SAR_ReportDrawer';
-import DirectorNavbar from '../../Component/DirectorNavbar';
-import Footer from '../../Component/Footer';
+import React from "react";
+import { Helmet } from "react-helmet";
+import SAR_ReportDrawer from "../../Component/SAR/Report/SAR_ReportDrawer";
+import DirectorNavbar from "../../Component/DirectorNavbar";
+import Footer from "../../Component/Footer";
+import DirectorPRogReportRTable from "../../Component/Director/Report/DirectorPRogReportRTable";
 
 function SAR_SummaryReport() {
   return (
     <div>
       <Helmet>
-        <style>{'body { background: #E4EBF5 !important; }'}</style>
+        <style>{"body { background: #E4EBF5 !important; }"}</style>
       </Helmet>
       <DirectorNavbar />
-      <SAR_ReportDrawer/><br></br>
-      <Footer/>
+      <SAR_ReportDrawer />
+      <br></br>
       
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default SAR_SummaryReport
+export default SAR_SummaryReport;
