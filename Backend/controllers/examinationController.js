@@ -415,6 +415,43 @@ const getRescrutinization = asyncHandler(async (req, res) => {
   );
 });
 
+
+const updateMarks = asyncHandler(async (req,res) => {
+  const { mark_id ,q1, q2, q3, q4, assignment_mark, total_mark, grade } = req.body;
+
+  connection.query(
+    `UPDATE exam_mark SET assignment_mark = ${assignment_mark}, grade = '${grade}', total_mark = ${total_mark} WHERE mark_id = ${mark_id}`,
+    function(error){
+      if(error) throw error;
+      // const returnData = { mark_id ,q1, q2, q3, q4, assignment_mark, total_mark, grade  };
+      // res.status(StatusCodes.CREATED).json(returnData);
+    }
+  );
+  connection.query(
+    `UPDATE exam_question_mark SET q1 = ${q1}, q2 = ${q2}, q3 =${q3}, q4 =${q4} WHERE mark_id = ${mark_id}`,
+    function(error){
+      if(error) throw error;
+      const returnData = { mark_id ,q1, q2, q3, q4, assignment_mark, total_mark, grade  };
+      res.status(StatusCodes.CREATED).json(returnData);
+    }
+  );
+});
+
+const release = asyncHandler(async (req,res) => {
+  const mark_id = parseInt(req.params.id);
+
+  connection.query(
+    `UPDATE exam_mark SET sar_status = 'Released' WHERE mark_id = ${mark_id}`,
+    function(error){
+      if(error) throw error;
+      const returnData = { mark_id };
+      res.status(StatusCodes.CREATED).json(returnData);
+    }
+  );
+})
+
+
+
 module.exports = {
   getExaminationCourses,
   getExaminationQuestion,
@@ -429,4 +466,7 @@ module.exports = {
   getTotalExam,
   getLecturer,
   getRescrutinization,
+  updateMarks,
+  release,
+
 };

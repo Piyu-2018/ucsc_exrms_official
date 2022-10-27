@@ -1,22 +1,22 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import CreateIcon from "@mui/icons-material/Create";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+import CreateIcon from '@mui/icons-material/Create';
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../../constants/globalConstants";
-import Modal from "./Modal";
+import Modal from './Modal';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: "#06283D",
+    backgroundColor: '#06283D',
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
@@ -25,80 +25,19 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
+  '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  "&:last-child td, &:last-child th": {
+  '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
 
-function createData(
-  IndexNumber,
-  Q1,
-  Q2,
-  Q3,
-  Q4,
-  AssignMarks,
-  TotalMarks,
-  Grade
-) {
-  return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks, TotalMarks, Grade };
+function createData(IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks, Grade) {
+  return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks , Grade};
 }
 
-const exam = [
-  {
-    index_no: "19001411",
-    q1: 22,
-    q2: 22,
-    q3: 22,
-    q4: 22,
-    assignment_mark: 100,
-    total_mark: 90,
-    grade: "A",
-  },
-  {
-    index_no: "19001411",
-    q1: 22,
-    q2: 22,
-    q3: 22,
-    q4: 22,
-    assignment_mark: 100,
-    total_mark: 90,
-    grade: "A",
-  },
-  {
-    index_no: "19001428",
-    q1: 21,
-    q2: 22,
-    q3: 23,
-    q4: 24,
-    assignment_mark: 100,
-    total_mark: 87,
-    grade: "A",
-  },
-  {
-    index_no: "19001851",
-    q1: 20,
-    q2: 20,
-    q3: 20,
-    q4: 20,
-    assignment_mark: 90,
-    total_mark: 80,
-    grade: "A",
-  },
-  {
-    index_no: "19001381",
-    q1: 22,
-    q2: 22,
-    q3: 22,
-    q4: 25,
-    assignment_mark: 100,
-    total_mark: 90,
-    grade: "A",
-  },
-];
 
 export default function CustomizedTables(props) {
   console.log(props.option);
@@ -112,13 +51,16 @@ export default function CustomizedTables(props) {
 
   const acYear = props.option;
   const year = props.year;
-  const semester = props.semester;
+  const semester = props.semester ;
   const degree = props.degree;
   const subject = props.subject;
 
   useEffect(() => {
+   
     getResult1();
-  }, [acYear, year, semester, degree, subject]);
+
+  }, [acYear,year, semester, degree, subject])
+ 
 
   const getResult1 = async () => {
     const config = {
@@ -126,18 +68,10 @@ export default function CustomizedTables(props) {
         authorization: accessToken,
       },
     };
-    console.log("Hi");
-
-    await axios
-      .get(
-        API_URL +
-          `/settings/getResult1/${acYear}/${year}/${semester}/${degree}/${subject}`,
-        config
-      )
+  await axios
+      .get(API_URL+`/settings/getResult1/${acYear}/${year}/${semester}/${degree}/${subject}`,config)
       .then((response) => {
         setExaminationData(response.data);
-        console.log(response.data);
-        console.log("siuvnfiv");
       });
   };
 
@@ -164,31 +98,18 @@ export default function CustomizedTables(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {exam.map((data) => (
+        {examinationData.map((data) => (
             <StyledTableRow>
               <StyledTableCell align="left">{data.index_no}</StyledTableCell>
               <StyledTableCell align="left">{data.q1}</StyledTableCell>
               <StyledTableCell align="left">{data.q2}</StyledTableCell>
               <StyledTableCell align="left">{data.q3}</StyledTableCell>
               <StyledTableCell align="left">{data.q4}</StyledTableCell>
-              <StyledTableCell align="left">
-                {data.assignment_mark}
-              </StyledTableCell>
+              <StyledTableCell align="left">{data.assignment_mark}</StyledTableCell>
               <StyledTableCell align="left">{data.total_mark}</StyledTableCell>
               <StyledTableCell align="left">{data.grade}</StyledTableCell>
-              <StyledTableCell align="left">
-                {data.Edit}
-                <button
-                  className="openModalBtn"
-                  onClick={() => {
-                    setModalOpen(true);
-                  }}
-                >
-                  {/* <CreateIcon fontSize="small" sx={{Floatleft: 50}} /> */}
-                  EDIT
-                </button>
-              </StyledTableCell>
-              {modalOpen && <Modal setOpenModal={setModalOpen} />}
+              <StyledTableCell align="left">{data.Edit}<button className="openModalBtn" onClick={() => {setModalOpen(true);}}>{/* <CreateIcon fontSize="small" sx={{Floatleft: 50}} /> */}EDIT</button></StyledTableCell>
+            {modalOpen && <Modal setOpenModal={setModalOpen} setExaminationData={() => { getResult1(); setModalOpen(false);  }} data={data} />}
             </StyledTableRow>
           ))}
         </TableBody>
