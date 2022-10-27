@@ -30,9 +30,10 @@ function DirectorProgFourthDrawer() {
             <DirectorSidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
-            <DirectorProgFourthSe onSelectedOption={onSelectedOption}/><br></br><br></br><br></br><br></br>
-            <DirectorProgFourthChart/><br></br>
-            <DirectorProgFourthTable option={option}/>
+            <DirectorProgFourthSe onSelectedOption={onSelectedOption}/><br></br>
+            
+            <DirectorProgFourthTable option={option}/><br></br>
+            <DirectorProgFourthChart/>
           </Grid>
           
         </Grid>

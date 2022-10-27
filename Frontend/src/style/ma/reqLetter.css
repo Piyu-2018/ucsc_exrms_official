@@ -1,0 +1,35 @@
+#fieldInput{
+    height: 40px;
+    border-radius: 7px;
+    width: 75%;
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+TextArea{
+    height: 200px;
+    border-radius: 7px;
+    width: 75%;
+    margin-bottom: 10px;
+    font-size: 18px; 
+}
+
+#nameLabel{
+    font-weight: bold;
+    font-size: 20px;
+}
+#submitBtn{
+    margin: 30px;
+    
+    width: 300px;
+    height: 50px;
+    color: white;
+    background-color: #114CA7;
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+#submitBtn:hover{
+    cursor: pointer
+}

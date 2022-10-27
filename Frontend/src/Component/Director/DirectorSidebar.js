@@ -143,13 +143,13 @@ export default function DirectorSidebar() {
         <ListItemText primary="Chat" />
       </ListItemButton> */}
       <Divider />
-      <ListItemButton>
+      {/* <ListItemButton>
         <ListItemIcon>
           <NotificationsActiveRoundedIcon/>
         </ListItemIcon>
         <ListItemText primary="Notification" />
       </ListItemButton>
-      <Divider />
+      <Divider /> */}
         </List>
 
     </Box>

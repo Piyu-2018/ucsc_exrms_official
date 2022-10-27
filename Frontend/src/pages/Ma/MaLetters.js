@@ -26,7 +26,7 @@ function MaLetters() {
                                     Pending Requests
                                 </Typography>
                                 <Typography align="center" sx={{color:"orange", fontWeight:"bold", fontSize:"35px" }}>
-                                    2
+                                    3
                                 </Typography>
                             </CardContent></Card>
                             <Card sx={{backgroundColor:"#06283D", width:"250px", height:"95px"}}><CardContent>
@@ -34,7 +34,7 @@ function MaLetters() {
                                     Successfull Requests
                                 </Typography>
                                 <Typography align="center" sx={{color:"#69cb35", fontWeight:"bold", fontSize:"35px" }}>
-                                    6
+                                    2
                                 </Typography>
                             </CardContent></Card>
                             <Card sx={{backgroundColor:"#06283D", width:"250px", height:"95px"}}><CardContent>
@@ -42,7 +42,7 @@ function MaLetters() {
                                     Failed Requests
                                 </Typography>
                                 <Typography align="center" sx={{color:"red", fontWeight:"bold", fontSize:"35px" }}>
-                                    2
+                                    15
                                 </Typography>
                             </CardContent></Card>
                         </Grid>

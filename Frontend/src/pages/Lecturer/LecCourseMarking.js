@@ -25,6 +25,7 @@ function LecCourseMarking() {
   const userInfo = useSelector((state) => state.userInfo);
   const { user_id, accessToken } = userInfo.user;
   const [questionData, setQuestionData] = useState([]);
+  const [courseData, setCourseData] = useState([]);
 
   const getQuestion = async () => {
     const config = {
@@ -45,8 +46,25 @@ function LecCourseMarking() {
       });
   };
 
+  const getCourseName = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + `/settings/getCourseCode/${CourseId}`, config)
+      .then((response) => {
+        setCourseData(response.data);
+
+        // console.log(response.data);
+      });
+  };
+
   useEffect(() => {
     getQuestion();
+    getCourseName();
   }, []);
 
   const open = true;
@@ -60,7 +78,7 @@ function LecCourseMarking() {
           </Grid>
           <Grid item xs={8} sm={10}>
             <Typography variant="h3" theme={theme} sx={{ mb: "30px" }}>
-              Examination Marks
+              Examination Marks ({courseData[0] && courseData[0].course_code})
             </Typography>
 
             <LecExamMarkTable

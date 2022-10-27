@@ -71,6 +71,8 @@ function LecAddAssign(params) {
         course_id,
       };
 
+      window.location.reload();
+
       await axios
         .post(API_URL + "/settings/assignAdd", inputData)
         .then((response) => {

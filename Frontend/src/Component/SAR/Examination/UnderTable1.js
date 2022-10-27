@@ -12,7 +12,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { API_URL } from "../../../constants/globalConstants";
-
+import Modal from './Modal';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -38,17 +38,11 @@ function createData(IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks, Grade) 
   return { IndexNumber, Q1, Q2, Q3, Q4, AssignMarks,TotalMarks , Grade};
 }
 
-/* const rows = [
-    createData(19001411,'2019|CS|141','80','70','B ',''),
-    createData(19001428,'2019/CS/142','90','80 ','A',''),
-    createData(19001381,'2019/CS/138','85',' 76','A',''),
-    createData(19001411,'2019/CS/141','70',' 57','C',''),
-]; */
 
 export default function CustomizedTables(props) {
   console.log(props.option);
   console.log(props.year);
-  console.log(props.sem);
+  console.log(props.semester);
   console.log(props.degree);
   console.log(props.subject);
   const [examinationData, setExaminationData] = useState([]);
@@ -56,8 +50,8 @@ export default function CustomizedTables(props) {
   const { accessToken } = userInfo.user;
 
   const acYear = props.option;
-  const cuYear = props.year;
-  const sem = props.sem ;
+  const year = props.year;
+  const semester = props.semester ;
   const degree = props.degree;
   const subject = props.subject;
 
@@ -65,7 +59,7 @@ export default function CustomizedTables(props) {
    
     getResult1();
 
-  }, [acYear,cuYear, sem, degree, subject])
+  }, [acYear,year, semester, degree, subject])
  
 
   const getResult1 = async () => {
@@ -74,19 +68,19 @@ export default function CustomizedTables(props) {
         authorization: accessToken,
       },
     };
-  console.log("Hi");
-
   await axios
-      .get(API_URL + "/settings/getResult1/"+acYear+"/"+cuYear+"/"+sem+"/"+degree+"/"+subject,config)
+      .get(API_URL+`/settings/getResult1/${acYear}/${year}/${semester}/${degree}/${subject}`,config)
       .then((response) => {
         setExaminationData(response.data);
-        console.log(response.data);
       });
   };
 
   useEffect(() => {
     getResult1();
   }, []);
+
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -111,10 +105,11 @@ export default function CustomizedTables(props) {
               <StyledTableCell align="left">{data.q2}</StyledTableCell>
               <StyledTableCell align="left">{data.q3}</StyledTableCell>
               <StyledTableCell align="left">{data.q4}</StyledTableCell>
-              <StyledTableCell align="left">{data.AssignMarks}</StyledTableCell>
-              <StyledTableCell align="left">{data.TotalMarks}</StyledTableCell>
-              <StyledTableCell align="left">{data.Grade}</StyledTableCell>
-              <StyledTableCell align="left">{data.Edit}<CreateIcon fontSize="small" sx={{Floatleft: 50}} /></StyledTableCell>
+              <StyledTableCell align="left">{data.assignment_mark}</StyledTableCell>
+              <StyledTableCell align="left">{data.total_mark}</StyledTableCell>
+              <StyledTableCell align="left">{data.grade}</StyledTableCell>
+              <StyledTableCell align="left">{data.Edit}<button className="openModalBtn" onClick={() => {setModalOpen(true);}}>{/* <CreateIcon fontSize="small" sx={{Floatleft: 50}} /> */}EDIT</button></StyledTableCell>
+            {modalOpen && <Modal setOpenModal={setModalOpen} setExaminationData={() => { getResult1(); setModalOpen(false);  }} data={data} />}
             </StyledTableRow>
           ))}
         </TableBody>

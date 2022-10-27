@@ -5,8 +5,6 @@ var mysql = require("mysql");
 
 const auditGenerator = require("./auditController");
 
-
-
 var connection = mysql.createPool({
   connectionLimit: 10,
   host: "sql238.main-hosting.eu",
@@ -14,7 +12,6 @@ var connection = mysql.createPool({
   password: "lT:@>w0y4",
   database: "u117929562_ucscEXRMS",
 });
-
 
 const getExaminationCourses = asyncHandler(async (req, res) => {
   const lecturer_id = parseInt(req.params.id);
@@ -109,6 +106,24 @@ const getIndexCourse = asyncHandler(async (req, res) => {
 
   connection.query(
     `SELECT index_no FROM student_course WHERE course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getLecturer = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+
+  // const index_number = parseInt(req.params.id2);
+
+  // console.log(course_id);
+  console.log("Get lecturer");
+
+  connection.query(
+    `SELECT f_name,l_name,user_id FROM user WHERE user_type="lecturer"`,
     function (error, results, fields) {
       if (error) throw error;
       //console.log(results);
@@ -381,6 +396,62 @@ const getWeights = asyncHandler(async (req, res) => {
   );
 });
 
+const getRescrutinization = asyncHandler(async (req, res) => {
+  const acYear = req.params.id1;
+  const yearSem = req.params.id2;
+  const degree = req.params.id3;
+  const subject = req.params.id4;
+
+  const letter = [];
+
+  connection.query(
+    `SELECT * FROM rescrutinization WHERE rescrutinization.acYear = "${req.params.id1}" && rescrutinization.yearSem = "${req.params.id2}" && rescrutinization.degree="${req.params.id3}" && rescrutinization.subject="${req.params.id4}"`,
+    function (error, results, fields) {
+      if (error) throw error;
+
+      res.json(results);
+      console.log(results);
+    }
+  );
+});
+
+
+const updateMarks = asyncHandler(async (req,res) => {
+  const { mark_id ,q1, q2, q3, q4, assignment_mark, total_mark, grade } = req.body;
+
+  connection.query(
+    `UPDATE exam_mark SET assignment_mark = ${assignment_mark}, grade = '${grade}', total_mark = ${total_mark} WHERE mark_id = ${mark_id}`,
+    function(error){
+      if(error) throw error;
+      // const returnData = { mark_id ,q1, q2, q3, q4, assignment_mark, total_mark, grade  };
+      // res.status(StatusCodes.CREATED).json(returnData);
+    }
+  );
+  connection.query(
+    `UPDATE exam_question_mark SET q1 = ${q1}, q2 = ${q2}, q3 =${q3}, q4 =${q4} WHERE mark_id = ${mark_id}`,
+    function(error){
+      if(error) throw error;
+      const returnData = { mark_id ,q1, q2, q3, q4, assignment_mark, total_mark, grade  };
+      res.status(StatusCodes.CREATED).json(returnData);
+    }
+  );
+});
+
+const release = asyncHandler(async (req,res) => {
+  const mark_id = parseInt(req.params.id);
+
+  connection.query(
+    `UPDATE exam_mark SET sar_status = 'Released' WHERE mark_id = ${mark_id}`,
+    function(error){
+      if(error) throw error;
+      const returnData = { mark_id };
+      res.status(StatusCodes.CREATED).json(returnData);
+    }
+  );
+})
+
+
+
 module.exports = {
   getExaminationCourses,
   getExaminationQuestion,
@@ -393,4 +464,9 @@ module.exports = {
   getAssignTotalMarks,
   getWeights,
   getTotalExam,
+  getLecturer,
+  getRescrutinization,
+  updateMarks,
+  release,
+
 };

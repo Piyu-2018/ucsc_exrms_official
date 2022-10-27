@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import SAR_ProgRescruSl from './SAR_ProgRescruSl';
 import { Grid} from "@mui/material";
 import SAR_ProgRescruTable from './SAR_ProgRescruTable';
@@ -7,6 +7,27 @@ import SAR_Sidebar from '../../SAR_Sidebar';
 function SAR_ProgRescruDrawer() {
   const open = true;
   console.log(open);
+
+  const [acYear,setAcYear] = useState("Academic Year - 2022-2023");
+  const [yearSem,setYearSem] = useState("1st Year First Semester");
+  const [degree,setDegree] = useState("Computer Science (Bsc)");
+  const [subject,setSubject] = useState("SCS2201-Data Structures & Alogorithms III");
+
+  const onSelectedAcYear = (acYear) => {
+    setAcYear(acYear);
+  }
+
+  const onSelectedYearSem = (yearSem) => {
+    setYearSem(yearSem);
+  }
+
+  const onSelectedDegree = (degree) => {
+    setDegree(degree);
+  }
+  
+  const onSelectedSubject = (subject) => {
+    setSubject(subject);
+  }
 
   return (
     <>
@@ -17,8 +38,8 @@ function SAR_ProgRescruDrawer() {
             <SAR_Sidebar open={open} />
           </Grid>
           <Grid item sm={8} md={10}>
-            <SAR_ProgRescruSl/><br></br><br></br>
-            <SAR_ProgRescruTable/><br></br>
+            <SAR_ProgRescruSl onSelectedAcYear={onSelectedAcYear} onSelectedYearSem={onSelectedYearSem} onSelectedDegree={onSelectedDegree} onSelectedSubject={onSelectedSubject}/> <br></br><br></br>
+            <SAR_ProgRescruTable acYear={acYear} yearSem={yearSem} degree={degree} subject={subject}/><br></br>
           </Grid>
           
         </Grid>

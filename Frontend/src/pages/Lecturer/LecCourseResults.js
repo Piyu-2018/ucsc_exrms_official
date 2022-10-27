@@ -27,6 +27,7 @@ function LecCourseResults() {
   const userInfo = useSelector((state) => state.userInfo);
   const { user_id, accessToken } = userInfo.user;
   const [distinctIndex, setDistinctIndex] = useState();
+  const [courseData, setCourseData] = useState([]);
 
   const CourseId = useParams();
   console.log(CourseId.CourseId);
@@ -47,8 +48,25 @@ function LecCourseResults() {
       });
   };
 
+  const getCourseName = async () => {
+    const config = {
+      headers: {
+        authorization: accessToken,
+      },
+    };
+
+    await axios
+      .get(API_URL + `/settings/getCourseCode/${CourseId.CourseId}`, config)
+      .then((response) => {
+        setCourseData(response.data);
+
+        // console.log(response.data);
+      });
+  };
+
   useEffect(() => {
     getDistinctIndex();
+    getCourseName();
   }, []);
 
   const open = true;
@@ -65,7 +83,8 @@ function LecCourseResults() {
           </Grid>
           <Grid item xs={8} sm={10}>
             <Typography variant="h3" theme={theme}>
-              Subject Wise Progress {distinctIndex && distinctIndex.course_name}
+              Subject Wise Progress (
+              {courseData[0] && courseData[0].course_code})
             </Typography>
 
             <Box>

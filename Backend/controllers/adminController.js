@@ -12,7 +12,7 @@ var connection = mysql.createPool({
 
 const getLogins = asyncHandler(async (req, res) => {
   connection.query(
-    `SELECT audit_trail.*,user.user_name,user.f_name,user.l_name FROM audit_trail,user WHERE audit_trail.user_id = user.user_id AND type = "Log in"`,
+    `SELECT audit_trail.*,user.user_name,user.f_name,user.l_name FROM audit_trail,user WHERE audit_trail.user_id = user.user_id AND  (type = "Log in" OR type="Log Out") ORDER BY timedate DESC`,
     function (error, results, fields) {
       if (error) throw error;
 
@@ -23,7 +23,7 @@ const getLogins = asyncHandler(async (req, res) => {
 
 const getLecActivity = asyncHandler(async (req, res) => {
   connection.query(
-    `SELECT audit_trail.*,user.user_name,user.f_name,user.l_name FROM audit_trail,user WHERE audit_trail.user_id = user.user_id AND user.user_type = "lecturer"`,
+    `SELECT audit_trail.*,user.user_name,user.f_name,user.l_name FROM audit_trail,user WHERE audit_trail.user_id = user.user_id AND user.user_type = "lecturer" ORDER BY audit_trail.timedate DESC`,
     function (error, results, fields) {
       if (error) throw error;
 

@@ -123,30 +123,12 @@ const getResult1 = asyncHandler(async (req, res) => {
   const semester = req.params.id3;
   const degree = req.params.id4;
   const subject = req.params.id5;
+  const approve = req.params.id6;
 
   const mark = [];
 
   connection.query(
-    "SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.sar_status='Not Released' AND exam_mark.academic_yr =" +
-      '"' +
-      acYear +
-      '"' +
-      "AND exam.year = " +
-      '"' +
-      year +
-      '"' +
-      "AND exam.semester=" +
-      '"' +
-      semester +
-      '"' +
-      "AND exam_mark.degree=" +
-      '"' +
-      degree +
-      '"' +
-      "AND exam_mark.course_name=" +
-      '"' +
-      subject +
-      '"',
+    `SELECT * FROM exam INNER JOIN exam_mark ON exam.exam_sem_id = exam_mark.exam_sem_id INNER JOIN exam_question_mark ON exam_mark.mark_id = exam_question_mark.mark_id WHERE exam_mark.academic_yr = "${req.params.id1}" AND exam.year = "${req.params.id2}" AND exam.semester="${req.params.id3}" AND exam_mark.degree="${req.params.id4}" AND exam_mark.course_name="${req.params.id5}" AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`,
 
     function (error, results, fields) {
       if (error) throw error;
@@ -154,6 +136,98 @@ const getResult1 = asyncHandler(async (req, res) => {
       res.json(results);
     }
   );
+  /*
+  const getRecruthinization = asyncHandler(async (req, res) => {
+    const acYear = (req.params.id1);
+    const yearSem = (req.params.id2);
+    const degree = (req.params.id4);
+    const subject = (req.params.id5);
+    
+    const letter = [];
+  
+    connection.query(
+      `SELECT *
+    FROM exam
+    INNER JOIN exam_mark
+    ON exam.exam_sem_id = exam_mark.exam_sem_id 
+    INNER JOIN exam_question_mark
+    ON exam_mark.mark_id = exam_question_mark.mark_id
+    WHERE exam_mark.academic_yr ='${acYear}' 
+    AND exam_mark.degree='${degree}' 
+    AND exam.year = '${year}'
+    AND exam.semester='${semester}' 
+    AND exam_mark.course_name='${subject}'AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`, 
+      function (error, results, fields) {
+        if (error) throw error;
+  
+        res.json(results);
+        console.log(results);
+      }
+    );
+  });
+  
+  const getSubSelection = asyncHandler(async (req, res) => {
+    const acYear = (req.params.id1);
+    const year = (req.params.id2);
+    const sem = (req.params.id4);
+    const degree = (req.params.id5);
+    
+    const subselect = [];
+  
+    connection.query(
+      `SELECT * FROM student INNER JOIN sub_selection ON student.selection_id=sub_selection.selection_id WHERE sub_selection.academic_yr='${acYear}' 
+      AND sub_selection.degree='${degree}' 
+      AND sub_selection.year = '${year}'
+      AND sub_selection.sem='${sem}'`,
+      function (error, results, fields) {
+        if (error) throw error;
+  
+        res.json(results);
+        console.log(results);
+      }
+    );
+  });
+  
+  const getFourthYear = asyncHandler(async (req, res) => {
+    const acYear = (req.params.id1);
+    const option = (req.params.id2);
+  
+    
+    const fourthYear = [];
+  
+    connection.query(
+      `SELECT *
+    FROM exam
+    INNER JOIN exam_mark
+    ON exam.exam_sem_id = exam_mark.exam_sem_id 
+    INNER JOIN exam_question_mark
+    ON exam_mark.mark_id = exam_question_mark.mark_id
+    WHERE exam_mark.academic_yr ='${acYear}' 
+    AND exam_mark.degree='${degree}' 
+    AND exam.year = '${year}'
+    AND exam.semester='${semester}' 
+    AND exam_mark.course_name='${subject}'AND exam_mark.director_status = 'Approved' AND exam_mark.head_of_exam_status ='Approved' AND exam_mark.sar_status='Pending'`,
+      function (error, results, fields) {
+        if (error) throw error;
+  
+        res.json(results);
+        console.log(results);
+      }
+    );
+  });
+  
+ */
+  // connection.query(
+  //   `UPDATE exam_mark SER director_status ="${approve}" WHERE  exam_mark.academic_yr = "${acYear}"
+  //    AND exam_mark.degree="${degree}"
+  //    AND exam_mark.course_name="${subject}"`,
+
+  //   function (error, results, fields) {
+  //     if (error) throw error;
+
+  //     res.json(results);
+  //   }
+  // );
 });
 
 const assignAdd = asyncHandler(async (req, res) => {
@@ -419,7 +493,7 @@ const assignMarkAdd = asyncHandler(async (req, res) => {
             } else {
               var oldMarks = results[0].marks;
               connection.query(
-                `UPDATE marks_assignment SET marks=${row.marks},assignment_id=${data.assignment_id} WHERE marks!='${row.marks}' AND index_number=${row.index_number}`,
+                `UPDATE marks_assignment SET marks=${row.marks},assignment_id=${data.assignment_id} WHERE marks!='${row.marks}' AND index_number=${row.index_number} AND assignment_id=${data.assignment_id}`,
                 function (err, results) {
                   if (err) throw err;
                   connection.query(
@@ -560,18 +634,49 @@ const getIndexAssign = asyncHandler(async (req, res) => {
   );
 });
 
+const getCourseCode = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const course_id = parseInt(req.params.id);
+
+  connection.query(
+    `SELECT * from course WHERE course_id = ${course_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
+const getCourseAssign = asyncHandler(async (req, res) => {
+  // const  = parseInt(req.params.id1);
+  const assignment_id = parseInt(req.params.id);
+
+  connection.query(
+    `SELECT course.course_code,assignments.name from course,assignments WHERE assignments.course_id = course.course_id AND assignment_id = ${assignment_id}`,
+    function (error, results, fields) {
+      if (error) throw error;
+      //console.log(results);
+      res.json(results);
+    }
+  );
+});
+
 module.exports = {
   getCourses,
   getAssign,
   getUndergraduates,
   getResult,
   getResult1,
+  /* getRecruthinization, */ /*
+  getSubSelection,
+  getFourthYear, */
   assignAdd,
   assignMarkAdd,
   getAssignMarks,
   getIndexAssign,
-
+  getCourseCode,
   assignMarkAdd1,
-
+  getCourseAssign,
   getPayment,
 };

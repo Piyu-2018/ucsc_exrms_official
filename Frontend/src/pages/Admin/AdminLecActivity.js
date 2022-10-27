@@ -62,7 +62,7 @@ function AdminLecActivity() {
           </Grid>
           <Grid item xs={8} sm={10}>
             <Typography variant="h3" theme={theme} sx={{ mb: "30px" }}>
-              Lecturer Activity
+              User Activity
             </Typography>
 
             <AdminLecActivityTable />

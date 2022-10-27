@@ -1,11 +1,11 @@
-import React from 'react';
-import Category from './Category';
-import UnderSeach from './UnderSeach';
-import HoESidebar from '../HoESidebar';
-import DayTimeTable from './DayTimeTable'
-import { Grid} from "@mui/material";
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import UnderTable2 from '../../Director/Examination/UnderTable2';
+import React from "react";
+import Category from "./Category";
+import UnderSeach from "./UnderSeach";
+import HoESidebar from "../HoESidebar";
+import DayTimeTable from "./DayTimeTable";
+import { Grid } from "@mui/material";
+import AssignmentIcon from "@mui/icons-material/Assignment";
+import UnderTable2 from "./UnderTable2";
 
 function UnderDrawer() {
   const open = true;
@@ -22,9 +22,8 @@ function UnderDrawer() {
           <Grid item sm={8} md={10} >
           <h2><AssignmentIcon sx={{ fontSize: 20 }}/> Examination</h2>
             <Category/> <br></br>
-
             <UnderSeach/><br></br>
-            <UnderTable2/>
+            <UnderTable2/><br></br>
            
           </Grid>  
         </Grid>

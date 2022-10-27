@@ -9,7 +9,7 @@ function SAR_UnderDrawer() {
   const open = true;
   console.log(open);
 
-  const [option,setOption] = useState("Academic Year - 2022/2023");
+  const [option,setOption] = useState("Academic Year - 2022-2023");
   const [year,setYear] = useState("First Year");
   const [degree,setDegree] = useState("Computer Science (Bsc)");
 
@@ -35,7 +35,7 @@ function SAR_UnderDrawer() {
           </Grid>
           <Grid item sm={8} md={10} >
             <SAR_UnderYear onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedDegree={onSelectedDegree}/> <br></br>
-            <SAR_UnderSeach/><br></br>
+            {/* <SAR_UnderSeach/><br></br> */}
             <SAR_UnderTable option={option} year={year} degree={degree}/>
           </Grid>  
         </Grid>
