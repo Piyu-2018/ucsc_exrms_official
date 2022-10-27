@@ -36,6 +36,8 @@ const {
   examMarksAdd,
   getLecturer,
   getRescrutinization,
+  release,
+  updateMarks,
 } = require("../controllers/examinationController");
 
 const { getNewIntake } = require("../controllers/directorNewIntakeController");
@@ -107,6 +109,8 @@ router.get("/getFourth/:id1", getFourth);
 
 router.get("/getNewIntake", getNewIntake);
 router.get("/getApprove/:id1", getApprove);
+router.post("/updateMarks", updateMarks);
+router.post("/release/:id", release);
 
 router.get("/getRegistration/:id1/:id2", getRegistration);
 

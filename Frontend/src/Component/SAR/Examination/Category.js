@@ -94,6 +94,7 @@ export default function AutoGrid() {
   const onSelectedSubject = (subject) => {
     setSubject(subject);
   };
+
   return (
     <Box sx={{ flexGrow: 1 }}> 
       <Box sx={{ bgcolor: 'background.paper', width: '100%' }}>
@@ -131,12 +132,12 @@ export default function AutoGrid() {
             
             <UnderSeach onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedSem={onSelectedSem} onSelectedDegree={onSelectedDegree} onSelectedSubject={onSelectedSubject}/> <br></br>
             <UnderTable1 option={option} year={year} semester={semester} degree={degree} subject={subject}/>
-            <DayTimeTable/>
+            <DayTimeTable  option={option}  year={year} semester={semester} degree={degree} subject={subject}/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
             
             <UnderSeach onSelectedOption={onSelectedOption} onSelectedYear={onSelectedYear} onSelectedSem={onSelectedSem} onSelectedDegree={onSelectedDegree} onSelectedSubject={onSelectedSubject}/> <br></br>
-            <UnderTable2/><br></br>
+            <UnderTable2 /><br></br>
         </TabPanel>
       </SwipeableViews>
     </Box>
